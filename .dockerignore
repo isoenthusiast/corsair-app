@@ -1,0 +1,17 @@
+# Exclude sensitive files from Docker build context
+.env
+.env.local
+.env.production
+
+# Development files
+node_modules/
+.next/
+*.tsbuildinfo
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

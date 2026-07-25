@@ -1,0 +1,237 @@
+@import url('https://fonts.googleapis.com/css2?family=Pirata+One&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: #0D1B2A;
+    color: #FAFAFA;
+}
+
+h1,
+h2,
+h3 {
+    font-family: 'Pirata One', cursive;
+    letter-spacing: 0.02em;
+}
+
+.parchment {
+    background: linear-gradient(135deg, #F4E4BC 0%, #E8D5A3 100%);
+    color: #3E2723;
+    border: 2px solid #8D6E63;
+}
+
+.parchment-dark {
+    background: linear-gradient(135deg, #1B2838 0%, #0D1B2A 100%);
+    border: 2px solid #8D6E63;
+    color: #F4E4BC;
+}
+
+.treasure-map {
+    background: radial-gradient(ellipse at 20% 50%, rgba(247, 201, 72, 0.05) 0%, transparent 50%), radial-gradient(ellipse at 80% 20%, rgba(33, 150, 243, 0.05) 0%, transparent 50%), linear-gradient(180deg, #0D1B2A 0%, #1B2838 50%, #0D1B2A 100%);
+}
+
+.wanted-poster {
+    background: linear-gradient(135deg, #F4E4BC 0%, #E8D5A3 100%);
+    border: 6px double #8D6E63;
+    color: #3E2723;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+}
+
+.sea-card {
+    background: linear-gradient(180deg, #1B2838 0%, #0D1B2A 100%);
+    border: 2px solid #8D6E63;
+    border-radius: 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.sea-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #F7C948, #FF9800, #F7C948);
+}
+
+.trial-scroll {
+    background: linear-gradient(135deg, #F4E4BC 0%, #E8D5A3 100%);
+    border: 3px solid #8D6E63;
+    border-radius: 0.5rem 2rem 0.5rem 2rem;
+    color: #3E2723;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.rank-badge {
+    background: linear-gradient(135deg, #F7C948 0%, #FF9800 100%);
+    color: #3E2723;
+    font-family: 'Pirata One', cursive;
+    border: 2px solid #5D4037;
+}
+
+.bounty-tag {
+    background: #D32F2F;
+    color: white;
+    font-family: 'Pirata One', cursive;
+    clip-path: polygon(0% 0%, 95% 0%, 100% 50%, 95% 100%, 0% 100%, 5% 50%);
+    padding: 0.25rem 1rem;
+}
+
+.hull-bar {
+    height: 10px;
+    background: #1B2838;
+    border: 1px solid #8D6E63;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.hull-bar-fill {
+    height: 100%;
+    border-radius: 5px;
+    background: linear-gradient(90deg, #00897B, #4DB6AC);
+    transition: width 0.6s ease;
+}
+
+.skull-star {
+    transition: all 0.2s ease;
+    font-size: 1.5rem;
+}
+
+.skull-star.earned {
+    color: #F7C948;
+    text-shadow: 0 0 10px rgba(247, 201, 72, 0.6);
+}
+
+.skull-star.empty {
+    color: #37474F;
+}
+
+.voyage-node {
+    transition: all 0.2s ease;
+}
+
+.voyage-node:hover:not(.locked) {
+    transform: scale(1.03);
+}
+
+.voyage-node.locked {
+    opacity: 0.5;
+    filter: grayscale(0.6);
+}
+
+.btn-pirate {
+    background: linear-gradient(180deg, #F7C948 0%, #E6A817 100%);
+    color: #3E2723;
+    font-family: 'Pirata One', cursive;
+    font-weight: bold;
+    border: 2px solid #5D4037;
+    box-shadow: 0 3px 0 #5D4037;
+    transition: all 0.15s ease;
+    padding: 0.5rem 1.5rem;
+    border-radius: 0.5rem;
+}
+
+.btn-pirate:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 0 #5D4037;
+}
+
+.btn-pirate:active {
+    transform: translateY(2px);
+    box-shadow: 0 1px 0 #5D4037;
+}
+
+.btn-cannon {
+    background: linear-gradient(180deg, #D32F2F 0%, #B71C1C 100%);
+    color: white;
+    font-family: 'Pirata One', cursive;
+    border: 2px solid #5D4037;
+    box-shadow: 0 3px 0 #5D4037;
+    transition: all 0.15s ease;
+    padding: 0.5rem 1.5rem;
+    border-radius: 0.5rem;
+}
+
+.btn-cannon:hover {
+    transform: translateY(-1px);
+}
+
+.btn-cannon:active {
+    transform: translateY(2px);
+    box-shadow: 0 1px 0 #5D4037;
+}
+
+.animate-sail {
+    animation: sail 4s ease-in-out infinite;
+}
+
+.animate-treasure-glow {
+    animation: treasure-glow 2s ease-in-out infinite;
+}
+
+.animate-map-unfold {
+    animation: map-unfold 0.4s ease-out;
+    transform-origin: top;
+}
+
+.animate-cannon {
+    animation: cannon-blast 0.4s ease-out;
+}
+
+@keyframes sail {
+
+    0%,
+    100% {
+        transform: translateX(0) translateY(0);
+    }
+
+    25% {
+        transform: translateX(3px) translateY(-2px);
+    }
+
+    75% {
+        transform: translateX(-3px) translateY(2px);
+    }
+}
+
+@keyframes treasure-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 8px rgba(247, 201, 72, 0.3);
+    }
+
+    50% {
+        box-shadow: 0 0 20px rgba(247, 201, 72, 0.7);
+    }
+}
+
+@keyframes map-unfold {
+    from {
+        transform: scaleY(0);
+        opacity: 0;
+    }
+
+    to {
+        transform: scaleY(1);
+        opacity: 1;
+    }
+}
+
+@keyframes cannon-blast {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.3);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}

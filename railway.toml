@@ -1,0 +1,11 @@
+[build]
+builder = "nixpacks"
+[nixpacks]
+providers = ["nodejs_22"]
+
+[deploy]
+preDeployCommand = "npx prisma generate && npx prisma db push && npx tsx prisma/seed.ts"
+
+# NOTE: Set these in Railway Dashboard → Variables, NOT in .env:
+#   DATABASE_URL, AUTH_SECRET, AUTH_URL, DEEPSEEK_API_KEY, DEEPSEEK_MODEL_PRO, DEEPSEEK_MODEL_FLASH
+# The .env file is excluded from build via .dockerignore to prevent secret exposure in Docker layers.

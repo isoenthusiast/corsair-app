@@ -1,0 +1,489 @@
+generator client {
+    provider = "prisma-client"
+    output   = "../src/generated/prisma"
+}
+
+datasource db {
+    provider = "postgresql"
+}
+
+// ═══════════════════════════════════════════
+// 🏴‍☠️  Corsair Academy v2.1 — Full Schema
+// ═══════════════════════════════════════════
+
+model User {
+    id                 String    @id @default(cuid())
+    name               String
+    username           String    @unique
+    passwordHash       String
+    role               Role      @default(Student)
+    status             String    @default("Active")
+    avatarUrl          String?
+    age                Int?
+    bio                String?
+    favoriteSea        String?
+    learningGoals      String?
+    crowns             Int       @default(0)
+    pirateRank         String    @default("Deckhand")
+    mustChangePassword Boolean   @default(false)
+    deletedAt          DateTime?
+    createdAt          DateTime  @default(now())
+
+    progress            UserVoyageProgress[]
+    achievements        UserAchievement[]
+    pointLog            PointTransaction[]
+    crownLog            CrownTransaction[]
+    streaks             Streak[]
+    charms              SeaCharm[]
+    attempts            TrialAttempt[]
+    shipUpgrades        UserShipUpgrade[]
+    chestClaims         DailyChestClaim[]
+    parentLinks         StudentParent[]      @relation("StudentParentLink")
+    parentOfLinks       StudentParent[]      @relation("ParentChildLink")
+    studentClasses      StudentClass[]
+    taughtClasses       ClassTeacher[]
+    assignments         Assignment[]         @relation("AssignmentTeacher")
+    studentAssignments  Assignment[]         @relation("AssignmentStudent")
+    announcements       Announcement[]
+    auditActions        AuditLog[]
+    loginRecords        LoginHistory[]
+    createdInvites      InviteLink[]         @relation("InviteCreator")
+    systemAnnouncements SystemAnnouncement[]
+    voyageBundles       VoyageBundle[]
+}
+
+// ── Seas & Voyages ──
+
+model Sea {
+    id          String   @id @default(cuid())
+    name        String   @unique
+    icon        String
+    description String?
+    color       String?
+    sortOrder   Int      @default(0)
+    voyages     Voyage[]
+}
+
+model Voyage {
+    id                    String   @id @default(cuid())
+    title                 String
+    description           String?
+    seaId                 String
+    sortOrder             Int      @default(0)
+    difficulty            Int      @default(1)
+    requiredVoyageId      String?
+    captainGauntlet       Boolean  @default(false)
+    status                String   @default("Draft")
+    objectives            String?
+    estimatedMinutes      Int?
+    tags                  String[] @default([])
+    skills                String[] @default([])
+    prerequisiteKnowledge String?
+    successCriteria       String?
+    abTestGroup           String?
+    branchParentId        String?
+    branchLabel           String?
+    createdAt             DateTime @default(now())
+
+    sea            Sea                  @relation(fields: [seaId], references: [id])
+    trials         Trial[]
+    prerequisite   Voyage?              @relation("VoyagePrerequisite", fields: [requiredVoyageId], references: [id])
+    nextVoyages    Voyage[]             @relation("VoyagePrerequisite")
+    branchChildren Voyage[]             @relation("VoyageBranch")
+    branchParent   Voyage?              @relation("VoyageBranch", fields: [branchParentId], references: [id])
+    progress       UserVoyageProgress[]
+    assignments    Assignment[]
+    bundleItems    VoyageBundleItem[]
+
+    @@index([seaId])
+}
+
+model Trial {
+    id          String    @id @default(cuid())
+    voyageId    String
+    type        TrialType
+    question    String
+    options     Json?
+    answer      String
+    explanation String?
+    hint        String?
+    points      Int       @default(10)
+    difficulty  Int       @default(1)
+    aiGenerated Boolean   @default(false)
+    flagCount   Int       @default(0)
+    createdAt   DateTime  @default(now())
+
+    voyage   Voyage         @relation(fields: [voyageId], references: [id])
+    attempts TrialAttempt[]
+    versions TrialVersion[]
+
+    @@index([voyageId])
+}
+
+model TrialVersion {
+    id            String   @id @default(cuid())
+    trialId       String
+    versionNumber Int
+    question      String
+    options       Json?
+    answer        String
+    explanation   String?
+    hint          String?
+    points        Int
+    editedBy      String
+    editedAt      DateTime @default(now())
+
+    trial Trial @relation(fields: [trialId], references: [id])
+}
+
+// ── Progress ──
+
+model TrialAttempt {
+    id        String   @id @default(cuid())
+    trialId   String
+    userId    String
+    answer    String
+    correct   Boolean
+    timeSpent Int?
+    skulls    Int      @default(0)
+    hintsUsed Int      @default(0)
+    createdAt DateTime @default(now())
+
+    trial Trial @relation(fields: [trialId], references: [id])
+    user  User  @relation(fields: [userId], references: [id])
+
+    @@index([userId])
+    @@index([trialId])
+}
+
+model UserVoyageProgress {
+    id              String       @id @default(cuid())
+    userId          String
+    voyageId        String
+    status          VoyageStatus @default(Locked)
+    skulls          Int          @default(0)
+    trialsCompleted Int          @default(0)
+    completedAt     DateTime?
+
+    user   User   @relation(fields: [userId], references: [id])
+    voyage Voyage @relation(fields: [voyageId], references: [id])
+
+    @@unique([userId, voyageId])
+}
+
+// ── Economy ──
+
+model PointTransaction {
+    id         String   @id @default(cuid())
+    userId     String
+    points     Int
+    reason     String
+    sourceId   String?
+    multiplier Float    @default(1.0)
+    createdAt  DateTime @default(now())
+
+    user User @relation(fields: [userId], references: [id])
+
+    @@index([userId])
+}
+
+model CrownTransaction {
+    id        String   @id @default(cuid())
+    userId    String
+    amount    Int
+    reason    String
+    sourceId  String?
+    createdAt DateTime @default(now())
+
+    user User @relation(fields: [userId], references: [id])
+
+    @@index([userId])
+}
+
+// ── Ship Upgrades ──
+
+model ShipUpgrade {
+    id          String @id @default(cuid())
+    name        String
+    description String
+    icon        String
+    cost        Int
+    sortOrder   Int    @default(0)
+
+    users UserShipUpgrade[]
+}
+
+model UserShipUpgrade {
+    id          String   @id @default(cuid())
+    userId      String
+    upgradeId   String
+    purchasedAt DateTime @default(now())
+
+    user    User        @relation(fields: [userId], references: [id])
+    upgrade ShipUpgrade @relation(fields: [upgradeId], references: [id])
+
+    @@unique([userId, upgradeId])
+}
+
+// ── Daily Chests ──
+
+model DailyChestClaim {
+    id            String   @id @default(cuid())
+    userId        String
+    streakDay     Int
+    chestType     String
+    rewardSummary String
+    claimedAt     DateTime @default(now())
+
+    user User @relation(fields: [userId], references: [id])
+
+    @@unique([userId, streakDay])
+}
+
+// ── Achievements ──
+
+model Achievement {
+    id          String          @id @default(cuid())
+    name        String
+    description String
+    icon        String
+    type        AchievementType
+    threshold   Int?
+    rarity      BadgeRarity     @default(Common)
+
+    users UserAchievement[]
+}
+
+model UserAchievement {
+    id            String   @id @default(cuid())
+    userId        String
+    achievementId String
+    earnedAt      DateTime @default(now())
+
+    user        User        @relation(fields: [userId], references: [id])
+    achievement Achievement @relation(fields: [achievementId], references: [id])
+
+    @@unique([userId, achievementId])
+}
+
+// ── Streaks & Sea Charms ──
+
+model Streak {
+    id               String    @id @default(cuid())
+    userId           String    @unique
+    currentStreak    Int       @default(0)
+    longestStreak    Int       @default(0)
+    lastActivityDate DateTime?
+    streakProtection Int       @default(0)
+
+    user User @relation(fields: [userId], references: [id])
+}
+
+model SeaCharm {
+    id       String       @id @default(cuid())
+    userId   String
+    type     SeaCharmType
+    quantity Int          @default(0)
+
+    user User @relation(fields: [userId], references: [id])
+
+    @@unique([userId, type])
+}
+
+// ── Multi-User ──
+
+model Class {
+    id        String   @id @default(cuid())
+    name      String
+    createdAt DateTime @default(now())
+
+    teachers      ClassTeacher[]
+    students      StudentClass[]
+    assignments   Assignment[]
+    announcements Announcement[]
+}
+
+model ClassTeacher {
+    id        String @id @default(cuid())
+    classId   String
+    teacherId String
+
+    class_  Class @relation(fields: [classId], references: [id])
+    teacher User  @relation(fields: [teacherId], references: [id])
+
+    @@unique([classId, teacherId])
+}
+
+model StudentClass {
+    id        String @id @default(cuid())
+    studentId String
+    classId   String
+
+    student User  @relation(fields: [studentId], references: [id])
+    class_  Class @relation(fields: [classId], references: [id])
+
+    @@unique([studentId, classId])
+}
+
+model StudentParent {
+    id        String @id @default(cuid())
+    studentId String
+    parentId  String
+
+    student User @relation("StudentParentLink", fields: [studentId], references: [id])
+    parent  User @relation("ParentChildLink", fields: [parentId], references: [id])
+
+    @@unique([studentId, parentId])
+}
+
+model Assignment {
+    id        String    @id @default(cuid())
+    voyageId  String
+    classId   String
+    teacherId String
+    studentId String?
+    dueDate   DateTime?
+    createdAt DateTime  @default(now())
+
+    voyage  Voyage @relation(fields: [voyageId], references: [id])
+    class_  Class  @relation(fields: [classId], references: [id])
+    teacher User   @relation("AssignmentTeacher", fields: [teacherId], references: [id])
+    student User?  @relation("AssignmentStudent", fields: [studentId], references: [id])
+
+    @@index([classId])
+}
+
+model Announcement {
+    id        String   @id @default(cuid())
+    classId   String
+    teacherId String
+    title     String
+    body      String
+    createdAt DateTime @default(now())
+
+    class_  Class @relation(fields: [classId], references: [id])
+    teacher User  @relation(fields: [teacherId], references: [id])
+
+    @@index([classId])
+}
+
+// ── Admin: Audit & Security ──
+
+model AuditLog {
+    id        String   @id @default(cuid())
+    userId    String
+    action    String
+    targetId  String?
+    details   String?
+    ipAddress String?
+    createdAt DateTime @default(now())
+
+    user User @relation(fields: [userId], references: [id])
+}
+
+model LoginHistory {
+    id        String   @id @default(cuid())
+    userId    String
+    ipAddress String?
+    userAgent String?
+    success   Boolean
+    createdAt DateTime @default(now())
+
+    user User @relation(fields: [userId], references: [id])
+}
+
+model InviteLink {
+    id        String   @id @default(cuid())
+    token     String   @unique
+    createdBy String
+    role      Role
+    expiresAt DateTime
+    usedById  String?
+    createdAt DateTime @default(now())
+
+    creator User @relation("InviteCreator", fields: [createdBy], references: [id])
+}
+
+// ── Admin: System ──
+
+model SystemAnnouncement {
+    id         String    @id @default(cuid())
+    adminId    String
+    title      String
+    body       String
+    targetRole String?
+    expiresAt  DateTime?
+    createdAt  DateTime  @default(now())
+
+    admin User @relation(fields: [adminId], references: [id])
+}
+
+model VoyageBundle {
+    id          String   @id @default(cuid())
+    name        String
+    description String?
+    adminId     String
+    createdAt   DateTime @default(now())
+
+    admin User               @relation(fields: [adminId], references: [id])
+    items VoyageBundleItem[]
+}
+
+model VoyageBundleItem {
+    id        String @id @default(cuid())
+    bundleId  String
+    voyageId  String
+    sortOrder Int    @default(0)
+
+    bundle VoyageBundle @relation(fields: [bundleId], references: [id])
+    voyage Voyage       @relation(fields: [voyageId], references: [id])
+
+    @@unique([bundleId, voyageId])
+}
+
+// ── Enums ──
+
+enum Role {
+    Student
+    Teacher
+    Parent
+    Admin
+}
+
+enum TrialType {
+    multi_choice
+    fill_blank
+    puzzle
+    open_ended
+}
+
+enum VoyageStatus {
+    Locked
+    Available
+    InProgress
+    Completed
+    Mastered
+}
+
+enum AchievementType {
+    streak
+    mastery
+    speed
+    exploration
+    social
+}
+
+enum BadgeRarity {
+    Common
+    Uncommon
+    Rare
+    Epic
+    Legendary
+}
+
+enum SeaCharmType {
+    whisper_scroll
+    storm_pass
+    fortune_wind
+    anchor_charm
+}
