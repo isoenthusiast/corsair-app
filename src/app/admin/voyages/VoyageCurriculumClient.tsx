@@ -12,7 +12,7 @@ interface VoyageDetail {
     id: string; title: string; description: string | null; difficulty: number; status: string;
     objectives: string | null; estimatedMinutes: number | null; tags: string[]; skills: string[];
     captainGauntlet: boolean; sea: { id: string; name: string; icon: string };
-    trials: { id: string; type: string; question: string; points: number; sortOrder: number; _count: { attempts: number; versions: number } }[];
+    trials: { id: string; type: string; question: string; points: number; _count: { attempts: number; versions: number } }[];
 }
 
 interface TrialForm {
@@ -74,7 +74,7 @@ export default function VoyageCurriculumClient({ seas }: { seas: SeaData[] }) {
         setEditingTrial({
             id: trial.id, type: trial.type, question: trial.question,
             options: "", answer: "", explanation: "", hint: "",
-            points: trial.points, sortOrder: trial.sortOrder,
+            points: trial.points, sortOrder: 0,
         });
         setTrialError("");
     }

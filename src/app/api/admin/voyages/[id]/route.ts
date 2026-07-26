@@ -15,7 +15,7 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
         include: {
             sea: { select: { id: true, name: true, icon: true } },
             trials: {
-                orderBy: { sortOrder: "asc" },
+                orderBy: { createdAt: "asc" },
                 include: {
                     _count: { select: { attempts: true, versions: true } },
                 },
