@@ -428,6 +428,7 @@ export const ModelName = {
   VoyageBundle: 'VoyageBundle',
   VoyageBundleItem: 'VoyageBundleItem',
   KanbanCard: 'KanbanCard',
+  AIUsageLog: 'AIUsageLog',
   AIContext: 'AIContext'
 } as const
 
@@ -444,7 +445,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "sea" | "voyage" | "trial" | "trialVersion" | "trialAttempt" | "userVoyageProgress" | "pointTransaction" | "crownTransaction" | "shipUpgrade" | "userShipUpgrade" | "dailyChestClaim" | "achievement" | "userAchievement" | "streak" | "seaCharm" | "class" | "classTeacher" | "studentClass" | "studentParent" | "assignment" | "announcement" | "auditLog" | "loginHistory" | "inviteLink" | "systemAnnouncement" | "economySettings" | "systemSetting" | "voyageBundle" | "voyageBundleItem" | "kanbanCard" | "aIContext"
+    modelProps: "user" | "sea" | "voyage" | "trial" | "trialVersion" | "trialAttempt" | "userVoyageProgress" | "pointTransaction" | "crownTransaction" | "shipUpgrade" | "userShipUpgrade" | "dailyChestClaim" | "achievement" | "userAchievement" | "streak" | "seaCharm" | "class" | "classTeacher" | "studentClass" | "studentParent" | "assignment" | "announcement" | "auditLog" | "loginHistory" | "inviteLink" | "systemAnnouncement" | "economySettings" | "systemSetting" | "voyageBundle" | "voyageBundleItem" | "kanbanCard" | "aIUsageLog" | "aIContext"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2742,6 +2743,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    AIUsageLog: {
+      payload: Prisma.$AIUsageLogPayload<ExtArgs>
+      fields: Prisma.AIUsageLogFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AIUsageLogFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AIUsageLogPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AIUsageLogFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AIUsageLogPayload>
+        }
+        findFirst: {
+          args: Prisma.AIUsageLogFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AIUsageLogPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AIUsageLogFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AIUsageLogPayload>
+        }
+        findMany: {
+          args: Prisma.AIUsageLogFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AIUsageLogPayload>[]
+        }
+        create: {
+          args: Prisma.AIUsageLogCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AIUsageLogPayload>
+        }
+        createMany: {
+          args: Prisma.AIUsageLogCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.AIUsageLogCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AIUsageLogPayload>[]
+        }
+        delete: {
+          args: Prisma.AIUsageLogDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AIUsageLogPayload>
+        }
+        update: {
+          args: Prisma.AIUsageLogUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AIUsageLogPayload>
+        }
+        deleteMany: {
+          args: Prisma.AIUsageLogDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AIUsageLogUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.AIUsageLogUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AIUsageLogPayload>[]
+        }
+        upsert: {
+          args: Prisma.AIUsageLogUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AIUsageLogPayload>
+        }
+        aggregate: {
+          args: Prisma.AIUsageLogAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAIUsageLog>
+        }
+        groupBy: {
+          args: Prisma.AIUsageLogGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AIUsageLogGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AIUsageLogCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AIUsageLogCountAggregateOutputType> | number
+        }
+      }
+    }
     AIContext: {
       payload: Prisma.$AIContextPayload<ExtArgs>
       fields: Prisma.AIContextFieldRefs
@@ -2870,6 +2945,7 @@ export const UserScalarFieldEnum = {
   crowns: 'crowns',
   pirateRank: 'pirateRank',
   hasFortuneWind: 'hasFortuneWind',
+  adaptiveDifficulty: 'adaptiveDifficulty',
   mustChangePassword: 'mustChangePassword',
   deletedAt: 'deletedAt',
   createdAt: 'createdAt'
@@ -3162,6 +3238,7 @@ export type AuditLogScalarFieldEnum = (typeof AuditLogScalarFieldEnum)[keyof typ
 export const LoginHistoryScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
+  username: 'username',
   ipAddress: 'ipAddress',
   userAgent: 'userAgent',
   success: 'success',
@@ -3264,6 +3341,20 @@ export const KanbanCardScalarFieldEnum = {
 } as const
 
 export type KanbanCardScalarFieldEnum = (typeof KanbanCardScalarFieldEnum)[keyof typeof KanbanCardScalarFieldEnum]
+
+
+export const AIUsageLogScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  feature: 'feature',
+  model: 'model',
+  promptTokens: 'promptTokens',
+  completionTokens: 'completionTokens',
+  cost: 'cost',
+  createdAt: 'createdAt'
+} as const
+
+export type AIUsageLogScalarFieldEnum = (typeof AIUsageLogScalarFieldEnum)[keyof typeof AIUsageLogScalarFieldEnum]
 
 
 export const AIContextScalarFieldEnum = {
@@ -3384,6 +3475,20 @@ export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel,
 
 
 /**
+ * Reference to a field of type 'Float'
+ */
+export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+/**
+ * Reference to a field of type 'Float[]'
+ */
+export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
+
+
+/**
  * Reference to a field of type 'DateTime'
  */
 export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -3450,20 +3555,6 @@ export type EnumVoyageStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$Pri
  * Reference to a field of type 'VoyageStatus[]'
  */
 export type ListEnumVoyageStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'VoyageStatus[]'>
-    
-
-
-/**
- * Reference to a field of type 'Float'
- */
-export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
-    
-
-
-/**
- * Reference to a field of type 'Float[]'
- */
-export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
 
 
@@ -3760,6 +3851,7 @@ export type GlobalOmitConfig = {
   voyageBundle?: Prisma.VoyageBundleOmit
   voyageBundleItem?: Prisma.VoyageBundleItemOmit
   kanbanCard?: Prisma.KanbanCardOmit
+  aIUsageLog?: Prisma.AIUsageLogOmit
   aIContext?: Prisma.AIContextOmit
 }
 

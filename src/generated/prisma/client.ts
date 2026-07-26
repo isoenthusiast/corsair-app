@@ -197,6 +197,11 @@ export type VoyageBundleItem = Prisma.VoyageBundleItemModel
  */
 export type KanbanCard = Prisma.KanbanCardModel
 /**
+ * Model AIUsageLog
+ * 
+ */
+export type AIUsageLog = Prisma.AIUsageLogModel
+/**
  * Model AIContext
  * 
  */

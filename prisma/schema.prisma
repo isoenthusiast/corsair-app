@@ -1,10 +1,10 @@
 generator client {
-    provider = "prisma-client"
-    output   = "../src/generated/prisma"
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
 }
 
 datasource db {
-    provider = "postgresql"
+  provider = "postgresql"
 }
 
 // ═══════════════════════════════════════════
@@ -12,588 +12,610 @@ datasource db {
 // ═══════════════════════════════════════════
 
 model User {
-    id                 String    @id @default(cuid())
-    name               String
-    username           String    @unique
-    passwordHash       String
-    role               Role      @default(Student)
-    status             String    @default("Active")
-    avatarUrl          String?
-    age                Int?
-    bio                String?
-    favoriteSea        String?
-    learningGoals      String?
-    crowns             Int       @default(0)
-    pirateRank         String    @default("Deckhand")
-    hasFortuneWind     Boolean   @default(false)
-    mustChangePassword Boolean   @default(false)
-    deletedAt          DateTime?
-    createdAt          DateTime  @default(now())
+  id                 String    @id @default(cuid())
+  name               String
+  username           String    @unique
+  passwordHash       String
+  role               Role      @default(Student)
+  status             String    @default("Active")
+  avatarUrl          String?
+  age                Int?
+  bio                String?
+  favoriteSea        String?
+  learningGoals      String?
+  crowns             Int       @default(0)
+  pirateRank         String    @default("Deckhand")
+  hasFortuneWind     Boolean   @default(false)
+  adaptiveDifficulty Float     @default(1.0)
+  mustChangePassword Boolean   @default(false)
+  deletedAt          DateTime?
+  createdAt          DateTime  @default(now())
 
-    progress            UserVoyageProgress[]
-    achievements        UserAchievement[]
-    pointLog            PointTransaction[]
-    crownLog            CrownTransaction[]
-    streaks             Streak[]
-    charms              SeaCharm[]
-    attempts            TrialAttempt[]
-    shipUpgrades        UserShipUpgrade[]
-    chestClaims         DailyChestClaim[]
-    parentLinks         StudentParent[]      @relation("StudentParentLink")
-    parentOfLinks       StudentParent[]      @relation("ParentChildLink")
-    studentClasses      StudentClass[]
-    taughtClasses       ClassTeacher[]
-    assignments         Assignment[]         @relation("AssignmentTeacher")
-    studentAssignments  Assignment[]         @relation("AssignmentStudent")
-    announcements       Announcement[]
-    auditActions        AuditLog[]
-    loginRecords        LoginHistory[]
-    createdInvites      InviteLink[]         @relation("InviteCreator")
-    systemAnnouncements SystemAnnouncement[]
-    voyageBundles       VoyageBundle[]
-    kanbanCreated       KanbanCard[]         @relation("KanbanCreator")
-    kanbanAssigned      KanbanCard[]         @relation("KanbanAssignee")
-    aiContexts          AIContext[]
+  progress            UserVoyageProgress[]
+  achievements        UserAchievement[]
+  pointLog            PointTransaction[]
+  crownLog            CrownTransaction[]
+  streaks             Streak[]
+  charms              SeaCharm[]
+  attempts            TrialAttempt[]
+  shipUpgrades        UserShipUpgrade[]
+  chestClaims         DailyChestClaim[]
+  parentLinks         StudentParent[]      @relation("StudentParentLink")
+  parentOfLinks       StudentParent[]      @relation("ParentChildLink")
+  studentClasses      StudentClass[]
+  taughtClasses       ClassTeacher[]
+  assignments         Assignment[]         @relation("AssignmentTeacher")
+  studentAssignments  Assignment[]         @relation("AssignmentStudent")
+  announcements       Announcement[]
+  auditActions        AuditLog[]
+  loginRecords        LoginHistory[]
+  createdInvites      InviteLink[]         @relation("InviteCreator")
+  systemAnnouncements SystemAnnouncement[]
+  voyageBundles       VoyageBundle[]
+  kanbanCreated       KanbanCard[]         @relation("KanbanCreator")
+  kanbanAssigned      KanbanCard[]         @relation("KanbanAssignee")
+  aiContexts          AIContext[]
+  aiUsageLogs         AIUsageLog[]
 }
 
 // ── Seas & Voyages ──
 
 model Sea {
-    id          String      @id @default(cuid())
-    name        String      @unique
-    icon        String
-    description String?
-    color       String?
-    sortOrder   Int         @default(0)
-    voyages     Voyage[]
-    aiContexts  AIContext[]
+  id          String      @id @default(cuid())
+  name        String      @unique
+  icon        String
+  description String?
+  color       String?
+  sortOrder   Int         @default(0)
+  voyages     Voyage[]
+  aiContexts  AIContext[]
 }
 
 model Voyage {
-    id                    String   @id @default(cuid())
-    title                 String
-    description           String?
-    seaId                 String
-    sortOrder             Int      @default(0)
-    difficulty            Int      @default(1)
-    requiredVoyageId      String?
-    captainGauntlet       Boolean  @default(false)
-    lifecycle             VoyageLifecycle @default(Draft)
-    objectives            String?
-    estimatedMinutes      Int?
-    tags                  String[] @default([])
-    skills                String[] @default([])
-    prerequisiteKnowledge String?
-    successCriteria       String?
-    abTestGroup           String?
-    branchParentId        String?
-    branchLabel           String?
-    createdAt             DateTime @default(now())
+  id                    String          @id @default(cuid())
+  title                 String
+  description           String?
+  seaId                 String
+  sortOrder             Int             @default(0)
+  difficulty            Int             @default(1)
+  requiredVoyageId      String?
+  captainGauntlet       Boolean         @default(false)
+  lifecycle             VoyageLifecycle @default(Draft)
+  objectives            String?
+  estimatedMinutes      Int?
+  tags                  String[]        @default([])
+  skills                String[]        @default([])
+  prerequisiteKnowledge String?
+  successCriteria       String?
+  abTestGroup           String?
+  branchParentId        String?
+  branchLabel           String?
+  createdAt             DateTime        @default(now())
 
-    sea            Sea                  @relation(fields: [seaId], references: [id])
-    trials         Trial[]
-    prerequisite   Voyage?              @relation("VoyagePrerequisite", fields: [requiredVoyageId], references: [id])
-    nextVoyages    Voyage[]             @relation("VoyagePrerequisite")
-    branchChildren Voyage[]             @relation("VoyageBranch")
-    branchParent   Voyage?              @relation("VoyageBranch", fields: [branchParentId], references: [id])
-    progress       UserVoyageProgress[]
-    assignments    Assignment[]
-    bundleItems    VoyageBundleItem[]
-    aiContexts     AIContext[]
+  sea            Sea                  @relation(fields: [seaId], references: [id])
+  trials         Trial[]
+  prerequisite   Voyage?              @relation("VoyagePrerequisite", fields: [requiredVoyageId], references: [id])
+  nextVoyages    Voyage[]             @relation("VoyagePrerequisite")
+  branchChildren Voyage[]             @relation("VoyageBranch")
+  branchParent   Voyage?              @relation("VoyageBranch", fields: [branchParentId], references: [id])
+  progress       UserVoyageProgress[]
+  assignments    Assignment[]
+  bundleItems    VoyageBundleItem[]
+  aiContexts     AIContext[]
 
-    @@index([seaId])
+  @@index([seaId])
 }
 
 model Trial {
-    id          String    @id @default(cuid())
-    voyageId    String
-    type        TrialType
-    question    String
-    options     Json?
-    answer      String
-    explanation String?
-    hint        String?
-    points      Int       @default(10)
-    difficulty  Int       @default(1)
-    aiGenerated Boolean   @default(false)
-    flagCount   Int       @default(0)
-    createdAt   DateTime  @default(now())
+  id          String    @id @default(cuid())
+  voyageId    String
+  type        TrialType
+  question    String
+  options     Json?
+  answer      String
+  explanation String?
+  hint        String?
+  points      Int       @default(10)
+  difficulty  Int       @default(1)
+  aiGenerated Boolean   @default(false)
+  flagCount   Int       @default(0)
+  createdAt   DateTime  @default(now())
 
-    voyage   Voyage         @relation(fields: [voyageId], references: [id])
-    attempts TrialAttempt[]
-    versions TrialVersion[]
+  voyage   Voyage         @relation(fields: [voyageId], references: [id])
+  attempts TrialAttempt[]
+  versions TrialVersion[]
 
-    @@index([voyageId])
+  @@index([voyageId])
 }
 
 model TrialVersion {
-    id            String   @id @default(cuid())
-    trialId       String
-    versionNumber Int
-    question      String
-    options       Json?
-    answer        String
-    explanation   String?
-    hint          String?
-    points        Int
-    editedBy      String
-    editedAt      DateTime @default(now())
+  id            String   @id @default(cuid())
+  trialId       String
+  versionNumber Int
+  question      String
+  options       Json?
+  answer        String
+  explanation   String?
+  hint          String?
+  points        Int
+  editedBy      String
+  editedAt      DateTime @default(now())
 
-    trial Trial @relation(fields: [trialId], references: [id])
+  trial Trial @relation(fields: [trialId], references: [id])
 }
 
 // ── Progress ──
 
 model TrialAttempt {
-    id        String   @id @default(cuid())
-    trialId   String
-    userId    String
-    answer    String
-    correct   Boolean
-    timeSpent Int?
-    skulls    Int      @default(0)
-    hintsUsed Int      @default(0)
-    createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  trialId   String
+  userId    String
+  answer    String
+  correct   Boolean
+  timeSpent Int?
+  skulls    Int      @default(0)
+  hintsUsed Int      @default(0)
+  createdAt DateTime @default(now())
 
-    trial Trial @relation(fields: [trialId], references: [id])
-    user  User  @relation(fields: [userId], references: [id])
+  trial Trial @relation(fields: [trialId], references: [id])
+  user  User  @relation(fields: [userId], references: [id])
 
-    @@index([userId])
-    @@index([trialId])
+  @@index([userId])
+  @@index([trialId])
 }
 
 model UserVoyageProgress {
-    id              String       @id @default(cuid())
-    userId          String
-    voyageId        String
-    status          VoyageStatus @default(Locked)
-    skulls          Int          @default(0)
-    trialsCompleted Int          @default(0)
-    completedAt     DateTime?
+  id              String       @id @default(cuid())
+  userId          String
+  voyageId        String
+  status          VoyageStatus @default(Locked)
+  skulls          Int          @default(0)
+  trialsCompleted Int          @default(0)
+  completedAt     DateTime?
 
-    user   User   @relation(fields: [userId], references: [id])
-    voyage Voyage @relation(fields: [voyageId], references: [id])
+  user   User   @relation(fields: [userId], references: [id])
+  voyage Voyage @relation(fields: [voyageId], references: [id])
 
-    @@unique([userId, voyageId])
+  @@unique([userId, voyageId])
 }
 
 // ── Economy ──
 
 model PointTransaction {
-    id         String   @id @default(cuid())
-    userId     String
-    points     Int
-    reason     String
-    sourceId   String?
-    multiplier Float    @default(1.0)
-    createdAt  DateTime @default(now())
+  id         String   @id @default(cuid())
+  userId     String
+  points     Int
+  reason     String
+  sourceId   String?
+  multiplier Float    @default(1.0)
+  createdAt  DateTime @default(now())
 
-    user User @relation(fields: [userId], references: [id])
+  user User @relation(fields: [userId], references: [id])
 
-    @@index([userId])
+  @@index([userId])
 }
 
 model CrownTransaction {
-    id        String   @id @default(cuid())
-    userId    String
-    amount    Int
-    reason    String
-    sourceId  String?
-    createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  userId    String
+  amount    Int
+  reason    String
+  sourceId  String?
+  createdAt DateTime @default(now())
 
-    user User @relation(fields: [userId], references: [id])
+  user User @relation(fields: [userId], references: [id])
 
-    @@index([userId])
+  @@index([userId])
 }
 
 // ── Ship Upgrades ──
 
 model ShipUpgrade {
-    id          String @id @default(cuid())
-    name        String
-    description String
-    icon        String
-    cost        Int
-    effects     Json    @default("{}")
-    sortOrder   Int    @default(0)
+  id          String @id @default(cuid())
+  name        String
+  description String
+  icon        String
+  cost        Int
+  effects     Json   @default("{}")
+  sortOrder   Int    @default(0)
 
-    users UserShipUpgrade[]
+  users UserShipUpgrade[]
 }
 
 model UserShipUpgrade {
-    id          String   @id @default(cuid())
-    userId      String
-    upgradeId   String
-    purchasedAt DateTime @default(now())
+  id          String   @id @default(cuid())
+  userId      String
+  upgradeId   String
+  purchasedAt DateTime @default(now())
 
-    user    User        @relation(fields: [userId], references: [id])
-    upgrade ShipUpgrade @relation(fields: [upgradeId], references: [id])
+  user    User        @relation(fields: [userId], references: [id])
+  upgrade ShipUpgrade @relation(fields: [upgradeId], references: [id])
 
-    @@unique([userId, upgradeId])
+  @@unique([userId, upgradeId])
 }
 
 // ── Daily Chests ──
 
 model DailyChestClaim {
-    id            String   @id @default(cuid())
-    userId        String
-    streakDay     Int
-    chestType     String
-    rewardSummary String
-    claimedAt     DateTime @default(now())
+  id            String   @id @default(cuid())
+  userId        String
+  streakDay     Int
+  chestType     String
+  rewardSummary String
+  claimedAt     DateTime @default(now())
 
-    user User @relation(fields: [userId], references: [id])
+  user User @relation(fields: [userId], references: [id])
 
-    @@unique([userId, streakDay])
+  @@unique([userId, streakDay])
 }
 
 // ── Achievements ──
 
 model Achievement {
-    id          String          @id @default(cuid())
-    name        String
-    description String
-    icon        String
-    type        AchievementType
-    threshold   Int?
-    rarity      BadgeRarity     @default(Common)
+  id          String          @id @default(cuid())
+  name        String
+  description String
+  icon        String
+  type        AchievementType
+  threshold   Int?
+  rarity      BadgeRarity     @default(Common)
 
-    users UserAchievement[]
+  users UserAchievement[]
 }
 
 model UserAchievement {
-    id            String   @id @default(cuid())
-    userId        String
-    achievementId String
-    earnedAt      DateTime @default(now())
+  id            String   @id @default(cuid())
+  userId        String
+  achievementId String
+  earnedAt      DateTime @default(now())
 
-    user        User        @relation(fields: [userId], references: [id])
-    achievement Achievement @relation(fields: [achievementId], references: [id])
+  user        User        @relation(fields: [userId], references: [id])
+  achievement Achievement @relation(fields: [achievementId], references: [id])
 
-    @@unique([userId, achievementId])
+  @@unique([userId, achievementId])
 }
 
 // ── Streaks & Sea Charms ──
 
 model Streak {
-    id                String    @id @default(cuid())
-    userId            String    @unique
-    currentStreak     Int       @default(0)
-    longestStreak     Int       @default(0)
-    lastActivityDate  DateTime?
-    streakProtection  Int       @default(0)
-    streakFrozenUntil DateTime?
+  id                String    @id @default(cuid())
+  userId            String    @unique
+  currentStreak     Int       @default(0)
+  longestStreak     Int       @default(0)
+  lastActivityDate  DateTime?
+  streakProtection  Int       @default(0)
+  streakFrozenUntil DateTime?
 
-    user User @relation(fields: [userId], references: [id])
+  user User @relation(fields: [userId], references: [id])
 }
 
 model SeaCharm {
-    id       String       @id @default(cuid())
-    userId   String
-    type     SeaCharmType
-    quantity Int          @default(0)
+  id       String       @id @default(cuid())
+  userId   String
+  type     SeaCharmType
+  quantity Int          @default(0)
 
-    user User @relation(fields: [userId], references: [id])
+  user User @relation(fields: [userId], references: [id])
 
-    @@unique([userId, type])
+  @@unique([userId, type])
 }
 
 // ── Multi-User ──
 
 model Class {
-    id        String   @id @default(cuid())
-    name      String
-    createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  name      String
+  createdAt DateTime @default(now())
 
-    teachers      ClassTeacher[]
-    students      StudentClass[]
-    assignments   Assignment[]
-    announcements Announcement[]
+  teachers      ClassTeacher[]
+  students      StudentClass[]
+  assignments   Assignment[]
+  announcements Announcement[]
 }
 
 model ClassTeacher {
-    id        String @id @default(cuid())
-    classId   String
-    teacherId String
+  id        String @id @default(cuid())
+  classId   String
+  teacherId String
 
-    class_  Class @relation(fields: [classId], references: [id])
-    teacher User  @relation(fields: [teacherId], references: [id])
+  class_  Class @relation(fields: [classId], references: [id])
+  teacher User  @relation(fields: [teacherId], references: [id])
 
-    @@unique([classId, teacherId])
+  @@unique([classId, teacherId])
 }
 
 model StudentClass {
-    id        String @id @default(cuid())
-    studentId String
-    classId   String
+  id        String @id @default(cuid())
+  studentId String
+  classId   String
 
-    student User  @relation(fields: [studentId], references: [id])
-    class_  Class @relation(fields: [classId], references: [id])
+  student User  @relation(fields: [studentId], references: [id])
+  class_  Class @relation(fields: [classId], references: [id])
 
-    @@unique([studentId, classId])
+  @@unique([studentId, classId])
 }
 
 model StudentParent {
-    id        String @id @default(cuid())
-    studentId String
-    parentId  String
+  id        String @id @default(cuid())
+  studentId String
+  parentId  String
 
-    student User @relation("StudentParentLink", fields: [studentId], references: [id])
-    parent  User @relation("ParentChildLink", fields: [parentId], references: [id])
+  student User @relation("StudentParentLink", fields: [studentId], references: [id])
+  parent  User @relation("ParentChildLink", fields: [parentId], references: [id])
 
-    @@unique([studentId, parentId])
+  @@unique([studentId, parentId])
 }
 
 model Assignment {
-    id        String    @id @default(cuid())
-    voyageId  String
-    classId   String
-    teacherId String
-    studentId String?
-    dueDate   DateTime?
-    createdAt DateTime  @default(now())
+  id        String    @id @default(cuid())
+  voyageId  String
+  classId   String
+  teacherId String
+  studentId String?
+  dueDate   DateTime?
+  createdAt DateTime  @default(now())
 
-    voyage  Voyage @relation(fields: [voyageId], references: [id])
-    class_  Class  @relation(fields: [classId], references: [id])
-    teacher User   @relation("AssignmentTeacher", fields: [teacherId], references: [id])
-    student User?  @relation("AssignmentStudent", fields: [studentId], references: [id])
+  voyage  Voyage @relation(fields: [voyageId], references: [id])
+  class_  Class  @relation(fields: [classId], references: [id])
+  teacher User   @relation("AssignmentTeacher", fields: [teacherId], references: [id])
+  student User?  @relation("AssignmentStudent", fields: [studentId], references: [id])
 
-    @@index([classId])
+  @@index([classId])
 }
 
 model Announcement {
-    id        String   @id @default(cuid())
-    classId   String
-    teacherId String
-    title     String
-    body      String
-    createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  classId   String
+  teacherId String
+  title     String
+  body      String
+  createdAt DateTime @default(now())
 
-    class_  Class @relation(fields: [classId], references: [id])
-    teacher User  @relation(fields: [teacherId], references: [id])
+  class_  Class @relation(fields: [classId], references: [id])
+  teacher User  @relation(fields: [teacherId], references: [id])
 
-    @@index([classId])
+  @@index([classId])
 }
 
 // ── Admin: Audit & Security ──
 
 model AuditLog {
-    id        String   @id @default(cuid())
-    userId    String
-    action    String
-    targetId  String?
-    details   String?
-    ipAddress String?
-    createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  userId    String
+  action    String
+  targetId  String?
+  details   String?
+  ipAddress String?
+  createdAt DateTime @default(now())
 
-    user User @relation(fields: [userId], references: [id])
+  user User @relation(fields: [userId], references: [id])
 }
 
 model LoginHistory {
-    id        String   @id @default(cuid())
-    userId    String
-    ipAddress String?
-    userAgent String?
-    success   Boolean
-    createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  userId    String?
+  username  String?
+  ipAddress String?
+  userAgent String?
+  success   Boolean
+  createdAt DateTime @default(now())
 
-    user User @relation(fields: [userId], references: [id])
+  user User? @relation(fields: [userId], references: [id])
 }
 
 model InviteLink {
-    id        String   @id @default(cuid())
-    token     String   @unique
-    createdBy String
-    role      Role
-    expiresAt DateTime
-    usedById  String?
-    createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  token     String   @unique
+  createdBy String
+  role      Role
+  expiresAt DateTime
+  usedById  String?
+  createdAt DateTime @default(now())
 
-    creator User @relation("InviteCreator", fields: [createdBy], references: [id])
+  creator User @relation("InviteCreator", fields: [createdBy], references: [id])
 }
 
 // ── Admin: System ──
 
 model SystemAnnouncement {
-    id         String    @id @default(cuid())
-    adminId    String
-    title      String
-    body       String
-    targetRole String?
-    expiresAt  DateTime?
-    createdAt  DateTime  @default(now())
+  id         String    @id @default(cuid())
+  adminId    String
+  title      String
+  body       String
+  targetRole String?
+  expiresAt  DateTime?
+  createdAt  DateTime  @default(now())
 
-    admin User @relation(fields: [adminId], references: [id])
+  admin User @relation(fields: [adminId], references: [id])
 }
 
 model EconomySettings {
-    id            String   @id @default(cuid())
-    crownRate     Float    @default(0.5)
-    shopPrices    Json     @default("{\"whisper_scroll\":20,\"storm_pass\":50,\"fortune_wind\":100,\"anchor_charm\":150}")
-    upgradeCosts  Json     @default("[300,500,1000,2000,5000]")
-    rankXP        Json     @default("[0,100,300,600,1000,1500,2500,4000,6000]")
-    updatedAt     DateTime @updatedAt
-    createdAt     DateTime @default(now())
+  id           String   @id @default(cuid())
+  crownRate    Float    @default(0.5)
+  shopPrices   Json     @default("{\"whisper_scroll\":20,\"storm_pass\":50,\"fortune_wind\":100,\"anchor_charm\":150}")
+  upgradeCosts Json     @default("[300,500,1000,2000,5000]")
+  rankXP       Json     @default("[0,100,300,600,1000,1500,2500,4000,6000]")
+  updatedAt    DateTime @updatedAt
+  createdAt    DateTime @default(now())
 }
 
 model SystemSetting {
-    id                String   @id @default(cuid())
-    appName           String   @default("Corsair Academy")
-    maintenanceMode   Boolean  @default(false)
-    maintenanceMessage String  @default("The ship is in dry dock for upgrades. Back soon!")
-    featureFlags      Json     @default("{\"aiGeneration\":true,\"aiTutor\":true,\"aiGrading\":true,\"shop\":true,\"registrations\":true}")
-    updatedAt         DateTime @updatedAt
-    createdAt         DateTime @default(now())
+  id                 String   @id @default(cuid())
+  appName            String   @default("Corsair Academy")
+  maintenanceMode    Boolean  @default(false)
+  maintenanceMessage String   @default("The ship is in dry dock for upgrades. Back soon!")
+  featureFlags       Json     @default("{\"aiGeneration\":true,\"aiTutor\":true,\"aiGrading\":true,\"shop\":true,\"registrations\":true}")
+  updatedAt          DateTime @updatedAt
+  createdAt          DateTime @default(now())
 }
 
 model VoyageBundle {
-    id          String   @id @default(cuid())
-    name        String
-    description String?
-    adminId     String
-    createdAt   DateTime @default(now())
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  adminId     String
+  createdAt   DateTime @default(now())
 
-    admin User               @relation(fields: [adminId], references: [id])
-    items VoyageBundleItem[]
+  admin User               @relation(fields: [adminId], references: [id])
+  items VoyageBundleItem[]
 }
 
 model VoyageBundleItem {
-    id        String @id @default(cuid())
-    bundleId  String
-    voyageId  String
-    sortOrder Int    @default(0)
+  id        String @id @default(cuid())
+  bundleId  String
+  voyageId  String
+  sortOrder Int    @default(0)
 
-    bundle VoyageBundle @relation(fields: [bundleId], references: [id])
-    voyage Voyage       @relation(fields: [voyageId], references: [id])
+  bundle VoyageBundle @relation(fields: [bundleId], references: [id])
+  voyage Voyage       @relation(fields: [voyageId], references: [id])
 
-    @@unique([bundleId, voyageId])
+  @@unique([bundleId, voyageId])
 }
 
 // ── Kanban ──
 
 model KanbanCard {
-    id          String       @id @default(cuid())
-    type        KanbanType
-    scope       KanbanScope  @default(Admin)
-    status      KanbanStatus @default(Backlog)
-    title       String
-    description String?
-    priority    Priority     @default(Medium)
-    sourceTable String?
-    sourceId    String?
-    classId     String?
-    voyageId    String?
-    assigneeId  String?
-    creatorId   String
-    archivedAt  DateTime?
-    createdAt   DateTime     @default(now())
-    updatedAt   DateTime     @updatedAt
+  id          String       @id @default(cuid())
+  type        KanbanType
+  scope       KanbanScope  @default(Admin)
+  status      KanbanStatus @default(Backlog)
+  title       String
+  description String?
+  priority    Priority     @default(Medium)
+  sourceTable String?
+  sourceId    String?
+  classId     String?
+  voyageId    String?
+  assigneeId  String?
+  creatorId   String
+  archivedAt  DateTime?
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
 
-    creator  User  @relation("KanbanCreator", fields: [creatorId], references: [id])
-    assignee User? @relation("KanbanAssignee", fields: [assigneeId], references: [id])
+  creator  User  @relation("KanbanCreator", fields: [creatorId], references: [id])
+  assignee User? @relation("KanbanAssignee", fields: [assigneeId], references: [id])
+}
+
+// ── AI Usage Tracking ──
+
+model AIUsageLog {
+  id               String   @id @default(cuid())
+  userId           String
+  feature          String
+  model            String   @default("deepseek-v4-pro")
+  promptTokens     Int      @default(0)
+  completionTokens Int      @default(0)
+  cost             Float    @default(0)
+  createdAt        DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@index([feature])
+  @@index([createdAt])
 }
 
 // ── AI Context ──
 
 model AIContext {
-    id         String           @id @default(cuid())
-    userId     String
-    content    String // Markdown — full transcript or summary
-    appFeature AIContextFeature
-    voyageId   String?
-    seaId      String?
-    isFinal    Boolean          @default(false) // true = summary/gen record, false = individual message
-    createdAt  DateTime         @default(now())
+  id         String           @id @default(cuid())
+  userId     String
+  content    String // Markdown — full transcript or summary
+  appFeature AIContextFeature
+  voyageId   String?
+  seaId      String?
+  isFinal    Boolean          @default(false) // true = summary/gen record, false = individual message
+  createdAt  DateTime         @default(now())
 
-    user   User    @relation(fields: [userId], references: [id])
-    voyage Voyage? @relation(fields: [voyageId], references: [id])
-    sea    Sea?    @relation(fields: [seaId], references: [id])
+  user   User    @relation(fields: [userId], references: [id])
+  voyage Voyage? @relation(fields: [voyageId], references: [id])
+  sea    Sea?    @relation(fields: [seaId], references: [id])
 }
 
 // ── Enums ──
 
 enum Role {
-    Student
-    Teacher
-    Parent
-    Admin
+  Student
+  Teacher
+  Parent
+  Admin
 }
 
 enum TrialType {
-    multi_choice
-    fill_blank
-    puzzle
-    open_ended
+  multi_choice
+  fill_blank
+  puzzle
+  open_ended
 }
 
 enum VoyageStatus {
-    Locked
-    Available
-    InProgress
-    Completed
-    Mastered
+  Locked
+  Available
+  InProgress
+  Completed
+  Mastered
 }
 
 enum AchievementType {
-    streak
-    mastery
-    speed
-    exploration
-    social
+  streak
+  mastery
+  speed
+  exploration
+  social
 }
 
 enum BadgeRarity {
-    Common
-    Uncommon
-    Rare
-    Epic
-    Legendary
+  Common
+  Uncommon
+  Rare
+  Epic
+  Legendary
 }
 
 enum SeaCharmType {
-    whisper_scroll
-    storm_pass
-    fortune_wind
-    anchor_charm
+  whisper_scroll
+  storm_pass
+  fortune_wind
+  anchor_charm
 }
 
 enum KanbanType {
-    FlaggedTrial
-    Assignment
-    AITrial
-    SupportTicket
-    Task
+  FlaggedTrial
+  Assignment
+  AITrial
+  SupportTicket
+  Task
 }
 
 enum KanbanScope {
-    Class
-    Trial
-    Admin
+  Class
+  Trial
+  Admin
 }
 
 enum KanbanStatus {
-    Backlog
-    InProgress
-    Done
-    Archive
+  Backlog
+  InProgress
+  Done
+  Archive
 }
 
 enum Priority {
-    Low
-    Medium
-    High
+  Low
+  Medium
+  High
 }
 
 enum VoyageLifecycle {
-    Draft
-    Published
-    Deprecated
+  Draft
+  Published
+  Deprecated
 }
 
 enum AIContextFeature {
-    trials
-    voyages
-    seas
-    kanban
-    announcements
+  trials
+  voyages
+  seas
+  kanban
+  announcements
 }

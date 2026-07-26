@@ -1,5 +1,8 @@
+import { auth } from "@/lib/auth";
 import { NextRequest, NextResponse } from "next/server";
 import { chat } from "@/lib/deepseek";
+import { checkRateLimit } from "@/lib/rateLimit";
+import { logAIUsage } from "@/lib/aiUsage";
 
 const SYSTEM_PROMPT = `You are a friendly pirate tutor named "Captain Corsair" helping a young student (age 8-14) learn. 
 
@@ -15,6 +18,15 @@ RULES:
 
 export async function POST(request: NextRequest) {
     try {
+        const session = await auth();
+        if (!session?.user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
+        // Rate limit: 15 tutor messages per student per minute
+        const rl = checkRateLimit(`tutor:${session.user.id}`, 15);
+        if (!rl.allowed) {
+            return NextResponse.json({ reply: "Whoa there, sailor! Ye be askin' too fast. Take a breath and try again. 🦜" });
+        }
+
         const { message, context } = await request.json();
         if (!message) return NextResponse.json({ error: "Missing message" }, { status: 400 });
 
@@ -29,6 +41,9 @@ export async function POST(request: NextRequest) {
             ],
             { temperature: 0.8, maxTokens: 300 }
         );
+
+        // Log AI usage
+        await logAIUsage(session.user.id, "tutor_chat", "deepseek-v4-pro", SYSTEM_PROMPT + message + ctxStr, response);
 
         return NextResponse.json({ reply: response.trim() });
     } catch (err: any) {

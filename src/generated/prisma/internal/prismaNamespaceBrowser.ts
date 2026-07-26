@@ -82,6 +82,7 @@ export const ModelName = {
   VoyageBundle: 'VoyageBundle',
   VoyageBundleItem: 'VoyageBundleItem',
   KanbanCard: 'KanbanCard',
+  AIUsageLog: 'AIUsageLog',
   AIContext: 'AIContext'
 } as const
 
@@ -116,6 +117,7 @@ export const UserScalarFieldEnum = {
   crowns: 'crowns',
   pirateRank: 'pirateRank',
   hasFortuneWind: 'hasFortuneWind',
+  adaptiveDifficulty: 'adaptiveDifficulty',
   mustChangePassword: 'mustChangePassword',
   deletedAt: 'deletedAt',
   createdAt: 'createdAt'
@@ -408,6 +410,7 @@ export type AuditLogScalarFieldEnum = (typeof AuditLogScalarFieldEnum)[keyof typ
 export const LoginHistoryScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
+  username: 'username',
   ipAddress: 'ipAddress',
   userAgent: 'userAgent',
   success: 'success',
@@ -510,6 +513,20 @@ export const KanbanCardScalarFieldEnum = {
 } as const
 
 export type KanbanCardScalarFieldEnum = (typeof KanbanCardScalarFieldEnum)[keyof typeof KanbanCardScalarFieldEnum]
+
+
+export const AIUsageLogScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  feature: 'feature',
+  model: 'model',
+  promptTokens: 'promptTokens',
+  completionTokens: 'completionTokens',
+  cost: 'cost',
+  createdAt: 'createdAt'
+} as const
+
+export type AIUsageLogScalarFieldEnum = (typeof AIUsageLogScalarFieldEnum)[keyof typeof AIUsageLogScalarFieldEnum]
 
 
 export const AIContextScalarFieldEnum = {

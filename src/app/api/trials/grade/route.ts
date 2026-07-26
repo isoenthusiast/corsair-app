@@ -1,5 +1,8 @@
+import { auth } from "@/lib/auth";
 import { NextRequest, NextResponse } from "next/server";
 import { chat } from "@/lib/deepseek";
+import { checkRateLimit } from "@/lib/rateLimit";
+import { logAIUsage } from "@/lib/aiUsage";
 
 const SYSTEM_PROMPT = `You are an encouraging pirate teacher grading a student's open-ended answer. The student is aged 8-14. 
 
@@ -20,6 +23,15 @@ RULES:
 
 export async function POST(request: NextRequest) {
     try {
+        const session = await auth();
+        if (!session?.user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
+        // Rate limit: 20 gradings per student per minute
+        const rl = checkRateLimit(`grade:${session.user.id}`, 20);
+        if (!rl.allowed) {
+            return NextResponse.json({ error: "Rate limit exceeded" }, { status: 429 });
+        }
+
         const { trialQuestion, expectedAnswer, studentAnswer } = await request.json();
 
         if (!trialQuestion || !expectedAnswer || studentAnswer === undefined) {
@@ -48,6 +60,9 @@ Evaluate this student's answer.`;
             ],
             { temperature: 0.5, maxTokens: 512 }
         );
+
+        // Log AI usage
+        await logAIUsage(session.user.id, "trial_grading", "deepseek-v4-pro", SYSTEM_PROMPT + userPrompt, raw);
 
         let cleaned = raw.trim();
         if (cleaned.startsWith("```")) {

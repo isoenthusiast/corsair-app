@@ -453,14 +453,6 @@ export type PointTransactionUncheckedUpdateManyWithoutUserNestedInput = {
   deleteMany?: Prisma.PointTransactionScalarWhereInput | Prisma.PointTransactionScalarWhereInput[]
 }
 
-export type FloatFieldUpdateOperationsInput = {
-  set?: number
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
 export type PointTransactionCreateWithoutUserInput = {
   id?: string
   points: number

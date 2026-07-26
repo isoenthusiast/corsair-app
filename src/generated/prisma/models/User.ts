@@ -29,11 +29,13 @@ export type AggregateUser = {
 export type UserAvgAggregateOutputType = {
   age: number | null
   crowns: number | null
+  adaptiveDifficulty: number | null
 }
 
 export type UserSumAggregateOutputType = {
   age: number | null
   crowns: number | null
+  adaptiveDifficulty: number | null
 }
 
 export type UserMinAggregateOutputType = {
@@ -51,6 +53,7 @@ export type UserMinAggregateOutputType = {
   crowns: number | null
   pirateRank: string | null
   hasFortuneWind: boolean | null
+  adaptiveDifficulty: number | null
   mustChangePassword: boolean | null
   deletedAt: Date | null
   createdAt: Date | null
@@ -71,6 +74,7 @@ export type UserMaxAggregateOutputType = {
   crowns: number | null
   pirateRank: string | null
   hasFortuneWind: boolean | null
+  adaptiveDifficulty: number | null
   mustChangePassword: boolean | null
   deletedAt: Date | null
   createdAt: Date | null
@@ -91,6 +95,7 @@ export type UserCountAggregateOutputType = {
   crowns: number
   pirateRank: number
   hasFortuneWind: number
+  adaptiveDifficulty: number
   mustChangePassword: number
   deletedAt: number
   createdAt: number
@@ -101,11 +106,13 @@ export type UserCountAggregateOutputType = {
 export type UserAvgAggregateInputType = {
   age?: true
   crowns?: true
+  adaptiveDifficulty?: true
 }
 
 export type UserSumAggregateInputType = {
   age?: true
   crowns?: true
+  adaptiveDifficulty?: true
 }
 
 export type UserMinAggregateInputType = {
@@ -123,6 +130,7 @@ export type UserMinAggregateInputType = {
   crowns?: true
   pirateRank?: true
   hasFortuneWind?: true
+  adaptiveDifficulty?: true
   mustChangePassword?: true
   deletedAt?: true
   createdAt?: true
@@ -143,6 +151,7 @@ export type UserMaxAggregateInputType = {
   crowns?: true
   pirateRank?: true
   hasFortuneWind?: true
+  adaptiveDifficulty?: true
   mustChangePassword?: true
   deletedAt?: true
   createdAt?: true
@@ -163,6 +172,7 @@ export type UserCountAggregateInputType = {
   crowns?: true
   pirateRank?: true
   hasFortuneWind?: true
+  adaptiveDifficulty?: true
   mustChangePassword?: true
   deletedAt?: true
   createdAt?: true
@@ -270,6 +280,7 @@ export type UserGroupByOutputType = {
   crowns: number
   pirateRank: string
   hasFortuneWind: boolean
+  adaptiveDifficulty: number
   mustChangePassword: boolean
   deletedAt: Date | null
   createdAt: Date
@@ -313,6 +324,7 @@ export type UserWhereInput = {
   crowns?: Prisma.IntFilter<"User"> | number
   pirateRank?: Prisma.StringFilter<"User"> | string
   hasFortuneWind?: Prisma.BoolFilter<"User"> | boolean
+  adaptiveDifficulty?: Prisma.FloatFilter<"User"> | number
   mustChangePassword?: Prisma.BoolFilter<"User"> | boolean
   deletedAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
@@ -340,6 +352,7 @@ export type UserWhereInput = {
   kanbanCreated?: Prisma.KanbanCardListRelationFilter
   kanbanAssigned?: Prisma.KanbanCardListRelationFilter
   aiContexts?: Prisma.AIContextListRelationFilter
+  aiUsageLogs?: Prisma.AIUsageLogListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -357,6 +370,7 @@ export type UserOrderByWithRelationInput = {
   crowns?: Prisma.SortOrder
   pirateRank?: Prisma.SortOrder
   hasFortuneWind?: Prisma.SortOrder
+  adaptiveDifficulty?: Prisma.SortOrder
   mustChangePassword?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -384,6 +398,7 @@ export type UserOrderByWithRelationInput = {
   kanbanCreated?: Prisma.KanbanCardOrderByRelationAggregateInput
   kanbanAssigned?: Prisma.KanbanCardOrderByRelationAggregateInput
   aiContexts?: Prisma.AIContextOrderByRelationAggregateInput
+  aiUsageLogs?: Prisma.AIUsageLogOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -404,6 +419,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   crowns?: Prisma.IntFilter<"User"> | number
   pirateRank?: Prisma.StringFilter<"User"> | string
   hasFortuneWind?: Prisma.BoolFilter<"User"> | boolean
+  adaptiveDifficulty?: Prisma.FloatFilter<"User"> | number
   mustChangePassword?: Prisma.BoolFilter<"User"> | boolean
   deletedAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
@@ -431,6 +447,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   kanbanCreated?: Prisma.KanbanCardListRelationFilter
   kanbanAssigned?: Prisma.KanbanCardListRelationFilter
   aiContexts?: Prisma.AIContextListRelationFilter
+  aiUsageLogs?: Prisma.AIUsageLogListRelationFilter
 }, "id" | "username">
 
 export type UserOrderByWithAggregationInput = {
@@ -448,6 +465,7 @@ export type UserOrderByWithAggregationInput = {
   crowns?: Prisma.SortOrder
   pirateRank?: Prisma.SortOrder
   hasFortuneWind?: Prisma.SortOrder
+  adaptiveDifficulty?: Prisma.SortOrder
   mustChangePassword?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -476,6 +494,7 @@ export type UserScalarWhereWithAggregatesInput = {
   crowns?: Prisma.IntWithAggregatesFilter<"User"> | number
   pirateRank?: Prisma.StringWithAggregatesFilter<"User"> | string
   hasFortuneWind?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
+  adaptiveDifficulty?: Prisma.FloatWithAggregatesFilter<"User"> | number
   mustChangePassword?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
   deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
@@ -496,6 +515,7 @@ export type UserCreateInput = {
   crowns?: number
   pirateRank?: string
   hasFortuneWind?: boolean
+  adaptiveDifficulty?: number
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -523,6 +543,7 @@ export type UserCreateInput = {
   kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
   aiContexts?: Prisma.AIContextCreateNestedManyWithoutUserInput
+  aiUsageLogs?: Prisma.AIUsageLogCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -540,6 +561,7 @@ export type UserUncheckedCreateInput = {
   crowns?: number
   pirateRank?: string
   hasFortuneWind?: boolean
+  adaptiveDifficulty?: number
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -567,6 +589,7 @@ export type UserUncheckedCreateInput = {
   kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
   aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutUserInput
+  aiUsageLogs?: Prisma.AIUsageLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -584,6 +607,7 @@ export type UserUpdateInput = {
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
   hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  adaptiveDifficulty?: Prisma.FloatFieldUpdateOperationsInput | number
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -611,6 +635,7 @@ export type UserUpdateInput = {
   kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
   aiContexts?: Prisma.AIContextUpdateManyWithoutUserNestedInput
+  aiUsageLogs?: Prisma.AIUsageLogUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -628,6 +653,7 @@ export type UserUncheckedUpdateInput = {
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
   hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  adaptiveDifficulty?: Prisma.FloatFieldUpdateOperationsInput | number
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -655,6 +681,7 @@ export type UserUncheckedUpdateInput = {
   kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
   aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutUserNestedInput
+  aiUsageLogs?: Prisma.AIUsageLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -672,6 +699,7 @@ export type UserCreateManyInput = {
   crowns?: number
   pirateRank?: string
   hasFortuneWind?: boolean
+  adaptiveDifficulty?: number
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -692,6 +720,7 @@ export type UserUpdateManyMutationInput = {
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
   hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  adaptiveDifficulty?: Prisma.FloatFieldUpdateOperationsInput | number
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -712,6 +741,7 @@ export type UserUncheckedUpdateManyInput = {
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
   hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  adaptiveDifficulty?: Prisma.FloatFieldUpdateOperationsInput | number
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -732,6 +762,7 @@ export type UserCountOrderByAggregateInput = {
   crowns?: Prisma.SortOrder
   pirateRank?: Prisma.SortOrder
   hasFortuneWind?: Prisma.SortOrder
+  adaptiveDifficulty?: Prisma.SortOrder
   mustChangePassword?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -740,6 +771,7 @@ export type UserCountOrderByAggregateInput = {
 export type UserAvgOrderByAggregateInput = {
   age?: Prisma.SortOrder
   crowns?: Prisma.SortOrder
+  adaptiveDifficulty?: Prisma.SortOrder
 }
 
 export type UserMaxOrderByAggregateInput = {
@@ -757,6 +789,7 @@ export type UserMaxOrderByAggregateInput = {
   crowns?: Prisma.SortOrder
   pirateRank?: Prisma.SortOrder
   hasFortuneWind?: Prisma.SortOrder
+  adaptiveDifficulty?: Prisma.SortOrder
   mustChangePassword?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -777,6 +810,7 @@ export type UserMinOrderByAggregateInput = {
   crowns?: Prisma.SortOrder
   pirateRank?: Prisma.SortOrder
   hasFortuneWind?: Prisma.SortOrder
+  adaptiveDifficulty?: Prisma.SortOrder
   mustChangePassword?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -785,6 +819,7 @@ export type UserMinOrderByAggregateInput = {
 export type UserSumOrderByAggregateInput = {
   age?: Prisma.SortOrder
   crowns?: Prisma.SortOrder
+  adaptiveDifficulty?: Prisma.SortOrder
 }
 
 export type UserScalarRelationFilter = {
@@ -827,6 +862,14 @@ export type IntFieldUpdateOperationsInput = {
 
 export type BoolFieldUpdateOperationsInput = {
   set?: boolean
+}
+
+export type FloatFieldUpdateOperationsInput = {
+  set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
 }
 
 export type NullableDateTimeFieldUpdateOperationsInput = {
@@ -1083,10 +1126,12 @@ export type UserCreateNestedOneWithoutLoginRecordsInput = {
   connect?: Prisma.UserWhereUniqueInput
 }
 
-export type UserUpdateOneRequiredWithoutLoginRecordsNestedInput = {
+export type UserUpdateOneWithoutLoginRecordsNestedInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutLoginRecordsInput, Prisma.UserUncheckedCreateWithoutLoginRecordsInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutLoginRecordsInput
   upsert?: Prisma.UserUpsertWithoutLoginRecordsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
   connect?: Prisma.UserWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutLoginRecordsInput, Prisma.UserUpdateWithoutLoginRecordsInput>, Prisma.UserUncheckedUpdateWithoutLoginRecordsInput>
 }
@@ -1163,6 +1208,20 @@ export type UserUpdateOneWithoutKanbanAssignedNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutKanbanAssignedInput, Prisma.UserUpdateWithoutKanbanAssignedInput>, Prisma.UserUncheckedUpdateWithoutKanbanAssignedInput>
 }
 
+export type UserCreateNestedOneWithoutAiUsageLogsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAiUsageLogsInput, Prisma.UserUncheckedCreateWithoutAiUsageLogsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAiUsageLogsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutAiUsageLogsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAiUsageLogsInput, Prisma.UserUncheckedCreateWithoutAiUsageLogsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAiUsageLogsInput
+  upsert?: Prisma.UserUpsertWithoutAiUsageLogsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAiUsageLogsInput, Prisma.UserUpdateWithoutAiUsageLogsInput>, Prisma.UserUncheckedUpdateWithoutAiUsageLogsInput>
+}
+
 export type UserCreateNestedOneWithoutAiContextsInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutAiContextsInput, Prisma.UserUncheckedCreateWithoutAiContextsInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutAiContextsInput
@@ -1192,6 +1251,7 @@ export type UserCreateWithoutAttemptsInput = {
   crowns?: number
   pirateRank?: string
   hasFortuneWind?: boolean
+  adaptiveDifficulty?: number
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -1218,6 +1278,7 @@ export type UserCreateWithoutAttemptsInput = {
   kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
   aiContexts?: Prisma.AIContextCreateNestedManyWithoutUserInput
+  aiUsageLogs?: Prisma.AIUsageLogCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAttemptsInput = {
@@ -1235,6 +1296,7 @@ export type UserUncheckedCreateWithoutAttemptsInput = {
   crowns?: number
   pirateRank?: string
   hasFortuneWind?: boolean
+  adaptiveDifficulty?: number
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -1261,6 +1323,7 @@ export type UserUncheckedCreateWithoutAttemptsInput = {
   kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
   aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutUserInput
+  aiUsageLogs?: Prisma.AIUsageLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAttemptsInput = {
@@ -1294,6 +1357,7 @@ export type UserUpdateWithoutAttemptsInput = {
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
   hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  adaptiveDifficulty?: Prisma.FloatFieldUpdateOperationsInput | number
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1320,6 +1384,7 @@ export type UserUpdateWithoutAttemptsInput = {
   kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
   aiContexts?: Prisma.AIContextUpdateManyWithoutUserNestedInput
+  aiUsageLogs?: Prisma.AIUsageLogUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAttemptsInput = {
@@ -1337,6 +1402,7 @@ export type UserUncheckedUpdateWithoutAttemptsInput = {
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
   hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  adaptiveDifficulty?: Prisma.FloatFieldUpdateOperationsInput | number
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1363,6 +1429,7 @@ export type UserUncheckedUpdateWithoutAttemptsInput = {
   kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
   aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutUserNestedInput
+  aiUsageLogs?: Prisma.AIUsageLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutProgressInput = {
@@ -1380,6 +1447,7 @@ export type UserCreateWithoutProgressInput = {
   crowns?: number
   pirateRank?: string
   hasFortuneWind?: boolean
+  adaptiveDifficulty?: number
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -1406,6 +1474,7 @@ export type UserCreateWithoutProgressInput = {
   kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
   aiContexts?: Prisma.AIContextCreateNestedManyWithoutUserInput
+  aiUsageLogs?: Prisma.AIUsageLogCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutProgressInput = {
@@ -1423,6 +1492,7 @@ export type UserUncheckedCreateWithoutProgressInput = {
   crowns?: number
   pirateRank?: string
   hasFortuneWind?: boolean
+  adaptiveDifficulty?: number
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -1449,6 +1519,7 @@ export type UserUncheckedCreateWithoutProgressInput = {
   kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
   aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutUserInput
+  aiUsageLogs?: Prisma.AIUsageLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutProgressInput = {
@@ -1482,6 +1553,7 @@ export type UserUpdateWithoutProgressInput = {
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
   hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  adaptiveDifficulty?: Prisma.FloatFieldUpdateOperationsInput | number
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1508,6 +1580,7 @@ export type UserUpdateWithoutProgressInput = {
   kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
   aiContexts?: Prisma.AIContextUpdateManyWithoutUserNestedInput
+  aiUsageLogs?: Prisma.AIUsageLogUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutProgressInput = {
@@ -1525,6 +1598,7 @@ export type UserUncheckedUpdateWithoutProgressInput = {
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
   hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  adaptiveDifficulty?: Prisma.FloatFieldUpdateOperationsInput | number
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1551,6 +1625,7 @@ export type UserUncheckedUpdateWithoutProgressInput = {
   kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
   aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutUserNestedInput
+  aiUsageLogs?: Prisma.AIUsageLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutPointLogInput = {
@@ -1568,6 +1643,7 @@ export type UserCreateWithoutPointLogInput = {
   crowns?: number
   pirateRank?: string
   hasFortuneWind?: boolean
+  adaptiveDifficulty?: number
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -1594,6 +1670,7 @@ export type UserCreateWithoutPointLogInput = {
   kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
   aiContexts?: Prisma.AIContextCreateNestedManyWithoutUserInput
+  aiUsageLogs?: Prisma.AIUsageLogCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutPointLogInput = {
@@ -1611,6 +1688,7 @@ export type UserUncheckedCreateWithoutPointLogInput = {
   crowns?: number
   pirateRank?: string
   hasFortuneWind?: boolean
+  adaptiveDifficulty?: number
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -1637,6 +1715,7 @@ export type UserUncheckedCreateWithoutPointLogInput = {
   kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
   aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutUserInput
+  aiUsageLogs?: Prisma.AIUsageLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutPointLogInput = {
@@ -1670,6 +1749,7 @@ export type UserUpdateWithoutPointLogInput = {
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
   hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  adaptiveDifficulty?: Prisma.FloatFieldUpdateOperationsInput | number
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1696,6 +1776,7 @@ export type UserUpdateWithoutPointLogInput = {
   kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
   aiContexts?: Prisma.AIContextUpdateManyWithoutUserNestedInput
+  aiUsageLogs?: Prisma.AIUsageLogUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPointLogInput = {
@@ -1713,6 +1794,7 @@ export type UserUncheckedUpdateWithoutPointLogInput = {
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
   hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  adaptiveDifficulty?: Prisma.FloatFieldUpdateOperationsInput | number
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1739,6 +1821,7 @@ export type UserUncheckedUpdateWithoutPointLogInput = {
   kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
   aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutUserNestedInput
+  aiUsageLogs?: Prisma.AIUsageLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutCrownLogInput = {
@@ -1756,6 +1839,7 @@ export type UserCreateWithoutCrownLogInput = {
   crowns?: number
   pirateRank?: string
   hasFortuneWind?: boolean
+  adaptiveDifficulty?: number
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -1782,6 +1866,7 @@ export type UserCreateWithoutCrownLogInput = {
   kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
   aiContexts?: Prisma.AIContextCreateNestedManyWithoutUserInput
+  aiUsageLogs?: Prisma.AIUsageLogCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutCrownLogInput = {
@@ -1799,6 +1884,7 @@ export type UserUncheckedCreateWithoutCrownLogInput = {
   crowns?: number
   pirateRank?: string
   hasFortuneWind?: boolean
+  adaptiveDifficulty?: number
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -1825,6 +1911,7 @@ export type UserUncheckedCreateWithoutCrownLogInput = {
   kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
   aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutUserInput
+  aiUsageLogs?: Prisma.AIUsageLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutCrownLogInput = {
@@ -1858,6 +1945,7 @@ export type UserUpdateWithoutCrownLogInput = {
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
   hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  adaptiveDifficulty?: Prisma.FloatFieldUpdateOperationsInput | number
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1884,6 +1972,7 @@ export type UserUpdateWithoutCrownLogInput = {
   kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
   aiContexts?: Prisma.AIContextUpdateManyWithoutUserNestedInput
+  aiUsageLogs?: Prisma.AIUsageLogUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCrownLogInput = {
@@ -1901,6 +1990,7 @@ export type UserUncheckedUpdateWithoutCrownLogInput = {
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
   hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  adaptiveDifficulty?: Prisma.FloatFieldUpdateOperationsInput | number
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1927,6 +2017,7 @@ export type UserUncheckedUpdateWithoutCrownLogInput = {
   kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
   aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutUserNestedInput
+  aiUsageLogs?: Prisma.AIUsageLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutShipUpgradesInput = {
@@ -1944,6 +2035,7 @@ export type UserCreateWithoutShipUpgradesInput = {
   crowns?: number
   pirateRank?: string
   hasFortuneWind?: boolean
+  adaptiveDifficulty?: number
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -1970,6 +2062,7 @@ export type UserCreateWithoutShipUpgradesInput = {
   kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
   aiContexts?: Prisma.AIContextCreateNestedManyWithoutUserInput
+  aiUsageLogs?: Prisma.AIUsageLogCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutShipUpgradesInput = {
@@ -1987,6 +2080,7 @@ export type UserUncheckedCreateWithoutShipUpgradesInput = {
   crowns?: number
   pirateRank?: string
   hasFortuneWind?: boolean
+  adaptiveDifficulty?: number
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -2013,6 +2107,7 @@ export type UserUncheckedCreateWithoutShipUpgradesInput = {
   kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
   aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutUserInput
+  aiUsageLogs?: Prisma.AIUsageLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutShipUpgradesInput = {
@@ -2046,6 +2141,7 @@ export type UserUpdateWithoutShipUpgradesInput = {
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
   hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  adaptiveDifficulty?: Prisma.FloatFieldUpdateOperationsInput | number
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2072,6 +2168,7 @@ export type UserUpdateWithoutShipUpgradesInput = {
   kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
   aiContexts?: Prisma.AIContextUpdateManyWithoutUserNestedInput
+  aiUsageLogs?: Prisma.AIUsageLogUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutShipUpgradesInput = {
@@ -2089,6 +2186,7 @@ export type UserUncheckedUpdateWithoutShipUpgradesInput = {
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
   hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  adaptiveDifficulty?: Prisma.FloatFieldUpdateOperationsInput | number
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2115,6 +2213,7 @@ export type UserUncheckedUpdateWithoutShipUpgradesInput = {
   kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
   aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutUserNestedInput
+  aiUsageLogs?: Prisma.AIUsageLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutChestClaimsInput = {
@@ -2132,6 +2231,7 @@ export type UserCreateWithoutChestClaimsInput = {
   crowns?: number
   pirateRank?: string
   hasFortuneWind?: boolean
+  adaptiveDifficulty?: number
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -2158,6 +2258,7 @@ export type UserCreateWithoutChestClaimsInput = {
   kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
   aiContexts?: Prisma.AIContextCreateNestedManyWithoutUserInput
+  aiUsageLogs?: Prisma.AIUsageLogCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutChestClaimsInput = {
@@ -2175,6 +2276,7 @@ export type UserUncheckedCreateWithoutChestClaimsInput = {
   crowns?: number
   pirateRank?: string
   hasFortuneWind?: boolean
+  adaptiveDifficulty?: number
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -2201,6 +2303,7 @@ export type UserUncheckedCreateWithoutChestClaimsInput = {
   kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
   aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutUserInput
+  aiUsageLogs?: Prisma.AIUsageLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutChestClaimsInput = {
@@ -2234,6 +2337,7 @@ export type UserUpdateWithoutChestClaimsInput = {
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
   hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  adaptiveDifficulty?: Prisma.FloatFieldUpdateOperationsInput | number
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2260,6 +2364,7 @@ export type UserUpdateWithoutChestClaimsInput = {
   kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
   aiContexts?: Prisma.AIContextUpdateManyWithoutUserNestedInput
+  aiUsageLogs?: Prisma.AIUsageLogUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutChestClaimsInput = {
@@ -2277,6 +2382,7 @@ export type UserUncheckedUpdateWithoutChestClaimsInput = {
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
   hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  adaptiveDifficulty?: Prisma.FloatFieldUpdateOperationsInput | number
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2303,6 +2409,7 @@ export type UserUncheckedUpdateWithoutChestClaimsInput = {
   kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
   aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutUserNestedInput
+  aiUsageLogs?: Prisma.AIUsageLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutAchievementsInput = {
@@ -2320,6 +2427,7 @@ export type UserCreateWithoutAchievementsInput = {
   crowns?: number
   pirateRank?: string
   hasFortuneWind?: boolean
+  adaptiveDifficulty?: number
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -2346,6 +2454,7 @@ export type UserCreateWithoutAchievementsInput = {
   kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
   aiContexts?: Prisma.AIContextCreateNestedManyWithoutUserInput
+  aiUsageLogs?: Prisma.AIUsageLogCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAchievementsInput = {
@@ -2363,6 +2472,7 @@ export type UserUncheckedCreateWithoutAchievementsInput = {
   crowns?: number
   pirateRank?: string
   hasFortuneWind?: boolean
+  adaptiveDifficulty?: number
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -2389,6 +2499,7 @@ export type UserUncheckedCreateWithoutAchievementsInput = {
   kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
   aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutUserInput
+  aiUsageLogs?: Prisma.AIUsageLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAchievementsInput = {
@@ -2422,6 +2533,7 @@ export type UserUpdateWithoutAchievementsInput = {
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
   hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  adaptiveDifficulty?: Prisma.FloatFieldUpdateOperationsInput | number
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2448,6 +2560,7 @@ export type UserUpdateWithoutAchievementsInput = {
   kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
   aiContexts?: Prisma.AIContextUpdateManyWithoutUserNestedInput
+  aiUsageLogs?: Prisma.AIUsageLogUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAchievementsInput = {
@@ -2465,6 +2578,7 @@ export type UserUncheckedUpdateWithoutAchievementsInput = {
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
   hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  adaptiveDifficulty?: Prisma.FloatFieldUpdateOperationsInput | number
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2491,6 +2605,7 @@ export type UserUncheckedUpdateWithoutAchievementsInput = {
   kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
   aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutUserNestedInput
+  aiUsageLogs?: Prisma.AIUsageLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutStreaksInput = {
@@ -2508,6 +2623,7 @@ export type UserCreateWithoutStreaksInput = {
   crowns?: number
   pirateRank?: string
   hasFortuneWind?: boolean
+  adaptiveDifficulty?: number
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -2534,6 +2650,7 @@ export type UserCreateWithoutStreaksInput = {
   kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
   aiContexts?: Prisma.AIContextCreateNestedManyWithoutUserInput
+  aiUsageLogs?: Prisma.AIUsageLogCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutStreaksInput = {
@@ -2551,6 +2668,7 @@ export type UserUncheckedCreateWithoutStreaksInput = {
   crowns?: number
   pirateRank?: string
   hasFortuneWind?: boolean
+  adaptiveDifficulty?: number
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -2577,6 +2695,7 @@ export type UserUncheckedCreateWithoutStreaksInput = {
   kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
   aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutUserInput
+  aiUsageLogs?: Prisma.AIUsageLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutStreaksInput = {
@@ -2610,6 +2729,7 @@ export type UserUpdateWithoutStreaksInput = {
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
   hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  adaptiveDifficulty?: Prisma.FloatFieldUpdateOperationsInput | number
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2636,6 +2756,7 @@ export type UserUpdateWithoutStreaksInput = {
   kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
   aiContexts?: Prisma.AIContextUpdateManyWithoutUserNestedInput
+  aiUsageLogs?: Prisma.AIUsageLogUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutStreaksInput = {
@@ -2653,6 +2774,7 @@ export type UserUncheckedUpdateWithoutStreaksInput = {
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
   hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  adaptiveDifficulty?: Prisma.FloatFieldUpdateOperationsInput | number
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2679,6 +2801,7 @@ export type UserUncheckedUpdateWithoutStreaksInput = {
   kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
   aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutUserNestedInput
+  aiUsageLogs?: Prisma.AIUsageLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutCharmsInput = {
@@ -2696,6 +2819,7 @@ export type UserCreateWithoutCharmsInput = {
   crowns?: number
   pirateRank?: string
   hasFortuneWind?: boolean
+  adaptiveDifficulty?: number
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -2722,6 +2846,7 @@ export type UserCreateWithoutCharmsInput = {
   kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
   aiContexts?: Prisma.AIContextCreateNestedManyWithoutUserInput
+  aiUsageLogs?: Prisma.AIUsageLogCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutCharmsInput = {
@@ -2739,6 +2864,7 @@ export type UserUncheckedCreateWithoutCharmsInput = {
   crowns?: number
   pirateRank?: string
   hasFortuneWind?: boolean
+  adaptiveDifficulty?: number
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -2765,6 +2891,7 @@ export type UserUncheckedCreateWithoutCharmsInput = {
   kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
   aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutUserInput
+  aiUsageLogs?: Prisma.AIUsageLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutCharmsInput = {
@@ -2798,6 +2925,7 @@ export type UserUpdateWithoutCharmsInput = {
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
   hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  adaptiveDifficulty?: Prisma.FloatFieldUpdateOperationsInput | number
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2824,6 +2952,7 @@ export type UserUpdateWithoutCharmsInput = {
   kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
   aiContexts?: Prisma.AIContextUpdateManyWithoutUserNestedInput
+  aiUsageLogs?: Prisma.AIUsageLogUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCharmsInput = {
@@ -2841,6 +2970,7 @@ export type UserUncheckedUpdateWithoutCharmsInput = {
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
   hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  adaptiveDifficulty?: Prisma.FloatFieldUpdateOperationsInput | number
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2867,6 +2997,7 @@ export type UserUncheckedUpdateWithoutCharmsInput = {
   kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
   aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutUserNestedInput
+  aiUsageLogs?: Prisma.AIUsageLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutTaughtClassesInput = {
@@ -2884,6 +3015,7 @@ export type UserCreateWithoutTaughtClassesInput = {
   crowns?: number
   pirateRank?: string
   hasFortuneWind?: boolean
+  adaptiveDifficulty?: number
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -2910,6 +3042,7 @@ export type UserCreateWithoutTaughtClassesInput = {
   kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
   aiContexts?: Prisma.AIContextCreateNestedManyWithoutUserInput
+  aiUsageLogs?: Prisma.AIUsageLogCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutTaughtClassesInput = {
@@ -2927,6 +3060,7 @@ export type UserUncheckedCreateWithoutTaughtClassesInput = {
   crowns?: number
   pirateRank?: string
   hasFortuneWind?: boolean
+  adaptiveDifficulty?: number
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -2953,6 +3087,7 @@ export type UserUncheckedCreateWithoutTaughtClassesInput = {
   kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
   aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutUserInput
+  aiUsageLogs?: Prisma.AIUsageLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutTaughtClassesInput = {
@@ -2986,6 +3121,7 @@ export type UserUpdateWithoutTaughtClassesInput = {
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
   hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  adaptiveDifficulty?: Prisma.FloatFieldUpdateOperationsInput | number
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3012,6 +3148,7 @@ export type UserUpdateWithoutTaughtClassesInput = {
   kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
   aiContexts?: Prisma.AIContextUpdateManyWithoutUserNestedInput
+  aiUsageLogs?: Prisma.AIUsageLogUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTaughtClassesInput = {
@@ -3029,6 +3166,7 @@ export type UserUncheckedUpdateWithoutTaughtClassesInput = {
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
   hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  adaptiveDifficulty?: Prisma.FloatFieldUpdateOperationsInput | number
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3055,6 +3193,7 @@ export type UserUncheckedUpdateWithoutTaughtClassesInput = {
   kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
   aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutUserNestedInput
+  aiUsageLogs?: Prisma.AIUsageLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutStudentClassesInput = {
@@ -3072,6 +3211,7 @@ export type UserCreateWithoutStudentClassesInput = {
   crowns?: number
   pirateRank?: string
   hasFortuneWind?: boolean
+  adaptiveDifficulty?: number
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -3098,6 +3238,7 @@ export type UserCreateWithoutStudentClassesInput = {
   kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
   aiContexts?: Prisma.AIContextCreateNestedManyWithoutUserInput
+  aiUsageLogs?: Prisma.AIUsageLogCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutStudentClassesInput = {
@@ -3115,6 +3256,7 @@ export type UserUncheckedCreateWithoutStudentClassesInput = {
   crowns?: number
   pirateRank?: string
   hasFortuneWind?: boolean
+  adaptiveDifficulty?: number
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -3141,6 +3283,7 @@ export type UserUncheckedCreateWithoutStudentClassesInput = {
   kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
   aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutUserInput
+  aiUsageLogs?: Prisma.AIUsageLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutStudentClassesInput = {
@@ -3174,6 +3317,7 @@ export type UserUpdateWithoutStudentClassesInput = {
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
   hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  adaptiveDifficulty?: Prisma.FloatFieldUpdateOperationsInput | number
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3200,6 +3344,7 @@ export type UserUpdateWithoutStudentClassesInput = {
   kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
   aiContexts?: Prisma.AIContextUpdateManyWithoutUserNestedInput
+  aiUsageLogs?: Prisma.AIUsageLogUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutStudentClassesInput = {
@@ -3217,6 +3362,7 @@ export type UserUncheckedUpdateWithoutStudentClassesInput = {
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
   hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  adaptiveDifficulty?: Prisma.FloatFieldUpdateOperationsInput | number
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3243,6 +3389,7 @@ export type UserUncheckedUpdateWithoutStudentClassesInput = {
   kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
   aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutUserNestedInput
+  aiUsageLogs?: Prisma.AIUsageLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutParentLinksInput = {
@@ -3260,6 +3407,7 @@ export type UserCreateWithoutParentLinksInput = {
   crowns?: number
   pirateRank?: string
   hasFortuneWind?: boolean
+  adaptiveDifficulty?: number
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -3286,6 +3434,7 @@ export type UserCreateWithoutParentLinksInput = {
   kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
   aiContexts?: Prisma.AIContextCreateNestedManyWithoutUserInput
+  aiUsageLogs?: Prisma.AIUsageLogCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutParentLinksInput = {
@@ -3303,6 +3452,7 @@ export type UserUncheckedCreateWithoutParentLinksInput = {
   crowns?: number
   pirateRank?: string
   hasFortuneWind?: boolean
+  adaptiveDifficulty?: number
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -3329,6 +3479,7 @@ export type UserUncheckedCreateWithoutParentLinksInput = {
   kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
   aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutUserInput
+  aiUsageLogs?: Prisma.AIUsageLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutParentLinksInput = {
@@ -3351,6 +3502,7 @@ export type UserCreateWithoutParentOfLinksInput = {
   crowns?: number
   pirateRank?: string
   hasFortuneWind?: boolean
+  adaptiveDifficulty?: number
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -3377,6 +3529,7 @@ export type UserCreateWithoutParentOfLinksInput = {
   kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
   aiContexts?: Prisma.AIContextCreateNestedManyWithoutUserInput
+  aiUsageLogs?: Prisma.AIUsageLogCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutParentOfLinksInput = {
@@ -3394,6 +3547,7 @@ export type UserUncheckedCreateWithoutParentOfLinksInput = {
   crowns?: number
   pirateRank?: string
   hasFortuneWind?: boolean
+  adaptiveDifficulty?: number
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -3420,6 +3574,7 @@ export type UserUncheckedCreateWithoutParentOfLinksInput = {
   kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
   aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutUserInput
+  aiUsageLogs?: Prisma.AIUsageLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutParentOfLinksInput = {
@@ -3453,6 +3608,7 @@ export type UserUpdateWithoutParentLinksInput = {
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
   hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  adaptiveDifficulty?: Prisma.FloatFieldUpdateOperationsInput | number
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3479,6 +3635,7 @@ export type UserUpdateWithoutParentLinksInput = {
   kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
   aiContexts?: Prisma.AIContextUpdateManyWithoutUserNestedInput
+  aiUsageLogs?: Prisma.AIUsageLogUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutParentLinksInput = {
@@ -3496,6 +3653,7 @@ export type UserUncheckedUpdateWithoutParentLinksInput = {
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
   hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  adaptiveDifficulty?: Prisma.FloatFieldUpdateOperationsInput | number
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3522,6 +3680,7 @@ export type UserUncheckedUpdateWithoutParentLinksInput = {
   kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
   aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutUserNestedInput
+  aiUsageLogs?: Prisma.AIUsageLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUpsertWithoutParentOfLinksInput = {
@@ -3550,6 +3709,7 @@ export type UserUpdateWithoutParentOfLinksInput = {
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
   hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  adaptiveDifficulty?: Prisma.FloatFieldUpdateOperationsInput | number
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3576,6 +3736,7 @@ export type UserUpdateWithoutParentOfLinksInput = {
   kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
   aiContexts?: Prisma.AIContextUpdateManyWithoutUserNestedInput
+  aiUsageLogs?: Prisma.AIUsageLogUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutParentOfLinksInput = {
@@ -3593,6 +3754,7 @@ export type UserUncheckedUpdateWithoutParentOfLinksInput = {
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
   hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  adaptiveDifficulty?: Prisma.FloatFieldUpdateOperationsInput | number
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3619,6 +3781,7 @@ export type UserUncheckedUpdateWithoutParentOfLinksInput = {
   kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
   aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutUserNestedInput
+  aiUsageLogs?: Prisma.AIUsageLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutAssignmentsInput = {
@@ -3636,6 +3799,7 @@ export type UserCreateWithoutAssignmentsInput = {
   crowns?: number
   pirateRank?: string
   hasFortuneWind?: boolean
+  adaptiveDifficulty?: number
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -3662,6 +3826,7 @@ export type UserCreateWithoutAssignmentsInput = {
   kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
   aiContexts?: Prisma.AIContextCreateNestedManyWithoutUserInput
+  aiUsageLogs?: Prisma.AIUsageLogCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAssignmentsInput = {
@@ -3679,6 +3844,7 @@ export type UserUncheckedCreateWithoutAssignmentsInput = {
   crowns?: number
   pirateRank?: string
   hasFortuneWind?: boolean
+  adaptiveDifficulty?: number
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -3705,6 +3871,7 @@ export type UserUncheckedCreateWithoutAssignmentsInput = {
   kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
   aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutUserInput
+  aiUsageLogs?: Prisma.AIUsageLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAssignmentsInput = {
@@ -3727,6 +3894,7 @@ export type UserCreateWithoutStudentAssignmentsInput = {
   crowns?: number
   pirateRank?: string
   hasFortuneWind?: boolean
+  adaptiveDifficulty?: number
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -3753,6 +3921,7 @@ export type UserCreateWithoutStudentAssignmentsInput = {
   kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
   aiContexts?: Prisma.AIContextCreateNestedManyWithoutUserInput
+  aiUsageLogs?: Prisma.AIUsageLogCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutStudentAssignmentsInput = {
@@ -3770,6 +3939,7 @@ export type UserUncheckedCreateWithoutStudentAssignmentsInput = {
   crowns?: number
   pirateRank?: string
   hasFortuneWind?: boolean
+  adaptiveDifficulty?: number
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -3796,6 +3966,7 @@ export type UserUncheckedCreateWithoutStudentAssignmentsInput = {
   kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
   aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutUserInput
+  aiUsageLogs?: Prisma.AIUsageLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutStudentAssignmentsInput = {
@@ -3829,6 +4000,7 @@ export type UserUpdateWithoutAssignmentsInput = {
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
   hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  adaptiveDifficulty?: Prisma.FloatFieldUpdateOperationsInput | number
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3855,6 +4027,7 @@ export type UserUpdateWithoutAssignmentsInput = {
   kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
   aiContexts?: Prisma.AIContextUpdateManyWithoutUserNestedInput
+  aiUsageLogs?: Prisma.AIUsageLogUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAssignmentsInput = {
@@ -3872,6 +4045,7 @@ export type UserUncheckedUpdateWithoutAssignmentsInput = {
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
   hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  adaptiveDifficulty?: Prisma.FloatFieldUpdateOperationsInput | number
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3898,6 +4072,7 @@ export type UserUncheckedUpdateWithoutAssignmentsInput = {
   kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
   aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutUserNestedInput
+  aiUsageLogs?: Prisma.AIUsageLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUpsertWithoutStudentAssignmentsInput = {
@@ -3926,6 +4101,7 @@ export type UserUpdateWithoutStudentAssignmentsInput = {
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
   hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  adaptiveDifficulty?: Prisma.FloatFieldUpdateOperationsInput | number
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3952,6 +4128,7 @@ export type UserUpdateWithoutStudentAssignmentsInput = {
   kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
   aiContexts?: Prisma.AIContextUpdateManyWithoutUserNestedInput
+  aiUsageLogs?: Prisma.AIUsageLogUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutStudentAssignmentsInput = {
@@ -3969,6 +4146,7 @@ export type UserUncheckedUpdateWithoutStudentAssignmentsInput = {
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
   hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  adaptiveDifficulty?: Prisma.FloatFieldUpdateOperationsInput | number
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3995,6 +4173,7 @@ export type UserUncheckedUpdateWithoutStudentAssignmentsInput = {
   kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
   aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutUserNestedInput
+  aiUsageLogs?: Prisma.AIUsageLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutAnnouncementsInput = {
@@ -4012,6 +4191,7 @@ export type UserCreateWithoutAnnouncementsInput = {
   crowns?: number
   pirateRank?: string
   hasFortuneWind?: boolean
+  adaptiveDifficulty?: number
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -4038,6 +4218,7 @@ export type UserCreateWithoutAnnouncementsInput = {
   kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
   aiContexts?: Prisma.AIContextCreateNestedManyWithoutUserInput
+  aiUsageLogs?: Prisma.AIUsageLogCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAnnouncementsInput = {
@@ -4055,6 +4236,7 @@ export type UserUncheckedCreateWithoutAnnouncementsInput = {
   crowns?: number
   pirateRank?: string
   hasFortuneWind?: boolean
+  adaptiveDifficulty?: number
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -4081,6 +4263,7 @@ export type UserUncheckedCreateWithoutAnnouncementsInput = {
   kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
   aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutUserInput
+  aiUsageLogs?: Prisma.AIUsageLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAnnouncementsInput = {
@@ -4114,6 +4297,7 @@ export type UserUpdateWithoutAnnouncementsInput = {
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
   hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  adaptiveDifficulty?: Prisma.FloatFieldUpdateOperationsInput | number
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -4140,6 +4324,7 @@ export type UserUpdateWithoutAnnouncementsInput = {
   kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
   aiContexts?: Prisma.AIContextUpdateManyWithoutUserNestedInput
+  aiUsageLogs?: Prisma.AIUsageLogUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAnnouncementsInput = {
@@ -4157,6 +4342,7 @@ export type UserUncheckedUpdateWithoutAnnouncementsInput = {
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
   hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  adaptiveDifficulty?: Prisma.FloatFieldUpdateOperationsInput | number
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -4183,6 +4369,7 @@ export type UserUncheckedUpdateWithoutAnnouncementsInput = {
   kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
   aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutUserNestedInput
+  aiUsageLogs?: Prisma.AIUsageLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutAuditActionsInput = {
@@ -4200,6 +4387,7 @@ export type UserCreateWithoutAuditActionsInput = {
   crowns?: number
   pirateRank?: string
   hasFortuneWind?: boolean
+  adaptiveDifficulty?: number
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -4226,6 +4414,7 @@ export type UserCreateWithoutAuditActionsInput = {
   kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
   aiContexts?: Prisma.AIContextCreateNestedManyWithoutUserInput
+  aiUsageLogs?: Prisma.AIUsageLogCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAuditActionsInput = {
@@ -4243,6 +4432,7 @@ export type UserUncheckedCreateWithoutAuditActionsInput = {
   crowns?: number
   pirateRank?: string
   hasFortuneWind?: boolean
+  adaptiveDifficulty?: number
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -4269,6 +4459,7 @@ export type UserUncheckedCreateWithoutAuditActionsInput = {
   kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
   aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutUserInput
+  aiUsageLogs?: Prisma.AIUsageLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAuditActionsInput = {
@@ -4302,6 +4493,7 @@ export type UserUpdateWithoutAuditActionsInput = {
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
   hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  adaptiveDifficulty?: Prisma.FloatFieldUpdateOperationsInput | number
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -4328,6 +4520,7 @@ export type UserUpdateWithoutAuditActionsInput = {
   kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
   aiContexts?: Prisma.AIContextUpdateManyWithoutUserNestedInput
+  aiUsageLogs?: Prisma.AIUsageLogUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAuditActionsInput = {
@@ -4345,6 +4538,7 @@ export type UserUncheckedUpdateWithoutAuditActionsInput = {
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
   hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  adaptiveDifficulty?: Prisma.FloatFieldUpdateOperationsInput | number
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -4371,6 +4565,7 @@ export type UserUncheckedUpdateWithoutAuditActionsInput = {
   kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
   aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutUserNestedInput
+  aiUsageLogs?: Prisma.AIUsageLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutLoginRecordsInput = {
@@ -4388,6 +4583,7 @@ export type UserCreateWithoutLoginRecordsInput = {
   crowns?: number
   pirateRank?: string
   hasFortuneWind?: boolean
+  adaptiveDifficulty?: number
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -4414,6 +4610,7 @@ export type UserCreateWithoutLoginRecordsInput = {
   kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
   aiContexts?: Prisma.AIContextCreateNestedManyWithoutUserInput
+  aiUsageLogs?: Prisma.AIUsageLogCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutLoginRecordsInput = {
@@ -4431,6 +4628,7 @@ export type UserUncheckedCreateWithoutLoginRecordsInput = {
   crowns?: number
   pirateRank?: string
   hasFortuneWind?: boolean
+  adaptiveDifficulty?: number
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -4457,6 +4655,7 @@ export type UserUncheckedCreateWithoutLoginRecordsInput = {
   kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
   aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutUserInput
+  aiUsageLogs?: Prisma.AIUsageLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutLoginRecordsInput = {
@@ -4490,6 +4689,7 @@ export type UserUpdateWithoutLoginRecordsInput = {
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
   hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  adaptiveDifficulty?: Prisma.FloatFieldUpdateOperationsInput | number
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -4516,6 +4716,7 @@ export type UserUpdateWithoutLoginRecordsInput = {
   kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
   aiContexts?: Prisma.AIContextUpdateManyWithoutUserNestedInput
+  aiUsageLogs?: Prisma.AIUsageLogUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutLoginRecordsInput = {
@@ -4533,6 +4734,7 @@ export type UserUncheckedUpdateWithoutLoginRecordsInput = {
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
   hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  adaptiveDifficulty?: Prisma.FloatFieldUpdateOperationsInput | number
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -4559,6 +4761,7 @@ export type UserUncheckedUpdateWithoutLoginRecordsInput = {
   kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
   aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutUserNestedInput
+  aiUsageLogs?: Prisma.AIUsageLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutCreatedInvitesInput = {
@@ -4576,6 +4779,7 @@ export type UserCreateWithoutCreatedInvitesInput = {
   crowns?: number
   pirateRank?: string
   hasFortuneWind?: boolean
+  adaptiveDifficulty?: number
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -4602,6 +4806,7 @@ export type UserCreateWithoutCreatedInvitesInput = {
   kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
   aiContexts?: Prisma.AIContextCreateNestedManyWithoutUserInput
+  aiUsageLogs?: Prisma.AIUsageLogCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutCreatedInvitesInput = {
@@ -4619,6 +4824,7 @@ export type UserUncheckedCreateWithoutCreatedInvitesInput = {
   crowns?: number
   pirateRank?: string
   hasFortuneWind?: boolean
+  adaptiveDifficulty?: number
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -4645,6 +4851,7 @@ export type UserUncheckedCreateWithoutCreatedInvitesInput = {
   kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
   aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutUserInput
+  aiUsageLogs?: Prisma.AIUsageLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutCreatedInvitesInput = {
@@ -4678,6 +4885,7 @@ export type UserUpdateWithoutCreatedInvitesInput = {
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
   hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  adaptiveDifficulty?: Prisma.FloatFieldUpdateOperationsInput | number
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -4704,6 +4912,7 @@ export type UserUpdateWithoutCreatedInvitesInput = {
   kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
   aiContexts?: Prisma.AIContextUpdateManyWithoutUserNestedInput
+  aiUsageLogs?: Prisma.AIUsageLogUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedInvitesInput = {
@@ -4721,6 +4930,7 @@ export type UserUncheckedUpdateWithoutCreatedInvitesInput = {
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
   hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  adaptiveDifficulty?: Prisma.FloatFieldUpdateOperationsInput | number
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -4747,6 +4957,7 @@ export type UserUncheckedUpdateWithoutCreatedInvitesInput = {
   kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
   aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutUserNestedInput
+  aiUsageLogs?: Prisma.AIUsageLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutSystemAnnouncementsInput = {
@@ -4764,6 +4975,7 @@ export type UserCreateWithoutSystemAnnouncementsInput = {
   crowns?: number
   pirateRank?: string
   hasFortuneWind?: boolean
+  adaptiveDifficulty?: number
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -4790,6 +5002,7 @@ export type UserCreateWithoutSystemAnnouncementsInput = {
   kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
   aiContexts?: Prisma.AIContextCreateNestedManyWithoutUserInput
+  aiUsageLogs?: Prisma.AIUsageLogCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutSystemAnnouncementsInput = {
@@ -4807,6 +5020,7 @@ export type UserUncheckedCreateWithoutSystemAnnouncementsInput = {
   crowns?: number
   pirateRank?: string
   hasFortuneWind?: boolean
+  adaptiveDifficulty?: number
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -4833,6 +5047,7 @@ export type UserUncheckedCreateWithoutSystemAnnouncementsInput = {
   kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
   aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutUserInput
+  aiUsageLogs?: Prisma.AIUsageLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutSystemAnnouncementsInput = {
@@ -4866,6 +5081,7 @@ export type UserUpdateWithoutSystemAnnouncementsInput = {
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
   hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  adaptiveDifficulty?: Prisma.FloatFieldUpdateOperationsInput | number
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -4892,6 +5108,7 @@ export type UserUpdateWithoutSystemAnnouncementsInput = {
   kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
   aiContexts?: Prisma.AIContextUpdateManyWithoutUserNestedInput
+  aiUsageLogs?: Prisma.AIUsageLogUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSystemAnnouncementsInput = {
@@ -4909,6 +5126,7 @@ export type UserUncheckedUpdateWithoutSystemAnnouncementsInput = {
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
   hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  adaptiveDifficulty?: Prisma.FloatFieldUpdateOperationsInput | number
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -4935,6 +5153,7 @@ export type UserUncheckedUpdateWithoutSystemAnnouncementsInput = {
   kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
   aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutUserNestedInput
+  aiUsageLogs?: Prisma.AIUsageLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutVoyageBundlesInput = {
@@ -4952,6 +5171,7 @@ export type UserCreateWithoutVoyageBundlesInput = {
   crowns?: number
   pirateRank?: string
   hasFortuneWind?: boolean
+  adaptiveDifficulty?: number
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -4978,6 +5198,7 @@ export type UserCreateWithoutVoyageBundlesInput = {
   kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
   aiContexts?: Prisma.AIContextCreateNestedManyWithoutUserInput
+  aiUsageLogs?: Prisma.AIUsageLogCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutVoyageBundlesInput = {
@@ -4995,6 +5216,7 @@ export type UserUncheckedCreateWithoutVoyageBundlesInput = {
   crowns?: number
   pirateRank?: string
   hasFortuneWind?: boolean
+  adaptiveDifficulty?: number
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -5021,6 +5243,7 @@ export type UserUncheckedCreateWithoutVoyageBundlesInput = {
   kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
   aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutUserInput
+  aiUsageLogs?: Prisma.AIUsageLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutVoyageBundlesInput = {
@@ -5054,6 +5277,7 @@ export type UserUpdateWithoutVoyageBundlesInput = {
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
   hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  adaptiveDifficulty?: Prisma.FloatFieldUpdateOperationsInput | number
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -5080,6 +5304,7 @@ export type UserUpdateWithoutVoyageBundlesInput = {
   kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
   aiContexts?: Prisma.AIContextUpdateManyWithoutUserNestedInput
+  aiUsageLogs?: Prisma.AIUsageLogUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutVoyageBundlesInput = {
@@ -5097,6 +5322,7 @@ export type UserUncheckedUpdateWithoutVoyageBundlesInput = {
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
   hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  adaptiveDifficulty?: Prisma.FloatFieldUpdateOperationsInput | number
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -5123,6 +5349,7 @@ export type UserUncheckedUpdateWithoutVoyageBundlesInput = {
   kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
   aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutUserNestedInput
+  aiUsageLogs?: Prisma.AIUsageLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutKanbanCreatedInput = {
@@ -5140,6 +5367,7 @@ export type UserCreateWithoutKanbanCreatedInput = {
   crowns?: number
   pirateRank?: string
   hasFortuneWind?: boolean
+  adaptiveDifficulty?: number
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -5166,6 +5394,7 @@ export type UserCreateWithoutKanbanCreatedInput = {
   voyageBundles?: Prisma.VoyageBundleCreateNestedManyWithoutAdminInput
   kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
   aiContexts?: Prisma.AIContextCreateNestedManyWithoutUserInput
+  aiUsageLogs?: Prisma.AIUsageLogCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutKanbanCreatedInput = {
@@ -5183,6 +5412,7 @@ export type UserUncheckedCreateWithoutKanbanCreatedInput = {
   crowns?: number
   pirateRank?: string
   hasFortuneWind?: boolean
+  adaptiveDifficulty?: number
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -5209,6 +5439,7 @@ export type UserUncheckedCreateWithoutKanbanCreatedInput = {
   voyageBundles?: Prisma.VoyageBundleUncheckedCreateNestedManyWithoutAdminInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
   aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutUserInput
+  aiUsageLogs?: Prisma.AIUsageLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutKanbanCreatedInput = {
@@ -5231,6 +5462,7 @@ export type UserCreateWithoutKanbanAssignedInput = {
   crowns?: number
   pirateRank?: string
   hasFortuneWind?: boolean
+  adaptiveDifficulty?: number
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -5257,6 +5489,7 @@ export type UserCreateWithoutKanbanAssignedInput = {
   voyageBundles?: Prisma.VoyageBundleCreateNestedManyWithoutAdminInput
   kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
   aiContexts?: Prisma.AIContextCreateNestedManyWithoutUserInput
+  aiUsageLogs?: Prisma.AIUsageLogCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutKanbanAssignedInput = {
@@ -5274,6 +5507,7 @@ export type UserUncheckedCreateWithoutKanbanAssignedInput = {
   crowns?: number
   pirateRank?: string
   hasFortuneWind?: boolean
+  adaptiveDifficulty?: number
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -5300,6 +5534,7 @@ export type UserUncheckedCreateWithoutKanbanAssignedInput = {
   voyageBundles?: Prisma.VoyageBundleUncheckedCreateNestedManyWithoutAdminInput
   kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
   aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutUserInput
+  aiUsageLogs?: Prisma.AIUsageLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutKanbanAssignedInput = {
@@ -5333,6 +5568,7 @@ export type UserUpdateWithoutKanbanCreatedInput = {
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
   hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  adaptiveDifficulty?: Prisma.FloatFieldUpdateOperationsInput | number
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -5359,6 +5595,7 @@ export type UserUpdateWithoutKanbanCreatedInput = {
   voyageBundles?: Prisma.VoyageBundleUpdateManyWithoutAdminNestedInput
   kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
   aiContexts?: Prisma.AIContextUpdateManyWithoutUserNestedInput
+  aiUsageLogs?: Prisma.AIUsageLogUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutKanbanCreatedInput = {
@@ -5376,6 +5613,7 @@ export type UserUncheckedUpdateWithoutKanbanCreatedInput = {
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
   hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  adaptiveDifficulty?: Prisma.FloatFieldUpdateOperationsInput | number
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -5402,6 +5640,7 @@ export type UserUncheckedUpdateWithoutKanbanCreatedInput = {
   voyageBundles?: Prisma.VoyageBundleUncheckedUpdateManyWithoutAdminNestedInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
   aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutUserNestedInput
+  aiUsageLogs?: Prisma.AIUsageLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUpsertWithoutKanbanAssignedInput = {
@@ -5430,6 +5669,7 @@ export type UserUpdateWithoutKanbanAssignedInput = {
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
   hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  adaptiveDifficulty?: Prisma.FloatFieldUpdateOperationsInput | number
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -5456,6 +5696,7 @@ export type UserUpdateWithoutKanbanAssignedInput = {
   voyageBundles?: Prisma.VoyageBundleUpdateManyWithoutAdminNestedInput
   kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
   aiContexts?: Prisma.AIContextUpdateManyWithoutUserNestedInput
+  aiUsageLogs?: Prisma.AIUsageLogUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutKanbanAssignedInput = {
@@ -5473,6 +5714,7 @@ export type UserUncheckedUpdateWithoutKanbanAssignedInput = {
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
   hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  adaptiveDifficulty?: Prisma.FloatFieldUpdateOperationsInput | number
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -5499,9 +5741,10 @@ export type UserUncheckedUpdateWithoutKanbanAssignedInput = {
   voyageBundles?: Prisma.VoyageBundleUncheckedUpdateManyWithoutAdminNestedInput
   kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
   aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutUserNestedInput
+  aiUsageLogs?: Prisma.AIUsageLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
-export type UserCreateWithoutAiContextsInput = {
+export type UserCreateWithoutAiUsageLogsInput = {
   id?: string
   name: string
   username: string
@@ -5516,6 +5759,7 @@ export type UserCreateWithoutAiContextsInput = {
   crowns?: number
   pirateRank?: string
   hasFortuneWind?: boolean
+  adaptiveDifficulty?: number
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -5542,9 +5786,10 @@ export type UserCreateWithoutAiContextsInput = {
   voyageBundles?: Prisma.VoyageBundleCreateNestedManyWithoutAdminInput
   kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
+  aiContexts?: Prisma.AIContextCreateNestedManyWithoutUserInput
 }
 
-export type UserUncheckedCreateWithoutAiContextsInput = {
+export type UserUncheckedCreateWithoutAiUsageLogsInput = {
   id?: string
   name: string
   username: string
@@ -5559,6 +5804,7 @@ export type UserUncheckedCreateWithoutAiContextsInput = {
   crowns?: number
   pirateRank?: string
   hasFortuneWind?: boolean
+  adaptiveDifficulty?: number
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -5585,6 +5831,203 @@ export type UserUncheckedCreateWithoutAiContextsInput = {
   voyageBundles?: Prisma.VoyageBundleUncheckedCreateNestedManyWithoutAdminInput
   kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
+  aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutAiUsageLogsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutAiUsageLogsInput, Prisma.UserUncheckedCreateWithoutAiUsageLogsInput>
+}
+
+export type UserUpsertWithoutAiUsageLogsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutAiUsageLogsInput, Prisma.UserUncheckedUpdateWithoutAiUsageLogsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutAiUsageLogsInput, Prisma.UserUncheckedCreateWithoutAiUsageLogsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutAiUsageLogsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutAiUsageLogsInput, Prisma.UserUncheckedUpdateWithoutAiUsageLogsInput>
+}
+
+export type UserUpdateWithoutAiUsageLogsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favoriteSea?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crowns?: Prisma.IntFieldUpdateOperationsInput | number
+  pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  adaptiveDifficulty?: Prisma.FloatFieldUpdateOperationsInput | number
+  mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  progress?: Prisma.UserVoyageProgressUpdateManyWithoutUserNestedInput
+  achievements?: Prisma.UserAchievementUpdateManyWithoutUserNestedInput
+  pointLog?: Prisma.PointTransactionUpdateManyWithoutUserNestedInput
+  crownLog?: Prisma.CrownTransactionUpdateManyWithoutUserNestedInput
+  streaks?: Prisma.StreakUpdateManyWithoutUserNestedInput
+  charms?: Prisma.SeaCharmUpdateManyWithoutUserNestedInput
+  attempts?: Prisma.TrialAttemptUpdateManyWithoutUserNestedInput
+  shipUpgrades?: Prisma.UserShipUpgradeUpdateManyWithoutUserNestedInput
+  chestClaims?: Prisma.DailyChestClaimUpdateManyWithoutUserNestedInput
+  parentLinks?: Prisma.StudentParentUpdateManyWithoutStudentNestedInput
+  parentOfLinks?: Prisma.StudentParentUpdateManyWithoutParentNestedInput
+  studentClasses?: Prisma.StudentClassUpdateManyWithoutStudentNestedInput
+  taughtClasses?: Prisma.ClassTeacherUpdateManyWithoutTeacherNestedInput
+  assignments?: Prisma.AssignmentUpdateManyWithoutTeacherNestedInput
+  studentAssignments?: Prisma.AssignmentUpdateManyWithoutStudentNestedInput
+  announcements?: Prisma.AnnouncementUpdateManyWithoutTeacherNestedInput
+  auditActions?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  loginRecords?: Prisma.LoginHistoryUpdateManyWithoutUserNestedInput
+  createdInvites?: Prisma.InviteLinkUpdateManyWithoutCreatorNestedInput
+  systemAnnouncements?: Prisma.SystemAnnouncementUpdateManyWithoutAdminNestedInput
+  voyageBundles?: Prisma.VoyageBundleUpdateManyWithoutAdminNestedInput
+  kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
+  kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
+  aiContexts?: Prisma.AIContextUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutAiUsageLogsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favoriteSea?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crowns?: Prisma.IntFieldUpdateOperationsInput | number
+  pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  adaptiveDifficulty?: Prisma.FloatFieldUpdateOperationsInput | number
+  mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  progress?: Prisma.UserVoyageProgressUncheckedUpdateManyWithoutUserNestedInput
+  achievements?: Prisma.UserAchievementUncheckedUpdateManyWithoutUserNestedInput
+  pointLog?: Prisma.PointTransactionUncheckedUpdateManyWithoutUserNestedInput
+  crownLog?: Prisma.CrownTransactionUncheckedUpdateManyWithoutUserNestedInput
+  streaks?: Prisma.StreakUncheckedUpdateManyWithoutUserNestedInput
+  charms?: Prisma.SeaCharmUncheckedUpdateManyWithoutUserNestedInput
+  attempts?: Prisma.TrialAttemptUncheckedUpdateManyWithoutUserNestedInput
+  shipUpgrades?: Prisma.UserShipUpgradeUncheckedUpdateManyWithoutUserNestedInput
+  chestClaims?: Prisma.DailyChestClaimUncheckedUpdateManyWithoutUserNestedInput
+  parentLinks?: Prisma.StudentParentUncheckedUpdateManyWithoutStudentNestedInput
+  parentOfLinks?: Prisma.StudentParentUncheckedUpdateManyWithoutParentNestedInput
+  studentClasses?: Prisma.StudentClassUncheckedUpdateManyWithoutStudentNestedInput
+  taughtClasses?: Prisma.ClassTeacherUncheckedUpdateManyWithoutTeacherNestedInput
+  assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
+  studentAssignments?: Prisma.AssignmentUncheckedUpdateManyWithoutStudentNestedInput
+  announcements?: Prisma.AnnouncementUncheckedUpdateManyWithoutTeacherNestedInput
+  auditActions?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  loginRecords?: Prisma.LoginHistoryUncheckedUpdateManyWithoutUserNestedInput
+  createdInvites?: Prisma.InviteLinkUncheckedUpdateManyWithoutCreatorNestedInput
+  systemAnnouncements?: Prisma.SystemAnnouncementUncheckedUpdateManyWithoutAdminNestedInput
+  voyageBundles?: Prisma.VoyageBundleUncheckedUpdateManyWithoutAdminNestedInput
+  kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
+  kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
+  aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutAiContextsInput = {
+  id?: string
+  name: string
+  username: string
+  passwordHash: string
+  role?: $Enums.Role
+  status?: string
+  avatarUrl?: string | null
+  age?: number | null
+  bio?: string | null
+  favoriteSea?: string | null
+  learningGoals?: string | null
+  crowns?: number
+  pirateRank?: string
+  hasFortuneWind?: boolean
+  adaptiveDifficulty?: number
+  mustChangePassword?: boolean
+  deletedAt?: Date | string | null
+  createdAt?: Date | string
+  progress?: Prisma.UserVoyageProgressCreateNestedManyWithoutUserInput
+  achievements?: Prisma.UserAchievementCreateNestedManyWithoutUserInput
+  pointLog?: Prisma.PointTransactionCreateNestedManyWithoutUserInput
+  crownLog?: Prisma.CrownTransactionCreateNestedManyWithoutUserInput
+  streaks?: Prisma.StreakCreateNestedManyWithoutUserInput
+  charms?: Prisma.SeaCharmCreateNestedManyWithoutUserInput
+  attempts?: Prisma.TrialAttemptCreateNestedManyWithoutUserInput
+  shipUpgrades?: Prisma.UserShipUpgradeCreateNestedManyWithoutUserInput
+  chestClaims?: Prisma.DailyChestClaimCreateNestedManyWithoutUserInput
+  parentLinks?: Prisma.StudentParentCreateNestedManyWithoutStudentInput
+  parentOfLinks?: Prisma.StudentParentCreateNestedManyWithoutParentInput
+  studentClasses?: Prisma.StudentClassCreateNestedManyWithoutStudentInput
+  taughtClasses?: Prisma.ClassTeacherCreateNestedManyWithoutTeacherInput
+  assignments?: Prisma.AssignmentCreateNestedManyWithoutTeacherInput
+  studentAssignments?: Prisma.AssignmentCreateNestedManyWithoutStudentInput
+  announcements?: Prisma.AnnouncementCreateNestedManyWithoutTeacherInput
+  auditActions?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  loginRecords?: Prisma.LoginHistoryCreateNestedManyWithoutUserInput
+  createdInvites?: Prisma.InviteLinkCreateNestedManyWithoutCreatorInput
+  systemAnnouncements?: Prisma.SystemAnnouncementCreateNestedManyWithoutAdminInput
+  voyageBundles?: Prisma.VoyageBundleCreateNestedManyWithoutAdminInput
+  kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
+  kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
+  aiUsageLogs?: Prisma.AIUsageLogCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutAiContextsInput = {
+  id?: string
+  name: string
+  username: string
+  passwordHash: string
+  role?: $Enums.Role
+  status?: string
+  avatarUrl?: string | null
+  age?: number | null
+  bio?: string | null
+  favoriteSea?: string | null
+  learningGoals?: string | null
+  crowns?: number
+  pirateRank?: string
+  hasFortuneWind?: boolean
+  adaptiveDifficulty?: number
+  mustChangePassword?: boolean
+  deletedAt?: Date | string | null
+  createdAt?: Date | string
+  progress?: Prisma.UserVoyageProgressUncheckedCreateNestedManyWithoutUserInput
+  achievements?: Prisma.UserAchievementUncheckedCreateNestedManyWithoutUserInput
+  pointLog?: Prisma.PointTransactionUncheckedCreateNestedManyWithoutUserInput
+  crownLog?: Prisma.CrownTransactionUncheckedCreateNestedManyWithoutUserInput
+  streaks?: Prisma.StreakUncheckedCreateNestedManyWithoutUserInput
+  charms?: Prisma.SeaCharmUncheckedCreateNestedManyWithoutUserInput
+  attempts?: Prisma.TrialAttemptUncheckedCreateNestedManyWithoutUserInput
+  shipUpgrades?: Prisma.UserShipUpgradeUncheckedCreateNestedManyWithoutUserInput
+  chestClaims?: Prisma.DailyChestClaimUncheckedCreateNestedManyWithoutUserInput
+  parentLinks?: Prisma.StudentParentUncheckedCreateNestedManyWithoutStudentInput
+  parentOfLinks?: Prisma.StudentParentUncheckedCreateNestedManyWithoutParentInput
+  studentClasses?: Prisma.StudentClassUncheckedCreateNestedManyWithoutStudentInput
+  taughtClasses?: Prisma.ClassTeacherUncheckedCreateNestedManyWithoutTeacherInput
+  assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutTeacherInput
+  studentAssignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutStudentInput
+  announcements?: Prisma.AnnouncementUncheckedCreateNestedManyWithoutTeacherInput
+  auditActions?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  loginRecords?: Prisma.LoginHistoryUncheckedCreateNestedManyWithoutUserInput
+  createdInvites?: Prisma.InviteLinkUncheckedCreateNestedManyWithoutCreatorInput
+  systemAnnouncements?: Prisma.SystemAnnouncementUncheckedCreateNestedManyWithoutAdminInput
+  voyageBundles?: Prisma.VoyageBundleUncheckedCreateNestedManyWithoutAdminInput
+  kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
+  kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
+  aiUsageLogs?: Prisma.AIUsageLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAiContextsInput = {
@@ -5618,6 +6061,7 @@ export type UserUpdateWithoutAiContextsInput = {
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
   hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  adaptiveDifficulty?: Prisma.FloatFieldUpdateOperationsInput | number
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -5644,6 +6088,7 @@ export type UserUpdateWithoutAiContextsInput = {
   voyageBundles?: Prisma.VoyageBundleUpdateManyWithoutAdminNestedInput
   kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
+  aiUsageLogs?: Prisma.AIUsageLogUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAiContextsInput = {
@@ -5661,6 +6106,7 @@ export type UserUncheckedUpdateWithoutAiContextsInput = {
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
   hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  adaptiveDifficulty?: Prisma.FloatFieldUpdateOperationsInput | number
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -5687,6 +6133,7 @@ export type UserUncheckedUpdateWithoutAiContextsInput = {
   voyageBundles?: Prisma.VoyageBundleUncheckedUpdateManyWithoutAdminNestedInput
   kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
+  aiUsageLogs?: Prisma.AIUsageLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -5719,6 +6166,7 @@ export type UserCountOutputType = {
   kanbanCreated: number
   kanbanAssigned: number
   aiContexts: number
+  aiUsageLogs: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -5746,6 +6194,7 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   kanbanCreated?: boolean | UserCountOutputTypeCountKanbanCreatedArgs
   kanbanAssigned?: boolean | UserCountOutputTypeCountKanbanAssignedArgs
   aiContexts?: boolean | UserCountOutputTypeCountAiContextsArgs
+  aiUsageLogs?: boolean | UserCountOutputTypeCountAiUsageLogsArgs
 }
 
 /**
@@ -5926,6 +6375,13 @@ export type UserCountOutputTypeCountAiContextsArgs<ExtArgs extends runtime.Types
   where?: Prisma.AIContextWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountAiUsageLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AIUsageLogWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -5942,6 +6398,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   crowns?: boolean
   pirateRank?: boolean
   hasFortuneWind?: boolean
+  adaptiveDifficulty?: boolean
   mustChangePassword?: boolean
   deletedAt?: boolean
   createdAt?: boolean
@@ -5969,6 +6426,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   kanbanCreated?: boolean | Prisma.User$kanbanCreatedArgs<ExtArgs>
   kanbanAssigned?: boolean | Prisma.User$kanbanAssignedArgs<ExtArgs>
   aiContexts?: boolean | Prisma.User$aiContextsArgs<ExtArgs>
+  aiUsageLogs?: boolean | Prisma.User$aiUsageLogsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -5987,6 +6445,7 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   crowns?: boolean
   pirateRank?: boolean
   hasFortuneWind?: boolean
+  adaptiveDifficulty?: boolean
   mustChangePassword?: boolean
   deletedAt?: boolean
   createdAt?: boolean
@@ -6007,6 +6466,7 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   crowns?: boolean
   pirateRank?: boolean
   hasFortuneWind?: boolean
+  adaptiveDifficulty?: boolean
   mustChangePassword?: boolean
   deletedAt?: boolean
   createdAt?: boolean
@@ -6027,12 +6487,13 @@ export type UserSelectScalar = {
   crowns?: boolean
   pirateRank?: boolean
   hasFortuneWind?: boolean
+  adaptiveDifficulty?: boolean
   mustChangePassword?: boolean
   deletedAt?: boolean
   createdAt?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "username" | "passwordHash" | "role" | "status" | "avatarUrl" | "age" | "bio" | "favoriteSea" | "learningGoals" | "crowns" | "pirateRank" | "hasFortuneWind" | "mustChangePassword" | "deletedAt" | "createdAt", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "username" | "passwordHash" | "role" | "status" | "avatarUrl" | "age" | "bio" | "favoriteSea" | "learningGoals" | "crowns" | "pirateRank" | "hasFortuneWind" | "adaptiveDifficulty" | "mustChangePassword" | "deletedAt" | "createdAt", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   progress?: boolean | Prisma.User$progressArgs<ExtArgs>
   achievements?: boolean | Prisma.User$achievementsArgs<ExtArgs>
@@ -6058,6 +6519,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   kanbanCreated?: boolean | Prisma.User$kanbanCreatedArgs<ExtArgs>
   kanbanAssigned?: boolean | Prisma.User$kanbanAssignedArgs<ExtArgs>
   aiContexts?: boolean | Prisma.User$aiContextsArgs<ExtArgs>
+  aiUsageLogs?: boolean | Prisma.User$aiUsageLogsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -6090,6 +6552,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     kanbanCreated: Prisma.$KanbanCardPayload<ExtArgs>[]
     kanbanAssigned: Prisma.$KanbanCardPayload<ExtArgs>[]
     aiContexts: Prisma.$AIContextPayload<ExtArgs>[]
+    aiUsageLogs: Prisma.$AIUsageLogPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -6106,6 +6569,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     crowns: number
     pirateRank: string
     hasFortuneWind: boolean
+    adaptiveDifficulty: number
     mustChangePassword: boolean
     deletedAt: Date | null
     createdAt: Date
@@ -6527,6 +6991,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   kanbanCreated<T extends Prisma.User$kanbanCreatedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$kanbanCreatedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$KanbanCardPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   kanbanAssigned<T extends Prisma.User$kanbanAssignedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$kanbanAssignedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$KanbanCardPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   aiContexts<T extends Prisma.User$aiContextsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$aiContextsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AIContextPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  aiUsageLogs<T extends Prisma.User$aiUsageLogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$aiUsageLogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AIUsageLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6570,6 +7035,7 @@ export interface UserFieldRefs {
   readonly crowns: Prisma.FieldRef<"User", 'Int'>
   readonly pirateRank: Prisma.FieldRef<"User", 'String'>
   readonly hasFortuneWind: Prisma.FieldRef<"User", 'Boolean'>
+  readonly adaptiveDifficulty: Prisma.FieldRef<"User", 'Float'>
   readonly mustChangePassword: Prisma.FieldRef<"User", 'Boolean'>
   readonly deletedAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>
@@ -7539,6 +8005,30 @@ export type User$aiContextsArgs<ExtArgs extends runtime.Types.Extensions.Interna
   take?: number
   skip?: number
   distinct?: Prisma.AIContextScalarFieldEnum | Prisma.AIContextScalarFieldEnum[]
+}
+
+/**
+ * User.aiUsageLogs
+ */
+export type User$aiUsageLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AIUsageLog
+   */
+  select?: Prisma.AIUsageLogSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AIUsageLog
+   */
+  omit?: Prisma.AIUsageLogOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AIUsageLogInclude<ExtArgs> | null
+  where?: Prisma.AIUsageLogWhereInput
+  orderBy?: Prisma.AIUsageLogOrderByWithRelationInput | Prisma.AIUsageLogOrderByWithRelationInput[]
+  cursor?: Prisma.AIUsageLogWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AIUsageLogScalarFieldEnum | Prisma.AIUsageLogScalarFieldEnum[]
 }
 
 /**

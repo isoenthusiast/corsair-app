@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { auth } from "@/lib/auth";
+import { logAudit } from "@/lib/audit";
 import { NextRequest, NextResponse } from "next/server";
 import { redirect } from "next/navigation";
 
@@ -42,6 +43,8 @@ export async function POST(request: NextRequest) {
     if (oldUser && oldUser.crowns !== crowns) {
         await prisma.crownTransaction.create({ data: { userId, amount: crowns - oldUser.crowns, reason: "admin_adjustment" } });
     }
+
+    await logAudit(session.user.id, "user_update", userId, `Updated user "${name}": role=${role}, status=${status}`);
 
     redirect("/admin/users");
 }

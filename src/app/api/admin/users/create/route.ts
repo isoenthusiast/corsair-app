@@ -1,4 +1,6 @@
+import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { logAudit } from "@/lib/audit";
 import { NextRequest } from "next/server";
 import { redirect } from "next/navigation";
 import bcrypt from "bcryptjs";
@@ -26,7 +28,9 @@ export async function POST(request: NextRequest) {
 
     const hash = await bcrypt.hash(password, 10);
 
-    await prisma.user.create({
+    const session = await auth();
+
+    const newUser = await prisma.user.create({
         data: {
             name,
             username,
@@ -39,6 +43,10 @@ export async function POST(request: NextRequest) {
             pirateRank: "Deckhand",
         },
     });
+
+    if (session?.user) {
+        await logAudit(session.user.id, "user_create", newUser.id, `Created user "${name}" (${username}) as ${role}`);
+    }
 
     redirect("/admin/users");
 }

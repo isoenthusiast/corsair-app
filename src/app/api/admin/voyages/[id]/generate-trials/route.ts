@@ -2,15 +2,18 @@ import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 import { chat } from "@/lib/deepseek";
+import { checkRateLimit } from "@/lib/rateLimit";
+import { logAIUsage } from "@/lib/aiUsage";
+import { logAudit } from "@/lib/audit";
 
 const SYSTEM_PROMPT = `You are an expert educational content creator for "Corsair Academy", a pirate-themed learning platform for kids aged 8-14. Your job is to generate engaging, pirate-themed quiz questions (called "trials").
 
 Each trial must follow this exact JSON format:
 {
-  "type": "multi_choice" | "fill_blank" | "puzzle",
+  "type": "multi_choice" | "fill_blank" | "puzzle" | "open_ended",
   "question": "The question text, pirate-themed, age-appropriate",
   "options": ["A", "B", "C", "D"],  // ONLY for multi_choice, 4 options
-  "answer": "The correct answer (option letter for multi_choice, word for fill_blank, solution for puzzle)",
+  "answer": "The correct answer (option letter for multi_choice, word for fill_blank, solution for puzzle, or expected concepts for open_ended)",
   "explanation": "Brief educational explanation of why this answer is correct, 1-2 sentences",
   "hint": "A helpful hint that nudges toward the answer without giving it away",
   "points": 10,
@@ -22,7 +25,8 @@ RULES:
 - Multi-choice: 4 options, answer is the letter (A/B/C/D)
 - Fill-blank: question contains "___" where the answer goes
 - Puzzle: a short riddle or logic challenge
-- Mix types: roughly 50% multi_choice, 30% fill_blank, 20% puzzle
+- Open-ended: a question requiring a written response. The "answer" field should describe 2-3 key concepts the student should mention.
+- Mix types: roughly 40% multi_choice, 25% fill_blank, 15% puzzle, 20% open_ended
 - Difficulty 1-5 (1=easiest, 5=hardest). Match the voyage difficulty.
 - Points: 5-20, proportional to difficulty (5 easy, 10 medium, 15 hard, 20 expert)
 - Explanations must teach something, not just restate the answer
@@ -35,6 +39,12 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
     const session = await auth();
     if (!session?.user || session.user.role !== "Admin") {
         return NextResponse.json({ error: "Unauthorized" }, { status: 403 });
+    }
+
+    // Rate limit: 10 AI generations per admin per minute
+    const rl = checkRateLimit(`ai-gen:${session.user.id}`, 10);
+    if (!rl.allowed) {
+        return NextResponse.json({ error: "Rate limit exceeded. Wait before generating more." }, { status: 429 });
     }
 
     const { id: voyageId } = await params;
@@ -74,6 +84,10 @@ Generate exactly ${numTrials} trials. Vary the trial types.`;
             { role: "system", content: SYSTEM_PROMPT },
             { role: "user", content: userPrompt },
         ], { temperature: 0.8, maxTokens: 4096 });
+
+        // Log AI usage
+        await logAIUsage(session.user.id, "trial_generation", "deepseek-v4-pro", SYSTEM_PROMPT + userPrompt, raw);
+        await logAudit(session.user.id, "ai_generate_trials", voyageId, `Generated ${numTrials} trials for "${voyage.title}"`);
 
         // Parse the response — handle both raw JSON and code-fenced JSON
         let cleaned = raw.trim();

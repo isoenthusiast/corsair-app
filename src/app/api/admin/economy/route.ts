@@ -1,6 +1,7 @@
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { getDefaultEconomy } from "@/lib/economy";
+import { logAudit } from "@/lib/audit";
 import { NextRequest, NextResponse } from "next/server";
 import { redirect } from "next/navigation";
 
@@ -23,6 +24,7 @@ export async function POST(request: NextRequest) {
     if (path.endsWith("/reset")) {
         await prisma.economySettings.deleteMany();
         await prisma.economySettings.create({ data: getDefaultEconomy() });
+        await logAudit(session.user.id, "economy_reset", undefined, "Reset all economy settings to defaults");
         redirect("/admin/economy");
     }
 
