@@ -35,6 +35,20 @@ export default function VoyageCurriculumClient({ seas }: { seas: SeaData[] }) {
     const [trialSaving, setTrialSaving] = useState(false);
     const [trialError, setTrialError] = useState("");
 
+    // Voyage edit modal
+    const [editingVoyage, setEditingVoyage] = useState(false);
+    const [editVoyageTitle, setEditVoyageTitle] = useState("");
+    const [editVoyageDesc, setEditVoyageDesc] = useState("");
+    const [editVoyageStatus, setEditVoyageStatus] = useState("Draft");
+    const [editVoyageDifficulty, setEditVoyageDifficulty] = useState(1);
+    const [editVoyageObjectives, setEditVoyageObjectives] = useState("");
+    const [editVoyageMinutes, setEditVoyageMinutes] = useState("");
+    const [editVoyageGauntlet, setEditVoyageGauntlet] = useState(false);
+    const [editVoyageTags, setEditVoyageTags] = useState("");
+    const [editVoyageSkills, setEditVoyageSkills] = useState("");
+    const [voyageSaving, setVoyageSaving] = useState(false);
+    const [voyageError, setVoyageError] = useState("");
+
     // AI Chat
     const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
     const [chatInput, setChatInput] = useState("");
@@ -100,6 +114,53 @@ export default function VoyageCurriculumClient({ seas }: { seas: SeaData[] }) {
             setTrialError("Failed to save trial");
         }
         setTrialSaving(false);
+    }
+
+    // ── Voyage Edit ──
+    function openVoyageEdit() {
+        if (!voyage) return;
+        setEditingVoyage(true);
+        setEditVoyageTitle(voyage.title);
+        setEditVoyageDesc(voyage.description || "");
+        setEditVoyageStatus(voyage.status);
+        setEditVoyageDifficulty(voyage.difficulty);
+        setEditVoyageObjectives(voyage.objectives || "");
+        setEditVoyageMinutes(voyage.estimatedMinutes ? String(voyage.estimatedMinutes) : "");
+        setEditVoyageGauntlet(voyage.captainGauntlet);
+        setEditVoyageTags((voyage.tags || []).join(", "));
+        setEditVoyageSkills((voyage.skills || []).join(", "));
+        setVoyageError("");
+    }
+
+    async function saveVoyage() {
+        if (!selectedVoyageId || !editVoyageTitle.trim()) return;
+        setVoyageSaving(true);
+        setVoyageError("");
+
+        const res = await fetch("/api/admin/voyages/update", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                voyageId: selectedVoyageId,
+                title: editVoyageTitle,
+                description: editVoyageDesc,
+                status: editVoyageStatus,
+                difficulty: editVoyageDifficulty,
+                objectives: editVoyageObjectives,
+                estimatedMinutes: editVoyageMinutes ? parseInt(editVoyageMinutes) : null,
+                captainGauntlet: editVoyageGauntlet,
+                tags: editVoyageTags.split(",").map(t => t.trim()).filter(Boolean),
+                skills: editVoyageSkills.split(",").map(s => s.trim()).filter(Boolean),
+            }),
+        });
+
+        if (res.ok) {
+            setEditingVoyage(false);
+            selectVoyage(selectedVoyageId);
+        } else {
+            setVoyageError("Failed to save voyage");
+        }
+        setVoyageSaving(false);
     }
 
     // ── AI Chat ──
@@ -232,6 +293,9 @@ export default function VoyageCurriculumClient({ seas }: { seas: SeaData[] }) {
                                 <div className="flex items-center gap-2 mb-1">
                                     <span className="text-sm text-amber-600">{voyage.sea.icon} {voyage.sea.name}</span>
                                     {voyage.captainGauntlet && <span className="text-sm">⚔️ Gauntlet</span>}
+                                    <button onClick={openVoyageEdit} className="ml-auto text-xs px-3 py-1 rounded-lg bg-amber-900/30 text-amber-400 hover:bg-amber-800/40 transition">
+                                        ✏️ Edit Voyage
+                                    </button>
                                 </div>
                                 <h2 className="text-2xl mb-2" style={{ fontFamily: "'Pirata One', cursive", color: "#F7C948" }}>{voyage.title}</h2>
                                 <div className="flex items-center gap-3 text-sm">
@@ -389,6 +453,86 @@ export default function VoyageCurriculumClient({ seas }: { seas: SeaData[] }) {
                                 <button onClick={() => setEditingTrial(null)} className="px-4 py-2 rounded-lg border border-amber-800/30 text-sm" style={{ color: "#5D4037" }}>Cancel</button>
                                 <button onClick={saveTrial} disabled={trialSaving} className="btn-pirate text-sm">
                                     {trialSaving ? "Saving..." : "Save Trial"}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* ── Voyage Edit Modal ── */}
+            {editingVoyage && (
+                <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50" onClick={() => setEditingVoyage(false)}>
+                    <div className="parchment rounded-2xl p-6 w-full max-w-lg mx-4 max-h-[90vh] overflow-y-auto" onClick={e => e.stopPropagation()}>
+                        <div className="flex items-center justify-between mb-4">
+                            <h2 className="text-xl font-bold" style={{ color: "#5D4037" }}>✏️ Edit Voyage</h2>
+                            <button onClick={() => setEditingVoyage(false)} className="text-amber-800 hover:text-red-700 text-2xl leading-none">&times;</button>
+                        </div>
+
+                        <div className="space-y-3">
+                            <div>
+                                <label className="block text-sm font-bold mb-1" style={{ color: "#5D4037" }}>Title</label>
+                                <input value={editVoyageTitle} onChange={e => setEditVoyageTitle(e.target.value)}
+                                    className="w-full px-3 py-2 rounded-lg bg-white border-2 border-amber-800/30 text-sm" style={{ color: "#3E2723" }} />
+                            </div>
+                            <div>
+                                <label className="block text-sm font-bold mb-1" style={{ color: "#5D4037" }}>Description</label>
+                                <textarea value={editVoyageDesc} onChange={e => setEditVoyageDesc(e.target.value)} rows={2}
+                                    className="w-full px-3 py-2 rounded-lg bg-white border-2 border-amber-800/30 text-sm" style={{ color: "#3E2723" }} />
+                            </div>
+                            <div>
+                                <label className="block text-sm font-bold mb-1" style={{ color: "#5D4037" }}>Objectives</label>
+                                <input value={editVoyageObjectives} onChange={e => setEditVoyageObjectives(e.target.value)}
+                                    placeholder="e.g., Recognize all 26 letters and their sounds"
+                                    className="w-full px-3 py-2 rounded-lg bg-white border-2 border-amber-800/30 text-sm" style={{ color: "#3E2723" }} />
+                            </div>
+                            <div className="flex gap-3">
+                                <div className="flex-1">
+                                    <label className="block text-sm font-bold mb-1" style={{ color: "#5D4037" }}>Status</label>
+                                    <select value={editVoyageStatus} onChange={e => setEditVoyageStatus(e.target.value)}
+                                        className="w-full px-3 py-2 rounded-lg bg-white border-2 border-amber-800/30 text-sm" style={{ color: "#3E2723" }}>
+                                        {["Draft", "Published", "Deprecated"].map(s => <option key={s} value={s}>{s}</option>)}
+                                    </select>
+                                </div>
+                                <div className="flex-1">
+                                    <label className="block text-sm font-bold mb-1" style={{ color: "#5D4037" }}>Difficulty (1-5)</label>
+                                    <select value={editVoyageDifficulty} onChange={e => setEditVoyageDifficulty(parseInt(e.target.value))}
+                                        className="w-full px-3 py-2 rounded-lg bg-white border-2 border-amber-800/30 text-sm" style={{ color: "#3E2723" }}>
+                                        {[1,2,3,4,5].map(d => <option key={d} value={d}>{"☠️".repeat(d)}</option>)}
+                                    </select>
+                                </div>
+                            </div>
+                            <div className="flex gap-3">
+                                <div className="flex-1">
+                                    <label className="block text-sm font-bold mb-1" style={{ color: "#5D4037" }}>Est. Minutes</label>
+                                    <input type="number" value={editVoyageMinutes} onChange={e => setEditVoyageMinutes(e.target.value)}
+                                        className="w-full px-3 py-2 rounded-lg bg-white border-2 border-amber-800/30 text-sm" style={{ color: "#3E2723" }} />
+                                </div>
+                                <div className="flex-1 flex items-end pb-2">
+                                    <label className="flex items-center gap-2 cursor-pointer">
+                                        <input type="checkbox" checked={editVoyageGauntlet} onChange={e => setEditVoyageGauntlet(e.target.checked)}
+                                            className="w-4 h-4 rounded" />
+                                        <span className="text-sm font-bold" style={{ color: "#5D4037" }}>⚔️ Captain's Gauntlet</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div>
+                                <label className="block text-sm font-bold mb-1" style={{ color: "#5D4037" }}>Tags (comma-separated)</label>
+                                <input value={editVoyageTags} onChange={e => setEditVoyageTags(e.target.value)}
+                                    placeholder="phonics, alphabet, reading"
+                                    className="w-full px-3 py-2 rounded-lg bg-white border-2 border-amber-800/30 text-sm" style={{ color: "#3E2723" }} />
+                            </div>
+                            <div>
+                                <label className="block text-sm font-bold mb-1" style={{ color: "#5D4037" }}>Skills (comma-separated)</label>
+                                <input value={editVoyageSkills} onChange={e => setEditVoyageSkills(e.target.value)}
+                                    placeholder="letter-recognition, spelling"
+                                    className="w-full px-3 py-2 rounded-lg bg-white border-2 border-amber-800/30 text-sm" style={{ color: "#3E2723" }} />
+                            </div>
+                            {voyageError && <p className="text-red-600 text-sm">{voyageError}</p>}
+                            <div className="flex gap-3 justify-end pt-2">
+                                <button onClick={() => setEditingVoyage(false)} className="px-4 py-2 rounded-lg border border-amber-800/30 text-sm" style={{ color: "#5D4037" }}>Cancel</button>
+                                <button onClick={saveVoyage} disabled={voyageSaving} className="btn-pirate text-sm">
+                                    {voyageSaving ? "Saving..." : "Save Voyage"}
                                 </button>
                             </div>
                         </div>
