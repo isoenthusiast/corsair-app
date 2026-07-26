@@ -32,6 +32,7 @@ model User {
   createdAt          DateTime  @default(now())
 
   progress            UserVoyageProgress[]
+  islandProgress      UserIslandProgress[]
   achievements        UserAchievement[]
   pointLog            PointTransaction[]
   crownLog            CrownTransaction[]
@@ -93,6 +94,7 @@ model Voyage {
   createdAt             DateTime        @default(now())
 
   sea            Sea                  @relation(fields: [seaId], references: [id])
+  islands        Island[]
   trials         Trial[]
   prerequisite   Voyage?              @relation("VoyagePrerequisite", fields: [requiredVoyageId], references: [id])
   nextVoyages    Voyage[]             @relation("VoyagePrerequisite")
@@ -106,9 +108,27 @@ model Voyage {
   @@index([seaId])
 }
 
+model Island {
+  id          String     @id @default(cuid())
+  voyageId    String
+  title       String
+  description String?
+  type        IslandType @default(regular)
+  sortOrder   Int        @default(0)
+  createdAt   DateTime   @default(now())
+
+  voyage   Voyage               @relation(fields: [voyageId], references: [id])
+  trials   Trial[]
+  progress UserIslandProgress[]
+
+  @@unique([voyageId, sortOrder])
+  @@index([voyageId])
+}
+
 model Trial {
   id          String    @id @default(cuid())
-  voyageId    String
+  islandId    String?
+  voyageId    String?
   type        TrialType
   question    String
   options     Json?
@@ -121,11 +141,12 @@ model Trial {
   flagCount   Int       @default(0)
   createdAt   DateTime  @default(now())
 
-  voyage   Voyage         @relation(fields: [voyageId], references: [id])
+  island   Island?        @relation(fields: [islandId], references: [id])
+  voyage   Voyage?        @relation(fields: [voyageId], references: [id])
   attempts TrialAttempt[]
   versions TrialVersion[]
 
-  @@index([voyageId])
+  @@index([islandId])
 }
 
 model TrialVersion {
@@ -177,6 +198,23 @@ model UserVoyageProgress {
   voyage Voyage @relation(fields: [voyageId], references: [id])
 
   @@unique([userId, voyageId])
+}
+
+model UserIslandProgress {
+  id              String    @id @default(cuid())
+  userId          String
+  islandId        String
+  status          String    @default("Locked")
+  trialsCompleted Int       @default(0)
+  skulls          Int       @default(0)
+  attemptCount    Int       @default(0)
+  completedAt     DateTime?
+
+  user   User   @relation(fields: [userId], references: [id])
+  island Island @relation(fields: [islandId], references: [id])
+
+  @@unique([userId, islandId])
+  @@index([userId])
 }
 
 // ── Economy ──
@@ -610,6 +648,12 @@ enum VoyageLifecycle {
   Draft
   Published
   Deprecated
+}
+
+enum IslandType {
+  regular
+  courage_challenge
+  boss_fight
 }
 
 enum AIContextFeature {

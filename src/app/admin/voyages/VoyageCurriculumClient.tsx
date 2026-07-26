@@ -498,7 +498,7 @@ export default function VoyageCurriculumClient({ seas }: { seas: SeaData[] }) {
                                     <label className="block text-sm font-bold mb-1" style={{ color: "#5D4037" }}>Difficulty (1-5)</label>
                                     <select value={editVoyageDifficulty} onChange={e => setEditVoyageDifficulty(parseInt(e.target.value))}
                                         className="w-full px-3 py-2 rounded-lg bg-white border-2 border-amber-800/30 text-sm" style={{ color: "#3E2723" }}>
-                                        {[1,2,3,4,5].map(d => <option key={d} value={d}>{"☠️".repeat(d)}</option>)}
+                                        {[1, 2, 3, 4, 5].map(d => <option key={d} value={d}>{"☠️".repeat(d)}</option>)}
                                     </select>
                                 </div>
                             </div>

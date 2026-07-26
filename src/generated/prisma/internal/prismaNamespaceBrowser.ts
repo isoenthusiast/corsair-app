@@ -54,10 +54,12 @@ export const ModelName = {
   User: 'User',
   Sea: 'Sea',
   Voyage: 'Voyage',
+  Island: 'Island',
   Trial: 'Trial',
   TrialVersion: 'TrialVersion',
   TrialAttempt: 'TrialAttempt',
   UserVoyageProgress: 'UserVoyageProgress',
+  UserIslandProgress: 'UserIslandProgress',
   PointTransaction: 'PointTransaction',
   CrownTransaction: 'CrownTransaction',
   ShipUpgrade: 'ShipUpgrade',
@@ -163,8 +165,22 @@ export const VoyageScalarFieldEnum = {
 export type VoyageScalarFieldEnum = (typeof VoyageScalarFieldEnum)[keyof typeof VoyageScalarFieldEnum]
 
 
+export const IslandScalarFieldEnum = {
+  id: 'id',
+  voyageId: 'voyageId',
+  title: 'title',
+  description: 'description',
+  type: 'type',
+  sortOrder: 'sortOrder',
+  createdAt: 'createdAt'
+} as const
+
+export type IslandScalarFieldEnum = (typeof IslandScalarFieldEnum)[keyof typeof IslandScalarFieldEnum]
+
+
 export const TrialScalarFieldEnum = {
   id: 'id',
+  islandId: 'islandId',
   voyageId: 'voyageId',
   type: 'type',
   question: 'question',
@@ -225,6 +241,20 @@ export const UserVoyageProgressScalarFieldEnum = {
 } as const
 
 export type UserVoyageProgressScalarFieldEnum = (typeof UserVoyageProgressScalarFieldEnum)[keyof typeof UserVoyageProgressScalarFieldEnum]
+
+
+export const UserIslandProgressScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  islandId: 'islandId',
+  status: 'status',
+  trialsCompleted: 'trialsCompleted',
+  skulls: 'skulls',
+  attemptCount: 'attemptCount',
+  completedAt: 'completedAt'
+} as const
+
+export type UserIslandProgressScalarFieldEnum = (typeof UserIslandProgressScalarFieldEnum)[keyof typeof UserIslandProgressScalarFieldEnum]
 
 
 export const PointTransactionScalarFieldEnum = {

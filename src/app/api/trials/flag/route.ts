@@ -14,7 +14,7 @@ export async function POST(request: NextRequest) {
         const { trialId, reason } = await request.json();
         if (!trialId) return NextResponse.json({ error: "Missing trialId" }, { status: 400 });
 
-        const trial = await prisma.trial.findUnique({ where: { id: trialId }, include: { voyage: true } });
+        const trial = await prisma.trial.findUnique({ where: { id: trialId }, include: { island: { include: { voyage: true } } } });
         if (!trial) return NextResponse.json({ error: "Trial not found" }, { status: 404 });
 
         // Increment flag count on trial
@@ -27,11 +27,11 @@ export async function POST(request: NextRequest) {
                 scope: "Trial",
                 status: "Backlog",
                 title: `Flagged: ${trial.question.slice(0, 80)}`,
-                description: `Flagged by student. Reason: ${reason || "Not specified"}. Voyage: ${trial.voyage.title}`,
+                description: `Flagged by student. Reason: ${reason || "Not specified"}. Voyage: ${trial.island?.voyage?.title || "Unknown"}`,
                 priority: "Medium",
                 sourceTable: "Trial",
                 sourceId: trialId,
-                voyageId: trial.voyageId,
+                voyageId: trial.island?.voyageId,
                 creatorId: userId,
             },
         });

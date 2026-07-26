@@ -329,6 +329,7 @@ export type VoyageWhereInput = {
   branchLabel?: Prisma.StringNullableFilter<"Voyage"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Voyage"> | Date | string
   sea?: Prisma.XOR<Prisma.SeaScalarRelationFilter, Prisma.SeaWhereInput>
+  islands?: Prisma.IslandListRelationFilter
   trials?: Prisma.TrialListRelationFilter
   prerequisite?: Prisma.XOR<Prisma.VoyageNullableScalarRelationFilter, Prisma.VoyageWhereInput> | null
   nextVoyages?: Prisma.VoyageListRelationFilter
@@ -361,6 +362,7 @@ export type VoyageOrderByWithRelationInput = {
   branchLabel?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   sea?: Prisma.SeaOrderByWithRelationInput
+  islands?: Prisma.IslandOrderByRelationAggregateInput
   trials?: Prisma.TrialOrderByRelationAggregateInput
   prerequisite?: Prisma.VoyageOrderByWithRelationInput
   nextVoyages?: Prisma.VoyageOrderByRelationAggregateInput
@@ -396,6 +398,7 @@ export type VoyageWhereUniqueInput = Prisma.AtLeast<{
   branchLabel?: Prisma.StringNullableFilter<"Voyage"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Voyage"> | Date | string
   sea?: Prisma.XOR<Prisma.SeaScalarRelationFilter, Prisma.SeaWhereInput>
+  islands?: Prisma.IslandListRelationFilter
   trials?: Prisma.TrialListRelationFilter
   prerequisite?: Prisma.XOR<Prisma.VoyageNullableScalarRelationFilter, Prisma.VoyageWhereInput> | null
   nextVoyages?: Prisma.VoyageListRelationFilter
@@ -477,6 +480,7 @@ export type VoyageCreateInput = {
   branchLabel?: string | null
   createdAt?: Date | string
   sea: Prisma.SeaCreateNestedOneWithoutVoyagesInput
+  islands?: Prisma.IslandCreateNestedManyWithoutVoyageInput
   trials?: Prisma.TrialCreateNestedManyWithoutVoyageInput
   prerequisite?: Prisma.VoyageCreateNestedOneWithoutNextVoyagesInput
   nextVoyages?: Prisma.VoyageCreateNestedManyWithoutPrerequisiteInput
@@ -508,6 +512,7 @@ export type VoyageUncheckedCreateInput = {
   branchParentId?: string | null
   branchLabel?: string | null
   createdAt?: Date | string
+  islands?: Prisma.IslandUncheckedCreateNestedManyWithoutVoyageInput
   trials?: Prisma.TrialUncheckedCreateNestedManyWithoutVoyageInput
   nextVoyages?: Prisma.VoyageUncheckedCreateNestedManyWithoutPrerequisiteInput
   branchChildren?: Prisma.VoyageUncheckedCreateNestedManyWithoutBranchParentInput
@@ -535,6 +540,7 @@ export type VoyageUpdateInput = {
   branchLabel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sea?: Prisma.SeaUpdateOneRequiredWithoutVoyagesNestedInput
+  islands?: Prisma.IslandUpdateManyWithoutVoyageNestedInput
   trials?: Prisma.TrialUpdateManyWithoutVoyageNestedInput
   prerequisite?: Prisma.VoyageUpdateOneWithoutNextVoyagesNestedInput
   nextVoyages?: Prisma.VoyageUpdateManyWithoutPrerequisiteNestedInput
@@ -566,6 +572,7 @@ export type VoyageUncheckedUpdateInput = {
   branchParentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   branchLabel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  islands?: Prisma.IslandUncheckedUpdateManyWithoutVoyageNestedInput
   trials?: Prisma.TrialUncheckedUpdateManyWithoutVoyageNestedInput
   nextVoyages?: Prisma.VoyageUncheckedUpdateManyWithoutPrerequisiteNestedInput
   branchChildren?: Prisma.VoyageUncheckedUpdateManyWithoutBranchParentNestedInput
@@ -920,16 +927,32 @@ export type VoyageUncheckedUpdateManyWithoutBranchParentNestedInput = {
   deleteMany?: Prisma.VoyageScalarWhereInput | Prisma.VoyageScalarWhereInput[]
 }
 
+export type VoyageCreateNestedOneWithoutIslandsInput = {
+  create?: Prisma.XOR<Prisma.VoyageCreateWithoutIslandsInput, Prisma.VoyageUncheckedCreateWithoutIslandsInput>
+  connectOrCreate?: Prisma.VoyageCreateOrConnectWithoutIslandsInput
+  connect?: Prisma.VoyageWhereUniqueInput
+}
+
+export type VoyageUpdateOneRequiredWithoutIslandsNestedInput = {
+  create?: Prisma.XOR<Prisma.VoyageCreateWithoutIslandsInput, Prisma.VoyageUncheckedCreateWithoutIslandsInput>
+  connectOrCreate?: Prisma.VoyageCreateOrConnectWithoutIslandsInput
+  upsert?: Prisma.VoyageUpsertWithoutIslandsInput
+  connect?: Prisma.VoyageWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.VoyageUpdateToOneWithWhereWithoutIslandsInput, Prisma.VoyageUpdateWithoutIslandsInput>, Prisma.VoyageUncheckedUpdateWithoutIslandsInput>
+}
+
 export type VoyageCreateNestedOneWithoutTrialsInput = {
   create?: Prisma.XOR<Prisma.VoyageCreateWithoutTrialsInput, Prisma.VoyageUncheckedCreateWithoutTrialsInput>
   connectOrCreate?: Prisma.VoyageCreateOrConnectWithoutTrialsInput
   connect?: Prisma.VoyageWhereUniqueInput
 }
 
-export type VoyageUpdateOneRequiredWithoutTrialsNestedInput = {
+export type VoyageUpdateOneWithoutTrialsNestedInput = {
   create?: Prisma.XOR<Prisma.VoyageCreateWithoutTrialsInput, Prisma.VoyageUncheckedCreateWithoutTrialsInput>
   connectOrCreate?: Prisma.VoyageCreateOrConnectWithoutTrialsInput
   upsert?: Prisma.VoyageUpsertWithoutTrialsInput
+  disconnect?: Prisma.VoyageWhereInput | boolean
+  delete?: Prisma.VoyageWhereInput | boolean
   connect?: Prisma.VoyageWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.VoyageUpdateToOneWithWhereWithoutTrialsInput, Prisma.VoyageUpdateWithoutTrialsInput>, Prisma.VoyageUncheckedUpdateWithoutTrialsInput>
 }
@@ -1009,6 +1032,7 @@ export type VoyageCreateWithoutSeaInput = {
   abTestGroup?: string | null
   branchLabel?: string | null
   createdAt?: Date | string
+  islands?: Prisma.IslandCreateNestedManyWithoutVoyageInput
   trials?: Prisma.TrialCreateNestedManyWithoutVoyageInput
   prerequisite?: Prisma.VoyageCreateNestedOneWithoutNextVoyagesInput
   nextVoyages?: Prisma.VoyageCreateNestedManyWithoutPrerequisiteInput
@@ -1039,6 +1063,7 @@ export type VoyageUncheckedCreateWithoutSeaInput = {
   branchParentId?: string | null
   branchLabel?: string | null
   createdAt?: Date | string
+  islands?: Prisma.IslandUncheckedCreateNestedManyWithoutVoyageInput
   trials?: Prisma.TrialUncheckedCreateNestedManyWithoutVoyageInput
   nextVoyages?: Prisma.VoyageUncheckedCreateNestedManyWithoutPrerequisiteInput
   branchChildren?: Prisma.VoyageUncheckedCreateNestedManyWithoutBranchParentInput
@@ -1117,6 +1142,7 @@ export type VoyageCreateWithoutNextVoyagesInput = {
   branchLabel?: string | null
   createdAt?: Date | string
   sea: Prisma.SeaCreateNestedOneWithoutVoyagesInput
+  islands?: Prisma.IslandCreateNestedManyWithoutVoyageInput
   trials?: Prisma.TrialCreateNestedManyWithoutVoyageInput
   prerequisite?: Prisma.VoyageCreateNestedOneWithoutNextVoyagesInput
   branchChildren?: Prisma.VoyageCreateNestedManyWithoutBranchParentInput
@@ -1147,6 +1173,7 @@ export type VoyageUncheckedCreateWithoutNextVoyagesInput = {
   branchParentId?: string | null
   branchLabel?: string | null
   createdAt?: Date | string
+  islands?: Prisma.IslandUncheckedCreateNestedManyWithoutVoyageInput
   trials?: Prisma.TrialUncheckedCreateNestedManyWithoutVoyageInput
   branchChildren?: Prisma.VoyageUncheckedCreateNestedManyWithoutBranchParentInput
   progress?: Prisma.UserVoyageProgressUncheckedCreateNestedManyWithoutVoyageInput
@@ -1178,6 +1205,7 @@ export type VoyageCreateWithoutPrerequisiteInput = {
   branchLabel?: string | null
   createdAt?: Date | string
   sea: Prisma.SeaCreateNestedOneWithoutVoyagesInput
+  islands?: Prisma.IslandCreateNestedManyWithoutVoyageInput
   trials?: Prisma.TrialCreateNestedManyWithoutVoyageInput
   nextVoyages?: Prisma.VoyageCreateNestedManyWithoutPrerequisiteInput
   branchChildren?: Prisma.VoyageCreateNestedManyWithoutBranchParentInput
@@ -1207,6 +1235,7 @@ export type VoyageUncheckedCreateWithoutPrerequisiteInput = {
   branchParentId?: string | null
   branchLabel?: string | null
   createdAt?: Date | string
+  islands?: Prisma.IslandUncheckedCreateNestedManyWithoutVoyageInput
   trials?: Prisma.TrialUncheckedCreateNestedManyWithoutVoyageInput
   nextVoyages?: Prisma.VoyageUncheckedCreateNestedManyWithoutPrerequisiteInput
   branchChildren?: Prisma.VoyageUncheckedCreateNestedManyWithoutBranchParentInput
@@ -1244,6 +1273,7 @@ export type VoyageCreateWithoutBranchParentInput = {
   branchLabel?: string | null
   createdAt?: Date | string
   sea: Prisma.SeaCreateNestedOneWithoutVoyagesInput
+  islands?: Prisma.IslandCreateNestedManyWithoutVoyageInput
   trials?: Prisma.TrialCreateNestedManyWithoutVoyageInput
   prerequisite?: Prisma.VoyageCreateNestedOneWithoutNextVoyagesInput
   nextVoyages?: Prisma.VoyageCreateNestedManyWithoutPrerequisiteInput
@@ -1273,6 +1303,7 @@ export type VoyageUncheckedCreateWithoutBranchParentInput = {
   abTestGroup?: string | null
   branchLabel?: string | null
   createdAt?: Date | string
+  islands?: Prisma.IslandUncheckedCreateNestedManyWithoutVoyageInput
   trials?: Prisma.TrialUncheckedCreateNestedManyWithoutVoyageInput
   nextVoyages?: Prisma.VoyageUncheckedCreateNestedManyWithoutPrerequisiteInput
   branchChildren?: Prisma.VoyageUncheckedCreateNestedManyWithoutBranchParentInput
@@ -1310,6 +1341,7 @@ export type VoyageCreateWithoutBranchChildrenInput = {
   branchLabel?: string | null
   createdAt?: Date | string
   sea: Prisma.SeaCreateNestedOneWithoutVoyagesInput
+  islands?: Prisma.IslandCreateNestedManyWithoutVoyageInput
   trials?: Prisma.TrialCreateNestedManyWithoutVoyageInput
   prerequisite?: Prisma.VoyageCreateNestedOneWithoutNextVoyagesInput
   nextVoyages?: Prisma.VoyageCreateNestedManyWithoutPrerequisiteInput
@@ -1340,6 +1372,7 @@ export type VoyageUncheckedCreateWithoutBranchChildrenInput = {
   branchParentId?: string | null
   branchLabel?: string | null
   createdAt?: Date | string
+  islands?: Prisma.IslandUncheckedCreateNestedManyWithoutVoyageInput
   trials?: Prisma.TrialUncheckedCreateNestedManyWithoutVoyageInput
   nextVoyages?: Prisma.VoyageUncheckedCreateNestedManyWithoutPrerequisiteInput
   progress?: Prisma.UserVoyageProgressUncheckedCreateNestedManyWithoutVoyageInput
@@ -1382,6 +1415,7 @@ export type VoyageUpdateWithoutNextVoyagesInput = {
   branchLabel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sea?: Prisma.SeaUpdateOneRequiredWithoutVoyagesNestedInput
+  islands?: Prisma.IslandUpdateManyWithoutVoyageNestedInput
   trials?: Prisma.TrialUpdateManyWithoutVoyageNestedInput
   prerequisite?: Prisma.VoyageUpdateOneWithoutNextVoyagesNestedInput
   branchChildren?: Prisma.VoyageUpdateManyWithoutBranchParentNestedInput
@@ -1412,6 +1446,7 @@ export type VoyageUncheckedUpdateWithoutNextVoyagesInput = {
   branchParentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   branchLabel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  islands?: Prisma.IslandUncheckedUpdateManyWithoutVoyageNestedInput
   trials?: Prisma.TrialUncheckedUpdateManyWithoutVoyageNestedInput
   branchChildren?: Prisma.VoyageUncheckedUpdateManyWithoutBranchParentNestedInput
   progress?: Prisma.UserVoyageProgressUncheckedUpdateManyWithoutVoyageNestedInput
@@ -1481,6 +1516,7 @@ export type VoyageUpdateWithoutBranchChildrenInput = {
   branchLabel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sea?: Prisma.SeaUpdateOneRequiredWithoutVoyagesNestedInput
+  islands?: Prisma.IslandUpdateManyWithoutVoyageNestedInput
   trials?: Prisma.TrialUpdateManyWithoutVoyageNestedInput
   prerequisite?: Prisma.VoyageUpdateOneWithoutNextVoyagesNestedInput
   nextVoyages?: Prisma.VoyageUpdateManyWithoutPrerequisiteNestedInput
@@ -1511,8 +1547,141 @@ export type VoyageUncheckedUpdateWithoutBranchChildrenInput = {
   branchParentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   branchLabel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  islands?: Prisma.IslandUncheckedUpdateManyWithoutVoyageNestedInput
   trials?: Prisma.TrialUncheckedUpdateManyWithoutVoyageNestedInput
   nextVoyages?: Prisma.VoyageUncheckedUpdateManyWithoutPrerequisiteNestedInput
+  progress?: Prisma.UserVoyageProgressUncheckedUpdateManyWithoutVoyageNestedInput
+  assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutVoyageNestedInput
+  bundleItems?: Prisma.VoyageBundleItemUncheckedUpdateManyWithoutVoyageNestedInput
+  aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutVoyageNestedInput
+}
+
+export type VoyageCreateWithoutIslandsInput = {
+  id?: string
+  title: string
+  description?: string | null
+  sortOrder?: number
+  difficulty?: number
+  captainGauntlet?: boolean
+  lifecycle?: $Enums.VoyageLifecycle
+  objectives?: string | null
+  estimatedMinutes?: number | null
+  tags?: Prisma.VoyageCreatetagsInput | string[]
+  skills?: Prisma.VoyageCreateskillsInput | string[]
+  prerequisiteKnowledge?: string | null
+  successCriteria?: string | null
+  abTestGroup?: string | null
+  branchLabel?: string | null
+  createdAt?: Date | string
+  sea: Prisma.SeaCreateNestedOneWithoutVoyagesInput
+  trials?: Prisma.TrialCreateNestedManyWithoutVoyageInput
+  prerequisite?: Prisma.VoyageCreateNestedOneWithoutNextVoyagesInput
+  nextVoyages?: Prisma.VoyageCreateNestedManyWithoutPrerequisiteInput
+  branchChildren?: Prisma.VoyageCreateNestedManyWithoutBranchParentInput
+  branchParent?: Prisma.VoyageCreateNestedOneWithoutBranchChildrenInput
+  progress?: Prisma.UserVoyageProgressCreateNestedManyWithoutVoyageInput
+  assignments?: Prisma.AssignmentCreateNestedManyWithoutVoyageInput
+  bundleItems?: Prisma.VoyageBundleItemCreateNestedManyWithoutVoyageInput
+  aiContexts?: Prisma.AIContextCreateNestedManyWithoutVoyageInput
+}
+
+export type VoyageUncheckedCreateWithoutIslandsInput = {
+  id?: string
+  title: string
+  description?: string | null
+  seaId: string
+  sortOrder?: number
+  difficulty?: number
+  requiredVoyageId?: string | null
+  captainGauntlet?: boolean
+  lifecycle?: $Enums.VoyageLifecycle
+  objectives?: string | null
+  estimatedMinutes?: number | null
+  tags?: Prisma.VoyageCreatetagsInput | string[]
+  skills?: Prisma.VoyageCreateskillsInput | string[]
+  prerequisiteKnowledge?: string | null
+  successCriteria?: string | null
+  abTestGroup?: string | null
+  branchParentId?: string | null
+  branchLabel?: string | null
+  createdAt?: Date | string
+  trials?: Prisma.TrialUncheckedCreateNestedManyWithoutVoyageInput
+  nextVoyages?: Prisma.VoyageUncheckedCreateNestedManyWithoutPrerequisiteInput
+  branchChildren?: Prisma.VoyageUncheckedCreateNestedManyWithoutBranchParentInput
+  progress?: Prisma.UserVoyageProgressUncheckedCreateNestedManyWithoutVoyageInput
+  assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutVoyageInput
+  bundleItems?: Prisma.VoyageBundleItemUncheckedCreateNestedManyWithoutVoyageInput
+  aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutVoyageInput
+}
+
+export type VoyageCreateOrConnectWithoutIslandsInput = {
+  where: Prisma.VoyageWhereUniqueInput
+  create: Prisma.XOR<Prisma.VoyageCreateWithoutIslandsInput, Prisma.VoyageUncheckedCreateWithoutIslandsInput>
+}
+
+export type VoyageUpsertWithoutIslandsInput = {
+  update: Prisma.XOR<Prisma.VoyageUpdateWithoutIslandsInput, Prisma.VoyageUncheckedUpdateWithoutIslandsInput>
+  create: Prisma.XOR<Prisma.VoyageCreateWithoutIslandsInput, Prisma.VoyageUncheckedCreateWithoutIslandsInput>
+  where?: Prisma.VoyageWhereInput
+}
+
+export type VoyageUpdateToOneWithWhereWithoutIslandsInput = {
+  where?: Prisma.VoyageWhereInput
+  data: Prisma.XOR<Prisma.VoyageUpdateWithoutIslandsInput, Prisma.VoyageUncheckedUpdateWithoutIslandsInput>
+}
+
+export type VoyageUpdateWithoutIslandsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
+  difficulty?: Prisma.IntFieldUpdateOperationsInput | number
+  captainGauntlet?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lifecycle?: Prisma.EnumVoyageLifecycleFieldUpdateOperationsInput | $Enums.VoyageLifecycle
+  objectives?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estimatedMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tags?: Prisma.VoyageUpdatetagsInput | string[]
+  skills?: Prisma.VoyageUpdateskillsInput | string[]
+  prerequisiteKnowledge?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  successCriteria?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  abTestGroup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  branchLabel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sea?: Prisma.SeaUpdateOneRequiredWithoutVoyagesNestedInput
+  trials?: Prisma.TrialUpdateManyWithoutVoyageNestedInput
+  prerequisite?: Prisma.VoyageUpdateOneWithoutNextVoyagesNestedInput
+  nextVoyages?: Prisma.VoyageUpdateManyWithoutPrerequisiteNestedInput
+  branchChildren?: Prisma.VoyageUpdateManyWithoutBranchParentNestedInput
+  branchParent?: Prisma.VoyageUpdateOneWithoutBranchChildrenNestedInput
+  progress?: Prisma.UserVoyageProgressUpdateManyWithoutVoyageNestedInput
+  assignments?: Prisma.AssignmentUpdateManyWithoutVoyageNestedInput
+  bundleItems?: Prisma.VoyageBundleItemUpdateManyWithoutVoyageNestedInput
+  aiContexts?: Prisma.AIContextUpdateManyWithoutVoyageNestedInput
+}
+
+export type VoyageUncheckedUpdateWithoutIslandsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seaId?: Prisma.StringFieldUpdateOperationsInput | string
+  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
+  difficulty?: Prisma.IntFieldUpdateOperationsInput | number
+  requiredVoyageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  captainGauntlet?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lifecycle?: Prisma.EnumVoyageLifecycleFieldUpdateOperationsInput | $Enums.VoyageLifecycle
+  objectives?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estimatedMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tags?: Prisma.VoyageUpdatetagsInput | string[]
+  skills?: Prisma.VoyageUpdateskillsInput | string[]
+  prerequisiteKnowledge?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  successCriteria?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  abTestGroup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  branchParentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  branchLabel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  trials?: Prisma.TrialUncheckedUpdateManyWithoutVoyageNestedInput
+  nextVoyages?: Prisma.VoyageUncheckedUpdateManyWithoutPrerequisiteNestedInput
+  branchChildren?: Prisma.VoyageUncheckedUpdateManyWithoutBranchParentNestedInput
   progress?: Prisma.UserVoyageProgressUncheckedUpdateManyWithoutVoyageNestedInput
   assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutVoyageNestedInput
   bundleItems?: Prisma.VoyageBundleItemUncheckedUpdateManyWithoutVoyageNestedInput
@@ -1537,6 +1706,7 @@ export type VoyageCreateWithoutTrialsInput = {
   branchLabel?: string | null
   createdAt?: Date | string
   sea: Prisma.SeaCreateNestedOneWithoutVoyagesInput
+  islands?: Prisma.IslandCreateNestedManyWithoutVoyageInput
   prerequisite?: Prisma.VoyageCreateNestedOneWithoutNextVoyagesInput
   nextVoyages?: Prisma.VoyageCreateNestedManyWithoutPrerequisiteInput
   branchChildren?: Prisma.VoyageCreateNestedManyWithoutBranchParentInput
@@ -1567,6 +1737,7 @@ export type VoyageUncheckedCreateWithoutTrialsInput = {
   branchParentId?: string | null
   branchLabel?: string | null
   createdAt?: Date | string
+  islands?: Prisma.IslandUncheckedCreateNestedManyWithoutVoyageInput
   nextVoyages?: Prisma.VoyageUncheckedCreateNestedManyWithoutPrerequisiteInput
   branchChildren?: Prisma.VoyageUncheckedCreateNestedManyWithoutBranchParentInput
   progress?: Prisma.UserVoyageProgressUncheckedCreateNestedManyWithoutVoyageInput
@@ -1609,6 +1780,7 @@ export type VoyageUpdateWithoutTrialsInput = {
   branchLabel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sea?: Prisma.SeaUpdateOneRequiredWithoutVoyagesNestedInput
+  islands?: Prisma.IslandUpdateManyWithoutVoyageNestedInput
   prerequisite?: Prisma.VoyageUpdateOneWithoutNextVoyagesNestedInput
   nextVoyages?: Prisma.VoyageUpdateManyWithoutPrerequisiteNestedInput
   branchChildren?: Prisma.VoyageUpdateManyWithoutBranchParentNestedInput
@@ -1639,6 +1811,7 @@ export type VoyageUncheckedUpdateWithoutTrialsInput = {
   branchParentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   branchLabel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  islands?: Prisma.IslandUncheckedUpdateManyWithoutVoyageNestedInput
   nextVoyages?: Prisma.VoyageUncheckedUpdateManyWithoutPrerequisiteNestedInput
   branchChildren?: Prisma.VoyageUncheckedUpdateManyWithoutBranchParentNestedInput
   progress?: Prisma.UserVoyageProgressUncheckedUpdateManyWithoutVoyageNestedInput
@@ -1665,6 +1838,7 @@ export type VoyageCreateWithoutProgressInput = {
   branchLabel?: string | null
   createdAt?: Date | string
   sea: Prisma.SeaCreateNestedOneWithoutVoyagesInput
+  islands?: Prisma.IslandCreateNestedManyWithoutVoyageInput
   trials?: Prisma.TrialCreateNestedManyWithoutVoyageInput
   prerequisite?: Prisma.VoyageCreateNestedOneWithoutNextVoyagesInput
   nextVoyages?: Prisma.VoyageCreateNestedManyWithoutPrerequisiteInput
@@ -1695,6 +1869,7 @@ export type VoyageUncheckedCreateWithoutProgressInput = {
   branchParentId?: string | null
   branchLabel?: string | null
   createdAt?: Date | string
+  islands?: Prisma.IslandUncheckedCreateNestedManyWithoutVoyageInput
   trials?: Prisma.TrialUncheckedCreateNestedManyWithoutVoyageInput
   nextVoyages?: Prisma.VoyageUncheckedCreateNestedManyWithoutPrerequisiteInput
   branchChildren?: Prisma.VoyageUncheckedCreateNestedManyWithoutBranchParentInput
@@ -1737,6 +1912,7 @@ export type VoyageUpdateWithoutProgressInput = {
   branchLabel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sea?: Prisma.SeaUpdateOneRequiredWithoutVoyagesNestedInput
+  islands?: Prisma.IslandUpdateManyWithoutVoyageNestedInput
   trials?: Prisma.TrialUpdateManyWithoutVoyageNestedInput
   prerequisite?: Prisma.VoyageUpdateOneWithoutNextVoyagesNestedInput
   nextVoyages?: Prisma.VoyageUpdateManyWithoutPrerequisiteNestedInput
@@ -1767,6 +1943,7 @@ export type VoyageUncheckedUpdateWithoutProgressInput = {
   branchParentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   branchLabel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  islands?: Prisma.IslandUncheckedUpdateManyWithoutVoyageNestedInput
   trials?: Prisma.TrialUncheckedUpdateManyWithoutVoyageNestedInput
   nextVoyages?: Prisma.VoyageUncheckedUpdateManyWithoutPrerequisiteNestedInput
   branchChildren?: Prisma.VoyageUncheckedUpdateManyWithoutBranchParentNestedInput
@@ -1793,6 +1970,7 @@ export type VoyageCreateWithoutAssignmentsInput = {
   branchLabel?: string | null
   createdAt?: Date | string
   sea: Prisma.SeaCreateNestedOneWithoutVoyagesInput
+  islands?: Prisma.IslandCreateNestedManyWithoutVoyageInput
   trials?: Prisma.TrialCreateNestedManyWithoutVoyageInput
   prerequisite?: Prisma.VoyageCreateNestedOneWithoutNextVoyagesInput
   nextVoyages?: Prisma.VoyageCreateNestedManyWithoutPrerequisiteInput
@@ -1823,6 +2001,7 @@ export type VoyageUncheckedCreateWithoutAssignmentsInput = {
   branchParentId?: string | null
   branchLabel?: string | null
   createdAt?: Date | string
+  islands?: Prisma.IslandUncheckedCreateNestedManyWithoutVoyageInput
   trials?: Prisma.TrialUncheckedCreateNestedManyWithoutVoyageInput
   nextVoyages?: Prisma.VoyageUncheckedCreateNestedManyWithoutPrerequisiteInput
   branchChildren?: Prisma.VoyageUncheckedCreateNestedManyWithoutBranchParentInput
@@ -1865,6 +2044,7 @@ export type VoyageUpdateWithoutAssignmentsInput = {
   branchLabel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sea?: Prisma.SeaUpdateOneRequiredWithoutVoyagesNestedInput
+  islands?: Prisma.IslandUpdateManyWithoutVoyageNestedInput
   trials?: Prisma.TrialUpdateManyWithoutVoyageNestedInput
   prerequisite?: Prisma.VoyageUpdateOneWithoutNextVoyagesNestedInput
   nextVoyages?: Prisma.VoyageUpdateManyWithoutPrerequisiteNestedInput
@@ -1895,6 +2075,7 @@ export type VoyageUncheckedUpdateWithoutAssignmentsInput = {
   branchParentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   branchLabel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  islands?: Prisma.IslandUncheckedUpdateManyWithoutVoyageNestedInput
   trials?: Prisma.TrialUncheckedUpdateManyWithoutVoyageNestedInput
   nextVoyages?: Prisma.VoyageUncheckedUpdateManyWithoutPrerequisiteNestedInput
   branchChildren?: Prisma.VoyageUncheckedUpdateManyWithoutBranchParentNestedInput
@@ -1921,6 +2102,7 @@ export type VoyageCreateWithoutBundleItemsInput = {
   branchLabel?: string | null
   createdAt?: Date | string
   sea: Prisma.SeaCreateNestedOneWithoutVoyagesInput
+  islands?: Prisma.IslandCreateNestedManyWithoutVoyageInput
   trials?: Prisma.TrialCreateNestedManyWithoutVoyageInput
   prerequisite?: Prisma.VoyageCreateNestedOneWithoutNextVoyagesInput
   nextVoyages?: Prisma.VoyageCreateNestedManyWithoutPrerequisiteInput
@@ -1951,6 +2133,7 @@ export type VoyageUncheckedCreateWithoutBundleItemsInput = {
   branchParentId?: string | null
   branchLabel?: string | null
   createdAt?: Date | string
+  islands?: Prisma.IslandUncheckedCreateNestedManyWithoutVoyageInput
   trials?: Prisma.TrialUncheckedCreateNestedManyWithoutVoyageInput
   nextVoyages?: Prisma.VoyageUncheckedCreateNestedManyWithoutPrerequisiteInput
   branchChildren?: Prisma.VoyageUncheckedCreateNestedManyWithoutBranchParentInput
@@ -1993,6 +2176,7 @@ export type VoyageUpdateWithoutBundleItemsInput = {
   branchLabel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sea?: Prisma.SeaUpdateOneRequiredWithoutVoyagesNestedInput
+  islands?: Prisma.IslandUpdateManyWithoutVoyageNestedInput
   trials?: Prisma.TrialUpdateManyWithoutVoyageNestedInput
   prerequisite?: Prisma.VoyageUpdateOneWithoutNextVoyagesNestedInput
   nextVoyages?: Prisma.VoyageUpdateManyWithoutPrerequisiteNestedInput
@@ -2023,6 +2207,7 @@ export type VoyageUncheckedUpdateWithoutBundleItemsInput = {
   branchParentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   branchLabel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  islands?: Prisma.IslandUncheckedUpdateManyWithoutVoyageNestedInput
   trials?: Prisma.TrialUncheckedUpdateManyWithoutVoyageNestedInput
   nextVoyages?: Prisma.VoyageUncheckedUpdateManyWithoutPrerequisiteNestedInput
   branchChildren?: Prisma.VoyageUncheckedUpdateManyWithoutBranchParentNestedInput
@@ -2049,6 +2234,7 @@ export type VoyageCreateWithoutAiContextsInput = {
   branchLabel?: string | null
   createdAt?: Date | string
   sea: Prisma.SeaCreateNestedOneWithoutVoyagesInput
+  islands?: Prisma.IslandCreateNestedManyWithoutVoyageInput
   trials?: Prisma.TrialCreateNestedManyWithoutVoyageInput
   prerequisite?: Prisma.VoyageCreateNestedOneWithoutNextVoyagesInput
   nextVoyages?: Prisma.VoyageCreateNestedManyWithoutPrerequisiteInput
@@ -2079,6 +2265,7 @@ export type VoyageUncheckedCreateWithoutAiContextsInput = {
   branchParentId?: string | null
   branchLabel?: string | null
   createdAt?: Date | string
+  islands?: Prisma.IslandUncheckedCreateNestedManyWithoutVoyageInput
   trials?: Prisma.TrialUncheckedCreateNestedManyWithoutVoyageInput
   nextVoyages?: Prisma.VoyageUncheckedCreateNestedManyWithoutPrerequisiteInput
   branchChildren?: Prisma.VoyageUncheckedCreateNestedManyWithoutBranchParentInput
@@ -2121,6 +2308,7 @@ export type VoyageUpdateWithoutAiContextsInput = {
   branchLabel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sea?: Prisma.SeaUpdateOneRequiredWithoutVoyagesNestedInput
+  islands?: Prisma.IslandUpdateManyWithoutVoyageNestedInput
   trials?: Prisma.TrialUpdateManyWithoutVoyageNestedInput
   prerequisite?: Prisma.VoyageUpdateOneWithoutNextVoyagesNestedInput
   nextVoyages?: Prisma.VoyageUpdateManyWithoutPrerequisiteNestedInput
@@ -2151,6 +2339,7 @@ export type VoyageUncheckedUpdateWithoutAiContextsInput = {
   branchParentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   branchLabel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  islands?: Prisma.IslandUncheckedUpdateManyWithoutVoyageNestedInput
   trials?: Prisma.TrialUncheckedUpdateManyWithoutVoyageNestedInput
   nextVoyages?: Prisma.VoyageUncheckedUpdateManyWithoutPrerequisiteNestedInput
   branchChildren?: Prisma.VoyageUncheckedUpdateManyWithoutBranchParentNestedInput
@@ -2197,6 +2386,7 @@ export type VoyageUpdateWithoutSeaInput = {
   abTestGroup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   branchLabel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  islands?: Prisma.IslandUpdateManyWithoutVoyageNestedInput
   trials?: Prisma.TrialUpdateManyWithoutVoyageNestedInput
   prerequisite?: Prisma.VoyageUpdateOneWithoutNextVoyagesNestedInput
   nextVoyages?: Prisma.VoyageUpdateManyWithoutPrerequisiteNestedInput
@@ -2227,6 +2417,7 @@ export type VoyageUncheckedUpdateWithoutSeaInput = {
   branchParentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   branchLabel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  islands?: Prisma.IslandUncheckedUpdateManyWithoutVoyageNestedInput
   trials?: Prisma.TrialUncheckedUpdateManyWithoutVoyageNestedInput
   nextVoyages?: Prisma.VoyageUncheckedUpdateManyWithoutPrerequisiteNestedInput
   branchChildren?: Prisma.VoyageUncheckedUpdateManyWithoutBranchParentNestedInput
@@ -2317,6 +2508,7 @@ export type VoyageUpdateWithoutPrerequisiteInput = {
   branchLabel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sea?: Prisma.SeaUpdateOneRequiredWithoutVoyagesNestedInput
+  islands?: Prisma.IslandUpdateManyWithoutVoyageNestedInput
   trials?: Prisma.TrialUpdateManyWithoutVoyageNestedInput
   nextVoyages?: Prisma.VoyageUpdateManyWithoutPrerequisiteNestedInput
   branchChildren?: Prisma.VoyageUpdateManyWithoutBranchParentNestedInput
@@ -2346,6 +2538,7 @@ export type VoyageUncheckedUpdateWithoutPrerequisiteInput = {
   branchParentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   branchLabel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  islands?: Prisma.IslandUncheckedUpdateManyWithoutVoyageNestedInput
   trials?: Prisma.TrialUncheckedUpdateManyWithoutVoyageNestedInput
   nextVoyages?: Prisma.VoyageUncheckedUpdateManyWithoutPrerequisiteNestedInput
   branchChildren?: Prisma.VoyageUncheckedUpdateManyWithoutBranchParentNestedInput
@@ -2394,6 +2587,7 @@ export type VoyageUpdateWithoutBranchParentInput = {
   branchLabel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sea?: Prisma.SeaUpdateOneRequiredWithoutVoyagesNestedInput
+  islands?: Prisma.IslandUpdateManyWithoutVoyageNestedInput
   trials?: Prisma.TrialUpdateManyWithoutVoyageNestedInput
   prerequisite?: Prisma.VoyageUpdateOneWithoutNextVoyagesNestedInput
   nextVoyages?: Prisma.VoyageUpdateManyWithoutPrerequisiteNestedInput
@@ -2423,6 +2617,7 @@ export type VoyageUncheckedUpdateWithoutBranchParentInput = {
   abTestGroup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   branchLabel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  islands?: Prisma.IslandUncheckedUpdateManyWithoutVoyageNestedInput
   trials?: Prisma.TrialUncheckedUpdateManyWithoutVoyageNestedInput
   nextVoyages?: Prisma.VoyageUncheckedUpdateManyWithoutPrerequisiteNestedInput
   branchChildren?: Prisma.VoyageUncheckedUpdateManyWithoutBranchParentNestedInput
@@ -2459,6 +2654,7 @@ export type VoyageUncheckedUpdateManyWithoutBranchParentInput = {
  */
 
 export type VoyageCountOutputType = {
+  islands: number
   trials: number
   nextVoyages: number
   branchChildren: number
@@ -2469,6 +2665,7 @@ export type VoyageCountOutputType = {
 }
 
 export type VoyageCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  islands?: boolean | VoyageCountOutputTypeCountIslandsArgs
   trials?: boolean | VoyageCountOutputTypeCountTrialsArgs
   nextVoyages?: boolean | VoyageCountOutputTypeCountNextVoyagesArgs
   branchChildren?: boolean | VoyageCountOutputTypeCountBranchChildrenArgs
@@ -2486,6 +2683,13 @@ export type VoyageCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Exten
    * Select specific fields to fetch from the VoyageCountOutputType
    */
   select?: Prisma.VoyageCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * VoyageCountOutputType without action
+ */
+export type VoyageCountOutputTypeCountIslandsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.IslandWhereInput
 }
 
 /**
@@ -2559,6 +2763,7 @@ export type VoyageSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   branchLabel?: boolean
   createdAt?: boolean
   sea?: boolean | Prisma.SeaDefaultArgs<ExtArgs>
+  islands?: boolean | Prisma.Voyage$islandsArgs<ExtArgs>
   trials?: boolean | Prisma.Voyage$trialsArgs<ExtArgs>
   prerequisite?: boolean | Prisma.Voyage$prerequisiteArgs<ExtArgs>
   nextVoyages?: boolean | Prisma.Voyage$nextVoyagesArgs<ExtArgs>
@@ -2646,6 +2851,7 @@ export type VoyageSelectScalar = {
 export type VoyageOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "seaId" | "sortOrder" | "difficulty" | "requiredVoyageId" | "captainGauntlet" | "lifecycle" | "objectives" | "estimatedMinutes" | "tags" | "skills" | "prerequisiteKnowledge" | "successCriteria" | "abTestGroup" | "branchParentId" | "branchLabel" | "createdAt", ExtArgs["result"]["voyage"]>
 export type VoyageInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   sea?: boolean | Prisma.SeaDefaultArgs<ExtArgs>
+  islands?: boolean | Prisma.Voyage$islandsArgs<ExtArgs>
   trials?: boolean | Prisma.Voyage$trialsArgs<ExtArgs>
   prerequisite?: boolean | Prisma.Voyage$prerequisiteArgs<ExtArgs>
   nextVoyages?: boolean | Prisma.Voyage$nextVoyagesArgs<ExtArgs>
@@ -2672,6 +2878,7 @@ export type $VoyagePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
   name: "Voyage"
   objects: {
     sea: Prisma.$SeaPayload<ExtArgs>
+    islands: Prisma.$IslandPayload<ExtArgs>[]
     trials: Prisma.$TrialPayload<ExtArgs>[]
     prerequisite: Prisma.$VoyagePayload<ExtArgs> | null
     nextVoyages: Prisma.$VoyagePayload<ExtArgs>[]
@@ -3097,6 +3304,7 @@ readonly fields: VoyageFieldRefs;
 export interface Prisma__VoyageClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   sea<T extends Prisma.SeaDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SeaDefaultArgs<ExtArgs>>): Prisma.Prisma__SeaClient<runtime.Types.Result.GetResult<Prisma.$SeaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  islands<T extends Prisma.Voyage$islandsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Voyage$islandsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$IslandPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   trials<T extends Prisma.Voyage$trialsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Voyage$trialsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TrialPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   prerequisite<T extends Prisma.Voyage$prerequisiteArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Voyage$prerequisiteArgs<ExtArgs>>): Prisma.Prisma__VoyageClient<runtime.Types.Result.GetResult<Prisma.$VoyagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   nextVoyages<T extends Prisma.Voyage$nextVoyagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Voyage$nextVoyagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VoyagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -3552,6 +3760,30 @@ export type VoyageDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
    * Limit how many Voyages to delete.
    */
   limit?: number
+}
+
+/**
+ * Voyage.islands
+ */
+export type Voyage$islandsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Island
+   */
+  select?: Prisma.IslandSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Island
+   */
+  omit?: Prisma.IslandOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.IslandInclude<ExtArgs> | null
+  where?: Prisma.IslandWhereInput
+  orderBy?: Prisma.IslandOrderByWithRelationInput | Prisma.IslandOrderByWithRelationInput[]
+  cursor?: Prisma.IslandWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.IslandScalarFieldEnum | Prisma.IslandScalarFieldEnum[]
 }
 
 /**

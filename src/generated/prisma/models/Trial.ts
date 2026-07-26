@@ -40,6 +40,7 @@ export type TrialSumAggregateOutputType = {
 
 export type TrialMinAggregateOutputType = {
   id: string | null
+  islandId: string | null
   voyageId: string | null
   type: $Enums.TrialType | null
   question: string | null
@@ -55,6 +56,7 @@ export type TrialMinAggregateOutputType = {
 
 export type TrialMaxAggregateOutputType = {
   id: string | null
+  islandId: string | null
   voyageId: string | null
   type: $Enums.TrialType | null
   question: string | null
@@ -70,6 +72,7 @@ export type TrialMaxAggregateOutputType = {
 
 export type TrialCountAggregateOutputType = {
   id: number
+  islandId: number
   voyageId: number
   type: number
   question: number
@@ -100,6 +103,7 @@ export type TrialSumAggregateInputType = {
 
 export type TrialMinAggregateInputType = {
   id?: true
+  islandId?: true
   voyageId?: true
   type?: true
   question?: true
@@ -115,6 +119,7 @@ export type TrialMinAggregateInputType = {
 
 export type TrialMaxAggregateInputType = {
   id?: true
+  islandId?: true
   voyageId?: true
   type?: true
   question?: true
@@ -130,6 +135,7 @@ export type TrialMaxAggregateInputType = {
 
 export type TrialCountAggregateInputType = {
   id?: true
+  islandId?: true
   voyageId?: true
   type?: true
   question?: true
@@ -233,7 +239,8 @@ export type TrialGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
 
 export type TrialGroupByOutputType = {
   id: string
-  voyageId: string
+  islandId: string | null
+  voyageId: string | null
   type: $Enums.TrialType
   question: string
   options: runtime.JsonValue | null
@@ -272,7 +279,8 @@ export type TrialWhereInput = {
   OR?: Prisma.TrialWhereInput[]
   NOT?: Prisma.TrialWhereInput | Prisma.TrialWhereInput[]
   id?: Prisma.StringFilter<"Trial"> | string
-  voyageId?: Prisma.StringFilter<"Trial"> | string
+  islandId?: Prisma.StringNullableFilter<"Trial"> | string | null
+  voyageId?: Prisma.StringNullableFilter<"Trial"> | string | null
   type?: Prisma.EnumTrialTypeFilter<"Trial"> | $Enums.TrialType
   question?: Prisma.StringFilter<"Trial"> | string
   options?: Prisma.JsonNullableFilter<"Trial">
@@ -284,14 +292,16 @@ export type TrialWhereInput = {
   aiGenerated?: Prisma.BoolFilter<"Trial"> | boolean
   flagCount?: Prisma.IntFilter<"Trial"> | number
   createdAt?: Prisma.DateTimeFilter<"Trial"> | Date | string
-  voyage?: Prisma.XOR<Prisma.VoyageScalarRelationFilter, Prisma.VoyageWhereInput>
+  island?: Prisma.XOR<Prisma.IslandNullableScalarRelationFilter, Prisma.IslandWhereInput> | null
+  voyage?: Prisma.XOR<Prisma.VoyageNullableScalarRelationFilter, Prisma.VoyageWhereInput> | null
   attempts?: Prisma.TrialAttemptListRelationFilter
   versions?: Prisma.TrialVersionListRelationFilter
 }
 
 export type TrialOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  voyageId?: Prisma.SortOrder
+  islandId?: Prisma.SortOrderInput | Prisma.SortOrder
+  voyageId?: Prisma.SortOrderInput | Prisma.SortOrder
   type?: Prisma.SortOrder
   question?: Prisma.SortOrder
   options?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -303,6 +313,7 @@ export type TrialOrderByWithRelationInput = {
   aiGenerated?: Prisma.SortOrder
   flagCount?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  island?: Prisma.IslandOrderByWithRelationInput
   voyage?: Prisma.VoyageOrderByWithRelationInput
   attempts?: Prisma.TrialAttemptOrderByRelationAggregateInput
   versions?: Prisma.TrialVersionOrderByRelationAggregateInput
@@ -313,7 +324,8 @@ export type TrialWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.TrialWhereInput | Prisma.TrialWhereInput[]
   OR?: Prisma.TrialWhereInput[]
   NOT?: Prisma.TrialWhereInput | Prisma.TrialWhereInput[]
-  voyageId?: Prisma.StringFilter<"Trial"> | string
+  islandId?: Prisma.StringNullableFilter<"Trial"> | string | null
+  voyageId?: Prisma.StringNullableFilter<"Trial"> | string | null
   type?: Prisma.EnumTrialTypeFilter<"Trial"> | $Enums.TrialType
   question?: Prisma.StringFilter<"Trial"> | string
   options?: Prisma.JsonNullableFilter<"Trial">
@@ -325,14 +337,16 @@ export type TrialWhereUniqueInput = Prisma.AtLeast<{
   aiGenerated?: Prisma.BoolFilter<"Trial"> | boolean
   flagCount?: Prisma.IntFilter<"Trial"> | number
   createdAt?: Prisma.DateTimeFilter<"Trial"> | Date | string
-  voyage?: Prisma.XOR<Prisma.VoyageScalarRelationFilter, Prisma.VoyageWhereInput>
+  island?: Prisma.XOR<Prisma.IslandNullableScalarRelationFilter, Prisma.IslandWhereInput> | null
+  voyage?: Prisma.XOR<Prisma.VoyageNullableScalarRelationFilter, Prisma.VoyageWhereInput> | null
   attempts?: Prisma.TrialAttemptListRelationFilter
   versions?: Prisma.TrialVersionListRelationFilter
 }, "id">
 
 export type TrialOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  voyageId?: Prisma.SortOrder
+  islandId?: Prisma.SortOrderInput | Prisma.SortOrder
+  voyageId?: Prisma.SortOrderInput | Prisma.SortOrder
   type?: Prisma.SortOrder
   question?: Prisma.SortOrder
   options?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -356,7 +370,8 @@ export type TrialScalarWhereWithAggregatesInput = {
   OR?: Prisma.TrialScalarWhereWithAggregatesInput[]
   NOT?: Prisma.TrialScalarWhereWithAggregatesInput | Prisma.TrialScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Trial"> | string
-  voyageId?: Prisma.StringWithAggregatesFilter<"Trial"> | string
+  islandId?: Prisma.StringNullableWithAggregatesFilter<"Trial"> | string | null
+  voyageId?: Prisma.StringNullableWithAggregatesFilter<"Trial"> | string | null
   type?: Prisma.EnumTrialTypeWithAggregatesFilter<"Trial"> | $Enums.TrialType
   question?: Prisma.StringWithAggregatesFilter<"Trial"> | string
   options?: Prisma.JsonNullableWithAggregatesFilter<"Trial">
@@ -383,14 +398,16 @@ export type TrialCreateInput = {
   aiGenerated?: boolean
   flagCount?: number
   createdAt?: Date | string
-  voyage: Prisma.VoyageCreateNestedOneWithoutTrialsInput
+  island?: Prisma.IslandCreateNestedOneWithoutTrialsInput
+  voyage?: Prisma.VoyageCreateNestedOneWithoutTrialsInput
   attempts?: Prisma.TrialAttemptCreateNestedManyWithoutTrialInput
   versions?: Prisma.TrialVersionCreateNestedManyWithoutTrialInput
 }
 
 export type TrialUncheckedCreateInput = {
   id?: string
-  voyageId: string
+  islandId?: string | null
+  voyageId?: string | null
   type: $Enums.TrialType
   question: string
   options?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -419,14 +436,16 @@ export type TrialUpdateInput = {
   aiGenerated?: Prisma.BoolFieldUpdateOperationsInput | boolean
   flagCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  voyage?: Prisma.VoyageUpdateOneRequiredWithoutTrialsNestedInput
+  island?: Prisma.IslandUpdateOneWithoutTrialsNestedInput
+  voyage?: Prisma.VoyageUpdateOneWithoutTrialsNestedInput
   attempts?: Prisma.TrialAttemptUpdateManyWithoutTrialNestedInput
   versions?: Prisma.TrialVersionUpdateManyWithoutTrialNestedInput
 }
 
 export type TrialUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  voyageId?: Prisma.StringFieldUpdateOperationsInput | string
+  islandId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  voyageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumTrialTypeFieldUpdateOperationsInput | $Enums.TrialType
   question?: Prisma.StringFieldUpdateOperationsInput | string
   options?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -444,7 +463,8 @@ export type TrialUncheckedUpdateInput = {
 
 export type TrialCreateManyInput = {
   id?: string
-  voyageId: string
+  islandId?: string | null
+  voyageId?: string | null
   type: $Enums.TrialType
   question: string
   options?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -475,7 +495,8 @@ export type TrialUpdateManyMutationInput = {
 
 export type TrialUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  voyageId?: Prisma.StringFieldUpdateOperationsInput | string
+  islandId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  voyageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumTrialTypeFieldUpdateOperationsInput | $Enums.TrialType
   question?: Prisma.StringFieldUpdateOperationsInput | string
   options?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -501,6 +522,7 @@ export type TrialOrderByRelationAggregateInput = {
 
 export type TrialCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  islandId?: Prisma.SortOrder
   voyageId?: Prisma.SortOrder
   type?: Prisma.SortOrder
   question?: Prisma.SortOrder
@@ -523,6 +545,7 @@ export type TrialAvgOrderByAggregateInput = {
 
 export type TrialMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  islandId?: Prisma.SortOrder
   voyageId?: Prisma.SortOrder
   type?: Prisma.SortOrder
   question?: Prisma.SortOrder
@@ -538,6 +561,7 @@ export type TrialMaxOrderByAggregateInput = {
 
 export type TrialMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  islandId?: Prisma.SortOrder
   voyageId?: Prisma.SortOrder
   type?: Prisma.SortOrder
   question?: Prisma.SortOrder
@@ -604,6 +628,48 @@ export type TrialUncheckedUpdateManyWithoutVoyageNestedInput = {
   deleteMany?: Prisma.TrialScalarWhereInput | Prisma.TrialScalarWhereInput[]
 }
 
+export type TrialCreateNestedManyWithoutIslandInput = {
+  create?: Prisma.XOR<Prisma.TrialCreateWithoutIslandInput, Prisma.TrialUncheckedCreateWithoutIslandInput> | Prisma.TrialCreateWithoutIslandInput[] | Prisma.TrialUncheckedCreateWithoutIslandInput[]
+  connectOrCreate?: Prisma.TrialCreateOrConnectWithoutIslandInput | Prisma.TrialCreateOrConnectWithoutIslandInput[]
+  createMany?: Prisma.TrialCreateManyIslandInputEnvelope
+  connect?: Prisma.TrialWhereUniqueInput | Prisma.TrialWhereUniqueInput[]
+}
+
+export type TrialUncheckedCreateNestedManyWithoutIslandInput = {
+  create?: Prisma.XOR<Prisma.TrialCreateWithoutIslandInput, Prisma.TrialUncheckedCreateWithoutIslandInput> | Prisma.TrialCreateWithoutIslandInput[] | Prisma.TrialUncheckedCreateWithoutIslandInput[]
+  connectOrCreate?: Prisma.TrialCreateOrConnectWithoutIslandInput | Prisma.TrialCreateOrConnectWithoutIslandInput[]
+  createMany?: Prisma.TrialCreateManyIslandInputEnvelope
+  connect?: Prisma.TrialWhereUniqueInput | Prisma.TrialWhereUniqueInput[]
+}
+
+export type TrialUpdateManyWithoutIslandNestedInput = {
+  create?: Prisma.XOR<Prisma.TrialCreateWithoutIslandInput, Prisma.TrialUncheckedCreateWithoutIslandInput> | Prisma.TrialCreateWithoutIslandInput[] | Prisma.TrialUncheckedCreateWithoutIslandInput[]
+  connectOrCreate?: Prisma.TrialCreateOrConnectWithoutIslandInput | Prisma.TrialCreateOrConnectWithoutIslandInput[]
+  upsert?: Prisma.TrialUpsertWithWhereUniqueWithoutIslandInput | Prisma.TrialUpsertWithWhereUniqueWithoutIslandInput[]
+  createMany?: Prisma.TrialCreateManyIslandInputEnvelope
+  set?: Prisma.TrialWhereUniqueInput | Prisma.TrialWhereUniqueInput[]
+  disconnect?: Prisma.TrialWhereUniqueInput | Prisma.TrialWhereUniqueInput[]
+  delete?: Prisma.TrialWhereUniqueInput | Prisma.TrialWhereUniqueInput[]
+  connect?: Prisma.TrialWhereUniqueInput | Prisma.TrialWhereUniqueInput[]
+  update?: Prisma.TrialUpdateWithWhereUniqueWithoutIslandInput | Prisma.TrialUpdateWithWhereUniqueWithoutIslandInput[]
+  updateMany?: Prisma.TrialUpdateManyWithWhereWithoutIslandInput | Prisma.TrialUpdateManyWithWhereWithoutIslandInput[]
+  deleteMany?: Prisma.TrialScalarWhereInput | Prisma.TrialScalarWhereInput[]
+}
+
+export type TrialUncheckedUpdateManyWithoutIslandNestedInput = {
+  create?: Prisma.XOR<Prisma.TrialCreateWithoutIslandInput, Prisma.TrialUncheckedCreateWithoutIslandInput> | Prisma.TrialCreateWithoutIslandInput[] | Prisma.TrialUncheckedCreateWithoutIslandInput[]
+  connectOrCreate?: Prisma.TrialCreateOrConnectWithoutIslandInput | Prisma.TrialCreateOrConnectWithoutIslandInput[]
+  upsert?: Prisma.TrialUpsertWithWhereUniqueWithoutIslandInput | Prisma.TrialUpsertWithWhereUniqueWithoutIslandInput[]
+  createMany?: Prisma.TrialCreateManyIslandInputEnvelope
+  set?: Prisma.TrialWhereUniqueInput | Prisma.TrialWhereUniqueInput[]
+  disconnect?: Prisma.TrialWhereUniqueInput | Prisma.TrialWhereUniqueInput[]
+  delete?: Prisma.TrialWhereUniqueInput | Prisma.TrialWhereUniqueInput[]
+  connect?: Prisma.TrialWhereUniqueInput | Prisma.TrialWhereUniqueInput[]
+  update?: Prisma.TrialUpdateWithWhereUniqueWithoutIslandInput | Prisma.TrialUpdateWithWhereUniqueWithoutIslandInput[]
+  updateMany?: Prisma.TrialUpdateManyWithWhereWithoutIslandInput | Prisma.TrialUpdateManyWithWhereWithoutIslandInput[]
+  deleteMany?: Prisma.TrialScalarWhereInput | Prisma.TrialScalarWhereInput[]
+}
+
 export type EnumTrialTypeFieldUpdateOperationsInput = {
   set?: $Enums.TrialType
 }
@@ -649,12 +715,14 @@ export type TrialCreateWithoutVoyageInput = {
   aiGenerated?: boolean
   flagCount?: number
   createdAt?: Date | string
+  island?: Prisma.IslandCreateNestedOneWithoutTrialsInput
   attempts?: Prisma.TrialAttemptCreateNestedManyWithoutTrialInput
   versions?: Prisma.TrialVersionCreateNestedManyWithoutTrialInput
 }
 
 export type TrialUncheckedCreateWithoutVoyageInput = {
   id?: string
+  islandId?: string | null
   type: $Enums.TrialType
   question: string
   options?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -701,7 +769,8 @@ export type TrialScalarWhereInput = {
   OR?: Prisma.TrialScalarWhereInput[]
   NOT?: Prisma.TrialScalarWhereInput | Prisma.TrialScalarWhereInput[]
   id?: Prisma.StringFilter<"Trial"> | string
-  voyageId?: Prisma.StringFilter<"Trial"> | string
+  islandId?: Prisma.StringNullableFilter<"Trial"> | string | null
+  voyageId?: Prisma.StringNullableFilter<"Trial"> | string | null
   type?: Prisma.EnumTrialTypeFilter<"Trial"> | $Enums.TrialType
   question?: Prisma.StringFilter<"Trial"> | string
   options?: Prisma.JsonNullableFilter<"Trial">
@@ -713,6 +782,68 @@ export type TrialScalarWhereInput = {
   aiGenerated?: Prisma.BoolFilter<"Trial"> | boolean
   flagCount?: Prisma.IntFilter<"Trial"> | number
   createdAt?: Prisma.DateTimeFilter<"Trial"> | Date | string
+}
+
+export type TrialCreateWithoutIslandInput = {
+  id?: string
+  type: $Enums.TrialType
+  question: string
+  options?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  answer: string
+  explanation?: string | null
+  hint?: string | null
+  points?: number
+  difficulty?: number
+  aiGenerated?: boolean
+  flagCount?: number
+  createdAt?: Date | string
+  voyage?: Prisma.VoyageCreateNestedOneWithoutTrialsInput
+  attempts?: Prisma.TrialAttemptCreateNestedManyWithoutTrialInput
+  versions?: Prisma.TrialVersionCreateNestedManyWithoutTrialInput
+}
+
+export type TrialUncheckedCreateWithoutIslandInput = {
+  id?: string
+  voyageId?: string | null
+  type: $Enums.TrialType
+  question: string
+  options?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  answer: string
+  explanation?: string | null
+  hint?: string | null
+  points?: number
+  difficulty?: number
+  aiGenerated?: boolean
+  flagCount?: number
+  createdAt?: Date | string
+  attempts?: Prisma.TrialAttemptUncheckedCreateNestedManyWithoutTrialInput
+  versions?: Prisma.TrialVersionUncheckedCreateNestedManyWithoutTrialInput
+}
+
+export type TrialCreateOrConnectWithoutIslandInput = {
+  where: Prisma.TrialWhereUniqueInput
+  create: Prisma.XOR<Prisma.TrialCreateWithoutIslandInput, Prisma.TrialUncheckedCreateWithoutIslandInput>
+}
+
+export type TrialCreateManyIslandInputEnvelope = {
+  data: Prisma.TrialCreateManyIslandInput | Prisma.TrialCreateManyIslandInput[]
+  skipDuplicates?: boolean
+}
+
+export type TrialUpsertWithWhereUniqueWithoutIslandInput = {
+  where: Prisma.TrialWhereUniqueInput
+  update: Prisma.XOR<Prisma.TrialUpdateWithoutIslandInput, Prisma.TrialUncheckedUpdateWithoutIslandInput>
+  create: Prisma.XOR<Prisma.TrialCreateWithoutIslandInput, Prisma.TrialUncheckedCreateWithoutIslandInput>
+}
+
+export type TrialUpdateWithWhereUniqueWithoutIslandInput = {
+  where: Prisma.TrialWhereUniqueInput
+  data: Prisma.XOR<Prisma.TrialUpdateWithoutIslandInput, Prisma.TrialUncheckedUpdateWithoutIslandInput>
+}
+
+export type TrialUpdateManyWithWhereWithoutIslandInput = {
+  where: Prisma.TrialScalarWhereInput
+  data: Prisma.XOR<Prisma.TrialUpdateManyMutationInput, Prisma.TrialUncheckedUpdateManyWithoutIslandInput>
 }
 
 export type TrialCreateWithoutVersionsInput = {
@@ -728,13 +859,15 @@ export type TrialCreateWithoutVersionsInput = {
   aiGenerated?: boolean
   flagCount?: number
   createdAt?: Date | string
-  voyage: Prisma.VoyageCreateNestedOneWithoutTrialsInput
+  island?: Prisma.IslandCreateNestedOneWithoutTrialsInput
+  voyage?: Prisma.VoyageCreateNestedOneWithoutTrialsInput
   attempts?: Prisma.TrialAttemptCreateNestedManyWithoutTrialInput
 }
 
 export type TrialUncheckedCreateWithoutVersionsInput = {
   id?: string
-  voyageId: string
+  islandId?: string | null
+  voyageId?: string | null
   type: $Enums.TrialType
   question: string
   options?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -778,13 +911,15 @@ export type TrialUpdateWithoutVersionsInput = {
   aiGenerated?: Prisma.BoolFieldUpdateOperationsInput | boolean
   flagCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  voyage?: Prisma.VoyageUpdateOneRequiredWithoutTrialsNestedInput
+  island?: Prisma.IslandUpdateOneWithoutTrialsNestedInput
+  voyage?: Prisma.VoyageUpdateOneWithoutTrialsNestedInput
   attempts?: Prisma.TrialAttemptUpdateManyWithoutTrialNestedInput
 }
 
 export type TrialUncheckedUpdateWithoutVersionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  voyageId?: Prisma.StringFieldUpdateOperationsInput | string
+  islandId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  voyageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumTrialTypeFieldUpdateOperationsInput | $Enums.TrialType
   question?: Prisma.StringFieldUpdateOperationsInput | string
   options?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -812,13 +947,15 @@ export type TrialCreateWithoutAttemptsInput = {
   aiGenerated?: boolean
   flagCount?: number
   createdAt?: Date | string
-  voyage: Prisma.VoyageCreateNestedOneWithoutTrialsInput
+  island?: Prisma.IslandCreateNestedOneWithoutTrialsInput
+  voyage?: Prisma.VoyageCreateNestedOneWithoutTrialsInput
   versions?: Prisma.TrialVersionCreateNestedManyWithoutTrialInput
 }
 
 export type TrialUncheckedCreateWithoutAttemptsInput = {
   id?: string
-  voyageId: string
+  islandId?: string | null
+  voyageId?: string | null
   type: $Enums.TrialType
   question: string
   options?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -862,13 +999,15 @@ export type TrialUpdateWithoutAttemptsInput = {
   aiGenerated?: Prisma.BoolFieldUpdateOperationsInput | boolean
   flagCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  voyage?: Prisma.VoyageUpdateOneRequiredWithoutTrialsNestedInput
+  island?: Prisma.IslandUpdateOneWithoutTrialsNestedInput
+  voyage?: Prisma.VoyageUpdateOneWithoutTrialsNestedInput
   versions?: Prisma.TrialVersionUpdateManyWithoutTrialNestedInput
 }
 
 export type TrialUncheckedUpdateWithoutAttemptsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  voyageId?: Prisma.StringFieldUpdateOperationsInput | string
+  islandId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  voyageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumTrialTypeFieldUpdateOperationsInput | $Enums.TrialType
   question?: Prisma.StringFieldUpdateOperationsInput | string
   options?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -885,6 +1024,7 @@ export type TrialUncheckedUpdateWithoutAttemptsInput = {
 
 export type TrialCreateManyVoyageInput = {
   id?: string
+  islandId?: string | null
   type: $Enums.TrialType
   question: string
   options?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -911,12 +1051,14 @@ export type TrialUpdateWithoutVoyageInput = {
   aiGenerated?: Prisma.BoolFieldUpdateOperationsInput | boolean
   flagCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  island?: Prisma.IslandUpdateOneWithoutTrialsNestedInput
   attempts?: Prisma.TrialAttemptUpdateManyWithoutTrialNestedInput
   versions?: Prisma.TrialVersionUpdateManyWithoutTrialNestedInput
 }
 
 export type TrialUncheckedUpdateWithoutVoyageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  islandId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumTrialTypeFieldUpdateOperationsInput | $Enums.TrialType
   question?: Prisma.StringFieldUpdateOperationsInput | string
   options?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -934,6 +1076,75 @@ export type TrialUncheckedUpdateWithoutVoyageInput = {
 
 export type TrialUncheckedUpdateManyWithoutVoyageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  islandId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.EnumTrialTypeFieldUpdateOperationsInput | $Enums.TrialType
+  question?: Prisma.StringFieldUpdateOperationsInput | string
+  options?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  answer?: Prisma.StringFieldUpdateOperationsInput | string
+  explanation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hint?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  points?: Prisma.IntFieldUpdateOperationsInput | number
+  difficulty?: Prisma.IntFieldUpdateOperationsInput | number
+  aiGenerated?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  flagCount?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type TrialCreateManyIslandInput = {
+  id?: string
+  voyageId?: string | null
+  type: $Enums.TrialType
+  question: string
+  options?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  answer: string
+  explanation?: string | null
+  hint?: string | null
+  points?: number
+  difficulty?: number
+  aiGenerated?: boolean
+  flagCount?: number
+  createdAt?: Date | string
+}
+
+export type TrialUpdateWithoutIslandInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumTrialTypeFieldUpdateOperationsInput | $Enums.TrialType
+  question?: Prisma.StringFieldUpdateOperationsInput | string
+  options?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  answer?: Prisma.StringFieldUpdateOperationsInput | string
+  explanation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hint?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  points?: Prisma.IntFieldUpdateOperationsInput | number
+  difficulty?: Prisma.IntFieldUpdateOperationsInput | number
+  aiGenerated?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  flagCount?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  voyage?: Prisma.VoyageUpdateOneWithoutTrialsNestedInput
+  attempts?: Prisma.TrialAttemptUpdateManyWithoutTrialNestedInput
+  versions?: Prisma.TrialVersionUpdateManyWithoutTrialNestedInput
+}
+
+export type TrialUncheckedUpdateWithoutIslandInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  voyageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.EnumTrialTypeFieldUpdateOperationsInput | $Enums.TrialType
+  question?: Prisma.StringFieldUpdateOperationsInput | string
+  options?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  answer?: Prisma.StringFieldUpdateOperationsInput | string
+  explanation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hint?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  points?: Prisma.IntFieldUpdateOperationsInput | number
+  difficulty?: Prisma.IntFieldUpdateOperationsInput | number
+  aiGenerated?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  flagCount?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  attempts?: Prisma.TrialAttemptUncheckedUpdateManyWithoutTrialNestedInput
+  versions?: Prisma.TrialVersionUncheckedUpdateManyWithoutTrialNestedInput
+}
+
+export type TrialUncheckedUpdateManyWithoutIslandInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  voyageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumTrialTypeFieldUpdateOperationsInput | $Enums.TrialType
   question?: Prisma.StringFieldUpdateOperationsInput | string
   options?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -989,6 +1200,7 @@ export type TrialCountOutputTypeCountVersionsArgs<ExtArgs extends runtime.Types.
 
 export type TrialSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  islandId?: boolean
   voyageId?: boolean
   type?: boolean
   question?: boolean
@@ -1001,7 +1213,8 @@ export type TrialSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   aiGenerated?: boolean
   flagCount?: boolean
   createdAt?: boolean
-  voyage?: boolean | Prisma.VoyageDefaultArgs<ExtArgs>
+  island?: boolean | Prisma.Trial$islandArgs<ExtArgs>
+  voyage?: boolean | Prisma.Trial$voyageArgs<ExtArgs>
   attempts?: boolean | Prisma.Trial$attemptsArgs<ExtArgs>
   versions?: boolean | Prisma.Trial$versionsArgs<ExtArgs>
   _count?: boolean | Prisma.TrialCountOutputTypeDefaultArgs<ExtArgs>
@@ -1009,6 +1222,7 @@ export type TrialSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
 
 export type TrialSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  islandId?: boolean
   voyageId?: boolean
   type?: boolean
   question?: boolean
@@ -1021,11 +1235,13 @@ export type TrialSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   aiGenerated?: boolean
   flagCount?: boolean
   createdAt?: boolean
-  voyage?: boolean | Prisma.VoyageDefaultArgs<ExtArgs>
+  island?: boolean | Prisma.Trial$islandArgs<ExtArgs>
+  voyage?: boolean | Prisma.Trial$voyageArgs<ExtArgs>
 }, ExtArgs["result"]["trial"]>
 
 export type TrialSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  islandId?: boolean
   voyageId?: boolean
   type?: boolean
   question?: boolean
@@ -1038,11 +1254,13 @@ export type TrialSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   aiGenerated?: boolean
   flagCount?: boolean
   createdAt?: boolean
-  voyage?: boolean | Prisma.VoyageDefaultArgs<ExtArgs>
+  island?: boolean | Prisma.Trial$islandArgs<ExtArgs>
+  voyage?: boolean | Prisma.Trial$voyageArgs<ExtArgs>
 }, ExtArgs["result"]["trial"]>
 
 export type TrialSelectScalar = {
   id?: boolean
+  islandId?: boolean
   voyageId?: boolean
   type?: boolean
   question?: boolean
@@ -1057,30 +1275,35 @@ export type TrialSelectScalar = {
   createdAt?: boolean
 }
 
-export type TrialOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "voyageId" | "type" | "question" | "options" | "answer" | "explanation" | "hint" | "points" | "difficulty" | "aiGenerated" | "flagCount" | "createdAt", ExtArgs["result"]["trial"]>
+export type TrialOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "islandId" | "voyageId" | "type" | "question" | "options" | "answer" | "explanation" | "hint" | "points" | "difficulty" | "aiGenerated" | "flagCount" | "createdAt", ExtArgs["result"]["trial"]>
 export type TrialInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  voyage?: boolean | Prisma.VoyageDefaultArgs<ExtArgs>
+  island?: boolean | Prisma.Trial$islandArgs<ExtArgs>
+  voyage?: boolean | Prisma.Trial$voyageArgs<ExtArgs>
   attempts?: boolean | Prisma.Trial$attemptsArgs<ExtArgs>
   versions?: boolean | Prisma.Trial$versionsArgs<ExtArgs>
   _count?: boolean | Prisma.TrialCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type TrialIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  voyage?: boolean | Prisma.VoyageDefaultArgs<ExtArgs>
+  island?: boolean | Prisma.Trial$islandArgs<ExtArgs>
+  voyage?: boolean | Prisma.Trial$voyageArgs<ExtArgs>
 }
 export type TrialIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  voyage?: boolean | Prisma.VoyageDefaultArgs<ExtArgs>
+  island?: boolean | Prisma.Trial$islandArgs<ExtArgs>
+  voyage?: boolean | Prisma.Trial$voyageArgs<ExtArgs>
 }
 
 export type $TrialPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Trial"
   objects: {
-    voyage: Prisma.$VoyagePayload<ExtArgs>
+    island: Prisma.$IslandPayload<ExtArgs> | null
+    voyage: Prisma.$VoyagePayload<ExtArgs> | null
     attempts: Prisma.$TrialAttemptPayload<ExtArgs>[]
     versions: Prisma.$TrialVersionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    voyageId: string
+    islandId: string | null
+    voyageId: string | null
     type: $Enums.TrialType
     question: string
     options: runtime.JsonValue | null
@@ -1486,7 +1709,8 @@ readonly fields: TrialFieldRefs;
  */
 export interface Prisma__TrialClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  voyage<T extends Prisma.VoyageDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.VoyageDefaultArgs<ExtArgs>>): Prisma.Prisma__VoyageClient<runtime.Types.Result.GetResult<Prisma.$VoyagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  island<T extends Prisma.Trial$islandArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Trial$islandArgs<ExtArgs>>): Prisma.Prisma__IslandClient<runtime.Types.Result.GetResult<Prisma.$IslandPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  voyage<T extends Prisma.Trial$voyageArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Trial$voyageArgs<ExtArgs>>): Prisma.Prisma__VoyageClient<runtime.Types.Result.GetResult<Prisma.$VoyagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   attempts<T extends Prisma.Trial$attemptsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Trial$attemptsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TrialAttemptPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   versions<T extends Prisma.Trial$versionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Trial$versionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TrialVersionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
@@ -1519,6 +1743,7 @@ export interface Prisma__TrialClient<T, Null = never, ExtArgs extends runtime.Ty
  */
 export interface TrialFieldRefs {
   readonly id: Prisma.FieldRef<"Trial", 'String'>
+  readonly islandId: Prisma.FieldRef<"Trial", 'String'>
   readonly voyageId: Prisma.FieldRef<"Trial", 'String'>
   readonly type: Prisma.FieldRef<"Trial", 'TrialType'>
   readonly question: Prisma.FieldRef<"Trial", 'String'>
@@ -1929,6 +2154,44 @@ export type TrialDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Interna
    * Limit how many Trials to delete.
    */
   limit?: number
+}
+
+/**
+ * Trial.island
+ */
+export type Trial$islandArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Island
+   */
+  select?: Prisma.IslandSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Island
+   */
+  omit?: Prisma.IslandOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.IslandInclude<ExtArgs> | null
+  where?: Prisma.IslandWhereInput
+}
+
+/**
+ * Trial.voyage
+ */
+export type Trial$voyageArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Voyage
+   */
+  select?: Prisma.VoyageSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Voyage
+   */
+  omit?: Prisma.VoyageOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.VoyageInclude<ExtArgs> | null
+  where?: Prisma.VoyageWhereInput
 }
 
 /**

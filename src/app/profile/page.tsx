@@ -31,7 +31,7 @@ export default async function ProfilePage() {
     const allAch = await prisma.achievement.findMany({ orderBy: { rarity: "asc" } });
     const earnedIds = new Set(user.achievements.map(ua => ua.achievementId));
 
-    const recent = await prisma.trialAttempt.findMany({ where: { userId: user.id }, orderBy: { createdAt: "desc" }, take: 10, include: { trial: { include: { voyage: { include: { sea: true } } } } } });
+    const recent = await prisma.trialAttempt.findMany({ where: { userId: user.id }, orderBy: { createdAt: "desc" }, take: 10, include: { trial: { include: { island: { include: { voyage: { include: { sea: true } } } } } } } });
 
     const rarityColors: Record<string, string> = { Common: "border-slate-600 bg-slate-800", Uncommon: "border-emerald-700 bg-emerald-900/30", Rare: "border-blue-700 bg-blue-900/30", Epic: "border-purple-700 bg-purple-900/30", Legendary: "border-amber-600 bg-amber-900/30" };
 
@@ -93,7 +93,7 @@ export default async function ProfilePage() {
                 {/* Recent Activity */}
                 <div className="sea-card p-6">
                     <h3 className="text-lg mb-4" style={{ fontFamily: "'Pirata One',cursive", color: "#F7C948" }}>📋 Ship Log</h3>
-                    {recent.length === 0 ? <p className="text-amber-600 text-sm">No trials yet. Set sail on a voyage!</p> : <div className="space-y-2">{recent.map(a => <div key={a.id} className="flex items-center gap-3 p-2 rounded-lg hover:bg-abyssal/50 transition"><span className="text-lg">{a.correct ? "✅" : "💪"}</span><div className="flex-1 min-w-0"><div className="text-sm truncate">{a.trial.question.slice(0, 60)}...</div><div className="text-xs text-amber-600">{a.trial.voyage.sea.icon} {a.trial.voyage.title} · {new Date(a.createdAt).toLocaleDateString()}</div></div><div style={{ color: "#F7C948" }}>{"☠️".repeat(a.skulls)}</div></div>)}</div>}
+                    {recent.length === 0 ? <p className="text-amber-600 text-sm">No trials yet. Set sail on a voyage!</p> : <div className="space-y-2">{recent.map(a => <div key={a.id} className="flex items-center gap-3 p-2 rounded-lg hover:bg-abyssal/50 transition"><span className="text-lg">{a.correct ? "✅" : "💪"}</span><div className="flex-1 min-w-0"><div className="text-sm truncate">{a.trial.question.slice(0, 60)}...</div><div className="text-xs text-amber-600">{a.trial.island?.voyage?.sea?.icon} {a.trial.island?.voyage?.title} · {new Date(a.createdAt).toLocaleDateString()}</div></div><div style={{ color: "#F7C948" }}>{"☠️".repeat(a.skulls)}</div></div>)}</div>}
                 </div>
 
                 <div className="mt-6 text-center"><a href="/api/auth/signout" className="text-sm text-amber-800 hover:text-amber-600">Abandon Ship</a></div>

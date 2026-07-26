@@ -329,6 +329,7 @@ export type UserWhereInput = {
   deletedAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   progress?: Prisma.UserVoyageProgressListRelationFilter
+  islandProgress?: Prisma.UserIslandProgressListRelationFilter
   achievements?: Prisma.UserAchievementListRelationFilter
   pointLog?: Prisma.PointTransactionListRelationFilter
   crownLog?: Prisma.CrownTransactionListRelationFilter
@@ -375,6 +376,7 @@ export type UserOrderByWithRelationInput = {
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   progress?: Prisma.UserVoyageProgressOrderByRelationAggregateInput
+  islandProgress?: Prisma.UserIslandProgressOrderByRelationAggregateInput
   achievements?: Prisma.UserAchievementOrderByRelationAggregateInput
   pointLog?: Prisma.PointTransactionOrderByRelationAggregateInput
   crownLog?: Prisma.CrownTransactionOrderByRelationAggregateInput
@@ -424,6 +426,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   deletedAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   progress?: Prisma.UserVoyageProgressListRelationFilter
+  islandProgress?: Prisma.UserIslandProgressListRelationFilter
   achievements?: Prisma.UserAchievementListRelationFilter
   pointLog?: Prisma.PointTransactionListRelationFilter
   crownLog?: Prisma.CrownTransactionListRelationFilter
@@ -520,6 +523,7 @@ export type UserCreateInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   progress?: Prisma.UserVoyageProgressCreateNestedManyWithoutUserInput
+  islandProgress?: Prisma.UserIslandProgressCreateNestedManyWithoutUserInput
   achievements?: Prisma.UserAchievementCreateNestedManyWithoutUserInput
   pointLog?: Prisma.PointTransactionCreateNestedManyWithoutUserInput
   crownLog?: Prisma.CrownTransactionCreateNestedManyWithoutUserInput
@@ -566,6 +570,7 @@ export type UserUncheckedCreateInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   progress?: Prisma.UserVoyageProgressUncheckedCreateNestedManyWithoutUserInput
+  islandProgress?: Prisma.UserIslandProgressUncheckedCreateNestedManyWithoutUserInput
   achievements?: Prisma.UserAchievementUncheckedCreateNestedManyWithoutUserInput
   pointLog?: Prisma.PointTransactionUncheckedCreateNestedManyWithoutUserInput
   crownLog?: Prisma.CrownTransactionUncheckedCreateNestedManyWithoutUserInput
@@ -612,6 +617,7 @@ export type UserUpdateInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   progress?: Prisma.UserVoyageProgressUpdateManyWithoutUserNestedInput
+  islandProgress?: Prisma.UserIslandProgressUpdateManyWithoutUserNestedInput
   achievements?: Prisma.UserAchievementUpdateManyWithoutUserNestedInput
   pointLog?: Prisma.PointTransactionUpdateManyWithoutUserNestedInput
   crownLog?: Prisma.CrownTransactionUpdateManyWithoutUserNestedInput
@@ -658,6 +664,7 @@ export type UserUncheckedUpdateInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   progress?: Prisma.UserVoyageProgressUncheckedUpdateManyWithoutUserNestedInput
+  islandProgress?: Prisma.UserIslandProgressUncheckedUpdateManyWithoutUserNestedInput
   achievements?: Prisma.UserAchievementUncheckedUpdateManyWithoutUserNestedInput
   pointLog?: Prisma.PointTransactionUncheckedUpdateManyWithoutUserNestedInput
   crownLog?: Prisma.CrownTransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -906,6 +913,20 @@ export type UserUpdateOneRequiredWithoutProgressNestedInput = {
   upsert?: Prisma.UserUpsertWithoutProgressInput
   connect?: Prisma.UserWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutProgressInput, Prisma.UserUpdateWithoutProgressInput>, Prisma.UserUncheckedUpdateWithoutProgressInput>
+}
+
+export type UserCreateNestedOneWithoutIslandProgressInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutIslandProgressInput, Prisma.UserUncheckedCreateWithoutIslandProgressInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutIslandProgressInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutIslandProgressNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutIslandProgressInput, Prisma.UserUncheckedCreateWithoutIslandProgressInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutIslandProgressInput
+  upsert?: Prisma.UserUpsertWithoutIslandProgressInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutIslandProgressInput, Prisma.UserUpdateWithoutIslandProgressInput>, Prisma.UserUncheckedUpdateWithoutIslandProgressInput>
 }
 
 export type UserCreateNestedOneWithoutPointLogInput = {
@@ -1256,6 +1277,7 @@ export type UserCreateWithoutAttemptsInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   progress?: Prisma.UserVoyageProgressCreateNestedManyWithoutUserInput
+  islandProgress?: Prisma.UserIslandProgressCreateNestedManyWithoutUserInput
   achievements?: Prisma.UserAchievementCreateNestedManyWithoutUserInput
   pointLog?: Prisma.PointTransactionCreateNestedManyWithoutUserInput
   crownLog?: Prisma.CrownTransactionCreateNestedManyWithoutUserInput
@@ -1301,6 +1323,7 @@ export type UserUncheckedCreateWithoutAttemptsInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   progress?: Prisma.UserVoyageProgressUncheckedCreateNestedManyWithoutUserInput
+  islandProgress?: Prisma.UserIslandProgressUncheckedCreateNestedManyWithoutUserInput
   achievements?: Prisma.UserAchievementUncheckedCreateNestedManyWithoutUserInput
   pointLog?: Prisma.PointTransactionUncheckedCreateNestedManyWithoutUserInput
   crownLog?: Prisma.CrownTransactionUncheckedCreateNestedManyWithoutUserInput
@@ -1362,6 +1385,7 @@ export type UserUpdateWithoutAttemptsInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   progress?: Prisma.UserVoyageProgressUpdateManyWithoutUserNestedInput
+  islandProgress?: Prisma.UserIslandProgressUpdateManyWithoutUserNestedInput
   achievements?: Prisma.UserAchievementUpdateManyWithoutUserNestedInput
   pointLog?: Prisma.PointTransactionUpdateManyWithoutUserNestedInput
   crownLog?: Prisma.CrownTransactionUpdateManyWithoutUserNestedInput
@@ -1407,6 +1431,7 @@ export type UserUncheckedUpdateWithoutAttemptsInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   progress?: Prisma.UserVoyageProgressUncheckedUpdateManyWithoutUserNestedInput
+  islandProgress?: Prisma.UserIslandProgressUncheckedUpdateManyWithoutUserNestedInput
   achievements?: Prisma.UserAchievementUncheckedUpdateManyWithoutUserNestedInput
   pointLog?: Prisma.PointTransactionUncheckedUpdateManyWithoutUserNestedInput
   crownLog?: Prisma.CrownTransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -1451,6 +1476,7 @@ export type UserCreateWithoutProgressInput = {
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
+  islandProgress?: Prisma.UserIslandProgressCreateNestedManyWithoutUserInput
   achievements?: Prisma.UserAchievementCreateNestedManyWithoutUserInput
   pointLog?: Prisma.PointTransactionCreateNestedManyWithoutUserInput
   crownLog?: Prisma.CrownTransactionCreateNestedManyWithoutUserInput
@@ -1496,6 +1522,7 @@ export type UserUncheckedCreateWithoutProgressInput = {
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
+  islandProgress?: Prisma.UserIslandProgressUncheckedCreateNestedManyWithoutUserInput
   achievements?: Prisma.UserAchievementUncheckedCreateNestedManyWithoutUserInput
   pointLog?: Prisma.PointTransactionUncheckedCreateNestedManyWithoutUserInput
   crownLog?: Prisma.CrownTransactionUncheckedCreateNestedManyWithoutUserInput
@@ -1557,6 +1584,7 @@ export type UserUpdateWithoutProgressInput = {
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  islandProgress?: Prisma.UserIslandProgressUpdateManyWithoutUserNestedInput
   achievements?: Prisma.UserAchievementUpdateManyWithoutUserNestedInput
   pointLog?: Prisma.PointTransactionUpdateManyWithoutUserNestedInput
   crownLog?: Prisma.CrownTransactionUpdateManyWithoutUserNestedInput
@@ -1602,6 +1630,207 @@ export type UserUncheckedUpdateWithoutProgressInput = {
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  islandProgress?: Prisma.UserIslandProgressUncheckedUpdateManyWithoutUserNestedInput
+  achievements?: Prisma.UserAchievementUncheckedUpdateManyWithoutUserNestedInput
+  pointLog?: Prisma.PointTransactionUncheckedUpdateManyWithoutUserNestedInput
+  crownLog?: Prisma.CrownTransactionUncheckedUpdateManyWithoutUserNestedInput
+  streaks?: Prisma.StreakUncheckedUpdateManyWithoutUserNestedInput
+  charms?: Prisma.SeaCharmUncheckedUpdateManyWithoutUserNestedInput
+  attempts?: Prisma.TrialAttemptUncheckedUpdateManyWithoutUserNestedInput
+  shipUpgrades?: Prisma.UserShipUpgradeUncheckedUpdateManyWithoutUserNestedInput
+  chestClaims?: Prisma.DailyChestClaimUncheckedUpdateManyWithoutUserNestedInput
+  parentLinks?: Prisma.StudentParentUncheckedUpdateManyWithoutStudentNestedInput
+  parentOfLinks?: Prisma.StudentParentUncheckedUpdateManyWithoutParentNestedInput
+  studentClasses?: Prisma.StudentClassUncheckedUpdateManyWithoutStudentNestedInput
+  taughtClasses?: Prisma.ClassTeacherUncheckedUpdateManyWithoutTeacherNestedInput
+  assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
+  studentAssignments?: Prisma.AssignmentUncheckedUpdateManyWithoutStudentNestedInput
+  announcements?: Prisma.AnnouncementUncheckedUpdateManyWithoutTeacherNestedInput
+  auditActions?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  loginRecords?: Prisma.LoginHistoryUncheckedUpdateManyWithoutUserNestedInput
+  createdInvites?: Prisma.InviteLinkUncheckedUpdateManyWithoutCreatorNestedInput
+  systemAnnouncements?: Prisma.SystemAnnouncementUncheckedUpdateManyWithoutAdminNestedInput
+  voyageBundles?: Prisma.VoyageBundleUncheckedUpdateManyWithoutAdminNestedInput
+  kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
+  kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
+  aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutUserNestedInput
+  aiUsageLogs?: Prisma.AIUsageLogUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutIslandProgressInput = {
+  id?: string
+  name: string
+  username: string
+  passwordHash: string
+  role?: $Enums.Role
+  status?: string
+  avatarUrl?: string | null
+  age?: number | null
+  bio?: string | null
+  favoriteSea?: string | null
+  learningGoals?: string | null
+  crowns?: number
+  pirateRank?: string
+  hasFortuneWind?: boolean
+  adaptiveDifficulty?: number
+  mustChangePassword?: boolean
+  deletedAt?: Date | string | null
+  createdAt?: Date | string
+  progress?: Prisma.UserVoyageProgressCreateNestedManyWithoutUserInput
+  achievements?: Prisma.UserAchievementCreateNestedManyWithoutUserInput
+  pointLog?: Prisma.PointTransactionCreateNestedManyWithoutUserInput
+  crownLog?: Prisma.CrownTransactionCreateNestedManyWithoutUserInput
+  streaks?: Prisma.StreakCreateNestedManyWithoutUserInput
+  charms?: Prisma.SeaCharmCreateNestedManyWithoutUserInput
+  attempts?: Prisma.TrialAttemptCreateNestedManyWithoutUserInput
+  shipUpgrades?: Prisma.UserShipUpgradeCreateNestedManyWithoutUserInput
+  chestClaims?: Prisma.DailyChestClaimCreateNestedManyWithoutUserInput
+  parentLinks?: Prisma.StudentParentCreateNestedManyWithoutStudentInput
+  parentOfLinks?: Prisma.StudentParentCreateNestedManyWithoutParentInput
+  studentClasses?: Prisma.StudentClassCreateNestedManyWithoutStudentInput
+  taughtClasses?: Prisma.ClassTeacherCreateNestedManyWithoutTeacherInput
+  assignments?: Prisma.AssignmentCreateNestedManyWithoutTeacherInput
+  studentAssignments?: Prisma.AssignmentCreateNestedManyWithoutStudentInput
+  announcements?: Prisma.AnnouncementCreateNestedManyWithoutTeacherInput
+  auditActions?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  loginRecords?: Prisma.LoginHistoryCreateNestedManyWithoutUserInput
+  createdInvites?: Prisma.InviteLinkCreateNestedManyWithoutCreatorInput
+  systemAnnouncements?: Prisma.SystemAnnouncementCreateNestedManyWithoutAdminInput
+  voyageBundles?: Prisma.VoyageBundleCreateNestedManyWithoutAdminInput
+  kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
+  kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
+  aiContexts?: Prisma.AIContextCreateNestedManyWithoutUserInput
+  aiUsageLogs?: Prisma.AIUsageLogCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutIslandProgressInput = {
+  id?: string
+  name: string
+  username: string
+  passwordHash: string
+  role?: $Enums.Role
+  status?: string
+  avatarUrl?: string | null
+  age?: number | null
+  bio?: string | null
+  favoriteSea?: string | null
+  learningGoals?: string | null
+  crowns?: number
+  pirateRank?: string
+  hasFortuneWind?: boolean
+  adaptiveDifficulty?: number
+  mustChangePassword?: boolean
+  deletedAt?: Date | string | null
+  createdAt?: Date | string
+  progress?: Prisma.UserVoyageProgressUncheckedCreateNestedManyWithoutUserInput
+  achievements?: Prisma.UserAchievementUncheckedCreateNestedManyWithoutUserInput
+  pointLog?: Prisma.PointTransactionUncheckedCreateNestedManyWithoutUserInput
+  crownLog?: Prisma.CrownTransactionUncheckedCreateNestedManyWithoutUserInput
+  streaks?: Prisma.StreakUncheckedCreateNestedManyWithoutUserInput
+  charms?: Prisma.SeaCharmUncheckedCreateNestedManyWithoutUserInput
+  attempts?: Prisma.TrialAttemptUncheckedCreateNestedManyWithoutUserInput
+  shipUpgrades?: Prisma.UserShipUpgradeUncheckedCreateNestedManyWithoutUserInput
+  chestClaims?: Prisma.DailyChestClaimUncheckedCreateNestedManyWithoutUserInput
+  parentLinks?: Prisma.StudentParentUncheckedCreateNestedManyWithoutStudentInput
+  parentOfLinks?: Prisma.StudentParentUncheckedCreateNestedManyWithoutParentInput
+  studentClasses?: Prisma.StudentClassUncheckedCreateNestedManyWithoutStudentInput
+  taughtClasses?: Prisma.ClassTeacherUncheckedCreateNestedManyWithoutTeacherInput
+  assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutTeacherInput
+  studentAssignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutStudentInput
+  announcements?: Prisma.AnnouncementUncheckedCreateNestedManyWithoutTeacherInput
+  auditActions?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  loginRecords?: Prisma.LoginHistoryUncheckedCreateNestedManyWithoutUserInput
+  createdInvites?: Prisma.InviteLinkUncheckedCreateNestedManyWithoutCreatorInput
+  systemAnnouncements?: Prisma.SystemAnnouncementUncheckedCreateNestedManyWithoutAdminInput
+  voyageBundles?: Prisma.VoyageBundleUncheckedCreateNestedManyWithoutAdminInput
+  kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
+  kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
+  aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutUserInput
+  aiUsageLogs?: Prisma.AIUsageLogUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutIslandProgressInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutIslandProgressInput, Prisma.UserUncheckedCreateWithoutIslandProgressInput>
+}
+
+export type UserUpsertWithoutIslandProgressInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutIslandProgressInput, Prisma.UserUncheckedUpdateWithoutIslandProgressInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutIslandProgressInput, Prisma.UserUncheckedCreateWithoutIslandProgressInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutIslandProgressInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutIslandProgressInput, Prisma.UserUncheckedUpdateWithoutIslandProgressInput>
+}
+
+export type UserUpdateWithoutIslandProgressInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favoriteSea?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crowns?: Prisma.IntFieldUpdateOperationsInput | number
+  pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  adaptiveDifficulty?: Prisma.FloatFieldUpdateOperationsInput | number
+  mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  progress?: Prisma.UserVoyageProgressUpdateManyWithoutUserNestedInput
+  achievements?: Prisma.UserAchievementUpdateManyWithoutUserNestedInput
+  pointLog?: Prisma.PointTransactionUpdateManyWithoutUserNestedInput
+  crownLog?: Prisma.CrownTransactionUpdateManyWithoutUserNestedInput
+  streaks?: Prisma.StreakUpdateManyWithoutUserNestedInput
+  charms?: Prisma.SeaCharmUpdateManyWithoutUserNestedInput
+  attempts?: Prisma.TrialAttemptUpdateManyWithoutUserNestedInput
+  shipUpgrades?: Prisma.UserShipUpgradeUpdateManyWithoutUserNestedInput
+  chestClaims?: Prisma.DailyChestClaimUpdateManyWithoutUserNestedInput
+  parentLinks?: Prisma.StudentParentUpdateManyWithoutStudentNestedInput
+  parentOfLinks?: Prisma.StudentParentUpdateManyWithoutParentNestedInput
+  studentClasses?: Prisma.StudentClassUpdateManyWithoutStudentNestedInput
+  taughtClasses?: Prisma.ClassTeacherUpdateManyWithoutTeacherNestedInput
+  assignments?: Prisma.AssignmentUpdateManyWithoutTeacherNestedInput
+  studentAssignments?: Prisma.AssignmentUpdateManyWithoutStudentNestedInput
+  announcements?: Prisma.AnnouncementUpdateManyWithoutTeacherNestedInput
+  auditActions?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  loginRecords?: Prisma.LoginHistoryUpdateManyWithoutUserNestedInput
+  createdInvites?: Prisma.InviteLinkUpdateManyWithoutCreatorNestedInput
+  systemAnnouncements?: Prisma.SystemAnnouncementUpdateManyWithoutAdminNestedInput
+  voyageBundles?: Prisma.VoyageBundleUpdateManyWithoutAdminNestedInput
+  kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
+  kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
+  aiContexts?: Prisma.AIContextUpdateManyWithoutUserNestedInput
+  aiUsageLogs?: Prisma.AIUsageLogUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutIslandProgressInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favoriteSea?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crowns?: Prisma.IntFieldUpdateOperationsInput | number
+  pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  adaptiveDifficulty?: Prisma.FloatFieldUpdateOperationsInput | number
+  mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  progress?: Prisma.UserVoyageProgressUncheckedUpdateManyWithoutUserNestedInput
   achievements?: Prisma.UserAchievementUncheckedUpdateManyWithoutUserNestedInput
   pointLog?: Prisma.PointTransactionUncheckedUpdateManyWithoutUserNestedInput
   crownLog?: Prisma.CrownTransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -1648,6 +1877,7 @@ export type UserCreateWithoutPointLogInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   progress?: Prisma.UserVoyageProgressCreateNestedManyWithoutUserInput
+  islandProgress?: Prisma.UserIslandProgressCreateNestedManyWithoutUserInput
   achievements?: Prisma.UserAchievementCreateNestedManyWithoutUserInput
   crownLog?: Prisma.CrownTransactionCreateNestedManyWithoutUserInput
   streaks?: Prisma.StreakCreateNestedManyWithoutUserInput
@@ -1693,6 +1923,7 @@ export type UserUncheckedCreateWithoutPointLogInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   progress?: Prisma.UserVoyageProgressUncheckedCreateNestedManyWithoutUserInput
+  islandProgress?: Prisma.UserIslandProgressUncheckedCreateNestedManyWithoutUserInput
   achievements?: Prisma.UserAchievementUncheckedCreateNestedManyWithoutUserInput
   crownLog?: Prisma.CrownTransactionUncheckedCreateNestedManyWithoutUserInput
   streaks?: Prisma.StreakUncheckedCreateNestedManyWithoutUserInput
@@ -1754,6 +1985,7 @@ export type UserUpdateWithoutPointLogInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   progress?: Prisma.UserVoyageProgressUpdateManyWithoutUserNestedInput
+  islandProgress?: Prisma.UserIslandProgressUpdateManyWithoutUserNestedInput
   achievements?: Prisma.UserAchievementUpdateManyWithoutUserNestedInput
   crownLog?: Prisma.CrownTransactionUpdateManyWithoutUserNestedInput
   streaks?: Prisma.StreakUpdateManyWithoutUserNestedInput
@@ -1799,6 +2031,7 @@ export type UserUncheckedUpdateWithoutPointLogInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   progress?: Prisma.UserVoyageProgressUncheckedUpdateManyWithoutUserNestedInput
+  islandProgress?: Prisma.UserIslandProgressUncheckedUpdateManyWithoutUserNestedInput
   achievements?: Prisma.UserAchievementUncheckedUpdateManyWithoutUserNestedInput
   crownLog?: Prisma.CrownTransactionUncheckedUpdateManyWithoutUserNestedInput
   streaks?: Prisma.StreakUncheckedUpdateManyWithoutUserNestedInput
@@ -1844,6 +2077,7 @@ export type UserCreateWithoutCrownLogInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   progress?: Prisma.UserVoyageProgressCreateNestedManyWithoutUserInput
+  islandProgress?: Prisma.UserIslandProgressCreateNestedManyWithoutUserInput
   achievements?: Prisma.UserAchievementCreateNestedManyWithoutUserInput
   pointLog?: Prisma.PointTransactionCreateNestedManyWithoutUserInput
   streaks?: Prisma.StreakCreateNestedManyWithoutUserInput
@@ -1889,6 +2123,7 @@ export type UserUncheckedCreateWithoutCrownLogInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   progress?: Prisma.UserVoyageProgressUncheckedCreateNestedManyWithoutUserInput
+  islandProgress?: Prisma.UserIslandProgressUncheckedCreateNestedManyWithoutUserInput
   achievements?: Prisma.UserAchievementUncheckedCreateNestedManyWithoutUserInput
   pointLog?: Prisma.PointTransactionUncheckedCreateNestedManyWithoutUserInput
   streaks?: Prisma.StreakUncheckedCreateNestedManyWithoutUserInput
@@ -1950,6 +2185,7 @@ export type UserUpdateWithoutCrownLogInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   progress?: Prisma.UserVoyageProgressUpdateManyWithoutUserNestedInput
+  islandProgress?: Prisma.UserIslandProgressUpdateManyWithoutUserNestedInput
   achievements?: Prisma.UserAchievementUpdateManyWithoutUserNestedInput
   pointLog?: Prisma.PointTransactionUpdateManyWithoutUserNestedInput
   streaks?: Prisma.StreakUpdateManyWithoutUserNestedInput
@@ -1995,6 +2231,7 @@ export type UserUncheckedUpdateWithoutCrownLogInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   progress?: Prisma.UserVoyageProgressUncheckedUpdateManyWithoutUserNestedInput
+  islandProgress?: Prisma.UserIslandProgressUncheckedUpdateManyWithoutUserNestedInput
   achievements?: Prisma.UserAchievementUncheckedUpdateManyWithoutUserNestedInput
   pointLog?: Prisma.PointTransactionUncheckedUpdateManyWithoutUserNestedInput
   streaks?: Prisma.StreakUncheckedUpdateManyWithoutUserNestedInput
@@ -2040,6 +2277,7 @@ export type UserCreateWithoutShipUpgradesInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   progress?: Prisma.UserVoyageProgressCreateNestedManyWithoutUserInput
+  islandProgress?: Prisma.UserIslandProgressCreateNestedManyWithoutUserInput
   achievements?: Prisma.UserAchievementCreateNestedManyWithoutUserInput
   pointLog?: Prisma.PointTransactionCreateNestedManyWithoutUserInput
   crownLog?: Prisma.CrownTransactionCreateNestedManyWithoutUserInput
@@ -2085,6 +2323,7 @@ export type UserUncheckedCreateWithoutShipUpgradesInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   progress?: Prisma.UserVoyageProgressUncheckedCreateNestedManyWithoutUserInput
+  islandProgress?: Prisma.UserIslandProgressUncheckedCreateNestedManyWithoutUserInput
   achievements?: Prisma.UserAchievementUncheckedCreateNestedManyWithoutUserInput
   pointLog?: Prisma.PointTransactionUncheckedCreateNestedManyWithoutUserInput
   crownLog?: Prisma.CrownTransactionUncheckedCreateNestedManyWithoutUserInput
@@ -2146,6 +2385,7 @@ export type UserUpdateWithoutShipUpgradesInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   progress?: Prisma.UserVoyageProgressUpdateManyWithoutUserNestedInput
+  islandProgress?: Prisma.UserIslandProgressUpdateManyWithoutUserNestedInput
   achievements?: Prisma.UserAchievementUpdateManyWithoutUserNestedInput
   pointLog?: Prisma.PointTransactionUpdateManyWithoutUserNestedInput
   crownLog?: Prisma.CrownTransactionUpdateManyWithoutUserNestedInput
@@ -2191,6 +2431,7 @@ export type UserUncheckedUpdateWithoutShipUpgradesInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   progress?: Prisma.UserVoyageProgressUncheckedUpdateManyWithoutUserNestedInput
+  islandProgress?: Prisma.UserIslandProgressUncheckedUpdateManyWithoutUserNestedInput
   achievements?: Prisma.UserAchievementUncheckedUpdateManyWithoutUserNestedInput
   pointLog?: Prisma.PointTransactionUncheckedUpdateManyWithoutUserNestedInput
   crownLog?: Prisma.CrownTransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -2236,6 +2477,7 @@ export type UserCreateWithoutChestClaimsInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   progress?: Prisma.UserVoyageProgressCreateNestedManyWithoutUserInput
+  islandProgress?: Prisma.UserIslandProgressCreateNestedManyWithoutUserInput
   achievements?: Prisma.UserAchievementCreateNestedManyWithoutUserInput
   pointLog?: Prisma.PointTransactionCreateNestedManyWithoutUserInput
   crownLog?: Prisma.CrownTransactionCreateNestedManyWithoutUserInput
@@ -2281,6 +2523,7 @@ export type UserUncheckedCreateWithoutChestClaimsInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   progress?: Prisma.UserVoyageProgressUncheckedCreateNestedManyWithoutUserInput
+  islandProgress?: Prisma.UserIslandProgressUncheckedCreateNestedManyWithoutUserInput
   achievements?: Prisma.UserAchievementUncheckedCreateNestedManyWithoutUserInput
   pointLog?: Prisma.PointTransactionUncheckedCreateNestedManyWithoutUserInput
   crownLog?: Prisma.CrownTransactionUncheckedCreateNestedManyWithoutUserInput
@@ -2342,6 +2585,7 @@ export type UserUpdateWithoutChestClaimsInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   progress?: Prisma.UserVoyageProgressUpdateManyWithoutUserNestedInput
+  islandProgress?: Prisma.UserIslandProgressUpdateManyWithoutUserNestedInput
   achievements?: Prisma.UserAchievementUpdateManyWithoutUserNestedInput
   pointLog?: Prisma.PointTransactionUpdateManyWithoutUserNestedInput
   crownLog?: Prisma.CrownTransactionUpdateManyWithoutUserNestedInput
@@ -2387,6 +2631,7 @@ export type UserUncheckedUpdateWithoutChestClaimsInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   progress?: Prisma.UserVoyageProgressUncheckedUpdateManyWithoutUserNestedInput
+  islandProgress?: Prisma.UserIslandProgressUncheckedUpdateManyWithoutUserNestedInput
   achievements?: Prisma.UserAchievementUncheckedUpdateManyWithoutUserNestedInput
   pointLog?: Prisma.PointTransactionUncheckedUpdateManyWithoutUserNestedInput
   crownLog?: Prisma.CrownTransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -2432,6 +2677,7 @@ export type UserCreateWithoutAchievementsInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   progress?: Prisma.UserVoyageProgressCreateNestedManyWithoutUserInput
+  islandProgress?: Prisma.UserIslandProgressCreateNestedManyWithoutUserInput
   pointLog?: Prisma.PointTransactionCreateNestedManyWithoutUserInput
   crownLog?: Prisma.CrownTransactionCreateNestedManyWithoutUserInput
   streaks?: Prisma.StreakCreateNestedManyWithoutUserInput
@@ -2477,6 +2723,7 @@ export type UserUncheckedCreateWithoutAchievementsInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   progress?: Prisma.UserVoyageProgressUncheckedCreateNestedManyWithoutUserInput
+  islandProgress?: Prisma.UserIslandProgressUncheckedCreateNestedManyWithoutUserInput
   pointLog?: Prisma.PointTransactionUncheckedCreateNestedManyWithoutUserInput
   crownLog?: Prisma.CrownTransactionUncheckedCreateNestedManyWithoutUserInput
   streaks?: Prisma.StreakUncheckedCreateNestedManyWithoutUserInput
@@ -2538,6 +2785,7 @@ export type UserUpdateWithoutAchievementsInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   progress?: Prisma.UserVoyageProgressUpdateManyWithoutUserNestedInput
+  islandProgress?: Prisma.UserIslandProgressUpdateManyWithoutUserNestedInput
   pointLog?: Prisma.PointTransactionUpdateManyWithoutUserNestedInput
   crownLog?: Prisma.CrownTransactionUpdateManyWithoutUserNestedInput
   streaks?: Prisma.StreakUpdateManyWithoutUserNestedInput
@@ -2583,6 +2831,7 @@ export type UserUncheckedUpdateWithoutAchievementsInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   progress?: Prisma.UserVoyageProgressUncheckedUpdateManyWithoutUserNestedInput
+  islandProgress?: Prisma.UserIslandProgressUncheckedUpdateManyWithoutUserNestedInput
   pointLog?: Prisma.PointTransactionUncheckedUpdateManyWithoutUserNestedInput
   crownLog?: Prisma.CrownTransactionUncheckedUpdateManyWithoutUserNestedInput
   streaks?: Prisma.StreakUncheckedUpdateManyWithoutUserNestedInput
@@ -2628,6 +2877,7 @@ export type UserCreateWithoutStreaksInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   progress?: Prisma.UserVoyageProgressCreateNestedManyWithoutUserInput
+  islandProgress?: Prisma.UserIslandProgressCreateNestedManyWithoutUserInput
   achievements?: Prisma.UserAchievementCreateNestedManyWithoutUserInput
   pointLog?: Prisma.PointTransactionCreateNestedManyWithoutUserInput
   crownLog?: Prisma.CrownTransactionCreateNestedManyWithoutUserInput
@@ -2673,6 +2923,7 @@ export type UserUncheckedCreateWithoutStreaksInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   progress?: Prisma.UserVoyageProgressUncheckedCreateNestedManyWithoutUserInput
+  islandProgress?: Prisma.UserIslandProgressUncheckedCreateNestedManyWithoutUserInput
   achievements?: Prisma.UserAchievementUncheckedCreateNestedManyWithoutUserInput
   pointLog?: Prisma.PointTransactionUncheckedCreateNestedManyWithoutUserInput
   crownLog?: Prisma.CrownTransactionUncheckedCreateNestedManyWithoutUserInput
@@ -2734,6 +2985,7 @@ export type UserUpdateWithoutStreaksInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   progress?: Prisma.UserVoyageProgressUpdateManyWithoutUserNestedInput
+  islandProgress?: Prisma.UserIslandProgressUpdateManyWithoutUserNestedInput
   achievements?: Prisma.UserAchievementUpdateManyWithoutUserNestedInput
   pointLog?: Prisma.PointTransactionUpdateManyWithoutUserNestedInput
   crownLog?: Prisma.CrownTransactionUpdateManyWithoutUserNestedInput
@@ -2779,6 +3031,7 @@ export type UserUncheckedUpdateWithoutStreaksInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   progress?: Prisma.UserVoyageProgressUncheckedUpdateManyWithoutUserNestedInput
+  islandProgress?: Prisma.UserIslandProgressUncheckedUpdateManyWithoutUserNestedInput
   achievements?: Prisma.UserAchievementUncheckedUpdateManyWithoutUserNestedInput
   pointLog?: Prisma.PointTransactionUncheckedUpdateManyWithoutUserNestedInput
   crownLog?: Prisma.CrownTransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -2824,6 +3077,7 @@ export type UserCreateWithoutCharmsInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   progress?: Prisma.UserVoyageProgressCreateNestedManyWithoutUserInput
+  islandProgress?: Prisma.UserIslandProgressCreateNestedManyWithoutUserInput
   achievements?: Prisma.UserAchievementCreateNestedManyWithoutUserInput
   pointLog?: Prisma.PointTransactionCreateNestedManyWithoutUserInput
   crownLog?: Prisma.CrownTransactionCreateNestedManyWithoutUserInput
@@ -2869,6 +3123,7 @@ export type UserUncheckedCreateWithoutCharmsInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   progress?: Prisma.UserVoyageProgressUncheckedCreateNestedManyWithoutUserInput
+  islandProgress?: Prisma.UserIslandProgressUncheckedCreateNestedManyWithoutUserInput
   achievements?: Prisma.UserAchievementUncheckedCreateNestedManyWithoutUserInput
   pointLog?: Prisma.PointTransactionUncheckedCreateNestedManyWithoutUserInput
   crownLog?: Prisma.CrownTransactionUncheckedCreateNestedManyWithoutUserInput
@@ -2930,6 +3185,7 @@ export type UserUpdateWithoutCharmsInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   progress?: Prisma.UserVoyageProgressUpdateManyWithoutUserNestedInput
+  islandProgress?: Prisma.UserIslandProgressUpdateManyWithoutUserNestedInput
   achievements?: Prisma.UserAchievementUpdateManyWithoutUserNestedInput
   pointLog?: Prisma.PointTransactionUpdateManyWithoutUserNestedInput
   crownLog?: Prisma.CrownTransactionUpdateManyWithoutUserNestedInput
@@ -2975,6 +3231,7 @@ export type UserUncheckedUpdateWithoutCharmsInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   progress?: Prisma.UserVoyageProgressUncheckedUpdateManyWithoutUserNestedInput
+  islandProgress?: Prisma.UserIslandProgressUncheckedUpdateManyWithoutUserNestedInput
   achievements?: Prisma.UserAchievementUncheckedUpdateManyWithoutUserNestedInput
   pointLog?: Prisma.PointTransactionUncheckedUpdateManyWithoutUserNestedInput
   crownLog?: Prisma.CrownTransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -3020,6 +3277,7 @@ export type UserCreateWithoutTaughtClassesInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   progress?: Prisma.UserVoyageProgressCreateNestedManyWithoutUserInput
+  islandProgress?: Prisma.UserIslandProgressCreateNestedManyWithoutUserInput
   achievements?: Prisma.UserAchievementCreateNestedManyWithoutUserInput
   pointLog?: Prisma.PointTransactionCreateNestedManyWithoutUserInput
   crownLog?: Prisma.CrownTransactionCreateNestedManyWithoutUserInput
@@ -3065,6 +3323,7 @@ export type UserUncheckedCreateWithoutTaughtClassesInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   progress?: Prisma.UserVoyageProgressUncheckedCreateNestedManyWithoutUserInput
+  islandProgress?: Prisma.UserIslandProgressUncheckedCreateNestedManyWithoutUserInput
   achievements?: Prisma.UserAchievementUncheckedCreateNestedManyWithoutUserInput
   pointLog?: Prisma.PointTransactionUncheckedCreateNestedManyWithoutUserInput
   crownLog?: Prisma.CrownTransactionUncheckedCreateNestedManyWithoutUserInput
@@ -3126,6 +3385,7 @@ export type UserUpdateWithoutTaughtClassesInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   progress?: Prisma.UserVoyageProgressUpdateManyWithoutUserNestedInput
+  islandProgress?: Prisma.UserIslandProgressUpdateManyWithoutUserNestedInput
   achievements?: Prisma.UserAchievementUpdateManyWithoutUserNestedInput
   pointLog?: Prisma.PointTransactionUpdateManyWithoutUserNestedInput
   crownLog?: Prisma.CrownTransactionUpdateManyWithoutUserNestedInput
@@ -3171,6 +3431,7 @@ export type UserUncheckedUpdateWithoutTaughtClassesInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   progress?: Prisma.UserVoyageProgressUncheckedUpdateManyWithoutUserNestedInput
+  islandProgress?: Prisma.UserIslandProgressUncheckedUpdateManyWithoutUserNestedInput
   achievements?: Prisma.UserAchievementUncheckedUpdateManyWithoutUserNestedInput
   pointLog?: Prisma.PointTransactionUncheckedUpdateManyWithoutUserNestedInput
   crownLog?: Prisma.CrownTransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -3216,6 +3477,7 @@ export type UserCreateWithoutStudentClassesInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   progress?: Prisma.UserVoyageProgressCreateNestedManyWithoutUserInput
+  islandProgress?: Prisma.UserIslandProgressCreateNestedManyWithoutUserInput
   achievements?: Prisma.UserAchievementCreateNestedManyWithoutUserInput
   pointLog?: Prisma.PointTransactionCreateNestedManyWithoutUserInput
   crownLog?: Prisma.CrownTransactionCreateNestedManyWithoutUserInput
@@ -3261,6 +3523,7 @@ export type UserUncheckedCreateWithoutStudentClassesInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   progress?: Prisma.UserVoyageProgressUncheckedCreateNestedManyWithoutUserInput
+  islandProgress?: Prisma.UserIslandProgressUncheckedCreateNestedManyWithoutUserInput
   achievements?: Prisma.UserAchievementUncheckedCreateNestedManyWithoutUserInput
   pointLog?: Prisma.PointTransactionUncheckedCreateNestedManyWithoutUserInput
   crownLog?: Prisma.CrownTransactionUncheckedCreateNestedManyWithoutUserInput
@@ -3322,6 +3585,7 @@ export type UserUpdateWithoutStudentClassesInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   progress?: Prisma.UserVoyageProgressUpdateManyWithoutUserNestedInput
+  islandProgress?: Prisma.UserIslandProgressUpdateManyWithoutUserNestedInput
   achievements?: Prisma.UserAchievementUpdateManyWithoutUserNestedInput
   pointLog?: Prisma.PointTransactionUpdateManyWithoutUserNestedInput
   crownLog?: Prisma.CrownTransactionUpdateManyWithoutUserNestedInput
@@ -3367,6 +3631,7 @@ export type UserUncheckedUpdateWithoutStudentClassesInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   progress?: Prisma.UserVoyageProgressUncheckedUpdateManyWithoutUserNestedInput
+  islandProgress?: Prisma.UserIslandProgressUncheckedUpdateManyWithoutUserNestedInput
   achievements?: Prisma.UserAchievementUncheckedUpdateManyWithoutUserNestedInput
   pointLog?: Prisma.PointTransactionUncheckedUpdateManyWithoutUserNestedInput
   crownLog?: Prisma.CrownTransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -3412,6 +3677,7 @@ export type UserCreateWithoutParentLinksInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   progress?: Prisma.UserVoyageProgressCreateNestedManyWithoutUserInput
+  islandProgress?: Prisma.UserIslandProgressCreateNestedManyWithoutUserInput
   achievements?: Prisma.UserAchievementCreateNestedManyWithoutUserInput
   pointLog?: Prisma.PointTransactionCreateNestedManyWithoutUserInput
   crownLog?: Prisma.CrownTransactionCreateNestedManyWithoutUserInput
@@ -3457,6 +3723,7 @@ export type UserUncheckedCreateWithoutParentLinksInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   progress?: Prisma.UserVoyageProgressUncheckedCreateNestedManyWithoutUserInput
+  islandProgress?: Prisma.UserIslandProgressUncheckedCreateNestedManyWithoutUserInput
   achievements?: Prisma.UserAchievementUncheckedCreateNestedManyWithoutUserInput
   pointLog?: Prisma.PointTransactionUncheckedCreateNestedManyWithoutUserInput
   crownLog?: Prisma.CrownTransactionUncheckedCreateNestedManyWithoutUserInput
@@ -3507,6 +3774,7 @@ export type UserCreateWithoutParentOfLinksInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   progress?: Prisma.UserVoyageProgressCreateNestedManyWithoutUserInput
+  islandProgress?: Prisma.UserIslandProgressCreateNestedManyWithoutUserInput
   achievements?: Prisma.UserAchievementCreateNestedManyWithoutUserInput
   pointLog?: Prisma.PointTransactionCreateNestedManyWithoutUserInput
   crownLog?: Prisma.CrownTransactionCreateNestedManyWithoutUserInput
@@ -3552,6 +3820,7 @@ export type UserUncheckedCreateWithoutParentOfLinksInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   progress?: Prisma.UserVoyageProgressUncheckedCreateNestedManyWithoutUserInput
+  islandProgress?: Prisma.UserIslandProgressUncheckedCreateNestedManyWithoutUserInput
   achievements?: Prisma.UserAchievementUncheckedCreateNestedManyWithoutUserInput
   pointLog?: Prisma.PointTransactionUncheckedCreateNestedManyWithoutUserInput
   crownLog?: Prisma.CrownTransactionUncheckedCreateNestedManyWithoutUserInput
@@ -3613,6 +3882,7 @@ export type UserUpdateWithoutParentLinksInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   progress?: Prisma.UserVoyageProgressUpdateManyWithoutUserNestedInput
+  islandProgress?: Prisma.UserIslandProgressUpdateManyWithoutUserNestedInput
   achievements?: Prisma.UserAchievementUpdateManyWithoutUserNestedInput
   pointLog?: Prisma.PointTransactionUpdateManyWithoutUserNestedInput
   crownLog?: Prisma.CrownTransactionUpdateManyWithoutUserNestedInput
@@ -3658,6 +3928,7 @@ export type UserUncheckedUpdateWithoutParentLinksInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   progress?: Prisma.UserVoyageProgressUncheckedUpdateManyWithoutUserNestedInput
+  islandProgress?: Prisma.UserIslandProgressUncheckedUpdateManyWithoutUserNestedInput
   achievements?: Prisma.UserAchievementUncheckedUpdateManyWithoutUserNestedInput
   pointLog?: Prisma.PointTransactionUncheckedUpdateManyWithoutUserNestedInput
   crownLog?: Prisma.CrownTransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -3714,6 +3985,7 @@ export type UserUpdateWithoutParentOfLinksInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   progress?: Prisma.UserVoyageProgressUpdateManyWithoutUserNestedInput
+  islandProgress?: Prisma.UserIslandProgressUpdateManyWithoutUserNestedInput
   achievements?: Prisma.UserAchievementUpdateManyWithoutUserNestedInput
   pointLog?: Prisma.PointTransactionUpdateManyWithoutUserNestedInput
   crownLog?: Prisma.CrownTransactionUpdateManyWithoutUserNestedInput
@@ -3759,6 +4031,7 @@ export type UserUncheckedUpdateWithoutParentOfLinksInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   progress?: Prisma.UserVoyageProgressUncheckedUpdateManyWithoutUserNestedInput
+  islandProgress?: Prisma.UserIslandProgressUncheckedUpdateManyWithoutUserNestedInput
   achievements?: Prisma.UserAchievementUncheckedUpdateManyWithoutUserNestedInput
   pointLog?: Prisma.PointTransactionUncheckedUpdateManyWithoutUserNestedInput
   crownLog?: Prisma.CrownTransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -3804,6 +4077,7 @@ export type UserCreateWithoutAssignmentsInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   progress?: Prisma.UserVoyageProgressCreateNestedManyWithoutUserInput
+  islandProgress?: Prisma.UserIslandProgressCreateNestedManyWithoutUserInput
   achievements?: Prisma.UserAchievementCreateNestedManyWithoutUserInput
   pointLog?: Prisma.PointTransactionCreateNestedManyWithoutUserInput
   crownLog?: Prisma.CrownTransactionCreateNestedManyWithoutUserInput
@@ -3849,6 +4123,7 @@ export type UserUncheckedCreateWithoutAssignmentsInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   progress?: Prisma.UserVoyageProgressUncheckedCreateNestedManyWithoutUserInput
+  islandProgress?: Prisma.UserIslandProgressUncheckedCreateNestedManyWithoutUserInput
   achievements?: Prisma.UserAchievementUncheckedCreateNestedManyWithoutUserInput
   pointLog?: Prisma.PointTransactionUncheckedCreateNestedManyWithoutUserInput
   crownLog?: Prisma.CrownTransactionUncheckedCreateNestedManyWithoutUserInput
@@ -3899,6 +4174,7 @@ export type UserCreateWithoutStudentAssignmentsInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   progress?: Prisma.UserVoyageProgressCreateNestedManyWithoutUserInput
+  islandProgress?: Prisma.UserIslandProgressCreateNestedManyWithoutUserInput
   achievements?: Prisma.UserAchievementCreateNestedManyWithoutUserInput
   pointLog?: Prisma.PointTransactionCreateNestedManyWithoutUserInput
   crownLog?: Prisma.CrownTransactionCreateNestedManyWithoutUserInput
@@ -3944,6 +4220,7 @@ export type UserUncheckedCreateWithoutStudentAssignmentsInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   progress?: Prisma.UserVoyageProgressUncheckedCreateNestedManyWithoutUserInput
+  islandProgress?: Prisma.UserIslandProgressUncheckedCreateNestedManyWithoutUserInput
   achievements?: Prisma.UserAchievementUncheckedCreateNestedManyWithoutUserInput
   pointLog?: Prisma.PointTransactionUncheckedCreateNestedManyWithoutUserInput
   crownLog?: Prisma.CrownTransactionUncheckedCreateNestedManyWithoutUserInput
@@ -4005,6 +4282,7 @@ export type UserUpdateWithoutAssignmentsInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   progress?: Prisma.UserVoyageProgressUpdateManyWithoutUserNestedInput
+  islandProgress?: Prisma.UserIslandProgressUpdateManyWithoutUserNestedInput
   achievements?: Prisma.UserAchievementUpdateManyWithoutUserNestedInput
   pointLog?: Prisma.PointTransactionUpdateManyWithoutUserNestedInput
   crownLog?: Prisma.CrownTransactionUpdateManyWithoutUserNestedInput
@@ -4050,6 +4328,7 @@ export type UserUncheckedUpdateWithoutAssignmentsInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   progress?: Prisma.UserVoyageProgressUncheckedUpdateManyWithoutUserNestedInput
+  islandProgress?: Prisma.UserIslandProgressUncheckedUpdateManyWithoutUserNestedInput
   achievements?: Prisma.UserAchievementUncheckedUpdateManyWithoutUserNestedInput
   pointLog?: Prisma.PointTransactionUncheckedUpdateManyWithoutUserNestedInput
   crownLog?: Prisma.CrownTransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -4106,6 +4385,7 @@ export type UserUpdateWithoutStudentAssignmentsInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   progress?: Prisma.UserVoyageProgressUpdateManyWithoutUserNestedInput
+  islandProgress?: Prisma.UserIslandProgressUpdateManyWithoutUserNestedInput
   achievements?: Prisma.UserAchievementUpdateManyWithoutUserNestedInput
   pointLog?: Prisma.PointTransactionUpdateManyWithoutUserNestedInput
   crownLog?: Prisma.CrownTransactionUpdateManyWithoutUserNestedInput
@@ -4151,6 +4431,7 @@ export type UserUncheckedUpdateWithoutStudentAssignmentsInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   progress?: Prisma.UserVoyageProgressUncheckedUpdateManyWithoutUserNestedInput
+  islandProgress?: Prisma.UserIslandProgressUncheckedUpdateManyWithoutUserNestedInput
   achievements?: Prisma.UserAchievementUncheckedUpdateManyWithoutUserNestedInput
   pointLog?: Prisma.PointTransactionUncheckedUpdateManyWithoutUserNestedInput
   crownLog?: Prisma.CrownTransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -4196,6 +4477,7 @@ export type UserCreateWithoutAnnouncementsInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   progress?: Prisma.UserVoyageProgressCreateNestedManyWithoutUserInput
+  islandProgress?: Prisma.UserIslandProgressCreateNestedManyWithoutUserInput
   achievements?: Prisma.UserAchievementCreateNestedManyWithoutUserInput
   pointLog?: Prisma.PointTransactionCreateNestedManyWithoutUserInput
   crownLog?: Prisma.CrownTransactionCreateNestedManyWithoutUserInput
@@ -4241,6 +4523,7 @@ export type UserUncheckedCreateWithoutAnnouncementsInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   progress?: Prisma.UserVoyageProgressUncheckedCreateNestedManyWithoutUserInput
+  islandProgress?: Prisma.UserIslandProgressUncheckedCreateNestedManyWithoutUserInput
   achievements?: Prisma.UserAchievementUncheckedCreateNestedManyWithoutUserInput
   pointLog?: Prisma.PointTransactionUncheckedCreateNestedManyWithoutUserInput
   crownLog?: Prisma.CrownTransactionUncheckedCreateNestedManyWithoutUserInput
@@ -4302,6 +4585,7 @@ export type UserUpdateWithoutAnnouncementsInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   progress?: Prisma.UserVoyageProgressUpdateManyWithoutUserNestedInput
+  islandProgress?: Prisma.UserIslandProgressUpdateManyWithoutUserNestedInput
   achievements?: Prisma.UserAchievementUpdateManyWithoutUserNestedInput
   pointLog?: Prisma.PointTransactionUpdateManyWithoutUserNestedInput
   crownLog?: Prisma.CrownTransactionUpdateManyWithoutUserNestedInput
@@ -4347,6 +4631,7 @@ export type UserUncheckedUpdateWithoutAnnouncementsInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   progress?: Prisma.UserVoyageProgressUncheckedUpdateManyWithoutUserNestedInput
+  islandProgress?: Prisma.UserIslandProgressUncheckedUpdateManyWithoutUserNestedInput
   achievements?: Prisma.UserAchievementUncheckedUpdateManyWithoutUserNestedInput
   pointLog?: Prisma.PointTransactionUncheckedUpdateManyWithoutUserNestedInput
   crownLog?: Prisma.CrownTransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -4392,6 +4677,7 @@ export type UserCreateWithoutAuditActionsInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   progress?: Prisma.UserVoyageProgressCreateNestedManyWithoutUserInput
+  islandProgress?: Prisma.UserIslandProgressCreateNestedManyWithoutUserInput
   achievements?: Prisma.UserAchievementCreateNestedManyWithoutUserInput
   pointLog?: Prisma.PointTransactionCreateNestedManyWithoutUserInput
   crownLog?: Prisma.CrownTransactionCreateNestedManyWithoutUserInput
@@ -4437,6 +4723,7 @@ export type UserUncheckedCreateWithoutAuditActionsInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   progress?: Prisma.UserVoyageProgressUncheckedCreateNestedManyWithoutUserInput
+  islandProgress?: Prisma.UserIslandProgressUncheckedCreateNestedManyWithoutUserInput
   achievements?: Prisma.UserAchievementUncheckedCreateNestedManyWithoutUserInput
   pointLog?: Prisma.PointTransactionUncheckedCreateNestedManyWithoutUserInput
   crownLog?: Prisma.CrownTransactionUncheckedCreateNestedManyWithoutUserInput
@@ -4498,6 +4785,7 @@ export type UserUpdateWithoutAuditActionsInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   progress?: Prisma.UserVoyageProgressUpdateManyWithoutUserNestedInput
+  islandProgress?: Prisma.UserIslandProgressUpdateManyWithoutUserNestedInput
   achievements?: Prisma.UserAchievementUpdateManyWithoutUserNestedInput
   pointLog?: Prisma.PointTransactionUpdateManyWithoutUserNestedInput
   crownLog?: Prisma.CrownTransactionUpdateManyWithoutUserNestedInput
@@ -4543,6 +4831,7 @@ export type UserUncheckedUpdateWithoutAuditActionsInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   progress?: Prisma.UserVoyageProgressUncheckedUpdateManyWithoutUserNestedInput
+  islandProgress?: Prisma.UserIslandProgressUncheckedUpdateManyWithoutUserNestedInput
   achievements?: Prisma.UserAchievementUncheckedUpdateManyWithoutUserNestedInput
   pointLog?: Prisma.PointTransactionUncheckedUpdateManyWithoutUserNestedInput
   crownLog?: Prisma.CrownTransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -4588,6 +4877,7 @@ export type UserCreateWithoutLoginRecordsInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   progress?: Prisma.UserVoyageProgressCreateNestedManyWithoutUserInput
+  islandProgress?: Prisma.UserIslandProgressCreateNestedManyWithoutUserInput
   achievements?: Prisma.UserAchievementCreateNestedManyWithoutUserInput
   pointLog?: Prisma.PointTransactionCreateNestedManyWithoutUserInput
   crownLog?: Prisma.CrownTransactionCreateNestedManyWithoutUserInput
@@ -4633,6 +4923,7 @@ export type UserUncheckedCreateWithoutLoginRecordsInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   progress?: Prisma.UserVoyageProgressUncheckedCreateNestedManyWithoutUserInput
+  islandProgress?: Prisma.UserIslandProgressUncheckedCreateNestedManyWithoutUserInput
   achievements?: Prisma.UserAchievementUncheckedCreateNestedManyWithoutUserInput
   pointLog?: Prisma.PointTransactionUncheckedCreateNestedManyWithoutUserInput
   crownLog?: Prisma.CrownTransactionUncheckedCreateNestedManyWithoutUserInput
@@ -4694,6 +4985,7 @@ export type UserUpdateWithoutLoginRecordsInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   progress?: Prisma.UserVoyageProgressUpdateManyWithoutUserNestedInput
+  islandProgress?: Prisma.UserIslandProgressUpdateManyWithoutUserNestedInput
   achievements?: Prisma.UserAchievementUpdateManyWithoutUserNestedInput
   pointLog?: Prisma.PointTransactionUpdateManyWithoutUserNestedInput
   crownLog?: Prisma.CrownTransactionUpdateManyWithoutUserNestedInput
@@ -4739,6 +5031,7 @@ export type UserUncheckedUpdateWithoutLoginRecordsInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   progress?: Prisma.UserVoyageProgressUncheckedUpdateManyWithoutUserNestedInput
+  islandProgress?: Prisma.UserIslandProgressUncheckedUpdateManyWithoutUserNestedInput
   achievements?: Prisma.UserAchievementUncheckedUpdateManyWithoutUserNestedInput
   pointLog?: Prisma.PointTransactionUncheckedUpdateManyWithoutUserNestedInput
   crownLog?: Prisma.CrownTransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -4784,6 +5077,7 @@ export type UserCreateWithoutCreatedInvitesInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   progress?: Prisma.UserVoyageProgressCreateNestedManyWithoutUserInput
+  islandProgress?: Prisma.UserIslandProgressCreateNestedManyWithoutUserInput
   achievements?: Prisma.UserAchievementCreateNestedManyWithoutUserInput
   pointLog?: Prisma.PointTransactionCreateNestedManyWithoutUserInput
   crownLog?: Prisma.CrownTransactionCreateNestedManyWithoutUserInput
@@ -4829,6 +5123,7 @@ export type UserUncheckedCreateWithoutCreatedInvitesInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   progress?: Prisma.UserVoyageProgressUncheckedCreateNestedManyWithoutUserInput
+  islandProgress?: Prisma.UserIslandProgressUncheckedCreateNestedManyWithoutUserInput
   achievements?: Prisma.UserAchievementUncheckedCreateNestedManyWithoutUserInput
   pointLog?: Prisma.PointTransactionUncheckedCreateNestedManyWithoutUserInput
   crownLog?: Prisma.CrownTransactionUncheckedCreateNestedManyWithoutUserInput
@@ -4890,6 +5185,7 @@ export type UserUpdateWithoutCreatedInvitesInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   progress?: Prisma.UserVoyageProgressUpdateManyWithoutUserNestedInput
+  islandProgress?: Prisma.UserIslandProgressUpdateManyWithoutUserNestedInput
   achievements?: Prisma.UserAchievementUpdateManyWithoutUserNestedInput
   pointLog?: Prisma.PointTransactionUpdateManyWithoutUserNestedInput
   crownLog?: Prisma.CrownTransactionUpdateManyWithoutUserNestedInput
@@ -4935,6 +5231,7 @@ export type UserUncheckedUpdateWithoutCreatedInvitesInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   progress?: Prisma.UserVoyageProgressUncheckedUpdateManyWithoutUserNestedInput
+  islandProgress?: Prisma.UserIslandProgressUncheckedUpdateManyWithoutUserNestedInput
   achievements?: Prisma.UserAchievementUncheckedUpdateManyWithoutUserNestedInput
   pointLog?: Prisma.PointTransactionUncheckedUpdateManyWithoutUserNestedInput
   crownLog?: Prisma.CrownTransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -4980,6 +5277,7 @@ export type UserCreateWithoutSystemAnnouncementsInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   progress?: Prisma.UserVoyageProgressCreateNestedManyWithoutUserInput
+  islandProgress?: Prisma.UserIslandProgressCreateNestedManyWithoutUserInput
   achievements?: Prisma.UserAchievementCreateNestedManyWithoutUserInput
   pointLog?: Prisma.PointTransactionCreateNestedManyWithoutUserInput
   crownLog?: Prisma.CrownTransactionCreateNestedManyWithoutUserInput
@@ -5025,6 +5323,7 @@ export type UserUncheckedCreateWithoutSystemAnnouncementsInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   progress?: Prisma.UserVoyageProgressUncheckedCreateNestedManyWithoutUserInput
+  islandProgress?: Prisma.UserIslandProgressUncheckedCreateNestedManyWithoutUserInput
   achievements?: Prisma.UserAchievementUncheckedCreateNestedManyWithoutUserInput
   pointLog?: Prisma.PointTransactionUncheckedCreateNestedManyWithoutUserInput
   crownLog?: Prisma.CrownTransactionUncheckedCreateNestedManyWithoutUserInput
@@ -5086,6 +5385,7 @@ export type UserUpdateWithoutSystemAnnouncementsInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   progress?: Prisma.UserVoyageProgressUpdateManyWithoutUserNestedInput
+  islandProgress?: Prisma.UserIslandProgressUpdateManyWithoutUserNestedInput
   achievements?: Prisma.UserAchievementUpdateManyWithoutUserNestedInput
   pointLog?: Prisma.PointTransactionUpdateManyWithoutUserNestedInput
   crownLog?: Prisma.CrownTransactionUpdateManyWithoutUserNestedInput
@@ -5131,6 +5431,7 @@ export type UserUncheckedUpdateWithoutSystemAnnouncementsInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   progress?: Prisma.UserVoyageProgressUncheckedUpdateManyWithoutUserNestedInput
+  islandProgress?: Prisma.UserIslandProgressUncheckedUpdateManyWithoutUserNestedInput
   achievements?: Prisma.UserAchievementUncheckedUpdateManyWithoutUserNestedInput
   pointLog?: Prisma.PointTransactionUncheckedUpdateManyWithoutUserNestedInput
   crownLog?: Prisma.CrownTransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -5176,6 +5477,7 @@ export type UserCreateWithoutVoyageBundlesInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   progress?: Prisma.UserVoyageProgressCreateNestedManyWithoutUserInput
+  islandProgress?: Prisma.UserIslandProgressCreateNestedManyWithoutUserInput
   achievements?: Prisma.UserAchievementCreateNestedManyWithoutUserInput
   pointLog?: Prisma.PointTransactionCreateNestedManyWithoutUserInput
   crownLog?: Prisma.CrownTransactionCreateNestedManyWithoutUserInput
@@ -5221,6 +5523,7 @@ export type UserUncheckedCreateWithoutVoyageBundlesInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   progress?: Prisma.UserVoyageProgressUncheckedCreateNestedManyWithoutUserInput
+  islandProgress?: Prisma.UserIslandProgressUncheckedCreateNestedManyWithoutUserInput
   achievements?: Prisma.UserAchievementUncheckedCreateNestedManyWithoutUserInput
   pointLog?: Prisma.PointTransactionUncheckedCreateNestedManyWithoutUserInput
   crownLog?: Prisma.CrownTransactionUncheckedCreateNestedManyWithoutUserInput
@@ -5282,6 +5585,7 @@ export type UserUpdateWithoutVoyageBundlesInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   progress?: Prisma.UserVoyageProgressUpdateManyWithoutUserNestedInput
+  islandProgress?: Prisma.UserIslandProgressUpdateManyWithoutUserNestedInput
   achievements?: Prisma.UserAchievementUpdateManyWithoutUserNestedInput
   pointLog?: Prisma.PointTransactionUpdateManyWithoutUserNestedInput
   crownLog?: Prisma.CrownTransactionUpdateManyWithoutUserNestedInput
@@ -5327,6 +5631,7 @@ export type UserUncheckedUpdateWithoutVoyageBundlesInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   progress?: Prisma.UserVoyageProgressUncheckedUpdateManyWithoutUserNestedInput
+  islandProgress?: Prisma.UserIslandProgressUncheckedUpdateManyWithoutUserNestedInput
   achievements?: Prisma.UserAchievementUncheckedUpdateManyWithoutUserNestedInput
   pointLog?: Prisma.PointTransactionUncheckedUpdateManyWithoutUserNestedInput
   crownLog?: Prisma.CrownTransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -5372,6 +5677,7 @@ export type UserCreateWithoutKanbanCreatedInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   progress?: Prisma.UserVoyageProgressCreateNestedManyWithoutUserInput
+  islandProgress?: Prisma.UserIslandProgressCreateNestedManyWithoutUserInput
   achievements?: Prisma.UserAchievementCreateNestedManyWithoutUserInput
   pointLog?: Prisma.PointTransactionCreateNestedManyWithoutUserInput
   crownLog?: Prisma.CrownTransactionCreateNestedManyWithoutUserInput
@@ -5417,6 +5723,7 @@ export type UserUncheckedCreateWithoutKanbanCreatedInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   progress?: Prisma.UserVoyageProgressUncheckedCreateNestedManyWithoutUserInput
+  islandProgress?: Prisma.UserIslandProgressUncheckedCreateNestedManyWithoutUserInput
   achievements?: Prisma.UserAchievementUncheckedCreateNestedManyWithoutUserInput
   pointLog?: Prisma.PointTransactionUncheckedCreateNestedManyWithoutUserInput
   crownLog?: Prisma.CrownTransactionUncheckedCreateNestedManyWithoutUserInput
@@ -5467,6 +5774,7 @@ export type UserCreateWithoutKanbanAssignedInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   progress?: Prisma.UserVoyageProgressCreateNestedManyWithoutUserInput
+  islandProgress?: Prisma.UserIslandProgressCreateNestedManyWithoutUserInput
   achievements?: Prisma.UserAchievementCreateNestedManyWithoutUserInput
   pointLog?: Prisma.PointTransactionCreateNestedManyWithoutUserInput
   crownLog?: Prisma.CrownTransactionCreateNestedManyWithoutUserInput
@@ -5512,6 +5820,7 @@ export type UserUncheckedCreateWithoutKanbanAssignedInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   progress?: Prisma.UserVoyageProgressUncheckedCreateNestedManyWithoutUserInput
+  islandProgress?: Prisma.UserIslandProgressUncheckedCreateNestedManyWithoutUserInput
   achievements?: Prisma.UserAchievementUncheckedCreateNestedManyWithoutUserInput
   pointLog?: Prisma.PointTransactionUncheckedCreateNestedManyWithoutUserInput
   crownLog?: Prisma.CrownTransactionUncheckedCreateNestedManyWithoutUserInput
@@ -5573,6 +5882,7 @@ export type UserUpdateWithoutKanbanCreatedInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   progress?: Prisma.UserVoyageProgressUpdateManyWithoutUserNestedInput
+  islandProgress?: Prisma.UserIslandProgressUpdateManyWithoutUserNestedInput
   achievements?: Prisma.UserAchievementUpdateManyWithoutUserNestedInput
   pointLog?: Prisma.PointTransactionUpdateManyWithoutUserNestedInput
   crownLog?: Prisma.CrownTransactionUpdateManyWithoutUserNestedInput
@@ -5618,6 +5928,7 @@ export type UserUncheckedUpdateWithoutKanbanCreatedInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   progress?: Prisma.UserVoyageProgressUncheckedUpdateManyWithoutUserNestedInput
+  islandProgress?: Prisma.UserIslandProgressUncheckedUpdateManyWithoutUserNestedInput
   achievements?: Prisma.UserAchievementUncheckedUpdateManyWithoutUserNestedInput
   pointLog?: Prisma.PointTransactionUncheckedUpdateManyWithoutUserNestedInput
   crownLog?: Prisma.CrownTransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -5674,6 +5985,7 @@ export type UserUpdateWithoutKanbanAssignedInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   progress?: Prisma.UserVoyageProgressUpdateManyWithoutUserNestedInput
+  islandProgress?: Prisma.UserIslandProgressUpdateManyWithoutUserNestedInput
   achievements?: Prisma.UserAchievementUpdateManyWithoutUserNestedInput
   pointLog?: Prisma.PointTransactionUpdateManyWithoutUserNestedInput
   crownLog?: Prisma.CrownTransactionUpdateManyWithoutUserNestedInput
@@ -5719,6 +6031,7 @@ export type UserUncheckedUpdateWithoutKanbanAssignedInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   progress?: Prisma.UserVoyageProgressUncheckedUpdateManyWithoutUserNestedInput
+  islandProgress?: Prisma.UserIslandProgressUncheckedUpdateManyWithoutUserNestedInput
   achievements?: Prisma.UserAchievementUncheckedUpdateManyWithoutUserNestedInput
   pointLog?: Prisma.PointTransactionUncheckedUpdateManyWithoutUserNestedInput
   crownLog?: Prisma.CrownTransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -5764,6 +6077,7 @@ export type UserCreateWithoutAiUsageLogsInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   progress?: Prisma.UserVoyageProgressCreateNestedManyWithoutUserInput
+  islandProgress?: Prisma.UserIslandProgressCreateNestedManyWithoutUserInput
   achievements?: Prisma.UserAchievementCreateNestedManyWithoutUserInput
   pointLog?: Prisma.PointTransactionCreateNestedManyWithoutUserInput
   crownLog?: Prisma.CrownTransactionCreateNestedManyWithoutUserInput
@@ -5809,6 +6123,7 @@ export type UserUncheckedCreateWithoutAiUsageLogsInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   progress?: Prisma.UserVoyageProgressUncheckedCreateNestedManyWithoutUserInput
+  islandProgress?: Prisma.UserIslandProgressUncheckedCreateNestedManyWithoutUserInput
   achievements?: Prisma.UserAchievementUncheckedCreateNestedManyWithoutUserInput
   pointLog?: Prisma.PointTransactionUncheckedCreateNestedManyWithoutUserInput
   crownLog?: Prisma.CrownTransactionUncheckedCreateNestedManyWithoutUserInput
@@ -5870,6 +6185,7 @@ export type UserUpdateWithoutAiUsageLogsInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   progress?: Prisma.UserVoyageProgressUpdateManyWithoutUserNestedInput
+  islandProgress?: Prisma.UserIslandProgressUpdateManyWithoutUserNestedInput
   achievements?: Prisma.UserAchievementUpdateManyWithoutUserNestedInput
   pointLog?: Prisma.PointTransactionUpdateManyWithoutUserNestedInput
   crownLog?: Prisma.CrownTransactionUpdateManyWithoutUserNestedInput
@@ -5915,6 +6231,7 @@ export type UserUncheckedUpdateWithoutAiUsageLogsInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   progress?: Prisma.UserVoyageProgressUncheckedUpdateManyWithoutUserNestedInput
+  islandProgress?: Prisma.UserIslandProgressUncheckedUpdateManyWithoutUserNestedInput
   achievements?: Prisma.UserAchievementUncheckedUpdateManyWithoutUserNestedInput
   pointLog?: Prisma.PointTransactionUncheckedUpdateManyWithoutUserNestedInput
   crownLog?: Prisma.CrownTransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -5960,6 +6277,7 @@ export type UserCreateWithoutAiContextsInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   progress?: Prisma.UserVoyageProgressCreateNestedManyWithoutUserInput
+  islandProgress?: Prisma.UserIslandProgressCreateNestedManyWithoutUserInput
   achievements?: Prisma.UserAchievementCreateNestedManyWithoutUserInput
   pointLog?: Prisma.PointTransactionCreateNestedManyWithoutUserInput
   crownLog?: Prisma.CrownTransactionCreateNestedManyWithoutUserInput
@@ -6005,6 +6323,7 @@ export type UserUncheckedCreateWithoutAiContextsInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   progress?: Prisma.UserVoyageProgressUncheckedCreateNestedManyWithoutUserInput
+  islandProgress?: Prisma.UserIslandProgressUncheckedCreateNestedManyWithoutUserInput
   achievements?: Prisma.UserAchievementUncheckedCreateNestedManyWithoutUserInput
   pointLog?: Prisma.PointTransactionUncheckedCreateNestedManyWithoutUserInput
   crownLog?: Prisma.CrownTransactionUncheckedCreateNestedManyWithoutUserInput
@@ -6066,6 +6385,7 @@ export type UserUpdateWithoutAiContextsInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   progress?: Prisma.UserVoyageProgressUpdateManyWithoutUserNestedInput
+  islandProgress?: Prisma.UserIslandProgressUpdateManyWithoutUserNestedInput
   achievements?: Prisma.UserAchievementUpdateManyWithoutUserNestedInput
   pointLog?: Prisma.PointTransactionUpdateManyWithoutUserNestedInput
   crownLog?: Prisma.CrownTransactionUpdateManyWithoutUserNestedInput
@@ -6111,6 +6431,7 @@ export type UserUncheckedUpdateWithoutAiContextsInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   progress?: Prisma.UserVoyageProgressUncheckedUpdateManyWithoutUserNestedInput
+  islandProgress?: Prisma.UserIslandProgressUncheckedUpdateManyWithoutUserNestedInput
   achievements?: Prisma.UserAchievementUncheckedUpdateManyWithoutUserNestedInput
   pointLog?: Prisma.PointTransactionUncheckedUpdateManyWithoutUserNestedInput
   crownLog?: Prisma.CrownTransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -6143,6 +6464,7 @@ export type UserUncheckedUpdateWithoutAiContextsInput = {
 
 export type UserCountOutputType = {
   progress: number
+  islandProgress: number
   achievements: number
   pointLog: number
   crownLog: number
@@ -6171,6 +6493,7 @@ export type UserCountOutputType = {
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   progress?: boolean | UserCountOutputTypeCountProgressArgs
+  islandProgress?: boolean | UserCountOutputTypeCountIslandProgressArgs
   achievements?: boolean | UserCountOutputTypeCountAchievementsArgs
   pointLog?: boolean | UserCountOutputTypeCountPointLogArgs
   crownLog?: boolean | UserCountOutputTypeCountCrownLogArgs
@@ -6212,6 +6535,13 @@ export type UserCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
  */
 export type UserCountOutputTypeCountProgressArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.UserVoyageProgressWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountIslandProgressArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.UserIslandProgressWhereInput
 }
 
 /**
@@ -6403,6 +6733,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   deletedAt?: boolean
   createdAt?: boolean
   progress?: boolean | Prisma.User$progressArgs<ExtArgs>
+  islandProgress?: boolean | Prisma.User$islandProgressArgs<ExtArgs>
   achievements?: boolean | Prisma.User$achievementsArgs<ExtArgs>
   pointLog?: boolean | Prisma.User$pointLogArgs<ExtArgs>
   crownLog?: boolean | Prisma.User$crownLogArgs<ExtArgs>
@@ -6496,6 +6827,7 @@ export type UserSelectScalar = {
 export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "username" | "passwordHash" | "role" | "status" | "avatarUrl" | "age" | "bio" | "favoriteSea" | "learningGoals" | "crowns" | "pirateRank" | "hasFortuneWind" | "adaptiveDifficulty" | "mustChangePassword" | "deletedAt" | "createdAt", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   progress?: boolean | Prisma.User$progressArgs<ExtArgs>
+  islandProgress?: boolean | Prisma.User$islandProgressArgs<ExtArgs>
   achievements?: boolean | Prisma.User$achievementsArgs<ExtArgs>
   pointLog?: boolean | Prisma.User$pointLogArgs<ExtArgs>
   crownLog?: boolean | Prisma.User$crownLogArgs<ExtArgs>
@@ -6529,6 +6861,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   name: "User"
   objects: {
     progress: Prisma.$UserVoyageProgressPayload<ExtArgs>[]
+    islandProgress: Prisma.$UserIslandProgressPayload<ExtArgs>[]
     achievements: Prisma.$UserAchievementPayload<ExtArgs>[]
     pointLog: Prisma.$PointTransactionPayload<ExtArgs>[]
     crownLog: Prisma.$CrownTransactionPayload<ExtArgs>[]
@@ -6968,6 +7301,7 @@ readonly fields: UserFieldRefs;
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   progress<T extends Prisma.User$progressArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$progressArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserVoyageProgressPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  islandProgress<T extends Prisma.User$islandProgressArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$islandProgressArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserIslandProgressPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   achievements<T extends Prisma.User$achievementsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$achievementsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserAchievementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   pointLog<T extends Prisma.User$pointLogArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$pointLogArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PointTransactionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   crownLog<T extends Prisma.User$crownLogArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$crownLogArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CrownTransactionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -7453,6 +7787,30 @@ export type User$progressArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   take?: number
   skip?: number
   distinct?: Prisma.UserVoyageProgressScalarFieldEnum | Prisma.UserVoyageProgressScalarFieldEnum[]
+}
+
+/**
+ * User.islandProgress
+ */
+export type User$islandProgressArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the UserIslandProgress
+   */
+  select?: Prisma.UserIslandProgressSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the UserIslandProgress
+   */
+  omit?: Prisma.UserIslandProgressOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserIslandProgressInclude<ExtArgs> | null
+  where?: Prisma.UserIslandProgressWhereInput
+  orderBy?: Prisma.UserIslandProgressOrderByWithRelationInput | Prisma.UserIslandProgressOrderByWithRelationInput[]
+  cursor?: Prisma.UserIslandProgressWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.UserIslandProgressScalarFieldEnum | Prisma.UserIslandProgressScalarFieldEnum[]
 }
 
 /**

@@ -263,6 +263,23 @@ export type EnumVoyageLifecycleWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumVoyageLifecycleFilter<$PrismaModel>
 }
 
+export type EnumIslandTypeFilter<$PrismaModel = never> = {
+  equals?: $Enums.IslandType | Prisma.EnumIslandTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.IslandType[] | Prisma.ListEnumIslandTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.IslandType[] | Prisma.ListEnumIslandTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumIslandTypeFilter<$PrismaModel> | $Enums.IslandType
+}
+
+export type EnumIslandTypeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.IslandType | Prisma.EnumIslandTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.IslandType[] | Prisma.ListEnumIslandTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.IslandType[] | Prisma.ListEnumIslandTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumIslandTypeWithAggregatesFilter<$PrismaModel> | $Enums.IslandType
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumIslandTypeFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumIslandTypeFilter<$PrismaModel>
+}
+
 export type EnumTrialTypeFilter<$PrismaModel = never> = {
   equals?: $Enums.TrialType | Prisma.EnumTrialTypeFieldRefInput<$PrismaModel>
   in?: $Enums.TrialType[] | Prisma.ListEnumTrialTypeFieldRefInput<$PrismaModel>
@@ -784,6 +801,23 @@ export type NestedEnumVoyageLifecycleWithAggregatesFilter<$PrismaModel = never> 
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumVoyageLifecycleFilter<$PrismaModel>
   _max?: Prisma.NestedEnumVoyageLifecycleFilter<$PrismaModel>
+}
+
+export type NestedEnumIslandTypeFilter<$PrismaModel = never> = {
+  equals?: $Enums.IslandType | Prisma.EnumIslandTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.IslandType[] | Prisma.ListEnumIslandTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.IslandType[] | Prisma.ListEnumIslandTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumIslandTypeFilter<$PrismaModel> | $Enums.IslandType
+}
+
+export type NestedEnumIslandTypeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.IslandType | Prisma.EnumIslandTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.IslandType[] | Prisma.ListEnumIslandTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.IslandType[] | Prisma.ListEnumIslandTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumIslandTypeWithAggregatesFilter<$PrismaModel> | $Enums.IslandType
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumIslandTypeFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumIslandTypeFilter<$PrismaModel>
 }
 
 export type NestedEnumTrialTypeFilter<$PrismaModel = never> = {

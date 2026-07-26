@@ -7,7 +7,7 @@ export default async function ModerationPage() {
     const session = await auth();
     if (!session?.user || session.user.role !== "Admin") redirect("/");
 
-    const flagged = await prisma.trial.findMany({ where: { flagCount: { gt: 0 } }, orderBy: { flagCount: "desc" }, include: { voyage: { include: { sea: true } } } });
+    const flagged = await prisma.trial.findMany({ where: { flagCount: { gt: 0 } }, orderBy: { flagCount: "desc" }, include: { island: { include: { voyage: { include: { sea: true } } } } } });
 
     return (
         <div className="min-h-screen treasure-map">
@@ -27,7 +27,7 @@ export default async function ModerationPage() {
                             <div key={t.id} className="sea-card p-6">
                                 <div className="flex items-center gap-3 mb-3">
                                     <span className="text-sm px-2 py-0.5 rounded-full bg-red-900/30 text-red-400">🚩 {t.flagCount}</span>
-                                    <span className="text-xs text-amber-600">{t.voyage.sea.icon} {t.voyage.title}</span>
+                                    <span className="text-xs text-amber-600">{t.island?.voyage?.sea?.icon} {t.island?.voyage?.title}</span>
                                 </div>
                                 <p className="text-sm mb-3">{t.question}</p>
                                 <div className="flex gap-2">

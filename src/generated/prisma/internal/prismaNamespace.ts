@@ -400,10 +400,12 @@ export const ModelName = {
   User: 'User',
   Sea: 'Sea',
   Voyage: 'Voyage',
+  Island: 'Island',
   Trial: 'Trial',
   TrialVersion: 'TrialVersion',
   TrialAttempt: 'TrialAttempt',
   UserVoyageProgress: 'UserVoyageProgress',
+  UserIslandProgress: 'UserIslandProgress',
   PointTransaction: 'PointTransaction',
   CrownTransaction: 'CrownTransaction',
   ShipUpgrade: 'ShipUpgrade',
@@ -445,7 +447,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "sea" | "voyage" | "trial" | "trialVersion" | "trialAttempt" | "userVoyageProgress" | "pointTransaction" | "crownTransaction" | "shipUpgrade" | "userShipUpgrade" | "dailyChestClaim" | "achievement" | "userAchievement" | "streak" | "seaCharm" | "class" | "classTeacher" | "studentClass" | "studentParent" | "assignment" | "announcement" | "auditLog" | "loginHistory" | "inviteLink" | "systemAnnouncement" | "economySettings" | "systemSetting" | "voyageBundle" | "voyageBundleItem" | "kanbanCard" | "aIUsageLog" | "aIContext"
+    modelProps: "user" | "sea" | "voyage" | "island" | "trial" | "trialVersion" | "trialAttempt" | "userVoyageProgress" | "userIslandProgress" | "pointTransaction" | "crownTransaction" | "shipUpgrade" | "userShipUpgrade" | "dailyChestClaim" | "achievement" | "userAchievement" | "streak" | "seaCharm" | "class" | "classTeacher" | "studentClass" | "studentParent" | "assignment" | "announcement" | "auditLog" | "loginHistory" | "inviteLink" | "systemAnnouncement" | "economySettings" | "systemSetting" | "voyageBundle" | "voyageBundleItem" | "kanbanCard" | "aIUsageLog" | "aIContext"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -668,6 +670,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.VoyageCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.VoyageCountAggregateOutputType> | number
+        }
+      }
+    }
+    Island: {
+      payload: Prisma.$IslandPayload<ExtArgs>
+      fields: Prisma.IslandFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.IslandFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IslandPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.IslandFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IslandPayload>
+        }
+        findFirst: {
+          args: Prisma.IslandFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IslandPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.IslandFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IslandPayload>
+        }
+        findMany: {
+          args: Prisma.IslandFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IslandPayload>[]
+        }
+        create: {
+          args: Prisma.IslandCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IslandPayload>
+        }
+        createMany: {
+          args: Prisma.IslandCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.IslandCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IslandPayload>[]
+        }
+        delete: {
+          args: Prisma.IslandDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IslandPayload>
+        }
+        update: {
+          args: Prisma.IslandUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IslandPayload>
+        }
+        deleteMany: {
+          args: Prisma.IslandDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.IslandUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.IslandUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IslandPayload>[]
+        }
+        upsert: {
+          args: Prisma.IslandUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IslandPayload>
+        }
+        aggregate: {
+          args: Prisma.IslandAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateIsland>
+        }
+        groupBy: {
+          args: Prisma.IslandGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.IslandGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.IslandCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.IslandCountAggregateOutputType> | number
         }
       }
     }
@@ -964,6 +1040,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.UserVoyageProgressCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.UserVoyageProgressCountAggregateOutputType> | number
+        }
+      }
+    }
+    UserIslandProgress: {
+      payload: Prisma.$UserIslandProgressPayload<ExtArgs>
+      fields: Prisma.UserIslandProgressFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.UserIslandProgressFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserIslandProgressPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.UserIslandProgressFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserIslandProgressPayload>
+        }
+        findFirst: {
+          args: Prisma.UserIslandProgressFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserIslandProgressPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.UserIslandProgressFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserIslandProgressPayload>
+        }
+        findMany: {
+          args: Prisma.UserIslandProgressFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserIslandProgressPayload>[]
+        }
+        create: {
+          args: Prisma.UserIslandProgressCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserIslandProgressPayload>
+        }
+        createMany: {
+          args: Prisma.UserIslandProgressCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.UserIslandProgressCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserIslandProgressPayload>[]
+        }
+        delete: {
+          args: Prisma.UserIslandProgressDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserIslandProgressPayload>
+        }
+        update: {
+          args: Prisma.UserIslandProgressUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserIslandProgressPayload>
+        }
+        deleteMany: {
+          args: Prisma.UserIslandProgressDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.UserIslandProgressUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.UserIslandProgressUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserIslandProgressPayload>[]
+        }
+        upsert: {
+          args: Prisma.UserIslandProgressUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserIslandProgressPayload>
+        }
+        aggregate: {
+          args: Prisma.UserIslandProgressAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateUserIslandProgress>
+        }
+        groupBy: {
+          args: Prisma.UserIslandProgressGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.UserIslandProgressGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.UserIslandProgressCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.UserIslandProgressCountAggregateOutputType> | number
         }
       }
     }
@@ -2991,8 +3141,22 @@ export const VoyageScalarFieldEnum = {
 export type VoyageScalarFieldEnum = (typeof VoyageScalarFieldEnum)[keyof typeof VoyageScalarFieldEnum]
 
 
+export const IslandScalarFieldEnum = {
+  id: 'id',
+  voyageId: 'voyageId',
+  title: 'title',
+  description: 'description',
+  type: 'type',
+  sortOrder: 'sortOrder',
+  createdAt: 'createdAt'
+} as const
+
+export type IslandScalarFieldEnum = (typeof IslandScalarFieldEnum)[keyof typeof IslandScalarFieldEnum]
+
+
 export const TrialScalarFieldEnum = {
   id: 'id',
+  islandId: 'islandId',
   voyageId: 'voyageId',
   type: 'type',
   question: 'question',
@@ -3053,6 +3217,20 @@ export const UserVoyageProgressScalarFieldEnum = {
 } as const
 
 export type UserVoyageProgressScalarFieldEnum = (typeof UserVoyageProgressScalarFieldEnum)[keyof typeof UserVoyageProgressScalarFieldEnum]
+
+
+export const UserIslandProgressScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  islandId: 'islandId',
+  status: 'status',
+  trialsCompleted: 'trialsCompleted',
+  skulls: 'skulls',
+  attemptCount: 'attemptCount',
+  completedAt: 'completedAt'
+} as const
+
+export type UserIslandProgressScalarFieldEnum = (typeof UserIslandProgressScalarFieldEnum)[keyof typeof UserIslandProgressScalarFieldEnum]
 
 
 export const PointTransactionScalarFieldEnum = {
@@ -3517,6 +3695,20 @@ export type ListEnumVoyageLifecycleFieldRefInput<$PrismaModel> = FieldRefInputTy
 
 
 /**
+ * Reference to a field of type 'IslandType'
+ */
+export type EnumIslandTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'IslandType'>
+    
+
+
+/**
+ * Reference to a field of type 'IslandType[]'
+ */
+export type ListEnumIslandTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'IslandType[]'>
+    
+
+
+/**
  * Reference to a field of type 'TrialType'
  */
 export type EnumTrialTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TrialType'>
@@ -3823,10 +4015,12 @@ export type GlobalOmitConfig = {
   user?: Prisma.UserOmit
   sea?: Prisma.SeaOmit
   voyage?: Prisma.VoyageOmit
+  island?: Prisma.IslandOmit
   trial?: Prisma.TrialOmit
   trialVersion?: Prisma.TrialVersionOmit
   trialAttempt?: Prisma.TrialAttemptOmit
   userVoyageProgress?: Prisma.UserVoyageProgressOmit
+  userIslandProgress?: Prisma.UserIslandProgressOmit
   pointTransaction?: Prisma.PointTransactionOmit
   crownTransaction?: Prisma.CrownTransactionOmit
   shipUpgrade?: Prisma.ShipUpgradeOmit

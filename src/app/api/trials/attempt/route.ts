@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
 
         const trial = await prisma.trial.findUnique({
             where: { id: trialId },
-            select: { points: true, voyageId: true, voyage: { select: { captainGauntlet: true } } },
+            select: { points: true, island: { select: { voyageId: true, voyage: { select: { captainGauntlet: true } } } } },
         });
         const economy = await getEconomySettings();
 
@@ -52,7 +52,7 @@ export async function POST(request: NextRequest) {
         }
 
         // ── Captain's Gauntlet ──
-        const isGauntlet = trial?.voyage?.captainGauntlet === true;
+        const isGauntlet = trial?.island?.voyage?.captainGauntlet === true;
         const gauntletMult = isGauntlet ? 2 : 1;
 
         // ── Rewards ──
@@ -78,8 +78,9 @@ export async function POST(request: NextRequest) {
         }
 
         // ── Progress ──
-        if (trial?.voyageId) {
-            const prog = await prisma.userVoyageProgress.findUnique({ where: { userId_voyageId: { userId, voyageId: trial.voyageId } } });
+        const voyageId = trial?.island?.voyageId;
+        if (voyageId) {
+            const prog = await prisma.userVoyageProgress.findUnique({ where: { userId_voyageId: { userId, voyageId } } });
             if (prog) {
                 await prisma.userVoyageProgress.update({
                     where: { id: prog.id },
@@ -87,7 +88,7 @@ export async function POST(request: NextRequest) {
                 });
             } else {
                 await prisma.userVoyageProgress.create({
-                    data: { userId, voyageId: trial.voyageId, status: "InProgress", trialsCompleted: 1, skulls: isStormPass ? 0 : (skulls || 0) },
+                    data: { userId, voyageId, status: "InProgress", trialsCompleted: 1, skulls: isStormPass ? 0 : (skulls || 0) },
                 });
             }
         }

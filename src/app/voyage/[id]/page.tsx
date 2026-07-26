@@ -18,9 +18,16 @@ export default async function VoyagePage({ params }: { params: Promise<{ id: str
 
     const voyage = await prisma.voyage.findUnique({
         where: { id },
-        include: { sea: true, trials: { orderBy: { createdAt: "asc" } }, progress: { where: { userId: session.user.id } } },
+        include: {
+            sea: true,
+            islands: { orderBy: { sortOrder: "asc" }, include: { trials: { orderBy: { createdAt: "asc" } } } },
+            progress: { where: { userId: session.user.id } },
+        },
     });
     if (!voyage) return <div className="min-h-screen flex items-center justify-center treasure-map"><div className="text-center"><div className="text-6xl mb-4">🗺️</div><h1 className="text-2xl" style={{ color: "#F7C948" }}>Voyage Lost at Sea</h1><p className="text-amber-600 mb-4">This map seems to lead nowhere...</p><a href="/map" className="btn-pirate inline-block">← Back to Chart</a></div></div>;
+
+    // Flatten island trials for the TrialPlayer (temporary — will add island-aware UI later)
+    const allTrials = voyage.islands.flatMap(i => i.trials);
 
     const progress = voyage.progress[0];
     const locked = progress?.status === "Locked";
@@ -45,16 +52,16 @@ export default async function VoyagePage({ params }: { params: Promise<{ id: str
                     <div className="flex items-center gap-3"><span className="text-lg">{voyage.sea.icon}</span><h1 className="text-lg truncate max-w-[200px]" style={{ fontFamily: "'Pirata One',cursive" }}>{voyage.title}</h1>{voyage.captainGauntlet && <span>⚔️</span>}</div>
                     <div className="flex items-center gap-2 text-sm"><span>🔥 {streak?.currentStreak || 0}d</span></div>
                 </div>
-                <div className="h-1 bg-abyssal"><div className="h-full bg-gradient-to-r from-amber-600 to-yellow-500 transition-all duration-500" style={{ width: `${progress ? (progress.trialsCompleted / voyage.trials.length) * 100 : 0}%` }} /></div>
+                <div className="h-1 bg-abyssal"><div className="h-full bg-gradient-to-r from-amber-600 to-yellow-500 transition-all duration-500" style={{ width: `${progress ? (progress.trialsCompleted / allTrials.length) * 100 : 0}%` }} /></div>
             </header>
-            <TrialPlayer voyage={voyage} progress={progress} isCompleted={done} userId={session.user.id} charms={charms} hasFortuneWind={userData?.hasFortuneWind || false} />
+            <TrialPlayer voyage={{ ...voyage, trials: allTrials }} progress={progress} isCompleted={done} userId={session.user.id} charms={charms} hasFortuneWind={userData?.hasFortuneWind || false} />
             <TutorChat context={{
                 voyageTitle: voyage.title,
                 seaName: voyage.sea.name,
                 subject: SEA_SUBJECTS[voyage.sea.name] || "General",
                 trialIndex: progress?.trialsCompleted || 0,
-                totalTrials: voyage.trials.length,
-                trialType: voyage.trials[progress?.trialsCompleted || 0]?.type || "unknown",
+                totalTrials: allTrials.length,
+                trialType: allTrials[progress?.trialsCompleted || 0]?.type || "unknown",
             }} />
         </div>
     );

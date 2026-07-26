@@ -57,6 +57,11 @@ export type Sea = Prisma.SeaModel
  */
 export type Voyage = Prisma.VoyageModel
 /**
+ * Model Island
+ * 
+ */
+export type Island = Prisma.IslandModel
+/**
  * Model Trial
  * 
  */
@@ -76,6 +81,11 @@ export type TrialAttempt = Prisma.TrialAttemptModel
  * 
  */
 export type UserVoyageProgress = Prisma.UserVoyageProgressModel
+/**
+ * Model UserIslandProgress
+ * 
+ */
+export type UserIslandProgress = Prisma.UserIslandProgressModel
 /**
  * Model PointTransaction
  * 

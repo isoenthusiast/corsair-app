@@ -120,6 +120,15 @@ export const VoyageLifecycle = {
 export type VoyageLifecycle = (typeof VoyageLifecycle)[keyof typeof VoyageLifecycle]
 
 
+export const IslandType = {
+  regular: 'regular',
+  courage_challenge: 'courage_challenge',
+  boss_fight: 'boss_fight'
+} as const
+
+export type IslandType = (typeof IslandType)[keyof typeof IslandType]
+
+
 export const AIContextFeature = {
   trials: 'trials',
   voyages: 'voyages',
