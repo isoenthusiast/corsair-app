@@ -28,6 +28,15 @@ export default function KanbanBoard() {
     const [newPrio, setNewPrio] = useState("Medium");
     const [error, setError] = useState("");
 
+    // Edit modal state
+    const [editingCard, setEditingCard] = useState<KanbanCard | null>(null);
+    const [editTitle, setEditTitle] = useState("");
+    const [editDesc, setEditDesc] = useState("");
+    const [editPrio, setEditPrio] = useState("Medium");
+    const [editStatus, setEditStatus] = useState("Backlog");
+    const [editSaving, setEditSaving] = useState(false);
+    const [editError, setEditError] = useState("");
+
     const fetchCards = useCallback(async () => {
         const res = await fetch("/api/admin/kanban");
         const data = await res.json();
@@ -62,6 +71,33 @@ export default function KanbanBoard() {
         });
         if (res.ok) { setNewTitle(""); setNewDesc(""); setNewPrio("Medium"); setShowCreate(false); fetchCards(); }
         else setError("Failed to create task");
+    }
+
+    function openEdit(card: KanbanCard) {
+        setEditingCard(card);
+        setEditTitle(card.title);
+        setEditDesc(card.description || "");
+        setEditPrio(card.priority);
+        setEditStatus(card.status);
+        setEditError("");
+    }
+
+    async function saveEdit() {
+        if (!editingCard || !editTitle.trim()) return;
+        setEditSaving(true);
+        setEditError("");
+        const res = await fetch(`/api/admin/kanban/${editingCard.id}`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ title: editTitle, description: editDesc || null, priority: editPrio, status: editStatus }),
+        });
+        if (res.ok) {
+            setEditingCard(null);
+            fetchCards();
+        } else {
+            setEditError("Failed to save changes");
+        }
+        setEditSaving(false);
     }
 
     if (loading) return <div className="text-amber-600 text-center py-16">Loading board...</div>;
@@ -114,6 +150,7 @@ export default function KanbanBoard() {
                                         key={card.id}
                                         draggable
                                         onDragStart={e => handleDragStart(e, card.id)}
+                                        onClick={() => openEdit(card)}
                                         className="p-3 rounded-lg bg-abyssal border border-amber-900/30 cursor-grab active:cursor-grabbing hover:border-amber-600/50 transition"
                                     >
                                         <div className="flex items-center gap-2 mb-1">
@@ -142,6 +179,59 @@ export default function KanbanBoard() {
                     );
                 })}
             </div>
+
+            {/* Edit modal */}
+            {editingCard && (
+                <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50" onClick={() => setEditingCard(null)}>
+                    <div className="parchment rounded-2xl p-6 w-full max-w-lg mx-4" onClick={e => e.stopPropagation()}>
+                        <div className="flex items-center justify-between mb-4">
+                            <h2 className="text-xl font-bold" style={{ color: "#5D4037" }}>
+                                {TYPE_BADGES[editingCard.type] || "📝"} Edit Card
+                            </h2>
+                            <button onClick={() => setEditingCard(null)} className="text-amber-800 hover:text-red-700 text-2xl leading-none">&times;</button>
+                        </div>
+
+                        <div className="space-y-4">
+                            <div>
+                                <label className="block text-sm font-bold mb-1" style={{ color: "#5D4037" }}>Title</label>
+                                <input value={editTitle} onChange={e => setEditTitle(e.target.value)}
+                                    className="w-full px-3 py-2 rounded-lg bg-white border-2 border-amber-800/30 text-sm"
+                                    style={{ color: "#3E2723" }} />
+                            </div>
+                            <div>
+                                <label className="block text-sm font-bold mb-1" style={{ color: "#5D4037" }}>Description</label>
+                                <textarea value={editDesc} onChange={e => setEditDesc(e.target.value)} rows={3}
+                                    className="w-full px-3 py-2 rounded-lg bg-white border-2 border-amber-800/30 text-sm"
+                                    style={{ color: "#3E2723" }} />
+                            </div>
+                            <div className="flex gap-3">
+                                <div className="flex-1">
+                                    <label className="block text-sm font-bold mb-1" style={{ color: "#5D4037" }}>Status</label>
+                                    <select value={editStatus} onChange={e => setEditStatus(e.target.value)}
+                                        className="w-full px-3 py-2 rounded-lg bg-white border-2 border-amber-800/30 text-sm" style={{ color: "#3E2723" }}>
+                                        {COLUMNS.map(c => <option key={c} value={c}>{COLUMN_LABELS[c]}</option>)}
+                                    </select>
+                                </div>
+                                <div className="flex-1">
+                                    <label className="block text-sm font-bold mb-1" style={{ color: "#5D4037" }}>Priority</label>
+                                    <select value={editPrio} onChange={e => setEditPrio(e.target.value)}
+                                        className="w-full px-3 py-2 rounded-lg bg-white border-2 border-amber-800/30 text-sm" style={{ color: "#3E2723" }}>
+                                        {["Low", "Medium", "High"].map(p => <option key={p} value={p}>{p}</option>)}
+                                    </select>
+                                </div>
+                            </div>
+                            {editError && <p className="text-red-600 text-sm">{editError}</p>}
+                            <div className="flex gap-3 justify-end pt-2">
+                                <button onClick={() => setEditingCard(null)} className="px-4 py-2 rounded-lg border border-amber-800/30 text-sm" style={{ color: "#5D4037" }}>Cancel</button>
+                                <button onClick={saveEdit} disabled={editSaving}
+                                    className="btn-pirate text-sm">
+                                    {editSaving ? "Saving..." : "Save Changes"}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

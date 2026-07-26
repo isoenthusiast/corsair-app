@@ -7,14 +7,25 @@ export async function PATCH(request: NextRequest, { params }: { params: Promise<
     if (!session?.user || session.user.role === "Student") return NextResponse.json({ error: "Unauthorized" }, { status: 403 });
 
     const { id } = await params;
-    const { status } = await request.json();
+    const body = await request.json();
+    const { status, title, description, priority } = body;
 
-    if (!["Backlog", "InProgress", "Done", "Archive"].includes(status)) {
-        return NextResponse.json({ error: "Invalid status" }, { status: 400 });
+    const data: any = {};
+    if (status) {
+        if (!["Backlog", "InProgress", "Done", "Archive"].includes(status)) {
+            return NextResponse.json({ error: "Invalid status" }, { status: 400 });
+        }
+        data.status = status;
+        if (status === "Archive") data.archivedAt = new Date();
     }
-
-    const data: any = { status };
-    if (status === "Archive") data.archivedAt = new Date();
+    if (title !== undefined) data.title = title;
+    if (description !== undefined) data.description = description || null;
+    if (priority !== undefined) {
+        if (!["Low", "Medium", "High"].includes(priority)) {
+            return NextResponse.json({ error: "Invalid priority" }, { status: 400 });
+        }
+        data.priority = priority;
+    }
 
     try {
         const card = await prisma.kanbanCard.update({ where: { id }, data });
