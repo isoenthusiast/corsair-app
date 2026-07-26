@@ -26,7 +26,7 @@ function LoginForm() {
                     setError("Impersonation link expired. Please try again.");
                     setLoading(false);
                 } else {
-                    router.push("/map");
+                    router.push("/");
                     router.refresh();
                 }
             });
@@ -39,7 +39,7 @@ function LoginForm() {
         setError("");
         const result = await signIn("credentials", { username, password, redirect: false });
         if (result?.error) { setError("Wrong username or password, sailor!"); setLoading(false); }
-        else { router.push("/map"); router.refresh(); }
+        else { router.push("/"); router.refresh(); }
     }
 
     return (
