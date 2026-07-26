@@ -83,6 +83,32 @@ export async function handleCourageChallenge(userId: string, voyageId: string, i
 }
 
 /**
+ * Handle regular island completion (Islands 1-11).
+ * Pass threshold: ≥60%. On pass: unlock next island. On fail: retry same island.
+ */
+export async function handleRegularIsland(userId: string, voyageId: string, islandId: string) {
+    const score = await getIslandScore(userId, islandId);
+    const passed = score >= 60;
+
+    if (passed) {
+        const islands = await prisma.island.findMany({
+            where: { voyageId }, orderBy: { sortOrder: "asc" },
+        });
+        const currentIdx = islands.findIndex(i => i.id === islandId);
+        const nextIsland = islands[currentIdx + 1];
+        if (nextIsland) {
+            await prisma.userIslandProgress.upsert({
+                where: { userId_islandId: { userId, islandId: nextIsland.id } },
+                update: { status: "Available" },
+                create: { userId, islandId: nextIsland.id, status: "Available" },
+            });
+        }
+    }
+
+    return { passed, score };
+}
+
+/**
  * Handle Boss Fight outcome (Island 12).
  * On pass: mark voyage Mastered, unlock next voyage.
  * On fail: reset islands 1-11, increment attemptCount, return { retry: true }.

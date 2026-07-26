@@ -1,7 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import { auth } from "@/lib/auth";
 import { getEconomySettings } from "@/lib/economy";
-import { handleCourageChallenge, handleBossFight, getSkipRewards } from "@/lib/islandGame";
+import { handleCourageChallenge, handleBossFight, handleRegularIsland, getSkipRewards } from "@/lib/islandGame";
 import { NextRequest, NextResponse } from "next/server";
 
 export const runtime = "nodejs";
@@ -58,6 +58,11 @@ export async function POST(request: NextRequest) {
                     return NextResponse.json({ passed: true, score: bf.score, bonus, crowns });
                 }
                 return NextResponse.json({ passed: false, score: bf.score, retry: true });
+            }
+
+            if (island?.type === "regular") {
+                const ri = await handleRegularIsland(userId, voyageId, islandId);
+                return NextResponse.json({ passed: ri.passed, score: ri.score });
             }
         }
 

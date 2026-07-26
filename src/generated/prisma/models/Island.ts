@@ -61,6 +61,7 @@ export type IslandCountAggregateOutputType = {
   description: number
   type: number
   sortOrder: number
+  syllabusTags: number
   createdAt: number
   _all: number
 }
@@ -101,6 +102,7 @@ export type IslandCountAggregateInputType = {
   description?: true
   type?: true
   sortOrder?: true
+  syllabusTags?: true
   createdAt?: true
   _all?: true
 }
@@ -198,6 +200,7 @@ export type IslandGroupByOutputType = {
   description: string | null
   type: $Enums.IslandType
   sortOrder: number
+  syllabusTags: string[]
   createdAt: Date
   _count: IslandCountAggregateOutputType | null
   _avg: IslandAvgAggregateOutputType | null
@@ -231,6 +234,7 @@ export type IslandWhereInput = {
   description?: Prisma.StringNullableFilter<"Island"> | string | null
   type?: Prisma.EnumIslandTypeFilter<"Island"> | $Enums.IslandType
   sortOrder?: Prisma.IntFilter<"Island"> | number
+  syllabusTags?: Prisma.StringNullableListFilter<"Island">
   createdAt?: Prisma.DateTimeFilter<"Island"> | Date | string
   voyage?: Prisma.XOR<Prisma.VoyageScalarRelationFilter, Prisma.VoyageWhereInput>
   trials?: Prisma.TrialListRelationFilter
@@ -244,6 +248,7 @@ export type IslandOrderByWithRelationInput = {
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   type?: Prisma.SortOrder
   sortOrder?: Prisma.SortOrder
+  syllabusTags?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   voyage?: Prisma.VoyageOrderByWithRelationInput
   trials?: Prisma.TrialOrderByRelationAggregateInput
@@ -261,6 +266,7 @@ export type IslandWhereUniqueInput = Prisma.AtLeast<{
   description?: Prisma.StringNullableFilter<"Island"> | string | null
   type?: Prisma.EnumIslandTypeFilter<"Island"> | $Enums.IslandType
   sortOrder?: Prisma.IntFilter<"Island"> | number
+  syllabusTags?: Prisma.StringNullableListFilter<"Island">
   createdAt?: Prisma.DateTimeFilter<"Island"> | Date | string
   voyage?: Prisma.XOR<Prisma.VoyageScalarRelationFilter, Prisma.VoyageWhereInput>
   trials?: Prisma.TrialListRelationFilter
@@ -274,6 +280,7 @@ export type IslandOrderByWithAggregationInput = {
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   type?: Prisma.SortOrder
   sortOrder?: Prisma.SortOrder
+  syllabusTags?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.IslandCountOrderByAggregateInput
   _avg?: Prisma.IslandAvgOrderByAggregateInput
@@ -292,6 +299,7 @@ export type IslandScalarWhereWithAggregatesInput = {
   description?: Prisma.StringNullableWithAggregatesFilter<"Island"> | string | null
   type?: Prisma.EnumIslandTypeWithAggregatesFilter<"Island"> | $Enums.IslandType
   sortOrder?: Prisma.IntWithAggregatesFilter<"Island"> | number
+  syllabusTags?: Prisma.StringNullableListFilter<"Island">
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Island"> | Date | string
 }
 
@@ -301,6 +309,7 @@ export type IslandCreateInput = {
   description?: string | null
   type?: $Enums.IslandType
   sortOrder?: number
+  syllabusTags?: Prisma.IslandCreatesyllabusTagsInput | string[]
   createdAt?: Date | string
   voyage: Prisma.VoyageCreateNestedOneWithoutIslandsInput
   trials?: Prisma.TrialCreateNestedManyWithoutIslandInput
@@ -314,6 +323,7 @@ export type IslandUncheckedCreateInput = {
   description?: string | null
   type?: $Enums.IslandType
   sortOrder?: number
+  syllabusTags?: Prisma.IslandCreatesyllabusTagsInput | string[]
   createdAt?: Date | string
   trials?: Prisma.TrialUncheckedCreateNestedManyWithoutIslandInput
   progress?: Prisma.UserIslandProgressUncheckedCreateNestedManyWithoutIslandInput
@@ -325,6 +335,7 @@ export type IslandUpdateInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumIslandTypeFieldUpdateOperationsInput | $Enums.IslandType
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
+  syllabusTags?: Prisma.IslandUpdatesyllabusTagsInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   voyage?: Prisma.VoyageUpdateOneRequiredWithoutIslandsNestedInput
   trials?: Prisma.TrialUpdateManyWithoutIslandNestedInput
@@ -338,6 +349,7 @@ export type IslandUncheckedUpdateInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumIslandTypeFieldUpdateOperationsInput | $Enums.IslandType
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
+  syllabusTags?: Prisma.IslandUpdatesyllabusTagsInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   trials?: Prisma.TrialUncheckedUpdateManyWithoutIslandNestedInput
   progress?: Prisma.UserIslandProgressUncheckedUpdateManyWithoutIslandNestedInput
@@ -350,6 +362,7 @@ export type IslandCreateManyInput = {
   description?: string | null
   type?: $Enums.IslandType
   sortOrder?: number
+  syllabusTags?: Prisma.IslandCreatesyllabusTagsInput | string[]
   createdAt?: Date | string
 }
 
@@ -359,6 +372,7 @@ export type IslandUpdateManyMutationInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumIslandTypeFieldUpdateOperationsInput | $Enums.IslandType
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
+  syllabusTags?: Prisma.IslandUpdatesyllabusTagsInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -369,6 +383,7 @@ export type IslandUncheckedUpdateManyInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumIslandTypeFieldUpdateOperationsInput | $Enums.IslandType
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
+  syllabusTags?: Prisma.IslandUpdatesyllabusTagsInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -394,6 +409,7 @@ export type IslandCountOrderByAggregateInput = {
   description?: Prisma.SortOrder
   type?: Prisma.SortOrder
   sortOrder?: Prisma.SortOrder
+  syllabusTags?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -477,8 +493,17 @@ export type IslandUncheckedUpdateManyWithoutVoyageNestedInput = {
   deleteMany?: Prisma.IslandScalarWhereInput | Prisma.IslandScalarWhereInput[]
 }
 
+export type IslandCreatesyllabusTagsInput = {
+  set: string[]
+}
+
 export type EnumIslandTypeFieldUpdateOperationsInput = {
   set?: $Enums.IslandType
+}
+
+export type IslandUpdatesyllabusTagsInput = {
+  set?: string[]
+  push?: string | string[]
 }
 
 export type IslandCreateNestedOneWithoutTrialsInput = {
@@ -517,6 +542,7 @@ export type IslandCreateWithoutVoyageInput = {
   description?: string | null
   type?: $Enums.IslandType
   sortOrder?: number
+  syllabusTags?: Prisma.IslandCreatesyllabusTagsInput | string[]
   createdAt?: Date | string
   trials?: Prisma.TrialCreateNestedManyWithoutIslandInput
   progress?: Prisma.UserIslandProgressCreateNestedManyWithoutIslandInput
@@ -528,6 +554,7 @@ export type IslandUncheckedCreateWithoutVoyageInput = {
   description?: string | null
   type?: $Enums.IslandType
   sortOrder?: number
+  syllabusTags?: Prisma.IslandCreatesyllabusTagsInput | string[]
   createdAt?: Date | string
   trials?: Prisma.TrialUncheckedCreateNestedManyWithoutIslandInput
   progress?: Prisma.UserIslandProgressUncheckedCreateNestedManyWithoutIslandInput
@@ -569,6 +596,7 @@ export type IslandScalarWhereInput = {
   description?: Prisma.StringNullableFilter<"Island"> | string | null
   type?: Prisma.EnumIslandTypeFilter<"Island"> | $Enums.IslandType
   sortOrder?: Prisma.IntFilter<"Island"> | number
+  syllabusTags?: Prisma.StringNullableListFilter<"Island">
   createdAt?: Prisma.DateTimeFilter<"Island"> | Date | string
 }
 
@@ -578,6 +606,7 @@ export type IslandCreateWithoutTrialsInput = {
   description?: string | null
   type?: $Enums.IslandType
   sortOrder?: number
+  syllabusTags?: Prisma.IslandCreatesyllabusTagsInput | string[]
   createdAt?: Date | string
   voyage: Prisma.VoyageCreateNestedOneWithoutIslandsInput
   progress?: Prisma.UserIslandProgressCreateNestedManyWithoutIslandInput
@@ -590,6 +619,7 @@ export type IslandUncheckedCreateWithoutTrialsInput = {
   description?: string | null
   type?: $Enums.IslandType
   sortOrder?: number
+  syllabusTags?: Prisma.IslandCreatesyllabusTagsInput | string[]
   createdAt?: Date | string
   progress?: Prisma.UserIslandProgressUncheckedCreateNestedManyWithoutIslandInput
 }
@@ -616,6 +646,7 @@ export type IslandUpdateWithoutTrialsInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumIslandTypeFieldUpdateOperationsInput | $Enums.IslandType
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
+  syllabusTags?: Prisma.IslandUpdatesyllabusTagsInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   voyage?: Prisma.VoyageUpdateOneRequiredWithoutIslandsNestedInput
   progress?: Prisma.UserIslandProgressUpdateManyWithoutIslandNestedInput
@@ -628,6 +659,7 @@ export type IslandUncheckedUpdateWithoutTrialsInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumIslandTypeFieldUpdateOperationsInput | $Enums.IslandType
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
+  syllabusTags?: Prisma.IslandUpdatesyllabusTagsInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   progress?: Prisma.UserIslandProgressUncheckedUpdateManyWithoutIslandNestedInput
 }
@@ -638,6 +670,7 @@ export type IslandCreateWithoutProgressInput = {
   description?: string | null
   type?: $Enums.IslandType
   sortOrder?: number
+  syllabusTags?: Prisma.IslandCreatesyllabusTagsInput | string[]
   createdAt?: Date | string
   voyage: Prisma.VoyageCreateNestedOneWithoutIslandsInput
   trials?: Prisma.TrialCreateNestedManyWithoutIslandInput
@@ -650,6 +683,7 @@ export type IslandUncheckedCreateWithoutProgressInput = {
   description?: string | null
   type?: $Enums.IslandType
   sortOrder?: number
+  syllabusTags?: Prisma.IslandCreatesyllabusTagsInput | string[]
   createdAt?: Date | string
   trials?: Prisma.TrialUncheckedCreateNestedManyWithoutIslandInput
 }
@@ -676,6 +710,7 @@ export type IslandUpdateWithoutProgressInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumIslandTypeFieldUpdateOperationsInput | $Enums.IslandType
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
+  syllabusTags?: Prisma.IslandUpdatesyllabusTagsInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   voyage?: Prisma.VoyageUpdateOneRequiredWithoutIslandsNestedInput
   trials?: Prisma.TrialUpdateManyWithoutIslandNestedInput
@@ -688,6 +723,7 @@ export type IslandUncheckedUpdateWithoutProgressInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumIslandTypeFieldUpdateOperationsInput | $Enums.IslandType
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
+  syllabusTags?: Prisma.IslandUpdatesyllabusTagsInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   trials?: Prisma.TrialUncheckedUpdateManyWithoutIslandNestedInput
 }
@@ -698,6 +734,7 @@ export type IslandCreateManyVoyageInput = {
   description?: string | null
   type?: $Enums.IslandType
   sortOrder?: number
+  syllabusTags?: Prisma.IslandCreatesyllabusTagsInput | string[]
   createdAt?: Date | string
 }
 
@@ -707,6 +744,7 @@ export type IslandUpdateWithoutVoyageInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumIslandTypeFieldUpdateOperationsInput | $Enums.IslandType
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
+  syllabusTags?: Prisma.IslandUpdatesyllabusTagsInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   trials?: Prisma.TrialUpdateManyWithoutIslandNestedInput
   progress?: Prisma.UserIslandProgressUpdateManyWithoutIslandNestedInput
@@ -718,6 +756,7 @@ export type IslandUncheckedUpdateWithoutVoyageInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumIslandTypeFieldUpdateOperationsInput | $Enums.IslandType
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
+  syllabusTags?: Prisma.IslandUpdatesyllabusTagsInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   trials?: Prisma.TrialUncheckedUpdateManyWithoutIslandNestedInput
   progress?: Prisma.UserIslandProgressUncheckedUpdateManyWithoutIslandNestedInput
@@ -729,6 +768,7 @@ export type IslandUncheckedUpdateManyWithoutVoyageInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumIslandTypeFieldUpdateOperationsInput | $Enums.IslandType
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
+  syllabusTags?: Prisma.IslandUpdatesyllabusTagsInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -779,6 +819,7 @@ export type IslandSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   description?: boolean
   type?: boolean
   sortOrder?: boolean
+  syllabusTags?: boolean
   createdAt?: boolean
   voyage?: boolean | Prisma.VoyageDefaultArgs<ExtArgs>
   trials?: boolean | Prisma.Island$trialsArgs<ExtArgs>
@@ -793,6 +834,7 @@ export type IslandSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   description?: boolean
   type?: boolean
   sortOrder?: boolean
+  syllabusTags?: boolean
   createdAt?: boolean
   voyage?: boolean | Prisma.VoyageDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["island"]>
@@ -804,6 +846,7 @@ export type IslandSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   description?: boolean
   type?: boolean
   sortOrder?: boolean
+  syllabusTags?: boolean
   createdAt?: boolean
   voyage?: boolean | Prisma.VoyageDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["island"]>
@@ -815,10 +858,11 @@ export type IslandSelectScalar = {
   description?: boolean
   type?: boolean
   sortOrder?: boolean
+  syllabusTags?: boolean
   createdAt?: boolean
 }
 
-export type IslandOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "voyageId" | "title" | "description" | "type" | "sortOrder" | "createdAt", ExtArgs["result"]["island"]>
+export type IslandOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "voyageId" | "title" | "description" | "type" | "sortOrder" | "syllabusTags" | "createdAt", ExtArgs["result"]["island"]>
 export type IslandInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   voyage?: boolean | Prisma.VoyageDefaultArgs<ExtArgs>
   trials?: boolean | Prisma.Island$trialsArgs<ExtArgs>
@@ -846,6 +890,7 @@ export type $IslandPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     description: string | null
     type: $Enums.IslandType
     sortOrder: number
+    syllabusTags: string[]
     createdAt: Date
   }, ExtArgs["result"]["island"]>
   composites: {}
@@ -1279,6 +1324,7 @@ export interface IslandFieldRefs {
   readonly description: Prisma.FieldRef<"Island", 'String'>
   readonly type: Prisma.FieldRef<"Island", 'IslandType'>
   readonly sortOrder: Prisma.FieldRef<"Island", 'Int'>
+  readonly syllabusTags: Prisma.FieldRef<"Island", 'String[]'>
   readonly createdAt: Prisma.FieldRef<"Island", 'DateTime'>
 }
     

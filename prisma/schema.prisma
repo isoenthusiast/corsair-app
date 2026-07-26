@@ -109,13 +109,14 @@ model Voyage {
 }
 
 model Island {
-  id          String     @id @default(cuid())
-  voyageId    String
-  title       String
-  description String?
-  type        IslandType @default(regular)
-  sortOrder   Int        @default(0)
-  createdAt   DateTime   @default(now())
+  id           String     @id @default(cuid())
+  voyageId     String
+  title        String
+  description  String?
+  type         IslandType @default(regular)
+  sortOrder    Int        @default(0)
+  syllabusTags String[]   @default([])
+  createdAt    DateTime   @default(now())
 
   voyage   Voyage               @relation(fields: [voyageId], references: [id])
   trials   Trial[]

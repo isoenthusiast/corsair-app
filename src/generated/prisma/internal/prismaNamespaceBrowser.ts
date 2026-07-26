@@ -172,6 +172,7 @@ export const IslandScalarFieldEnum = {
   description: 'description',
   type: 'type',
   sortOrder: 'sortOrder',
+  syllabusTags: 'syllabusTags',
   createdAt: 'createdAt'
 } as const
 
