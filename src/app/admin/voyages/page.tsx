@@ -12,10 +12,29 @@ export default async function AdminVoyagesPage() {
         include: {
             voyages: {
                 orderBy: { sortOrder: "asc" },
-                select: { id: true, title: true, difficulty: true, lifecycle: true, captainGauntlet: true, _count: { select: { trials: true } } },
+                select: {
+                    id: true, title: true, difficulty: true, lifecycle: true, captainGauntlet: true,
+                    _count: { select: { islands: true } },
+                    islands: { select: { id: true, _count: { select: { trials: true } } } },
+                },
             },
         },
     });
 
-    return <VoyageCurriculumClient seas={JSON.parse(JSON.stringify(seas))} />;
+    // Transform: add prep count (islands with ≥1 trial)
+    const seaData = seas.map(sea => ({
+        ...sea,
+        voyages: sea.voyages.map(v => ({
+            id: v.id,
+            title: v.title,
+            difficulty: v.difficulty,
+            lifecycle: v.lifecycle,
+            captainGauntlet: v.captainGauntlet,
+            islandCount: v._count.islands,
+            preppedIslands: v.islands.filter(i => i._count.trials > 0).length,
+            totalTrials: v.islands.reduce((s, i) => s + i._count.trials, 0),
+        })),
+    }));
+
+    return <VoyageCurriculumClient seas={JSON.parse(JSON.stringify(seaData))} />;
 }

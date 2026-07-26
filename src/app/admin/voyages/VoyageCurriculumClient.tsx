@@ -5,14 +5,19 @@ import Link from "next/link";
 
 interface SeaData {
     id: string; name: string; icon: string;
-    voyages: { id: string; title: string; difficulty: number; lifecycle: string; captainGauntlet: boolean; _count: { trials: number } }[];
+    voyages: { id: string; title: string; difficulty: number; lifecycle: string; captainGauntlet: boolean; islandCount: number; preppedIslands: number; totalTrials: number }[];
+}
+
+interface IslandData {
+    id: string; title: string; description: string | null; type: string; sortOrder: number;
+    trials: { id: string; type: string; question: string; points: number; _count: { attempts: number; versions: number } }[];
 }
 
 interface VoyageDetail {
     id: string; title: string; description: string | null; difficulty: number; lifecycle: string;
     objectives: string | null; estimatedMinutes: number | null; tags: string[]; skills: string[];
     captainGauntlet: boolean; sea: { id: string; name: string; icon: string };
-    trials: { id: string; type: string; question: string; points: number; _count: { attempts: number; versions: number } }[];
+    islands: IslandData[];
 }
 
 interface TrialForm {
@@ -57,6 +62,11 @@ export default function VoyageCurriculumClient({ seas }: { seas: SeaData[] }) {
     const [generating, setGenerating] = useState(false);
     const chatEndRef = useRef<HTMLDivElement>(null);
 
+    // Island state
+    const [selectedIslandIdx, setSelectedIslandIdx] = useState(0);
+    const [preppingAll, setPreppingAll] = useState(false);
+    const [prepProgress, setPrepProgress] = useState("");
+
     // Expand first sea by default
     useEffect(() => {
         if (seas.length > 0) {
@@ -67,6 +77,7 @@ export default function VoyageCurriculumClient({ seas }: { seas: SeaData[] }) {
     // Load voyage detail
     async function selectVoyage(id: string) {
         setSelectedVoyageId(id);
+        setSelectedIslandIdx(0);
         setLoadingVoyage(true);
         setChatMessages([]);
         setReadyToGenerate(false);
@@ -84,7 +95,7 @@ export default function VoyageCurriculumClient({ seas }: { seas: SeaData[] }) {
     }
 
     // ── Trial Edit ──
-    function openTrialEdit(trial: VoyageDetail["trials"][0]) {
+    function openTrialEdit(trial: IslandData["trials"][0]) {
         setEditingTrial({
             id: trial.id, type: trial.type, question: trial.question,
             options: "", answer: "", explanation: "", hint: "",
@@ -195,25 +206,51 @@ export default function VoyageCurriculumClient({ seas }: { seas: SeaData[] }) {
     async function generateTrials() {
         if (!selectedVoyageId) return;
         setGenerating(true);
-
         try {
             const res = await fetch(`/api/admin/voyages/${selectedVoyageId}/generate-trials`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
+                method: "POST", headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ count: 5 }),
             });
-
             if (res.ok) {
-                setChatMessages(prev => [...prev, { role: "ai", content: "🏴‍☠️ Trials generated successfully! They've been added to the voyage." }]);
+                setChatMessages(prev => [...prev, { role: "ai", content: "🏴‍☠️ Trials generated successfully!" }]);
                 setReadyToGenerate(false);
                 selectVoyage(selectedVoyageId);
-            } else {
-                setChatMessages(prev => [...prev, { role: "ai", content: "⚓ Failed to generate trials. Check the AI configuration." }]);
             }
-        } catch {
-            setChatMessages(prev => [...prev, { role: "ai", content: "⚓ Error generating trials." }]);
-        }
+        } catch { /* ignore */ }
         setGenerating(false);
+    }
+
+    async function generateForIsland(islandId: string, count?: number) {
+        if (!selectedVoyageId) return;
+        setGenerating(true);
+        try {
+            const res = await fetch(`/api/admin/voyages/${selectedVoyageId}/generate-trials`, {
+                method: "POST", headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ count: count || 5, islandId }),
+            });
+            if (res.ok) selectVoyage(selectedVoyageId);
+        } catch { /* ignore */ }
+        setGenerating(false);
+    }
+
+    async function prepAllIslands() {
+        if (!voyage || preppingAll) return;
+        setPreppingAll(true);
+        const emptyIslands = voyage.islands.filter(i => i.trials.length === 0);
+        for (let i = 0; i < emptyIslands.length; i++) {
+            const isl = emptyIslands[i];
+            const isExam = isl.type === "courage_challenge" || isl.type === "boss_fight";
+            setPrepProgress(`Generating for island ${isl.sortOrder} (${i + 1}/${emptyIslands.length})...`);
+            try {
+                await fetch(`/api/admin/voyages/${selectedVoyageId}/generate-trials`, {
+                    method: "POST", headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ count: isExam ? 10 : 5, islandId: isl.id }),
+                });
+            } catch { /* continue */ }
+        }
+        setPrepProgress("");
+        setPreppingAll(false);
+        selectVoyage(selectedVoyageId!);
     }
 
     // ── Render ──
@@ -263,7 +300,7 @@ export default function VoyageCurriculumClient({ seas }: { seas: SeaData[] }) {
                                                     </span>
                                                     <span className="truncate flex-1">{v.title}</span>
                                                     {v.captainGauntlet && <span>⚔️</span>}
-                                                    <span className="text-amber-700">{v._count.trials}</span>
+                                                    <span className="text-amber-700 text-xs">{v.preppedIslands}/{v.islandCount} 🏝️</span>
                                                 </button>
                                             ))
                                         )}
@@ -312,33 +349,98 @@ export default function VoyageCurriculumClient({ seas }: { seas: SeaData[] }) {
                                 )}
                             </div>
 
-                            {/* Trials List */}
-                            <div className="mb-6">
-                                <div className="flex items-center justify-between mb-3">
-                                    <h3 className="text-lg" style={{ fontFamily: "'Pirata One', cursive", color: "#F7C948" }}>⚔️ Trials ({voyage.trials.length})</h3>
+                            {/* Island Tabs */}
+                            <div className="mb-4">
+                                <div className="flex items-center justify-between mb-2">
+                                    <h3 className="text-sm font-bold" style={{ color: "#F7C948" }}>🏝️ Islands</h3>
+                                    <button
+                                        onClick={prepAllIslands}
+                                        disabled={preppingAll}
+                                        className="text-xs px-3 py-1 rounded-lg bg-purple-900/30 border border-purple-600/30 text-purple-300 hover:bg-purple-900/50 disabled:opacity-50 transition"
+                                    >
+                                        {preppingAll ? "⏳ Prepping..." : "⚡ Prep All Islands"}
+                                    </button>
                                 </div>
-                                {voyage.trials.length === 0 ? (
-                                    <div className="p-6 rounded-xl bg-abyssal/50 border border-amber-900/20 text-center">
-                                        <p className="text-amber-600 text-sm">No trials yet</p>
-                                        <p className="text-amber-800 text-xs mt-1">Use the AI chat below to generate trials</p>
-                                    </div>
-                                ) : (
-                                    <div className="space-y-2">
-                                        {voyage.trials.map(trial => (
-                                            <div key={trial.id} className="p-3 rounded-lg bg-abyssal/50 border border-amber-900/20 flex items-center gap-3">
-                                                <span className="text-sm">{TYPE_BADGES[trial.type] || "📝"}</span>
-                                                <div className="flex-1 min-w-0">
-                                                    <p className="text-sm text-white truncate">{trial.question}</p>
-                                                    <p className="text-xs text-amber-600">{trial.points} pts · {trial._count.versions} versions</p>
-                                                </div>
-                                                <button onClick={() => openTrialEdit(trial)} className="text-xs px-3 py-1 rounded-lg bg-amber-900/30 text-amber-400 hover:bg-amber-800/40 transition">
-                                                    Edit
-                                                </button>
-                                            </div>
-                                        ))}
+                                {prepProgress && <p className="text-xs text-purple-400 mb-2">{prepProgress}</p>}
+                                <div className="flex gap-1 overflow-x-auto pb-1">
+                                    {voyage.islands.map((isl, i) => {
+                                        const isExam = isl.type === "courage_challenge" || isl.type === "boss_fight";
+                                        const hasTrials = isl.trials.length > 0;
+                                        return (
+                                            <button
+                                                key={isl.id}
+                                                onClick={() => setSelectedIslandIdx(i)}
+                                                className={`px-2.5 py-1.5 rounded-lg text-xs whitespace-nowrap transition flex items-center gap-1 border ${selectedIslandIdx === i
+                                                    ? "bg-amber-800/40 border-amber-600/50 text-amber-300"
+                                                    : "bg-abyssal/50 border-amber-900/20 text-amber-600 hover:border-amber-700/40"
+                                                    }`}
+                                            >
+                                                <span>{i === 0 ? "🏁" : i === 12 ? "👑" : i}</span>
+                                                <span className={hasTrials ? "" : "opacity-40"}>{hasTrials ? "●" : "○"}</span>
+                                            </button>
+                                        );
+                                    })}
+                                </div>
+                                {/* Selected Island Info */}
+                                {voyage.islands[selectedIslandIdx] && (
+                                    <div className="mt-2 p-2 rounded-lg bg-abyssal/30 text-xs text-amber-600">
+                                        <span className="font-bold" style={{ color: "#F7C948" }}>
+                                            {voyage.islands[selectedIslandIdx].title}
+                                        </span>
+                                        <span className="mx-2">·</span>
+                                        <span>{voyage.islands[selectedIslandIdx].type.replace(/_/g, " ")}</span>
+                                        <span className="mx-2">·</span>
+                                        <span>{voyage.islands[selectedIslandIdx].trials.length} trials</span>
+                                        {voyage.islands[selectedIslandIdx].description && (
+                                            <p className="mt-1 text-amber-700">{voyage.islands[selectedIslandIdx].description}</p>
+                                        )}
                                     </div>
                                 )}
                             </div>
+
+                            {/* Trials List — scoped to selected island */}
+                            {(() => {
+                                const selIsland = voyage.islands[selectedIslandIdx];
+                                if (!selIsland) return null;
+                                const isExam = selIsland.type === "courage_challenge" || selIsland.type === "boss_fight";
+                                return (
+                                    <div className="mb-6">
+                                        <div className="flex items-center justify-between mb-3">
+                                            <h3 className="text-lg" style={{ fontFamily: "'Pirata One', cursive", color: "#F7C948" }}>
+                                                ⚔️ Trials ({selIsland.trials.length}{isExam ? "/10" : ""})
+                                            </h3>
+                                            <button
+                                                onClick={() => generateForIsland(selIsland.id, isExam ? 10 : undefined)}
+                                                disabled={generating}
+                                                className="text-xs px-3 py-1 rounded-lg bg-purple-900/30 border border-purple-600/50 text-purple-300 hover:bg-purple-900/50 disabled:opacity-50 transition"
+                                            >
+                                                {generating ? "🤖..." : `🤖 Generate ${isExam ? "10" : "3-5"}`}
+                                            </button>
+                                        </div>
+                                        {selIsland.trials.length === 0 ? (
+                                            <div className="p-6 rounded-xl bg-abyssal/50 border border-amber-900/20 text-center">
+                                                <p className="text-amber-600 text-sm">No trials yet</p>
+                                                <p className="text-amber-800 text-xs mt-1">Click "Generate" to create AI trials for this island</p>
+                                            </div>
+                                        ) : (
+                                            <div className="space-y-2">
+                                                {selIsland.trials.map(trial => (
+                                                    <div key={trial.id} className="p-3 rounded-lg bg-abyssal/50 border border-amber-900/20 flex items-center gap-3">
+                                                        <span className="text-sm">{TYPE_BADGES[trial.type] || "📝"}</span>
+                                                        <div className="flex-1 min-w-0">
+                                                            <p className="text-sm text-white truncate">{trial.question}</p>
+                                                            <p className="text-xs text-amber-600">{trial.points} pts · {trial._count.versions} versions</p>
+                                                        </div>
+                                                        <button onClick={() => openTrialEdit(trial)} className="text-xs px-3 py-1 rounded-lg bg-amber-900/30 text-amber-400 hover:bg-amber-800/40 transition">
+                                                            Edit
+                                                        </button>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        )}
+                                    </div>
+                                );
+                            })()}
 
                             {/* AI Chat Section */}
                             <div className="border-t border-amber-900/30 pt-4">

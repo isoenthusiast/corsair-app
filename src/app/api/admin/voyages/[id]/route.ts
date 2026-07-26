@@ -14,10 +14,13 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
         where: { id },
         include: {
             sea: { select: { id: true, name: true, icon: true } },
-            trials: {
-                orderBy: { createdAt: "asc" },
+            islands: {
+                orderBy: { sortOrder: "asc" },
                 include: {
-                    _count: { select: { attempts: true, versions: true } },
+                    trials: {
+                        orderBy: { createdAt: "asc" },
+                        include: { _count: { select: { attempts: true, versions: true } } },
+                    },
                 },
             },
         },
