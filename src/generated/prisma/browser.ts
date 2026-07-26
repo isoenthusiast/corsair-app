@@ -157,3 +157,8 @@ export type VoyageBundle = Prisma.VoyageBundleModel
  * 
  */
 export type VoyageBundleItem = Prisma.VoyageBundleItemModel
+/**
+ * Model KanbanCard
+ * 
+ */
+export type KanbanCard = Prisma.KanbanCardModel

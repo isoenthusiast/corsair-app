@@ -70,3 +70,33 @@ export const SeaCharmType = {
 } as const
 
 export type SeaCharmType = (typeof SeaCharmType)[keyof typeof SeaCharmType]
+
+
+export const KanbanType = {
+  FlaggedTrial: 'FlaggedTrial',
+  Assignment: 'Assignment',
+  AITrial: 'AITrial',
+  SupportTicket: 'SupportTicket',
+  Task: 'Task'
+} as const
+
+export type KanbanType = (typeof KanbanType)[keyof typeof KanbanType]
+
+
+export const KanbanStatus = {
+  Backlog: 'Backlog',
+  InProgress: 'InProgress',
+  Done: 'Done',
+  Archive: 'Archive'
+} as const
+
+export type KanbanStatus = (typeof KanbanStatus)[keyof typeof KanbanStatus]
+
+
+export const Priority = {
+  Low: 'Low',
+  Medium: 'Medium',
+  High: 'High'
+} as const
+
+export type Priority = (typeof Priority)[keyof typeof Priority]

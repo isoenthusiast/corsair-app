@@ -78,7 +78,8 @@ export const ModelName = {
   InviteLink: 'InviteLink',
   SystemAnnouncement: 'SystemAnnouncement',
   VoyageBundle: 'VoyageBundle',
-  VoyageBundleItem: 'VoyageBundleItem'
+  VoyageBundleItem: 'VoyageBundleItem',
+  KanbanCard: 'KanbanCard'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -455,6 +456,25 @@ export const VoyageBundleItemScalarFieldEnum = {
 } as const
 
 export type VoyageBundleItemScalarFieldEnum = (typeof VoyageBundleItemScalarFieldEnum)[keyof typeof VoyageBundleItemScalarFieldEnum]
+
+
+export const KanbanCardScalarFieldEnum = {
+  id: 'id',
+  type: 'type',
+  status: 'status',
+  title: 'title',
+  description: 'description',
+  priority: 'priority',
+  sourceTable: 'sourceTable',
+  sourceId: 'sourceId',
+  assigneeId: 'assigneeId',
+  creatorId: 'creatorId',
+  archivedAt: 'archivedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type KanbanCardScalarFieldEnum = (typeof KanbanCardScalarFieldEnum)[keyof typeof KanbanCardScalarFieldEnum]
 
 
 export const SortOrder = {

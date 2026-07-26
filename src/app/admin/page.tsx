@@ -61,7 +61,7 @@ export default async function AdminPage() {
                     </div>
                 </div>
 
-                <div className="grid grid-cols-4 gap-4 mt-6">
+                <div className="grid grid-cols-5 gap-4 mt-6">
                     <Link href="/admin/users" className="sea-card p-6 text-center hover:border-amber-600 transition">
                         <div className="text-3xl mb-2">👥</div><div className="font-bold" style={{ color: "#F7C948" }}>Manage Users</div>
                     </Link>
@@ -73,6 +73,9 @@ export default async function AdminPage() {
                     </Link>
                     <Link href="/admin/announcements" className="sea-card p-6 text-center hover:border-amber-600 transition">
                         <div className="text-3xl mb-2">📢</div><div className="font-bold" style={{ color: "#F7C948" }}>Announcements</div>
+                    </Link>
+                    <Link href="/admin/kanban" className="sea-card p-6 text-center hover:border-amber-600 transition">
+                        <div className="text-3xl mb-2">📋</div><div className="font-bold" style={{ color: "#F7C948" }}>Kanban Board</div>
                     </Link>
                 </div>
             </main>

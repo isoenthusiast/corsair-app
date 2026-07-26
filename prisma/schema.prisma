@@ -50,6 +50,8 @@ model User {
     createdInvites      InviteLink[]         @relation("InviteCreator")
     systemAnnouncements SystemAnnouncement[]
     voyageBundles       VoyageBundle[]
+    kanbanCreated       KanbanCard[]          @relation("KanbanCreator")
+    kanbanAssigned      KanbanCard[]          @relation("KanbanAssignee")
 }
 
 // ── Seas & Voyages ──
@@ -441,6 +443,27 @@ model VoyageBundleItem {
     @@unique([bundleId, voyageId])
 }
 
+// ── Kanban ──
+
+model KanbanCard {
+    id          String        @id @default(cuid())
+    type        KanbanType
+    status      KanbanStatus  @default(Backlog)
+    title       String
+    description String?
+    priority    Priority      @default(Medium)
+    sourceTable String?
+    sourceId    String?
+    assigneeId  String?
+    creatorId   String
+    archivedAt  DateTime?
+    createdAt   DateTime      @default(now())
+    updatedAt   DateTime      @updatedAt
+
+    creator  User  @relation("KanbanCreator", fields: [creatorId], references: [id])
+    assignee User? @relation("KanbanAssignee", fields: [assigneeId], references: [id])
+}
+
 // ── Enums ──
 
 enum Role {
@@ -486,4 +509,25 @@ enum SeaCharmType {
     storm_pass
     fortune_wind
     anchor_charm
+}
+
+enum KanbanType {
+    FlaggedTrial
+    Assignment
+    AITrial
+    SupportTicket
+    Task
+}
+
+enum KanbanStatus {
+    Backlog
+    InProgress
+    Done
+    Archive
+}
+
+enum Priority {
+    Low
+    Medium
+    High
 }

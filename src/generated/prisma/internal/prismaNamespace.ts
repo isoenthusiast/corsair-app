@@ -424,7 +424,8 @@ export const ModelName = {
   InviteLink: 'InviteLink',
   SystemAnnouncement: 'SystemAnnouncement',
   VoyageBundle: 'VoyageBundle',
-  VoyageBundleItem: 'VoyageBundleItem'
+  VoyageBundleItem: 'VoyageBundleItem',
+  KanbanCard: 'KanbanCard'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -440,7 +441,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "sea" | "voyage" | "trial" | "trialVersion" | "trialAttempt" | "userVoyageProgress" | "pointTransaction" | "crownTransaction" | "shipUpgrade" | "userShipUpgrade" | "dailyChestClaim" | "achievement" | "userAchievement" | "streak" | "seaCharm" | "class" | "classTeacher" | "studentClass" | "studentParent" | "assignment" | "announcement" | "auditLog" | "loginHistory" | "inviteLink" | "systemAnnouncement" | "voyageBundle" | "voyageBundleItem"
+    modelProps: "user" | "sea" | "voyage" | "trial" | "trialVersion" | "trialAttempt" | "userVoyageProgress" | "pointTransaction" | "crownTransaction" | "shipUpgrade" | "userShipUpgrade" | "dailyChestClaim" | "achievement" | "userAchievement" | "streak" | "seaCharm" | "class" | "classTeacher" | "studentClass" | "studentParent" | "assignment" | "announcement" | "auditLog" | "loginHistory" | "inviteLink" | "systemAnnouncement" | "voyageBundle" | "voyageBundleItem" | "kanbanCard"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2516,6 +2517,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    KanbanCard: {
+      payload: Prisma.$KanbanCardPayload<ExtArgs>
+      fields: Prisma.KanbanCardFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.KanbanCardFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KanbanCardPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.KanbanCardFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KanbanCardPayload>
+        }
+        findFirst: {
+          args: Prisma.KanbanCardFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KanbanCardPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.KanbanCardFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KanbanCardPayload>
+        }
+        findMany: {
+          args: Prisma.KanbanCardFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KanbanCardPayload>[]
+        }
+        create: {
+          args: Prisma.KanbanCardCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KanbanCardPayload>
+        }
+        createMany: {
+          args: Prisma.KanbanCardCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.KanbanCardCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KanbanCardPayload>[]
+        }
+        delete: {
+          args: Prisma.KanbanCardDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KanbanCardPayload>
+        }
+        update: {
+          args: Prisma.KanbanCardUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KanbanCardPayload>
+        }
+        deleteMany: {
+          args: Prisma.KanbanCardDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.KanbanCardUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.KanbanCardUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KanbanCardPayload>[]
+        }
+        upsert: {
+          args: Prisma.KanbanCardUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KanbanCardPayload>
+        }
+        aggregate: {
+          args: Prisma.KanbanCardAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateKanbanCard>
+        }
+        groupBy: {
+          args: Prisma.KanbanCardGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.KanbanCardGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.KanbanCardCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.KanbanCardCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -2915,6 +2990,25 @@ export const VoyageBundleItemScalarFieldEnum = {
 export type VoyageBundleItemScalarFieldEnum = (typeof VoyageBundleItemScalarFieldEnum)[keyof typeof VoyageBundleItemScalarFieldEnum]
 
 
+export const KanbanCardScalarFieldEnum = {
+  id: 'id',
+  type: 'type',
+  status: 'status',
+  title: 'title',
+  description: 'description',
+  priority: 'priority',
+  sourceTable: 'sourceTable',
+  sourceId: 'sourceId',
+  assigneeId: 'assigneeId',
+  creatorId: 'creatorId',
+  archivedAt: 'archivedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type KanbanCardScalarFieldEnum = (typeof KanbanCardScalarFieldEnum)[keyof typeof KanbanCardScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -3122,6 +3216,48 @@ export type EnumSeaCharmTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$Pri
 export type ListEnumSeaCharmTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SeaCharmType[]'>
     
 
+
+/**
+ * Reference to a field of type 'KanbanType'
+ */
+export type EnumKanbanTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'KanbanType'>
+    
+
+
+/**
+ * Reference to a field of type 'KanbanType[]'
+ */
+export type ListEnumKanbanTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'KanbanType[]'>
+    
+
+
+/**
+ * Reference to a field of type 'KanbanStatus'
+ */
+export type EnumKanbanStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'KanbanStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'KanbanStatus[]'
+ */
+export type ListEnumKanbanStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'KanbanStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Priority'
+ */
+export type EnumPriorityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Priority'>
+    
+
+
+/**
+ * Reference to a field of type 'Priority[]'
+ */
+export type ListEnumPriorityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Priority[]'>
+    
+
 /**
  * Batch Payload for updateMany & deleteMany & createMany
  */
@@ -3301,6 +3437,7 @@ export type GlobalOmitConfig = {
   systemAnnouncement?: Prisma.SystemAnnouncementOmit
   voyageBundle?: Prisma.VoyageBundleOmit
   voyageBundleItem?: Prisma.VoyageBundleItemOmit
+  kanbanCard?: Prisma.KanbanCardOmit
 }
 
 /* Types for Logging */

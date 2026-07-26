@@ -329,6 +329,8 @@ export type UserWhereInput = {
   createdInvites?: Prisma.InviteLinkListRelationFilter
   systemAnnouncements?: Prisma.SystemAnnouncementListRelationFilter
   voyageBundles?: Prisma.VoyageBundleListRelationFilter
+  kanbanCreated?: Prisma.KanbanCardListRelationFilter
+  kanbanAssigned?: Prisma.KanbanCardListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -369,6 +371,8 @@ export type UserOrderByWithRelationInput = {
   createdInvites?: Prisma.InviteLinkOrderByRelationAggregateInput
   systemAnnouncements?: Prisma.SystemAnnouncementOrderByRelationAggregateInput
   voyageBundles?: Prisma.VoyageBundleOrderByRelationAggregateInput
+  kanbanCreated?: Prisma.KanbanCardOrderByRelationAggregateInput
+  kanbanAssigned?: Prisma.KanbanCardOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -412,6 +416,8 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   createdInvites?: Prisma.InviteLinkListRelationFilter
   systemAnnouncements?: Prisma.SystemAnnouncementListRelationFilter
   voyageBundles?: Prisma.VoyageBundleListRelationFilter
+  kanbanCreated?: Prisma.KanbanCardListRelationFilter
+  kanbanAssigned?: Prisma.KanbanCardListRelationFilter
 }, "id" | "username">
 
 export type UserOrderByWithAggregationInput = {
@@ -498,6 +504,8 @@ export type UserCreateInput = {
   createdInvites?: Prisma.InviteLinkCreateNestedManyWithoutCreatorInput
   systemAnnouncements?: Prisma.SystemAnnouncementCreateNestedManyWithoutAdminInput
   voyageBundles?: Prisma.VoyageBundleCreateNestedManyWithoutAdminInput
+  kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
+  kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -538,6 +546,8 @@ export type UserUncheckedCreateInput = {
   createdInvites?: Prisma.InviteLinkUncheckedCreateNestedManyWithoutCreatorInput
   systemAnnouncements?: Prisma.SystemAnnouncementUncheckedCreateNestedManyWithoutAdminInput
   voyageBundles?: Prisma.VoyageBundleUncheckedCreateNestedManyWithoutAdminInput
+  kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
+  kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
 }
 
 export type UserUpdateInput = {
@@ -578,6 +588,8 @@ export type UserUpdateInput = {
   createdInvites?: Prisma.InviteLinkUpdateManyWithoutCreatorNestedInput
   systemAnnouncements?: Prisma.SystemAnnouncementUpdateManyWithoutAdminNestedInput
   voyageBundles?: Prisma.VoyageBundleUpdateManyWithoutAdminNestedInput
+  kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
+  kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -618,6 +630,8 @@ export type UserUncheckedUpdateInput = {
   createdInvites?: Prisma.InviteLinkUncheckedUpdateManyWithoutCreatorNestedInput
   systemAnnouncements?: Prisma.SystemAnnouncementUncheckedUpdateManyWithoutAdminNestedInput
   voyageBundles?: Prisma.VoyageBundleUncheckedUpdateManyWithoutAdminNestedInput
+  kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
+  kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -1090,6 +1104,36 @@ export type UserUpdateOneRequiredWithoutVoyageBundlesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutVoyageBundlesInput, Prisma.UserUpdateWithoutVoyageBundlesInput>, Prisma.UserUncheckedUpdateWithoutVoyageBundlesInput>
 }
 
+export type UserCreateNestedOneWithoutKanbanCreatedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutKanbanCreatedInput, Prisma.UserUncheckedCreateWithoutKanbanCreatedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutKanbanCreatedInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutKanbanAssignedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutKanbanAssignedInput, Prisma.UserUncheckedCreateWithoutKanbanAssignedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutKanbanAssignedInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutKanbanCreatedNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutKanbanCreatedInput, Prisma.UserUncheckedCreateWithoutKanbanCreatedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutKanbanCreatedInput
+  upsert?: Prisma.UserUpsertWithoutKanbanCreatedInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutKanbanCreatedInput, Prisma.UserUpdateWithoutKanbanCreatedInput>, Prisma.UserUncheckedUpdateWithoutKanbanCreatedInput>
+}
+
+export type UserUpdateOneWithoutKanbanAssignedNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutKanbanAssignedInput, Prisma.UserUncheckedCreateWithoutKanbanAssignedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutKanbanAssignedInput
+  upsert?: Prisma.UserUpsertWithoutKanbanAssignedInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutKanbanAssignedInput, Prisma.UserUpdateWithoutKanbanAssignedInput>, Prisma.UserUncheckedUpdateWithoutKanbanAssignedInput>
+}
+
 export type UserCreateWithoutAttemptsInput = {
   id?: string
   name: string
@@ -1127,6 +1171,8 @@ export type UserCreateWithoutAttemptsInput = {
   createdInvites?: Prisma.InviteLinkCreateNestedManyWithoutCreatorInput
   systemAnnouncements?: Prisma.SystemAnnouncementCreateNestedManyWithoutAdminInput
   voyageBundles?: Prisma.VoyageBundleCreateNestedManyWithoutAdminInput
+  kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
+  kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
 }
 
 export type UserUncheckedCreateWithoutAttemptsInput = {
@@ -1166,6 +1212,8 @@ export type UserUncheckedCreateWithoutAttemptsInput = {
   createdInvites?: Prisma.InviteLinkUncheckedCreateNestedManyWithoutCreatorInput
   systemAnnouncements?: Prisma.SystemAnnouncementUncheckedCreateNestedManyWithoutAdminInput
   voyageBundles?: Prisma.VoyageBundleUncheckedCreateNestedManyWithoutAdminInput
+  kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
+  kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
 }
 
 export type UserCreateOrConnectWithoutAttemptsInput = {
@@ -1221,6 +1269,8 @@ export type UserUpdateWithoutAttemptsInput = {
   createdInvites?: Prisma.InviteLinkUpdateManyWithoutCreatorNestedInput
   systemAnnouncements?: Prisma.SystemAnnouncementUpdateManyWithoutAdminNestedInput
   voyageBundles?: Prisma.VoyageBundleUpdateManyWithoutAdminNestedInput
+  kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
+  kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAttemptsInput = {
@@ -1260,6 +1310,8 @@ export type UserUncheckedUpdateWithoutAttemptsInput = {
   createdInvites?: Prisma.InviteLinkUncheckedUpdateManyWithoutCreatorNestedInput
   systemAnnouncements?: Prisma.SystemAnnouncementUncheckedUpdateManyWithoutAdminNestedInput
   voyageBundles?: Prisma.VoyageBundleUncheckedUpdateManyWithoutAdminNestedInput
+  kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
+  kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
 }
 
 export type UserCreateWithoutProgressInput = {
@@ -1299,6 +1351,8 @@ export type UserCreateWithoutProgressInput = {
   createdInvites?: Prisma.InviteLinkCreateNestedManyWithoutCreatorInput
   systemAnnouncements?: Prisma.SystemAnnouncementCreateNestedManyWithoutAdminInput
   voyageBundles?: Prisma.VoyageBundleCreateNestedManyWithoutAdminInput
+  kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
+  kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
 }
 
 export type UserUncheckedCreateWithoutProgressInput = {
@@ -1338,6 +1392,8 @@ export type UserUncheckedCreateWithoutProgressInput = {
   createdInvites?: Prisma.InviteLinkUncheckedCreateNestedManyWithoutCreatorInput
   systemAnnouncements?: Prisma.SystemAnnouncementUncheckedCreateNestedManyWithoutAdminInput
   voyageBundles?: Prisma.VoyageBundleUncheckedCreateNestedManyWithoutAdminInput
+  kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
+  kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
 }
 
 export type UserCreateOrConnectWithoutProgressInput = {
@@ -1393,6 +1449,8 @@ export type UserUpdateWithoutProgressInput = {
   createdInvites?: Prisma.InviteLinkUpdateManyWithoutCreatorNestedInput
   systemAnnouncements?: Prisma.SystemAnnouncementUpdateManyWithoutAdminNestedInput
   voyageBundles?: Prisma.VoyageBundleUpdateManyWithoutAdminNestedInput
+  kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
+  kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
 }
 
 export type UserUncheckedUpdateWithoutProgressInput = {
@@ -1432,6 +1490,8 @@ export type UserUncheckedUpdateWithoutProgressInput = {
   createdInvites?: Prisma.InviteLinkUncheckedUpdateManyWithoutCreatorNestedInput
   systemAnnouncements?: Prisma.SystemAnnouncementUncheckedUpdateManyWithoutAdminNestedInput
   voyageBundles?: Prisma.VoyageBundleUncheckedUpdateManyWithoutAdminNestedInput
+  kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
+  kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
 }
 
 export type UserCreateWithoutPointLogInput = {
@@ -1471,6 +1531,8 @@ export type UserCreateWithoutPointLogInput = {
   createdInvites?: Prisma.InviteLinkCreateNestedManyWithoutCreatorInput
   systemAnnouncements?: Prisma.SystemAnnouncementCreateNestedManyWithoutAdminInput
   voyageBundles?: Prisma.VoyageBundleCreateNestedManyWithoutAdminInput
+  kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
+  kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
 }
 
 export type UserUncheckedCreateWithoutPointLogInput = {
@@ -1510,6 +1572,8 @@ export type UserUncheckedCreateWithoutPointLogInput = {
   createdInvites?: Prisma.InviteLinkUncheckedCreateNestedManyWithoutCreatorInput
   systemAnnouncements?: Prisma.SystemAnnouncementUncheckedCreateNestedManyWithoutAdminInput
   voyageBundles?: Prisma.VoyageBundleUncheckedCreateNestedManyWithoutAdminInput
+  kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
+  kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
 }
 
 export type UserCreateOrConnectWithoutPointLogInput = {
@@ -1565,6 +1629,8 @@ export type UserUpdateWithoutPointLogInput = {
   createdInvites?: Prisma.InviteLinkUpdateManyWithoutCreatorNestedInput
   systemAnnouncements?: Prisma.SystemAnnouncementUpdateManyWithoutAdminNestedInput
   voyageBundles?: Prisma.VoyageBundleUpdateManyWithoutAdminNestedInput
+  kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
+  kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPointLogInput = {
@@ -1604,6 +1670,8 @@ export type UserUncheckedUpdateWithoutPointLogInput = {
   createdInvites?: Prisma.InviteLinkUncheckedUpdateManyWithoutCreatorNestedInput
   systemAnnouncements?: Prisma.SystemAnnouncementUncheckedUpdateManyWithoutAdminNestedInput
   voyageBundles?: Prisma.VoyageBundleUncheckedUpdateManyWithoutAdminNestedInput
+  kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
+  kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
 }
 
 export type UserCreateWithoutCrownLogInput = {
@@ -1643,6 +1711,8 @@ export type UserCreateWithoutCrownLogInput = {
   createdInvites?: Prisma.InviteLinkCreateNestedManyWithoutCreatorInput
   systemAnnouncements?: Prisma.SystemAnnouncementCreateNestedManyWithoutAdminInput
   voyageBundles?: Prisma.VoyageBundleCreateNestedManyWithoutAdminInput
+  kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
+  kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
 }
 
 export type UserUncheckedCreateWithoutCrownLogInput = {
@@ -1682,6 +1752,8 @@ export type UserUncheckedCreateWithoutCrownLogInput = {
   createdInvites?: Prisma.InviteLinkUncheckedCreateNestedManyWithoutCreatorInput
   systemAnnouncements?: Prisma.SystemAnnouncementUncheckedCreateNestedManyWithoutAdminInput
   voyageBundles?: Prisma.VoyageBundleUncheckedCreateNestedManyWithoutAdminInput
+  kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
+  kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
 }
 
 export type UserCreateOrConnectWithoutCrownLogInput = {
@@ -1737,6 +1809,8 @@ export type UserUpdateWithoutCrownLogInput = {
   createdInvites?: Prisma.InviteLinkUpdateManyWithoutCreatorNestedInput
   systemAnnouncements?: Prisma.SystemAnnouncementUpdateManyWithoutAdminNestedInput
   voyageBundles?: Prisma.VoyageBundleUpdateManyWithoutAdminNestedInput
+  kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
+  kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCrownLogInput = {
@@ -1776,6 +1850,8 @@ export type UserUncheckedUpdateWithoutCrownLogInput = {
   createdInvites?: Prisma.InviteLinkUncheckedUpdateManyWithoutCreatorNestedInput
   systemAnnouncements?: Prisma.SystemAnnouncementUncheckedUpdateManyWithoutAdminNestedInput
   voyageBundles?: Prisma.VoyageBundleUncheckedUpdateManyWithoutAdminNestedInput
+  kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
+  kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
 }
 
 export type UserCreateWithoutShipUpgradesInput = {
@@ -1815,6 +1891,8 @@ export type UserCreateWithoutShipUpgradesInput = {
   createdInvites?: Prisma.InviteLinkCreateNestedManyWithoutCreatorInput
   systemAnnouncements?: Prisma.SystemAnnouncementCreateNestedManyWithoutAdminInput
   voyageBundles?: Prisma.VoyageBundleCreateNestedManyWithoutAdminInput
+  kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
+  kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
 }
 
 export type UserUncheckedCreateWithoutShipUpgradesInput = {
@@ -1854,6 +1932,8 @@ export type UserUncheckedCreateWithoutShipUpgradesInput = {
   createdInvites?: Prisma.InviteLinkUncheckedCreateNestedManyWithoutCreatorInput
   systemAnnouncements?: Prisma.SystemAnnouncementUncheckedCreateNestedManyWithoutAdminInput
   voyageBundles?: Prisma.VoyageBundleUncheckedCreateNestedManyWithoutAdminInput
+  kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
+  kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
 }
 
 export type UserCreateOrConnectWithoutShipUpgradesInput = {
@@ -1909,6 +1989,8 @@ export type UserUpdateWithoutShipUpgradesInput = {
   createdInvites?: Prisma.InviteLinkUpdateManyWithoutCreatorNestedInput
   systemAnnouncements?: Prisma.SystemAnnouncementUpdateManyWithoutAdminNestedInput
   voyageBundles?: Prisma.VoyageBundleUpdateManyWithoutAdminNestedInput
+  kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
+  kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
 }
 
 export type UserUncheckedUpdateWithoutShipUpgradesInput = {
@@ -1948,6 +2030,8 @@ export type UserUncheckedUpdateWithoutShipUpgradesInput = {
   createdInvites?: Prisma.InviteLinkUncheckedUpdateManyWithoutCreatorNestedInput
   systemAnnouncements?: Prisma.SystemAnnouncementUncheckedUpdateManyWithoutAdminNestedInput
   voyageBundles?: Prisma.VoyageBundleUncheckedUpdateManyWithoutAdminNestedInput
+  kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
+  kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
 }
 
 export type UserCreateWithoutChestClaimsInput = {
@@ -1987,6 +2071,8 @@ export type UserCreateWithoutChestClaimsInput = {
   createdInvites?: Prisma.InviteLinkCreateNestedManyWithoutCreatorInput
   systemAnnouncements?: Prisma.SystemAnnouncementCreateNestedManyWithoutAdminInput
   voyageBundles?: Prisma.VoyageBundleCreateNestedManyWithoutAdminInput
+  kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
+  kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
 }
 
 export type UserUncheckedCreateWithoutChestClaimsInput = {
@@ -2026,6 +2112,8 @@ export type UserUncheckedCreateWithoutChestClaimsInput = {
   createdInvites?: Prisma.InviteLinkUncheckedCreateNestedManyWithoutCreatorInput
   systemAnnouncements?: Prisma.SystemAnnouncementUncheckedCreateNestedManyWithoutAdminInput
   voyageBundles?: Prisma.VoyageBundleUncheckedCreateNestedManyWithoutAdminInput
+  kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
+  kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
 }
 
 export type UserCreateOrConnectWithoutChestClaimsInput = {
@@ -2081,6 +2169,8 @@ export type UserUpdateWithoutChestClaimsInput = {
   createdInvites?: Prisma.InviteLinkUpdateManyWithoutCreatorNestedInput
   systemAnnouncements?: Prisma.SystemAnnouncementUpdateManyWithoutAdminNestedInput
   voyageBundles?: Prisma.VoyageBundleUpdateManyWithoutAdminNestedInput
+  kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
+  kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
 }
 
 export type UserUncheckedUpdateWithoutChestClaimsInput = {
@@ -2120,6 +2210,8 @@ export type UserUncheckedUpdateWithoutChestClaimsInput = {
   createdInvites?: Prisma.InviteLinkUncheckedUpdateManyWithoutCreatorNestedInput
   systemAnnouncements?: Prisma.SystemAnnouncementUncheckedUpdateManyWithoutAdminNestedInput
   voyageBundles?: Prisma.VoyageBundleUncheckedUpdateManyWithoutAdminNestedInput
+  kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
+  kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
 }
 
 export type UserCreateWithoutAchievementsInput = {
@@ -2159,6 +2251,8 @@ export type UserCreateWithoutAchievementsInput = {
   createdInvites?: Prisma.InviteLinkCreateNestedManyWithoutCreatorInput
   systemAnnouncements?: Prisma.SystemAnnouncementCreateNestedManyWithoutAdminInput
   voyageBundles?: Prisma.VoyageBundleCreateNestedManyWithoutAdminInput
+  kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
+  kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
 }
 
 export type UserUncheckedCreateWithoutAchievementsInput = {
@@ -2198,6 +2292,8 @@ export type UserUncheckedCreateWithoutAchievementsInput = {
   createdInvites?: Prisma.InviteLinkUncheckedCreateNestedManyWithoutCreatorInput
   systemAnnouncements?: Prisma.SystemAnnouncementUncheckedCreateNestedManyWithoutAdminInput
   voyageBundles?: Prisma.VoyageBundleUncheckedCreateNestedManyWithoutAdminInput
+  kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
+  kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
 }
 
 export type UserCreateOrConnectWithoutAchievementsInput = {
@@ -2253,6 +2349,8 @@ export type UserUpdateWithoutAchievementsInput = {
   createdInvites?: Prisma.InviteLinkUpdateManyWithoutCreatorNestedInput
   systemAnnouncements?: Prisma.SystemAnnouncementUpdateManyWithoutAdminNestedInput
   voyageBundles?: Prisma.VoyageBundleUpdateManyWithoutAdminNestedInput
+  kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
+  kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAchievementsInput = {
@@ -2292,6 +2390,8 @@ export type UserUncheckedUpdateWithoutAchievementsInput = {
   createdInvites?: Prisma.InviteLinkUncheckedUpdateManyWithoutCreatorNestedInput
   systemAnnouncements?: Prisma.SystemAnnouncementUncheckedUpdateManyWithoutAdminNestedInput
   voyageBundles?: Prisma.VoyageBundleUncheckedUpdateManyWithoutAdminNestedInput
+  kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
+  kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
 }
 
 export type UserCreateWithoutStreaksInput = {
@@ -2331,6 +2431,8 @@ export type UserCreateWithoutStreaksInput = {
   createdInvites?: Prisma.InviteLinkCreateNestedManyWithoutCreatorInput
   systemAnnouncements?: Prisma.SystemAnnouncementCreateNestedManyWithoutAdminInput
   voyageBundles?: Prisma.VoyageBundleCreateNestedManyWithoutAdminInput
+  kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
+  kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
 }
 
 export type UserUncheckedCreateWithoutStreaksInput = {
@@ -2370,6 +2472,8 @@ export type UserUncheckedCreateWithoutStreaksInput = {
   createdInvites?: Prisma.InviteLinkUncheckedCreateNestedManyWithoutCreatorInput
   systemAnnouncements?: Prisma.SystemAnnouncementUncheckedCreateNestedManyWithoutAdminInput
   voyageBundles?: Prisma.VoyageBundleUncheckedCreateNestedManyWithoutAdminInput
+  kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
+  kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
 }
 
 export type UserCreateOrConnectWithoutStreaksInput = {
@@ -2425,6 +2529,8 @@ export type UserUpdateWithoutStreaksInput = {
   createdInvites?: Prisma.InviteLinkUpdateManyWithoutCreatorNestedInput
   systemAnnouncements?: Prisma.SystemAnnouncementUpdateManyWithoutAdminNestedInput
   voyageBundles?: Prisma.VoyageBundleUpdateManyWithoutAdminNestedInput
+  kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
+  kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
 }
 
 export type UserUncheckedUpdateWithoutStreaksInput = {
@@ -2464,6 +2570,8 @@ export type UserUncheckedUpdateWithoutStreaksInput = {
   createdInvites?: Prisma.InviteLinkUncheckedUpdateManyWithoutCreatorNestedInput
   systemAnnouncements?: Prisma.SystemAnnouncementUncheckedUpdateManyWithoutAdminNestedInput
   voyageBundles?: Prisma.VoyageBundleUncheckedUpdateManyWithoutAdminNestedInput
+  kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
+  kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
 }
 
 export type UserCreateWithoutCharmsInput = {
@@ -2503,6 +2611,8 @@ export type UserCreateWithoutCharmsInput = {
   createdInvites?: Prisma.InviteLinkCreateNestedManyWithoutCreatorInput
   systemAnnouncements?: Prisma.SystemAnnouncementCreateNestedManyWithoutAdminInput
   voyageBundles?: Prisma.VoyageBundleCreateNestedManyWithoutAdminInput
+  kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
+  kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
 }
 
 export type UserUncheckedCreateWithoutCharmsInput = {
@@ -2542,6 +2652,8 @@ export type UserUncheckedCreateWithoutCharmsInput = {
   createdInvites?: Prisma.InviteLinkUncheckedCreateNestedManyWithoutCreatorInput
   systemAnnouncements?: Prisma.SystemAnnouncementUncheckedCreateNestedManyWithoutAdminInput
   voyageBundles?: Prisma.VoyageBundleUncheckedCreateNestedManyWithoutAdminInput
+  kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
+  kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
 }
 
 export type UserCreateOrConnectWithoutCharmsInput = {
@@ -2597,6 +2709,8 @@ export type UserUpdateWithoutCharmsInput = {
   createdInvites?: Prisma.InviteLinkUpdateManyWithoutCreatorNestedInput
   systemAnnouncements?: Prisma.SystemAnnouncementUpdateManyWithoutAdminNestedInput
   voyageBundles?: Prisma.VoyageBundleUpdateManyWithoutAdminNestedInput
+  kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
+  kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCharmsInput = {
@@ -2636,6 +2750,8 @@ export type UserUncheckedUpdateWithoutCharmsInput = {
   createdInvites?: Prisma.InviteLinkUncheckedUpdateManyWithoutCreatorNestedInput
   systemAnnouncements?: Prisma.SystemAnnouncementUncheckedUpdateManyWithoutAdminNestedInput
   voyageBundles?: Prisma.VoyageBundleUncheckedUpdateManyWithoutAdminNestedInput
+  kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
+  kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
 }
 
 export type UserCreateWithoutTaughtClassesInput = {
@@ -2675,6 +2791,8 @@ export type UserCreateWithoutTaughtClassesInput = {
   createdInvites?: Prisma.InviteLinkCreateNestedManyWithoutCreatorInput
   systemAnnouncements?: Prisma.SystemAnnouncementCreateNestedManyWithoutAdminInput
   voyageBundles?: Prisma.VoyageBundleCreateNestedManyWithoutAdminInput
+  kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
+  kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
 }
 
 export type UserUncheckedCreateWithoutTaughtClassesInput = {
@@ -2714,6 +2832,8 @@ export type UserUncheckedCreateWithoutTaughtClassesInput = {
   createdInvites?: Prisma.InviteLinkUncheckedCreateNestedManyWithoutCreatorInput
   systemAnnouncements?: Prisma.SystemAnnouncementUncheckedCreateNestedManyWithoutAdminInput
   voyageBundles?: Prisma.VoyageBundleUncheckedCreateNestedManyWithoutAdminInput
+  kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
+  kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
 }
 
 export type UserCreateOrConnectWithoutTaughtClassesInput = {
@@ -2769,6 +2889,8 @@ export type UserUpdateWithoutTaughtClassesInput = {
   createdInvites?: Prisma.InviteLinkUpdateManyWithoutCreatorNestedInput
   systemAnnouncements?: Prisma.SystemAnnouncementUpdateManyWithoutAdminNestedInput
   voyageBundles?: Prisma.VoyageBundleUpdateManyWithoutAdminNestedInput
+  kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
+  kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTaughtClassesInput = {
@@ -2808,6 +2930,8 @@ export type UserUncheckedUpdateWithoutTaughtClassesInput = {
   createdInvites?: Prisma.InviteLinkUncheckedUpdateManyWithoutCreatorNestedInput
   systemAnnouncements?: Prisma.SystemAnnouncementUncheckedUpdateManyWithoutAdminNestedInput
   voyageBundles?: Prisma.VoyageBundleUncheckedUpdateManyWithoutAdminNestedInput
+  kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
+  kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
 }
 
 export type UserCreateWithoutStudentClassesInput = {
@@ -2847,6 +2971,8 @@ export type UserCreateWithoutStudentClassesInput = {
   createdInvites?: Prisma.InviteLinkCreateNestedManyWithoutCreatorInput
   systemAnnouncements?: Prisma.SystemAnnouncementCreateNestedManyWithoutAdminInput
   voyageBundles?: Prisma.VoyageBundleCreateNestedManyWithoutAdminInput
+  kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
+  kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
 }
 
 export type UserUncheckedCreateWithoutStudentClassesInput = {
@@ -2886,6 +3012,8 @@ export type UserUncheckedCreateWithoutStudentClassesInput = {
   createdInvites?: Prisma.InviteLinkUncheckedCreateNestedManyWithoutCreatorInput
   systemAnnouncements?: Prisma.SystemAnnouncementUncheckedCreateNestedManyWithoutAdminInput
   voyageBundles?: Prisma.VoyageBundleUncheckedCreateNestedManyWithoutAdminInput
+  kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
+  kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
 }
 
 export type UserCreateOrConnectWithoutStudentClassesInput = {
@@ -2941,6 +3069,8 @@ export type UserUpdateWithoutStudentClassesInput = {
   createdInvites?: Prisma.InviteLinkUpdateManyWithoutCreatorNestedInput
   systemAnnouncements?: Prisma.SystemAnnouncementUpdateManyWithoutAdminNestedInput
   voyageBundles?: Prisma.VoyageBundleUpdateManyWithoutAdminNestedInput
+  kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
+  kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
 }
 
 export type UserUncheckedUpdateWithoutStudentClassesInput = {
@@ -2980,6 +3110,8 @@ export type UserUncheckedUpdateWithoutStudentClassesInput = {
   createdInvites?: Prisma.InviteLinkUncheckedUpdateManyWithoutCreatorNestedInput
   systemAnnouncements?: Prisma.SystemAnnouncementUncheckedUpdateManyWithoutAdminNestedInput
   voyageBundles?: Prisma.VoyageBundleUncheckedUpdateManyWithoutAdminNestedInput
+  kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
+  kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
 }
 
 export type UserCreateWithoutParentLinksInput = {
@@ -3019,6 +3151,8 @@ export type UserCreateWithoutParentLinksInput = {
   createdInvites?: Prisma.InviteLinkCreateNestedManyWithoutCreatorInput
   systemAnnouncements?: Prisma.SystemAnnouncementCreateNestedManyWithoutAdminInput
   voyageBundles?: Prisma.VoyageBundleCreateNestedManyWithoutAdminInput
+  kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
+  kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
 }
 
 export type UserUncheckedCreateWithoutParentLinksInput = {
@@ -3058,6 +3192,8 @@ export type UserUncheckedCreateWithoutParentLinksInput = {
   createdInvites?: Prisma.InviteLinkUncheckedCreateNestedManyWithoutCreatorInput
   systemAnnouncements?: Prisma.SystemAnnouncementUncheckedCreateNestedManyWithoutAdminInput
   voyageBundles?: Prisma.VoyageBundleUncheckedCreateNestedManyWithoutAdminInput
+  kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
+  kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
 }
 
 export type UserCreateOrConnectWithoutParentLinksInput = {
@@ -3102,6 +3238,8 @@ export type UserCreateWithoutParentOfLinksInput = {
   createdInvites?: Prisma.InviteLinkCreateNestedManyWithoutCreatorInput
   systemAnnouncements?: Prisma.SystemAnnouncementCreateNestedManyWithoutAdminInput
   voyageBundles?: Prisma.VoyageBundleCreateNestedManyWithoutAdminInput
+  kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
+  kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
 }
 
 export type UserUncheckedCreateWithoutParentOfLinksInput = {
@@ -3141,6 +3279,8 @@ export type UserUncheckedCreateWithoutParentOfLinksInput = {
   createdInvites?: Prisma.InviteLinkUncheckedCreateNestedManyWithoutCreatorInput
   systemAnnouncements?: Prisma.SystemAnnouncementUncheckedCreateNestedManyWithoutAdminInput
   voyageBundles?: Prisma.VoyageBundleUncheckedCreateNestedManyWithoutAdminInput
+  kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
+  kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
 }
 
 export type UserCreateOrConnectWithoutParentOfLinksInput = {
@@ -3196,6 +3336,8 @@ export type UserUpdateWithoutParentLinksInput = {
   createdInvites?: Prisma.InviteLinkUpdateManyWithoutCreatorNestedInput
   systemAnnouncements?: Prisma.SystemAnnouncementUpdateManyWithoutAdminNestedInput
   voyageBundles?: Prisma.VoyageBundleUpdateManyWithoutAdminNestedInput
+  kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
+  kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
 }
 
 export type UserUncheckedUpdateWithoutParentLinksInput = {
@@ -3235,6 +3377,8 @@ export type UserUncheckedUpdateWithoutParentLinksInput = {
   createdInvites?: Prisma.InviteLinkUncheckedUpdateManyWithoutCreatorNestedInput
   systemAnnouncements?: Prisma.SystemAnnouncementUncheckedUpdateManyWithoutAdminNestedInput
   voyageBundles?: Prisma.VoyageBundleUncheckedUpdateManyWithoutAdminNestedInput
+  kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
+  kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
 }
 
 export type UserUpsertWithoutParentOfLinksInput = {
@@ -3285,6 +3429,8 @@ export type UserUpdateWithoutParentOfLinksInput = {
   createdInvites?: Prisma.InviteLinkUpdateManyWithoutCreatorNestedInput
   systemAnnouncements?: Prisma.SystemAnnouncementUpdateManyWithoutAdminNestedInput
   voyageBundles?: Prisma.VoyageBundleUpdateManyWithoutAdminNestedInput
+  kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
+  kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
 }
 
 export type UserUncheckedUpdateWithoutParentOfLinksInput = {
@@ -3324,6 +3470,8 @@ export type UserUncheckedUpdateWithoutParentOfLinksInput = {
   createdInvites?: Prisma.InviteLinkUncheckedUpdateManyWithoutCreatorNestedInput
   systemAnnouncements?: Prisma.SystemAnnouncementUncheckedUpdateManyWithoutAdminNestedInput
   voyageBundles?: Prisma.VoyageBundleUncheckedUpdateManyWithoutAdminNestedInput
+  kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
+  kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
 }
 
 export type UserCreateWithoutAssignmentsInput = {
@@ -3363,6 +3511,8 @@ export type UserCreateWithoutAssignmentsInput = {
   createdInvites?: Prisma.InviteLinkCreateNestedManyWithoutCreatorInput
   systemAnnouncements?: Prisma.SystemAnnouncementCreateNestedManyWithoutAdminInput
   voyageBundles?: Prisma.VoyageBundleCreateNestedManyWithoutAdminInput
+  kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
+  kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
 }
 
 export type UserUncheckedCreateWithoutAssignmentsInput = {
@@ -3402,6 +3552,8 @@ export type UserUncheckedCreateWithoutAssignmentsInput = {
   createdInvites?: Prisma.InviteLinkUncheckedCreateNestedManyWithoutCreatorInput
   systemAnnouncements?: Prisma.SystemAnnouncementUncheckedCreateNestedManyWithoutAdminInput
   voyageBundles?: Prisma.VoyageBundleUncheckedCreateNestedManyWithoutAdminInput
+  kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
+  kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
 }
 
 export type UserCreateOrConnectWithoutAssignmentsInput = {
@@ -3446,6 +3598,8 @@ export type UserCreateWithoutStudentAssignmentsInput = {
   createdInvites?: Prisma.InviteLinkCreateNestedManyWithoutCreatorInput
   systemAnnouncements?: Prisma.SystemAnnouncementCreateNestedManyWithoutAdminInput
   voyageBundles?: Prisma.VoyageBundleCreateNestedManyWithoutAdminInput
+  kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
+  kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
 }
 
 export type UserUncheckedCreateWithoutStudentAssignmentsInput = {
@@ -3485,6 +3639,8 @@ export type UserUncheckedCreateWithoutStudentAssignmentsInput = {
   createdInvites?: Prisma.InviteLinkUncheckedCreateNestedManyWithoutCreatorInput
   systemAnnouncements?: Prisma.SystemAnnouncementUncheckedCreateNestedManyWithoutAdminInput
   voyageBundles?: Prisma.VoyageBundleUncheckedCreateNestedManyWithoutAdminInput
+  kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
+  kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
 }
 
 export type UserCreateOrConnectWithoutStudentAssignmentsInput = {
@@ -3540,6 +3696,8 @@ export type UserUpdateWithoutAssignmentsInput = {
   createdInvites?: Prisma.InviteLinkUpdateManyWithoutCreatorNestedInput
   systemAnnouncements?: Prisma.SystemAnnouncementUpdateManyWithoutAdminNestedInput
   voyageBundles?: Prisma.VoyageBundleUpdateManyWithoutAdminNestedInput
+  kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
+  kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAssignmentsInput = {
@@ -3579,6 +3737,8 @@ export type UserUncheckedUpdateWithoutAssignmentsInput = {
   createdInvites?: Prisma.InviteLinkUncheckedUpdateManyWithoutCreatorNestedInput
   systemAnnouncements?: Prisma.SystemAnnouncementUncheckedUpdateManyWithoutAdminNestedInput
   voyageBundles?: Prisma.VoyageBundleUncheckedUpdateManyWithoutAdminNestedInput
+  kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
+  kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
 }
 
 export type UserUpsertWithoutStudentAssignmentsInput = {
@@ -3629,6 +3789,8 @@ export type UserUpdateWithoutStudentAssignmentsInput = {
   createdInvites?: Prisma.InviteLinkUpdateManyWithoutCreatorNestedInput
   systemAnnouncements?: Prisma.SystemAnnouncementUpdateManyWithoutAdminNestedInput
   voyageBundles?: Prisma.VoyageBundleUpdateManyWithoutAdminNestedInput
+  kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
+  kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
 }
 
 export type UserUncheckedUpdateWithoutStudentAssignmentsInput = {
@@ -3668,6 +3830,8 @@ export type UserUncheckedUpdateWithoutStudentAssignmentsInput = {
   createdInvites?: Prisma.InviteLinkUncheckedUpdateManyWithoutCreatorNestedInput
   systemAnnouncements?: Prisma.SystemAnnouncementUncheckedUpdateManyWithoutAdminNestedInput
   voyageBundles?: Prisma.VoyageBundleUncheckedUpdateManyWithoutAdminNestedInput
+  kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
+  kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
 }
 
 export type UserCreateWithoutAnnouncementsInput = {
@@ -3707,6 +3871,8 @@ export type UserCreateWithoutAnnouncementsInput = {
   createdInvites?: Prisma.InviteLinkCreateNestedManyWithoutCreatorInput
   systemAnnouncements?: Prisma.SystemAnnouncementCreateNestedManyWithoutAdminInput
   voyageBundles?: Prisma.VoyageBundleCreateNestedManyWithoutAdminInput
+  kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
+  kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
 }
 
 export type UserUncheckedCreateWithoutAnnouncementsInput = {
@@ -3746,6 +3912,8 @@ export type UserUncheckedCreateWithoutAnnouncementsInput = {
   createdInvites?: Prisma.InviteLinkUncheckedCreateNestedManyWithoutCreatorInput
   systemAnnouncements?: Prisma.SystemAnnouncementUncheckedCreateNestedManyWithoutAdminInput
   voyageBundles?: Prisma.VoyageBundleUncheckedCreateNestedManyWithoutAdminInput
+  kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
+  kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
 }
 
 export type UserCreateOrConnectWithoutAnnouncementsInput = {
@@ -3801,6 +3969,8 @@ export type UserUpdateWithoutAnnouncementsInput = {
   createdInvites?: Prisma.InviteLinkUpdateManyWithoutCreatorNestedInput
   systemAnnouncements?: Prisma.SystemAnnouncementUpdateManyWithoutAdminNestedInput
   voyageBundles?: Prisma.VoyageBundleUpdateManyWithoutAdminNestedInput
+  kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
+  kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAnnouncementsInput = {
@@ -3840,6 +4010,8 @@ export type UserUncheckedUpdateWithoutAnnouncementsInput = {
   createdInvites?: Prisma.InviteLinkUncheckedUpdateManyWithoutCreatorNestedInput
   systemAnnouncements?: Prisma.SystemAnnouncementUncheckedUpdateManyWithoutAdminNestedInput
   voyageBundles?: Prisma.VoyageBundleUncheckedUpdateManyWithoutAdminNestedInput
+  kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
+  kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
 }
 
 export type UserCreateWithoutAuditActionsInput = {
@@ -3879,6 +4051,8 @@ export type UserCreateWithoutAuditActionsInput = {
   createdInvites?: Prisma.InviteLinkCreateNestedManyWithoutCreatorInput
   systemAnnouncements?: Prisma.SystemAnnouncementCreateNestedManyWithoutAdminInput
   voyageBundles?: Prisma.VoyageBundleCreateNestedManyWithoutAdminInput
+  kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
+  kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
 }
 
 export type UserUncheckedCreateWithoutAuditActionsInput = {
@@ -3918,6 +4092,8 @@ export type UserUncheckedCreateWithoutAuditActionsInput = {
   createdInvites?: Prisma.InviteLinkUncheckedCreateNestedManyWithoutCreatorInput
   systemAnnouncements?: Prisma.SystemAnnouncementUncheckedCreateNestedManyWithoutAdminInput
   voyageBundles?: Prisma.VoyageBundleUncheckedCreateNestedManyWithoutAdminInput
+  kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
+  kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
 }
 
 export type UserCreateOrConnectWithoutAuditActionsInput = {
@@ -3973,6 +4149,8 @@ export type UserUpdateWithoutAuditActionsInput = {
   createdInvites?: Prisma.InviteLinkUpdateManyWithoutCreatorNestedInput
   systemAnnouncements?: Prisma.SystemAnnouncementUpdateManyWithoutAdminNestedInput
   voyageBundles?: Prisma.VoyageBundleUpdateManyWithoutAdminNestedInput
+  kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
+  kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAuditActionsInput = {
@@ -4012,6 +4190,8 @@ export type UserUncheckedUpdateWithoutAuditActionsInput = {
   createdInvites?: Prisma.InviteLinkUncheckedUpdateManyWithoutCreatorNestedInput
   systemAnnouncements?: Prisma.SystemAnnouncementUncheckedUpdateManyWithoutAdminNestedInput
   voyageBundles?: Prisma.VoyageBundleUncheckedUpdateManyWithoutAdminNestedInput
+  kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
+  kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
 }
 
 export type UserCreateWithoutLoginRecordsInput = {
@@ -4051,6 +4231,8 @@ export type UserCreateWithoutLoginRecordsInput = {
   createdInvites?: Prisma.InviteLinkCreateNestedManyWithoutCreatorInput
   systemAnnouncements?: Prisma.SystemAnnouncementCreateNestedManyWithoutAdminInput
   voyageBundles?: Prisma.VoyageBundleCreateNestedManyWithoutAdminInput
+  kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
+  kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
 }
 
 export type UserUncheckedCreateWithoutLoginRecordsInput = {
@@ -4090,6 +4272,8 @@ export type UserUncheckedCreateWithoutLoginRecordsInput = {
   createdInvites?: Prisma.InviteLinkUncheckedCreateNestedManyWithoutCreatorInput
   systemAnnouncements?: Prisma.SystemAnnouncementUncheckedCreateNestedManyWithoutAdminInput
   voyageBundles?: Prisma.VoyageBundleUncheckedCreateNestedManyWithoutAdminInput
+  kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
+  kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
 }
 
 export type UserCreateOrConnectWithoutLoginRecordsInput = {
@@ -4145,6 +4329,8 @@ export type UserUpdateWithoutLoginRecordsInput = {
   createdInvites?: Prisma.InviteLinkUpdateManyWithoutCreatorNestedInput
   systemAnnouncements?: Prisma.SystemAnnouncementUpdateManyWithoutAdminNestedInput
   voyageBundles?: Prisma.VoyageBundleUpdateManyWithoutAdminNestedInput
+  kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
+  kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
 }
 
 export type UserUncheckedUpdateWithoutLoginRecordsInput = {
@@ -4184,6 +4370,8 @@ export type UserUncheckedUpdateWithoutLoginRecordsInput = {
   createdInvites?: Prisma.InviteLinkUncheckedUpdateManyWithoutCreatorNestedInput
   systemAnnouncements?: Prisma.SystemAnnouncementUncheckedUpdateManyWithoutAdminNestedInput
   voyageBundles?: Prisma.VoyageBundleUncheckedUpdateManyWithoutAdminNestedInput
+  kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
+  kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
 }
 
 export type UserCreateWithoutCreatedInvitesInput = {
@@ -4223,6 +4411,8 @@ export type UserCreateWithoutCreatedInvitesInput = {
   loginRecords?: Prisma.LoginHistoryCreateNestedManyWithoutUserInput
   systemAnnouncements?: Prisma.SystemAnnouncementCreateNestedManyWithoutAdminInput
   voyageBundles?: Prisma.VoyageBundleCreateNestedManyWithoutAdminInput
+  kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
+  kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
 }
 
 export type UserUncheckedCreateWithoutCreatedInvitesInput = {
@@ -4262,6 +4452,8 @@ export type UserUncheckedCreateWithoutCreatedInvitesInput = {
   loginRecords?: Prisma.LoginHistoryUncheckedCreateNestedManyWithoutUserInput
   systemAnnouncements?: Prisma.SystemAnnouncementUncheckedCreateNestedManyWithoutAdminInput
   voyageBundles?: Prisma.VoyageBundleUncheckedCreateNestedManyWithoutAdminInput
+  kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
+  kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
 }
 
 export type UserCreateOrConnectWithoutCreatedInvitesInput = {
@@ -4317,6 +4509,8 @@ export type UserUpdateWithoutCreatedInvitesInput = {
   loginRecords?: Prisma.LoginHistoryUpdateManyWithoutUserNestedInput
   systemAnnouncements?: Prisma.SystemAnnouncementUpdateManyWithoutAdminNestedInput
   voyageBundles?: Prisma.VoyageBundleUpdateManyWithoutAdminNestedInput
+  kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
+  kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedInvitesInput = {
@@ -4356,6 +4550,8 @@ export type UserUncheckedUpdateWithoutCreatedInvitesInput = {
   loginRecords?: Prisma.LoginHistoryUncheckedUpdateManyWithoutUserNestedInput
   systemAnnouncements?: Prisma.SystemAnnouncementUncheckedUpdateManyWithoutAdminNestedInput
   voyageBundles?: Prisma.VoyageBundleUncheckedUpdateManyWithoutAdminNestedInput
+  kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
+  kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
 }
 
 export type UserCreateWithoutSystemAnnouncementsInput = {
@@ -4395,6 +4591,8 @@ export type UserCreateWithoutSystemAnnouncementsInput = {
   loginRecords?: Prisma.LoginHistoryCreateNestedManyWithoutUserInput
   createdInvites?: Prisma.InviteLinkCreateNestedManyWithoutCreatorInput
   voyageBundles?: Prisma.VoyageBundleCreateNestedManyWithoutAdminInput
+  kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
+  kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
 }
 
 export type UserUncheckedCreateWithoutSystemAnnouncementsInput = {
@@ -4434,6 +4632,8 @@ export type UserUncheckedCreateWithoutSystemAnnouncementsInput = {
   loginRecords?: Prisma.LoginHistoryUncheckedCreateNestedManyWithoutUserInput
   createdInvites?: Prisma.InviteLinkUncheckedCreateNestedManyWithoutCreatorInput
   voyageBundles?: Prisma.VoyageBundleUncheckedCreateNestedManyWithoutAdminInput
+  kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
+  kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
 }
 
 export type UserCreateOrConnectWithoutSystemAnnouncementsInput = {
@@ -4489,6 +4689,8 @@ export type UserUpdateWithoutSystemAnnouncementsInput = {
   loginRecords?: Prisma.LoginHistoryUpdateManyWithoutUserNestedInput
   createdInvites?: Prisma.InviteLinkUpdateManyWithoutCreatorNestedInput
   voyageBundles?: Prisma.VoyageBundleUpdateManyWithoutAdminNestedInput
+  kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
+  kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSystemAnnouncementsInput = {
@@ -4528,6 +4730,8 @@ export type UserUncheckedUpdateWithoutSystemAnnouncementsInput = {
   loginRecords?: Prisma.LoginHistoryUncheckedUpdateManyWithoutUserNestedInput
   createdInvites?: Prisma.InviteLinkUncheckedUpdateManyWithoutCreatorNestedInput
   voyageBundles?: Prisma.VoyageBundleUncheckedUpdateManyWithoutAdminNestedInput
+  kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
+  kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
 }
 
 export type UserCreateWithoutVoyageBundlesInput = {
@@ -4567,6 +4771,8 @@ export type UserCreateWithoutVoyageBundlesInput = {
   loginRecords?: Prisma.LoginHistoryCreateNestedManyWithoutUserInput
   createdInvites?: Prisma.InviteLinkCreateNestedManyWithoutCreatorInput
   systemAnnouncements?: Prisma.SystemAnnouncementCreateNestedManyWithoutAdminInput
+  kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
+  kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
 }
 
 export type UserUncheckedCreateWithoutVoyageBundlesInput = {
@@ -4606,6 +4812,8 @@ export type UserUncheckedCreateWithoutVoyageBundlesInput = {
   loginRecords?: Prisma.LoginHistoryUncheckedCreateNestedManyWithoutUserInput
   createdInvites?: Prisma.InviteLinkUncheckedCreateNestedManyWithoutCreatorInput
   systemAnnouncements?: Prisma.SystemAnnouncementUncheckedCreateNestedManyWithoutAdminInput
+  kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
+  kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
 }
 
 export type UserCreateOrConnectWithoutVoyageBundlesInput = {
@@ -4661,6 +4869,8 @@ export type UserUpdateWithoutVoyageBundlesInput = {
   loginRecords?: Prisma.LoginHistoryUpdateManyWithoutUserNestedInput
   createdInvites?: Prisma.InviteLinkUpdateManyWithoutCreatorNestedInput
   systemAnnouncements?: Prisma.SystemAnnouncementUpdateManyWithoutAdminNestedInput
+  kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
+  kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
 }
 
 export type UserUncheckedUpdateWithoutVoyageBundlesInput = {
@@ -4700,6 +4910,368 @@ export type UserUncheckedUpdateWithoutVoyageBundlesInput = {
   loginRecords?: Prisma.LoginHistoryUncheckedUpdateManyWithoutUserNestedInput
   createdInvites?: Prisma.InviteLinkUncheckedUpdateManyWithoutCreatorNestedInput
   systemAnnouncements?: Prisma.SystemAnnouncementUncheckedUpdateManyWithoutAdminNestedInput
+  kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
+  kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
+}
+
+export type UserCreateWithoutKanbanCreatedInput = {
+  id?: string
+  name: string
+  username: string
+  passwordHash: string
+  role?: $Enums.Role
+  status?: string
+  avatarUrl?: string | null
+  age?: number | null
+  bio?: string | null
+  favoriteSea?: string | null
+  learningGoals?: string | null
+  crowns?: number
+  pirateRank?: string
+  mustChangePassword?: boolean
+  deletedAt?: Date | string | null
+  createdAt?: Date | string
+  progress?: Prisma.UserVoyageProgressCreateNestedManyWithoutUserInput
+  achievements?: Prisma.UserAchievementCreateNestedManyWithoutUserInput
+  pointLog?: Prisma.PointTransactionCreateNestedManyWithoutUserInput
+  crownLog?: Prisma.CrownTransactionCreateNestedManyWithoutUserInput
+  streaks?: Prisma.StreakCreateNestedManyWithoutUserInput
+  charms?: Prisma.SeaCharmCreateNestedManyWithoutUserInput
+  attempts?: Prisma.TrialAttemptCreateNestedManyWithoutUserInput
+  shipUpgrades?: Prisma.UserShipUpgradeCreateNestedManyWithoutUserInput
+  chestClaims?: Prisma.DailyChestClaimCreateNestedManyWithoutUserInput
+  parentLinks?: Prisma.StudentParentCreateNestedManyWithoutStudentInput
+  parentOfLinks?: Prisma.StudentParentCreateNestedManyWithoutParentInput
+  studentClasses?: Prisma.StudentClassCreateNestedManyWithoutStudentInput
+  taughtClasses?: Prisma.ClassTeacherCreateNestedManyWithoutTeacherInput
+  assignments?: Prisma.AssignmentCreateNestedManyWithoutTeacherInput
+  studentAssignments?: Prisma.AssignmentCreateNestedManyWithoutStudentInput
+  announcements?: Prisma.AnnouncementCreateNestedManyWithoutTeacherInput
+  auditActions?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  loginRecords?: Prisma.LoginHistoryCreateNestedManyWithoutUserInput
+  createdInvites?: Prisma.InviteLinkCreateNestedManyWithoutCreatorInput
+  systemAnnouncements?: Prisma.SystemAnnouncementCreateNestedManyWithoutAdminInput
+  voyageBundles?: Prisma.VoyageBundleCreateNestedManyWithoutAdminInput
+  kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
+}
+
+export type UserUncheckedCreateWithoutKanbanCreatedInput = {
+  id?: string
+  name: string
+  username: string
+  passwordHash: string
+  role?: $Enums.Role
+  status?: string
+  avatarUrl?: string | null
+  age?: number | null
+  bio?: string | null
+  favoriteSea?: string | null
+  learningGoals?: string | null
+  crowns?: number
+  pirateRank?: string
+  mustChangePassword?: boolean
+  deletedAt?: Date | string | null
+  createdAt?: Date | string
+  progress?: Prisma.UserVoyageProgressUncheckedCreateNestedManyWithoutUserInput
+  achievements?: Prisma.UserAchievementUncheckedCreateNestedManyWithoutUserInput
+  pointLog?: Prisma.PointTransactionUncheckedCreateNestedManyWithoutUserInput
+  crownLog?: Prisma.CrownTransactionUncheckedCreateNestedManyWithoutUserInput
+  streaks?: Prisma.StreakUncheckedCreateNestedManyWithoutUserInput
+  charms?: Prisma.SeaCharmUncheckedCreateNestedManyWithoutUserInput
+  attempts?: Prisma.TrialAttemptUncheckedCreateNestedManyWithoutUserInput
+  shipUpgrades?: Prisma.UserShipUpgradeUncheckedCreateNestedManyWithoutUserInput
+  chestClaims?: Prisma.DailyChestClaimUncheckedCreateNestedManyWithoutUserInput
+  parentLinks?: Prisma.StudentParentUncheckedCreateNestedManyWithoutStudentInput
+  parentOfLinks?: Prisma.StudentParentUncheckedCreateNestedManyWithoutParentInput
+  studentClasses?: Prisma.StudentClassUncheckedCreateNestedManyWithoutStudentInput
+  taughtClasses?: Prisma.ClassTeacherUncheckedCreateNestedManyWithoutTeacherInput
+  assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutTeacherInput
+  studentAssignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutStudentInput
+  announcements?: Prisma.AnnouncementUncheckedCreateNestedManyWithoutTeacherInput
+  auditActions?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  loginRecords?: Prisma.LoginHistoryUncheckedCreateNestedManyWithoutUserInput
+  createdInvites?: Prisma.InviteLinkUncheckedCreateNestedManyWithoutCreatorInput
+  systemAnnouncements?: Prisma.SystemAnnouncementUncheckedCreateNestedManyWithoutAdminInput
+  voyageBundles?: Prisma.VoyageBundleUncheckedCreateNestedManyWithoutAdminInput
+  kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
+}
+
+export type UserCreateOrConnectWithoutKanbanCreatedInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutKanbanCreatedInput, Prisma.UserUncheckedCreateWithoutKanbanCreatedInput>
+}
+
+export type UserCreateWithoutKanbanAssignedInput = {
+  id?: string
+  name: string
+  username: string
+  passwordHash: string
+  role?: $Enums.Role
+  status?: string
+  avatarUrl?: string | null
+  age?: number | null
+  bio?: string | null
+  favoriteSea?: string | null
+  learningGoals?: string | null
+  crowns?: number
+  pirateRank?: string
+  mustChangePassword?: boolean
+  deletedAt?: Date | string | null
+  createdAt?: Date | string
+  progress?: Prisma.UserVoyageProgressCreateNestedManyWithoutUserInput
+  achievements?: Prisma.UserAchievementCreateNestedManyWithoutUserInput
+  pointLog?: Prisma.PointTransactionCreateNestedManyWithoutUserInput
+  crownLog?: Prisma.CrownTransactionCreateNestedManyWithoutUserInput
+  streaks?: Prisma.StreakCreateNestedManyWithoutUserInput
+  charms?: Prisma.SeaCharmCreateNestedManyWithoutUserInput
+  attempts?: Prisma.TrialAttemptCreateNestedManyWithoutUserInput
+  shipUpgrades?: Prisma.UserShipUpgradeCreateNestedManyWithoutUserInput
+  chestClaims?: Prisma.DailyChestClaimCreateNestedManyWithoutUserInput
+  parentLinks?: Prisma.StudentParentCreateNestedManyWithoutStudentInput
+  parentOfLinks?: Prisma.StudentParentCreateNestedManyWithoutParentInput
+  studentClasses?: Prisma.StudentClassCreateNestedManyWithoutStudentInput
+  taughtClasses?: Prisma.ClassTeacherCreateNestedManyWithoutTeacherInput
+  assignments?: Prisma.AssignmentCreateNestedManyWithoutTeacherInput
+  studentAssignments?: Prisma.AssignmentCreateNestedManyWithoutStudentInput
+  announcements?: Prisma.AnnouncementCreateNestedManyWithoutTeacherInput
+  auditActions?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  loginRecords?: Prisma.LoginHistoryCreateNestedManyWithoutUserInput
+  createdInvites?: Prisma.InviteLinkCreateNestedManyWithoutCreatorInput
+  systemAnnouncements?: Prisma.SystemAnnouncementCreateNestedManyWithoutAdminInput
+  voyageBundles?: Prisma.VoyageBundleCreateNestedManyWithoutAdminInput
+  kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
+}
+
+export type UserUncheckedCreateWithoutKanbanAssignedInput = {
+  id?: string
+  name: string
+  username: string
+  passwordHash: string
+  role?: $Enums.Role
+  status?: string
+  avatarUrl?: string | null
+  age?: number | null
+  bio?: string | null
+  favoriteSea?: string | null
+  learningGoals?: string | null
+  crowns?: number
+  pirateRank?: string
+  mustChangePassword?: boolean
+  deletedAt?: Date | string | null
+  createdAt?: Date | string
+  progress?: Prisma.UserVoyageProgressUncheckedCreateNestedManyWithoutUserInput
+  achievements?: Prisma.UserAchievementUncheckedCreateNestedManyWithoutUserInput
+  pointLog?: Prisma.PointTransactionUncheckedCreateNestedManyWithoutUserInput
+  crownLog?: Prisma.CrownTransactionUncheckedCreateNestedManyWithoutUserInput
+  streaks?: Prisma.StreakUncheckedCreateNestedManyWithoutUserInput
+  charms?: Prisma.SeaCharmUncheckedCreateNestedManyWithoutUserInput
+  attempts?: Prisma.TrialAttemptUncheckedCreateNestedManyWithoutUserInput
+  shipUpgrades?: Prisma.UserShipUpgradeUncheckedCreateNestedManyWithoutUserInput
+  chestClaims?: Prisma.DailyChestClaimUncheckedCreateNestedManyWithoutUserInput
+  parentLinks?: Prisma.StudentParentUncheckedCreateNestedManyWithoutStudentInput
+  parentOfLinks?: Prisma.StudentParentUncheckedCreateNestedManyWithoutParentInput
+  studentClasses?: Prisma.StudentClassUncheckedCreateNestedManyWithoutStudentInput
+  taughtClasses?: Prisma.ClassTeacherUncheckedCreateNestedManyWithoutTeacherInput
+  assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutTeacherInput
+  studentAssignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutStudentInput
+  announcements?: Prisma.AnnouncementUncheckedCreateNestedManyWithoutTeacherInput
+  auditActions?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  loginRecords?: Prisma.LoginHistoryUncheckedCreateNestedManyWithoutUserInput
+  createdInvites?: Prisma.InviteLinkUncheckedCreateNestedManyWithoutCreatorInput
+  systemAnnouncements?: Prisma.SystemAnnouncementUncheckedCreateNestedManyWithoutAdminInput
+  voyageBundles?: Prisma.VoyageBundleUncheckedCreateNestedManyWithoutAdminInput
+  kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
+}
+
+export type UserCreateOrConnectWithoutKanbanAssignedInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutKanbanAssignedInput, Prisma.UserUncheckedCreateWithoutKanbanAssignedInput>
+}
+
+export type UserUpsertWithoutKanbanCreatedInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutKanbanCreatedInput, Prisma.UserUncheckedUpdateWithoutKanbanCreatedInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutKanbanCreatedInput, Prisma.UserUncheckedCreateWithoutKanbanCreatedInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutKanbanCreatedInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutKanbanCreatedInput, Prisma.UserUncheckedUpdateWithoutKanbanCreatedInput>
+}
+
+export type UserUpdateWithoutKanbanCreatedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favoriteSea?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crowns?: Prisma.IntFieldUpdateOperationsInput | number
+  pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  progress?: Prisma.UserVoyageProgressUpdateManyWithoutUserNestedInput
+  achievements?: Prisma.UserAchievementUpdateManyWithoutUserNestedInput
+  pointLog?: Prisma.PointTransactionUpdateManyWithoutUserNestedInput
+  crownLog?: Prisma.CrownTransactionUpdateManyWithoutUserNestedInput
+  streaks?: Prisma.StreakUpdateManyWithoutUserNestedInput
+  charms?: Prisma.SeaCharmUpdateManyWithoutUserNestedInput
+  attempts?: Prisma.TrialAttemptUpdateManyWithoutUserNestedInput
+  shipUpgrades?: Prisma.UserShipUpgradeUpdateManyWithoutUserNestedInput
+  chestClaims?: Prisma.DailyChestClaimUpdateManyWithoutUserNestedInput
+  parentLinks?: Prisma.StudentParentUpdateManyWithoutStudentNestedInput
+  parentOfLinks?: Prisma.StudentParentUpdateManyWithoutParentNestedInput
+  studentClasses?: Prisma.StudentClassUpdateManyWithoutStudentNestedInput
+  taughtClasses?: Prisma.ClassTeacherUpdateManyWithoutTeacherNestedInput
+  assignments?: Prisma.AssignmentUpdateManyWithoutTeacherNestedInput
+  studentAssignments?: Prisma.AssignmentUpdateManyWithoutStudentNestedInput
+  announcements?: Prisma.AnnouncementUpdateManyWithoutTeacherNestedInput
+  auditActions?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  loginRecords?: Prisma.LoginHistoryUpdateManyWithoutUserNestedInput
+  createdInvites?: Prisma.InviteLinkUpdateManyWithoutCreatorNestedInput
+  systemAnnouncements?: Prisma.SystemAnnouncementUpdateManyWithoutAdminNestedInput
+  voyageBundles?: Prisma.VoyageBundleUpdateManyWithoutAdminNestedInput
+  kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
+}
+
+export type UserUncheckedUpdateWithoutKanbanCreatedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favoriteSea?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crowns?: Prisma.IntFieldUpdateOperationsInput | number
+  pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  progress?: Prisma.UserVoyageProgressUncheckedUpdateManyWithoutUserNestedInput
+  achievements?: Prisma.UserAchievementUncheckedUpdateManyWithoutUserNestedInput
+  pointLog?: Prisma.PointTransactionUncheckedUpdateManyWithoutUserNestedInput
+  crownLog?: Prisma.CrownTransactionUncheckedUpdateManyWithoutUserNestedInput
+  streaks?: Prisma.StreakUncheckedUpdateManyWithoutUserNestedInput
+  charms?: Prisma.SeaCharmUncheckedUpdateManyWithoutUserNestedInput
+  attempts?: Prisma.TrialAttemptUncheckedUpdateManyWithoutUserNestedInput
+  shipUpgrades?: Prisma.UserShipUpgradeUncheckedUpdateManyWithoutUserNestedInput
+  chestClaims?: Prisma.DailyChestClaimUncheckedUpdateManyWithoutUserNestedInput
+  parentLinks?: Prisma.StudentParentUncheckedUpdateManyWithoutStudentNestedInput
+  parentOfLinks?: Prisma.StudentParentUncheckedUpdateManyWithoutParentNestedInput
+  studentClasses?: Prisma.StudentClassUncheckedUpdateManyWithoutStudentNestedInput
+  taughtClasses?: Prisma.ClassTeacherUncheckedUpdateManyWithoutTeacherNestedInput
+  assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
+  studentAssignments?: Prisma.AssignmentUncheckedUpdateManyWithoutStudentNestedInput
+  announcements?: Prisma.AnnouncementUncheckedUpdateManyWithoutTeacherNestedInput
+  auditActions?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  loginRecords?: Prisma.LoginHistoryUncheckedUpdateManyWithoutUserNestedInput
+  createdInvites?: Prisma.InviteLinkUncheckedUpdateManyWithoutCreatorNestedInput
+  systemAnnouncements?: Prisma.SystemAnnouncementUncheckedUpdateManyWithoutAdminNestedInput
+  voyageBundles?: Prisma.VoyageBundleUncheckedUpdateManyWithoutAdminNestedInput
+  kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
+}
+
+export type UserUpsertWithoutKanbanAssignedInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutKanbanAssignedInput, Prisma.UserUncheckedUpdateWithoutKanbanAssignedInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutKanbanAssignedInput, Prisma.UserUncheckedCreateWithoutKanbanAssignedInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutKanbanAssignedInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutKanbanAssignedInput, Prisma.UserUncheckedUpdateWithoutKanbanAssignedInput>
+}
+
+export type UserUpdateWithoutKanbanAssignedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favoriteSea?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crowns?: Prisma.IntFieldUpdateOperationsInput | number
+  pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  progress?: Prisma.UserVoyageProgressUpdateManyWithoutUserNestedInput
+  achievements?: Prisma.UserAchievementUpdateManyWithoutUserNestedInput
+  pointLog?: Prisma.PointTransactionUpdateManyWithoutUserNestedInput
+  crownLog?: Prisma.CrownTransactionUpdateManyWithoutUserNestedInput
+  streaks?: Prisma.StreakUpdateManyWithoutUserNestedInput
+  charms?: Prisma.SeaCharmUpdateManyWithoutUserNestedInput
+  attempts?: Prisma.TrialAttemptUpdateManyWithoutUserNestedInput
+  shipUpgrades?: Prisma.UserShipUpgradeUpdateManyWithoutUserNestedInput
+  chestClaims?: Prisma.DailyChestClaimUpdateManyWithoutUserNestedInput
+  parentLinks?: Prisma.StudentParentUpdateManyWithoutStudentNestedInput
+  parentOfLinks?: Prisma.StudentParentUpdateManyWithoutParentNestedInput
+  studentClasses?: Prisma.StudentClassUpdateManyWithoutStudentNestedInput
+  taughtClasses?: Prisma.ClassTeacherUpdateManyWithoutTeacherNestedInput
+  assignments?: Prisma.AssignmentUpdateManyWithoutTeacherNestedInput
+  studentAssignments?: Prisma.AssignmentUpdateManyWithoutStudentNestedInput
+  announcements?: Prisma.AnnouncementUpdateManyWithoutTeacherNestedInput
+  auditActions?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  loginRecords?: Prisma.LoginHistoryUpdateManyWithoutUserNestedInput
+  createdInvites?: Prisma.InviteLinkUpdateManyWithoutCreatorNestedInput
+  systemAnnouncements?: Prisma.SystemAnnouncementUpdateManyWithoutAdminNestedInput
+  voyageBundles?: Prisma.VoyageBundleUpdateManyWithoutAdminNestedInput
+  kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
+}
+
+export type UserUncheckedUpdateWithoutKanbanAssignedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favoriteSea?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crowns?: Prisma.IntFieldUpdateOperationsInput | number
+  pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  progress?: Prisma.UserVoyageProgressUncheckedUpdateManyWithoutUserNestedInput
+  achievements?: Prisma.UserAchievementUncheckedUpdateManyWithoutUserNestedInput
+  pointLog?: Prisma.PointTransactionUncheckedUpdateManyWithoutUserNestedInput
+  crownLog?: Prisma.CrownTransactionUncheckedUpdateManyWithoutUserNestedInput
+  streaks?: Prisma.StreakUncheckedUpdateManyWithoutUserNestedInput
+  charms?: Prisma.SeaCharmUncheckedUpdateManyWithoutUserNestedInput
+  attempts?: Prisma.TrialAttemptUncheckedUpdateManyWithoutUserNestedInput
+  shipUpgrades?: Prisma.UserShipUpgradeUncheckedUpdateManyWithoutUserNestedInput
+  chestClaims?: Prisma.DailyChestClaimUncheckedUpdateManyWithoutUserNestedInput
+  parentLinks?: Prisma.StudentParentUncheckedUpdateManyWithoutStudentNestedInput
+  parentOfLinks?: Prisma.StudentParentUncheckedUpdateManyWithoutParentNestedInput
+  studentClasses?: Prisma.StudentClassUncheckedUpdateManyWithoutStudentNestedInput
+  taughtClasses?: Prisma.ClassTeacherUncheckedUpdateManyWithoutTeacherNestedInput
+  assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
+  studentAssignments?: Prisma.AssignmentUncheckedUpdateManyWithoutStudentNestedInput
+  announcements?: Prisma.AnnouncementUncheckedUpdateManyWithoutTeacherNestedInput
+  auditActions?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  loginRecords?: Prisma.LoginHistoryUncheckedUpdateManyWithoutUserNestedInput
+  createdInvites?: Prisma.InviteLinkUncheckedUpdateManyWithoutCreatorNestedInput
+  systemAnnouncements?: Prisma.SystemAnnouncementUncheckedUpdateManyWithoutAdminNestedInput
+  voyageBundles?: Prisma.VoyageBundleUncheckedUpdateManyWithoutAdminNestedInput
+  kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 
@@ -4729,6 +5301,8 @@ export type UserCountOutputType = {
   createdInvites: number
   systemAnnouncements: number
   voyageBundles: number
+  kanbanCreated: number
+  kanbanAssigned: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -4753,6 +5327,8 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   createdInvites?: boolean | UserCountOutputTypeCountCreatedInvitesArgs
   systemAnnouncements?: boolean | UserCountOutputTypeCountSystemAnnouncementsArgs
   voyageBundles?: boolean | UserCountOutputTypeCountVoyageBundlesArgs
+  kanbanCreated?: boolean | UserCountOutputTypeCountKanbanCreatedArgs
+  kanbanAssigned?: boolean | UserCountOutputTypeCountKanbanAssignedArgs
 }
 
 /**
@@ -4912,6 +5488,20 @@ export type UserCountOutputTypeCountVoyageBundlesArgs<ExtArgs extends runtime.Ty
   where?: Prisma.VoyageBundleWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountKanbanCreatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.KanbanCardWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountKanbanAssignedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.KanbanCardWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -4951,6 +5541,8 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   createdInvites?: boolean | Prisma.User$createdInvitesArgs<ExtArgs>
   systemAnnouncements?: boolean | Prisma.User$systemAnnouncementsArgs<ExtArgs>
   voyageBundles?: boolean | Prisma.User$voyageBundlesArgs<ExtArgs>
+  kanbanCreated?: boolean | Prisma.User$kanbanCreatedArgs<ExtArgs>
+  kanbanAssigned?: boolean | Prisma.User$kanbanAssignedArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -5034,6 +5626,8 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   createdInvites?: boolean | Prisma.User$createdInvitesArgs<ExtArgs>
   systemAnnouncements?: boolean | Prisma.User$systemAnnouncementsArgs<ExtArgs>
   voyageBundles?: boolean | Prisma.User$voyageBundlesArgs<ExtArgs>
+  kanbanCreated?: boolean | Prisma.User$kanbanCreatedArgs<ExtArgs>
+  kanbanAssigned?: boolean | Prisma.User$kanbanAssignedArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -5063,6 +5657,8 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     createdInvites: Prisma.$InviteLinkPayload<ExtArgs>[]
     systemAnnouncements: Prisma.$SystemAnnouncementPayload<ExtArgs>[]
     voyageBundles: Prisma.$VoyageBundlePayload<ExtArgs>[]
+    kanbanCreated: Prisma.$KanbanCardPayload<ExtArgs>[]
+    kanbanAssigned: Prisma.$KanbanCardPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -5496,6 +6092,8 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   createdInvites<T extends Prisma.User$createdInvitesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$createdInvitesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InviteLinkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   systemAnnouncements<T extends Prisma.User$systemAnnouncementsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$systemAnnouncementsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SystemAnnouncementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   voyageBundles<T extends Prisma.User$voyageBundlesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$voyageBundlesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VoyageBundlePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  kanbanCreated<T extends Prisma.User$kanbanCreatedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$kanbanCreatedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$KanbanCardPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  kanbanAssigned<T extends Prisma.User$kanbanAssignedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$kanbanAssignedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$KanbanCardPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6435,6 +7033,54 @@ export type User$voyageBundlesArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number
   skip?: number
   distinct?: Prisma.VoyageBundleScalarFieldEnum | Prisma.VoyageBundleScalarFieldEnum[]
+}
+
+/**
+ * User.kanbanCreated
+ */
+export type User$kanbanCreatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the KanbanCard
+   */
+  select?: Prisma.KanbanCardSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the KanbanCard
+   */
+  omit?: Prisma.KanbanCardOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.KanbanCardInclude<ExtArgs> | null
+  where?: Prisma.KanbanCardWhereInput
+  orderBy?: Prisma.KanbanCardOrderByWithRelationInput | Prisma.KanbanCardOrderByWithRelationInput[]
+  cursor?: Prisma.KanbanCardWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.KanbanCardScalarFieldEnum | Prisma.KanbanCardScalarFieldEnum[]
+}
+
+/**
+ * User.kanbanAssigned
+ */
+export type User$kanbanAssignedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the KanbanCard
+   */
+  select?: Prisma.KanbanCardSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the KanbanCard
+   */
+  omit?: Prisma.KanbanCardOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.KanbanCardInclude<ExtArgs> | null
+  where?: Prisma.KanbanCardWhereInput
+  orderBy?: Prisma.KanbanCardOrderByWithRelationInput | Prisma.KanbanCardOrderByWithRelationInput[]
+  cursor?: Prisma.KanbanCardWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.KanbanCardScalarFieldEnum | Prisma.KanbanCardScalarFieldEnum[]
 }
 
 /**
