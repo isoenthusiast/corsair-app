@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { auth } from "@/lib/auth";
+import { getEconomySettings } from "@/lib/economy";
 import { NextRequest, NextResponse } from "next/server";
 
 export const runtime = "nodejs";
@@ -16,11 +17,12 @@ export async function POST(request: NextRequest) {
         const voyage = await prisma.voyage.findUnique({ where: { id: voyageId }, include: { trials: true } });
         if (!voyage) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
+        const economy = await getEconomySettings();
         const prog = await prisma.userVoyageProgress.findUnique({ where: { userId_voyageId: { userId, voyageId } } });
         if (prog) {
             await prisma.userVoyageProgress.update({ where: { id: prog.id }, data: { status: "Completed", completedAt: new Date() } });
             const bonus = voyage.difficulty * 50 + (voyage.captainGauntlet ? 100 : 0);
-            const crowns = Math.floor(bonus / 2);
+            const crowns = Math.floor(bonus * economy.crownRate);
             await prisma.pointTransaction.create({ data: { userId, points: bonus, reason: voyage.captainGauntlet ? "gauntlet_conquered" : "voyage_complete", sourceId: voyageId } });
             if (crowns > 0) { await prisma.crownTransaction.create({ data: { userId, amount: crowns, reason: "voyage_bonus", sourceId: voyageId } }); await prisma.user.update({ where: { id: userId }, data: { crowns: { increment: crowns } } }); }
         }

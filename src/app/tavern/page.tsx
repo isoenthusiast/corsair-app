@@ -1,14 +1,15 @@
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { getEconomySettings } from "@/lib/economy";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 
-const SHOP_ITEMS = [
-    { type: "whisper_scroll" as const, name: "Whisper Scroll", icon: "📜", cost: 20, desc: "Reveals a hint for any trial" },
-    { type: "storm_pass" as const, name: "Storm Pass", icon: "⛈️", cost: 50, desc: "Skip one trial instantly" },
-    { type: "fortune_wind" as const, name: "Fortune Wind", icon: "💨", cost: 100, desc: "Double crowns from next trial" },
-    { type: "anchor_charm" as const, name: "Anchor Charm", icon: "⚓", cost: 150, desc: "Freeze your streak for 1 day" },
-];
+const SHOP_ITEM_META: Record<string, { name: string; icon: string; desc: string }> = {
+    whisper_scroll: { name: "Whisper Scroll", icon: "📜", desc: "Reveals a hint for any trial" },
+    storm_pass: { name: "Storm Pass", icon: "⛈️", desc: "Skip one trial instantly" },
+    fortune_wind: { name: "Fortune Wind", icon: "💨", desc: "Double crowns from next trial" },
+    anchor_charm: { name: "Anchor Charm", icon: "⚓", desc: "Freeze your streak for 1 day" },
+};
 
 export default async function TavernPage() {
     const session = await auth();
@@ -16,6 +17,11 @@ export default async function TavernPage() {
 
     const user = await prisma.user.findUnique({ where: { id: session.user.id }, include: { charms: true } });
     if (!user) redirect("/");
+
+    const economy = await getEconomySettings();
+    const prices = economy.shopPrices as Record<string, number>;
+
+    const SHOP_ITEMS = Object.entries(SHOP_ITEM_META).map(([type, meta]) => ({ type, ...meta, cost: prices[type] || 999 }));
 
     return (
         <div className="min-h-screen treasure-map">

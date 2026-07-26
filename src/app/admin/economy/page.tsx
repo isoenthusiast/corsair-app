@@ -1,18 +1,13 @@
 import { auth } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
+import { getEconomySettings } from "@/lib/economy";
 import { redirect } from "next/navigation";
 import Link from "next/link";
-
-const ECONOMY_DEFAULTS = {
-    crownRate: 0.5,
-    shopPrices: { whisper_scroll: 20, storm_pass: 50, fortune_wind: 100, anchor_charm: 150 },
-    upgradeCosts: [300, 500, 1000, 2000, 5000],
-    rankXP: [0, 100, 300, 600, 1000, 1500, 2500, 4000, 6000],
-};
 
 export default async function EconomyPage() {
     const session = await auth();
     if (!session?.user || session.user.role !== "Admin") redirect("/");
+
+    const ECONOMY_DEFAULTS = await getEconomySettings();
 
     return (
         <div className="min-h-screen treasure-map">

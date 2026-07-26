@@ -1,10 +1,8 @@
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { getEconomySettings, getRank } from "@/lib/economy";
 import { redirect } from "next/navigation";
 import Link from "next/link";
-
-const RANKS = ["Deckhand", "Swabbie", "Gunner", "Boatswain", "Quartermaster", "First Mate", "Captain", "Commodore", "Sea Lord"];
-const RANK_XP = [0, 100, 300, 600, 1000, 1500, 2500, 4000, 6000];
 
 export default async function ProfilePage() {
     const session = await auth();
@@ -16,15 +14,14 @@ export default async function ProfilePage() {
     });
     if (!user) redirect("/");
 
+    const economy = await getEconomySettings();
+    const rankXP = economy.rankXP as number[];
+
     const xpR = await prisma.pointTransaction.aggregate({ where: { userId: user.id }, _sum: { points: true } });
     const totalXP = xpR._sum.points || 0;
 
-    let rank = "Deckhand";
-    for (let i = RANKS.length - 1; i >= 0; i--) { if (totalXP >= RANK_XP[i]) { rank = RANKS[i]; break; } }
-    const rankIdx = RANKS.indexOf(rank);
-    const nextXP = rankIdx + 1 < RANK_XP.length ? RANK_XP[rankIdx + 1] : RANK_XP[rankIdx];
-    const curXP = RANK_XP[rankIdx];
-    const rp = nextXP > curXP ? ((totalXP - curXP) / (nextXP - curXP)) * 100 : 100;
+    const { rank, nextRank, progress } = getRank(totalXP, rankXP);
+    const rp = progress;
 
     const completed = await prisma.userVoyageProgress.count({ where: { userId: user.id, status: { in: ["Completed", "Mastered"] } } });
     const totalV = await prisma.voyage.count();
@@ -57,7 +54,7 @@ export default async function ProfilePage() {
                         <span className="text-4xl" style={{ color: "#D32F2F" }}>⚔️ {totalXP} XP</span>
                     </div>
                     <div className="hull-bar mb-2 max-w-md mx-auto"><div className="hull-bar-fill" style={{ width: `${rp}%` }} /></div>
-                    <div className="text-center text-sm" style={{ color: "#5D4037" }}>{rank} → {rankIdx + 1 < RANKS.length ? RANKS[rankIdx + 1] : "MAX RANK"} ({Math.round(rp)}%)</div>
+                    <div className="text-center text-sm" style={{ color: "#5D4037" }}>{rank} → {nextRank || "MAX RANK"} ({Math.round(rp)}%)</div>
 
                     <div className="grid grid-cols-4 gap-3 mt-6">
                         {[["☠️", totalSkulls, "Skulls"], ["🗺️", `${completed}/${totalV}`, "Voyages"], ["🪙", user.crowns, "Crowns"], ["🔥", user.streaks?.[0]?.currentStreak || 0, "Streak"]].map(([i, v, l]) => (

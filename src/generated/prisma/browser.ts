@@ -148,6 +148,16 @@ export type InviteLink = Prisma.InviteLinkModel
  */
 export type SystemAnnouncement = Prisma.SystemAnnouncementModel
 /**
+ * Model EconomySettings
+ * 
+ */
+export type EconomySettings = Prisma.EconomySettingsModel
+/**
+ * Model SystemSetting
+ * 
+ */
+export type SystemSetting = Prisma.SystemSettingModel
+/**
  * Model VoyageBundle
  * 
  */

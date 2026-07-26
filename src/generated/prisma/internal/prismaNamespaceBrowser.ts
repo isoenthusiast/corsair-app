@@ -77,6 +77,8 @@ export const ModelName = {
   LoginHistory: 'LoginHistory',
   InviteLink: 'InviteLink',
   SystemAnnouncement: 'SystemAnnouncement',
+  EconomySettings: 'EconomySettings',
+  SystemSetting: 'SystemSetting',
   VoyageBundle: 'VoyageBundle',
   VoyageBundleItem: 'VoyageBundleItem',
   KanbanCard: 'KanbanCard',
@@ -438,6 +440,32 @@ export const SystemAnnouncementScalarFieldEnum = {
 export type SystemAnnouncementScalarFieldEnum = (typeof SystemAnnouncementScalarFieldEnum)[keyof typeof SystemAnnouncementScalarFieldEnum]
 
 
+export const EconomySettingsScalarFieldEnum = {
+  id: 'id',
+  crownRate: 'crownRate',
+  shopPrices: 'shopPrices',
+  upgradeCosts: 'upgradeCosts',
+  rankXP: 'rankXP',
+  updatedAt: 'updatedAt',
+  createdAt: 'createdAt'
+} as const
+
+export type EconomySettingsScalarFieldEnum = (typeof EconomySettingsScalarFieldEnum)[keyof typeof EconomySettingsScalarFieldEnum]
+
+
+export const SystemSettingScalarFieldEnum = {
+  id: 'id',
+  appName: 'appName',
+  maintenanceMode: 'maintenanceMode',
+  maintenanceMessage: 'maintenanceMessage',
+  featureFlags: 'featureFlags',
+  updatedAt: 'updatedAt',
+  createdAt: 'createdAt'
+} as const
+
+export type SystemSettingScalarFieldEnum = (typeof SystemSettingScalarFieldEnum)[keyof typeof SystemSettingScalarFieldEnum]
+
+
 export const VoyageBundleScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -509,6 +537,13 @@ export const NullableJsonNullValueInput = {
 } as const
 
 export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
 export const QueryMode = {

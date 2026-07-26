@@ -423,6 +423,26 @@ model SystemAnnouncement {
     admin User @relation(fields: [adminId], references: [id])
 }
 
+model EconomySettings {
+    id            String   @id @default(cuid())
+    crownRate     Float    @default(0.5)
+    shopPrices    Json     @default("{\"whisper_scroll\":20,\"storm_pass\":50,\"fortune_wind\":100,\"anchor_charm\":150}")
+    upgradeCosts  Json     @default("[300,500,1000,2000,5000]")
+    rankXP        Json     @default("[0,100,300,600,1000,1500,2500,4000,6000]")
+    updatedAt     DateTime @updatedAt
+    createdAt     DateTime @default(now())
+}
+
+model SystemSetting {
+    id                String   @id @default(cuid())
+    appName           String   @default("Corsair Academy")
+    maintenanceMode   Boolean  @default(false)
+    maintenanceMessage String  @default("The ship is in dry dock for upgrades. Back soon!")
+    featureFlags      Json     @default("{\"aiGeneration\":true,\"aiTutor\":true,\"aiGrading\":true,\"shop\":true,\"registrations\":true}")
+    updatedAt         DateTime @updatedAt
+    createdAt         DateTime @default(now())
+}
+
 model VoyageBundle {
     id          String   @id @default(cuid())
     name        String

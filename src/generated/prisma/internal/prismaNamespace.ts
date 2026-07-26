@@ -423,6 +423,8 @@ export const ModelName = {
   LoginHistory: 'LoginHistory',
   InviteLink: 'InviteLink',
   SystemAnnouncement: 'SystemAnnouncement',
+  EconomySettings: 'EconomySettings',
+  SystemSetting: 'SystemSetting',
   VoyageBundle: 'VoyageBundle',
   VoyageBundleItem: 'VoyageBundleItem',
   KanbanCard: 'KanbanCard',
@@ -442,7 +444,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "sea" | "voyage" | "trial" | "trialVersion" | "trialAttempt" | "userVoyageProgress" | "pointTransaction" | "crownTransaction" | "shipUpgrade" | "userShipUpgrade" | "dailyChestClaim" | "achievement" | "userAchievement" | "streak" | "seaCharm" | "class" | "classTeacher" | "studentClass" | "studentParent" | "assignment" | "announcement" | "auditLog" | "loginHistory" | "inviteLink" | "systemAnnouncement" | "voyageBundle" | "voyageBundleItem" | "kanbanCard" | "aIContext"
+    modelProps: "user" | "sea" | "voyage" | "trial" | "trialVersion" | "trialAttempt" | "userVoyageProgress" | "pointTransaction" | "crownTransaction" | "shipUpgrade" | "userShipUpgrade" | "dailyChestClaim" | "achievement" | "userAchievement" | "streak" | "seaCharm" | "class" | "classTeacher" | "studentClass" | "studentParent" | "assignment" | "announcement" | "auditLog" | "loginHistory" | "inviteLink" | "systemAnnouncement" | "economySettings" | "systemSetting" | "voyageBundle" | "voyageBundleItem" | "kanbanCard" | "aIContext"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2370,6 +2372,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    EconomySettings: {
+      payload: Prisma.$EconomySettingsPayload<ExtArgs>
+      fields: Prisma.EconomySettingsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.EconomySettingsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EconomySettingsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.EconomySettingsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EconomySettingsPayload>
+        }
+        findFirst: {
+          args: Prisma.EconomySettingsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EconomySettingsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.EconomySettingsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EconomySettingsPayload>
+        }
+        findMany: {
+          args: Prisma.EconomySettingsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EconomySettingsPayload>[]
+        }
+        create: {
+          args: Prisma.EconomySettingsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EconomySettingsPayload>
+        }
+        createMany: {
+          args: Prisma.EconomySettingsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.EconomySettingsCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EconomySettingsPayload>[]
+        }
+        delete: {
+          args: Prisma.EconomySettingsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EconomySettingsPayload>
+        }
+        update: {
+          args: Prisma.EconomySettingsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EconomySettingsPayload>
+        }
+        deleteMany: {
+          args: Prisma.EconomySettingsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.EconomySettingsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.EconomySettingsUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EconomySettingsPayload>[]
+        }
+        upsert: {
+          args: Prisma.EconomySettingsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EconomySettingsPayload>
+        }
+        aggregate: {
+          args: Prisma.EconomySettingsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateEconomySettings>
+        }
+        groupBy: {
+          args: Prisma.EconomySettingsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EconomySettingsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.EconomySettingsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EconomySettingsCountAggregateOutputType> | number
+        }
+      }
+    }
+    SystemSetting: {
+      payload: Prisma.$SystemSettingPayload<ExtArgs>
+      fields: Prisma.SystemSettingFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.SystemSettingFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SystemSettingPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.SystemSettingFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SystemSettingPayload>
+        }
+        findFirst: {
+          args: Prisma.SystemSettingFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SystemSettingPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.SystemSettingFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SystemSettingPayload>
+        }
+        findMany: {
+          args: Prisma.SystemSettingFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SystemSettingPayload>[]
+        }
+        create: {
+          args: Prisma.SystemSettingCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SystemSettingPayload>
+        }
+        createMany: {
+          args: Prisma.SystemSettingCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.SystemSettingCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SystemSettingPayload>[]
+        }
+        delete: {
+          args: Prisma.SystemSettingDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SystemSettingPayload>
+        }
+        update: {
+          args: Prisma.SystemSettingUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SystemSettingPayload>
+        }
+        deleteMany: {
+          args: Prisma.SystemSettingDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.SystemSettingUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.SystemSettingUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SystemSettingPayload>[]
+        }
+        upsert: {
+          args: Prisma.SystemSettingUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SystemSettingPayload>
+        }
+        aggregate: {
+          args: Prisma.SystemSettingAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSystemSetting>
+        }
+        groupBy: {
+          args: Prisma.SystemSettingGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SystemSettingGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.SystemSettingCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SystemSettingCountAggregateOutputType> | number
+        }
+      }
+    }
     VoyageBundle: {
       payload: Prisma.$VoyageBundlePayload<ExtArgs>
       fields: Prisma.VoyageBundleFieldRefs
@@ -3044,6 +3194,32 @@ export const SystemAnnouncementScalarFieldEnum = {
 export type SystemAnnouncementScalarFieldEnum = (typeof SystemAnnouncementScalarFieldEnum)[keyof typeof SystemAnnouncementScalarFieldEnum]
 
 
+export const EconomySettingsScalarFieldEnum = {
+  id: 'id',
+  crownRate: 'crownRate',
+  shopPrices: 'shopPrices',
+  upgradeCosts: 'upgradeCosts',
+  rankXP: 'rankXP',
+  updatedAt: 'updatedAt',
+  createdAt: 'createdAt'
+} as const
+
+export type EconomySettingsScalarFieldEnum = (typeof EconomySettingsScalarFieldEnum)[keyof typeof EconomySettingsScalarFieldEnum]
+
+
+export const SystemSettingScalarFieldEnum = {
+  id: 'id',
+  appName: 'appName',
+  maintenanceMode: 'maintenanceMode',
+  maintenanceMessage: 'maintenanceMessage',
+  featureFlags: 'featureFlags',
+  updatedAt: 'updatedAt',
+  createdAt: 'createdAt'
+} as const
+
+export type SystemSettingScalarFieldEnum = (typeof SystemSettingScalarFieldEnum)[keyof typeof SystemSettingScalarFieldEnum]
+
+
 export const VoyageBundleScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -3115,6 +3291,13 @@ export const NullableJsonNullValueInput = {
 } as const
 
 export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
 export const QueryMode = {
@@ -3555,6 +3738,8 @@ export type GlobalOmitConfig = {
   loginHistory?: Prisma.LoginHistoryOmit
   inviteLink?: Prisma.InviteLinkOmit
   systemAnnouncement?: Prisma.SystemAnnouncementOmit
+  economySettings?: Prisma.EconomySettingsOmit
+  systemSetting?: Prisma.SystemSettingOmit
   voyageBundle?: Prisma.VoyageBundleOmit
   voyageBundleItem?: Prisma.VoyageBundleItemOmit
   kanbanCard?: Prisma.KanbanCardOmit

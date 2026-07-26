@@ -1,10 +1,13 @@
 import { auth } from "@/lib/auth";
+import { getSystemSettings } from "@/lib/settings";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 
 export default async function SettingsPage() {
     const session = await auth();
     if (!session?.user || session.user.role !== "Admin") redirect("/");
+
+    const SYS_DEFAULTS = await getSystemSettings();
 
     return (
         <div className="min-h-screen treasure-map">
@@ -20,7 +23,7 @@ export default async function SettingsPage() {
                     <h2 className="text-lg mb-4" style={{ fontFamily: "'Pirata One', cursive", color: "#F7C948" }}>🏴‍☠️ App Identity</h2>
                     <form action="/api/admin/settings" method="POST" className="space-y-3">
                         <input type="hidden" name="category" value="identity" />
-                        <div><label className="block text-sm text-amber-600 mb-1">App Name</label><input name="appName" defaultValue="Corsair Academy" className="w-full px-3 py-2 rounded-lg bg-abyssal border border-amber-900/30 text-white" /></div>
+                        <div><label className="block text-sm text-amber-600 mb-1">App Name</label><input name="appName" defaultValue={SYS_DEFAULTS.appName} className="w-full px-3 py-2 rounded-lg bg-abyssal border border-amber-900/30 text-white" /></div>
                         <button className="btn-pirate text-sm">Save</button>
                     </form>
                 </div>
@@ -30,13 +33,13 @@ export default async function SettingsPage() {
                     <form action="/api/admin/settings" method="POST" className="space-y-3">
                         <input type="hidden" name="category" value="maintenance" />
                         <div className="flex items-center gap-3">
-                            <select name="maintenanceMode" className="px-3 py-2 rounded-lg bg-abyssal border border-amber-900/30 text-white">
+                            <select name="maintenanceMode" defaultValue={SYS_DEFAULTS.maintenanceMode ? "on" : "off"} className="px-3 py-2 rounded-lg bg-abyssal border border-amber-900/30 text-white">
                                 <option value="off">Off</option>
                                 <option value="on">On</option>
                             </select>
                             <span className="text-sm text-amber-600">Non-admin users see maintenance page</span>
                         </div>
-                        <div><label className="block text-sm text-amber-600 mb-1">Message</label><input name="maintenanceMessage" defaultValue="The ship is in dry dock for upgrades. Back soon!" className="w-full px-3 py-2 rounded-lg bg-abyssal border border-amber-900/30 text-white" /></div>
+                        <div><label className="block text-sm text-amber-600 mb-1">Message</label><input name="maintenanceMessage" defaultValue={SYS_DEFAULTS.maintenanceMessage} className="w-full px-3 py-2 rounded-lg bg-abyssal border border-amber-900/30 text-white" /></div>
                         <button className="btn-pirate text-sm">Save</button>
                     </form>
                 </div>
@@ -48,7 +51,7 @@ export default async function SettingsPage() {
                         {[{ key: "aiGeneration", label: "AI Trial Generation" }, { key: "aiTutor", label: "AI Tutor Chat" }, { key: "aiGrading", label: "AI Grading" }, { key: "shop", label: "Tavern Shop" }, { key: "registrations", label: "New Registrations" }].map(f => (
                             <div key={f.key} className="flex items-center justify-between">
                                 <span className="text-sm">{f.label}</span>
-                                <select name={f.key} className="px-3 py-1 rounded-lg bg-abyssal border border-amber-900/30 text-white text-sm">
+                                <select name={f.key} defaultValue={SYS_DEFAULTS.featureFlags[f.key as keyof typeof SYS_DEFAULTS.featureFlags] ? "on" : "off"} className="px-3 py-1 rounded-lg bg-abyssal border border-amber-900/30 text-white text-sm">
                                     <option value="on">Enabled</option>
                                     <option value="off">Disabled</option>
                                 </select>

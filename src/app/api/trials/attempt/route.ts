@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { auth } from "@/lib/auth";
+import { getEconomySettings } from "@/lib/economy";
 import { NextRequest, NextResponse } from "next/server";
 
 export const runtime = "nodejs";
@@ -16,8 +17,9 @@ export async function POST(request: NextRequest) {
         await prisma.trialAttempt.create({ data: { trialId, userId, answer: answer || "", correct: correct ?? false, timeSpent: timeSpent || null, skulls: skulls || (correct ? 1 : 0), hintsUsed: hintsUsed || 0 } });
 
         const trial = await prisma.trial.findUnique({ where: { id: trialId }, select: { points: true, voyageId: true } });
+        const economy = await getEconomySettings();
         const pts = (trial?.points || 10) * (skulls || 1);
-        const crowns = Math.floor(pts / 2);
+        const crowns = Math.floor(pts * economy.crownRate);
 
         await prisma.pointTransaction.create({ data: { userId, points: pts, reason: "trial_complete", sourceId: trialId } });
         if (crowns > 0) {

@@ -1,14 +1,15 @@
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { getEconomySettings, getRank } from "@/lib/economy";
 import { redirect } from "next/navigation";
-
-const RANKS = ["Deckhand", "Swabbie", "Gunner", "Boatswain", "Quartermaster", "First Mate", "Captain", "Commodore", "Sea Lord"];
-const RANK_XP = [0, 100, 300, 600, 1000, 1500, 2500, 4000, 6000];
 
 export default async function ClassDetailPage({ params }: { params: Promise<{ id: string }> }) {
     const session = await auth();
     if (!session?.user || (session.user.role !== "Teacher" && session.user.role !== "Admin")) redirect("/");
     const { id } = await params;
+
+    const economy = await getEconomySettings();
+    const rankXP = economy.rankXP as number[];
 
     const classData = await prisma.class.findUnique({
         where: { id },
@@ -25,8 +26,7 @@ export default async function ClassDetailPage({ params }: { params: Promise<{ id
     const studentStats = await Promise.all(classData.students.map(async sc => {
         const xpR = await prisma.pointTransaction.aggregate({ where: { userId: sc.studentId }, _sum: { points: true } });
         const xp = xpR._sum.points || 0;
-        let rank = "Deckhand";
-        for (let i = RANKS.length - 1; i >= 0; i--) { if (xp >= RANK_XP[i]) { rank = RANKS[i]; break; } }
+        const { rank } = getRank(xp, rankXP);
         const done = await prisma.userVoyageProgress.count({ where: { userId: sc.studentId, status: { in: ["Completed", "Mastered"] } } });
         return { student: sc.student, xp, rank, voyagesDone: done };
     }));
