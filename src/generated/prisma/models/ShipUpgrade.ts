@@ -60,6 +60,7 @@ export type ShipUpgradeCountAggregateOutputType = {
   description: number
   icon: number
   cost: number
+  effects: number
   sortOrder: number
   _all: number
 }
@@ -99,6 +100,7 @@ export type ShipUpgradeCountAggregateInputType = {
   description?: true
   icon?: true
   cost?: true
+  effects?: true
   sortOrder?: true
   _all?: true
 }
@@ -195,6 +197,7 @@ export type ShipUpgradeGroupByOutputType = {
   description: string
   icon: string
   cost: number
+  effects: runtime.JsonValue
   sortOrder: number
   _count: ShipUpgradeCountAggregateOutputType | null
   _avg: ShipUpgradeAvgAggregateOutputType | null
@@ -227,6 +230,7 @@ export type ShipUpgradeWhereInput = {
   description?: Prisma.StringFilter<"ShipUpgrade"> | string
   icon?: Prisma.StringFilter<"ShipUpgrade"> | string
   cost?: Prisma.IntFilter<"ShipUpgrade"> | number
+  effects?: Prisma.JsonFilter<"ShipUpgrade">
   sortOrder?: Prisma.IntFilter<"ShipUpgrade"> | number
   users?: Prisma.UserShipUpgradeListRelationFilter
 }
@@ -237,6 +241,7 @@ export type ShipUpgradeOrderByWithRelationInput = {
   description?: Prisma.SortOrder
   icon?: Prisma.SortOrder
   cost?: Prisma.SortOrder
+  effects?: Prisma.SortOrder
   sortOrder?: Prisma.SortOrder
   users?: Prisma.UserShipUpgradeOrderByRelationAggregateInput
 }
@@ -250,6 +255,7 @@ export type ShipUpgradeWhereUniqueInput = Prisma.AtLeast<{
   description?: Prisma.StringFilter<"ShipUpgrade"> | string
   icon?: Prisma.StringFilter<"ShipUpgrade"> | string
   cost?: Prisma.IntFilter<"ShipUpgrade"> | number
+  effects?: Prisma.JsonFilter<"ShipUpgrade">
   sortOrder?: Prisma.IntFilter<"ShipUpgrade"> | number
   users?: Prisma.UserShipUpgradeListRelationFilter
 }, "id">
@@ -260,6 +266,7 @@ export type ShipUpgradeOrderByWithAggregationInput = {
   description?: Prisma.SortOrder
   icon?: Prisma.SortOrder
   cost?: Prisma.SortOrder
+  effects?: Prisma.SortOrder
   sortOrder?: Prisma.SortOrder
   _count?: Prisma.ShipUpgradeCountOrderByAggregateInput
   _avg?: Prisma.ShipUpgradeAvgOrderByAggregateInput
@@ -277,6 +284,7 @@ export type ShipUpgradeScalarWhereWithAggregatesInput = {
   description?: Prisma.StringWithAggregatesFilter<"ShipUpgrade"> | string
   icon?: Prisma.StringWithAggregatesFilter<"ShipUpgrade"> | string
   cost?: Prisma.IntWithAggregatesFilter<"ShipUpgrade"> | number
+  effects?: Prisma.JsonWithAggregatesFilter<"ShipUpgrade">
   sortOrder?: Prisma.IntWithAggregatesFilter<"ShipUpgrade"> | number
 }
 
@@ -286,6 +294,7 @@ export type ShipUpgradeCreateInput = {
   description: string
   icon: string
   cost: number
+  effects?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   sortOrder?: number
   users?: Prisma.UserShipUpgradeCreateNestedManyWithoutUpgradeInput
 }
@@ -296,6 +305,7 @@ export type ShipUpgradeUncheckedCreateInput = {
   description: string
   icon: string
   cost: number
+  effects?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   sortOrder?: number
   users?: Prisma.UserShipUpgradeUncheckedCreateNestedManyWithoutUpgradeInput
 }
@@ -306,6 +316,7 @@ export type ShipUpgradeUpdateInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   icon?: Prisma.StringFieldUpdateOperationsInput | string
   cost?: Prisma.IntFieldUpdateOperationsInput | number
+  effects?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   users?: Prisma.UserShipUpgradeUpdateManyWithoutUpgradeNestedInput
 }
@@ -316,6 +327,7 @@ export type ShipUpgradeUncheckedUpdateInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   icon?: Prisma.StringFieldUpdateOperationsInput | string
   cost?: Prisma.IntFieldUpdateOperationsInput | number
+  effects?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   users?: Prisma.UserShipUpgradeUncheckedUpdateManyWithoutUpgradeNestedInput
 }
@@ -326,6 +338,7 @@ export type ShipUpgradeCreateManyInput = {
   description: string
   icon: string
   cost: number
+  effects?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   sortOrder?: number
 }
 
@@ -335,6 +348,7 @@ export type ShipUpgradeUpdateManyMutationInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   icon?: Prisma.StringFieldUpdateOperationsInput | string
   cost?: Prisma.IntFieldUpdateOperationsInput | number
+  effects?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -344,6 +358,7 @@ export type ShipUpgradeUncheckedUpdateManyInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   icon?: Prisma.StringFieldUpdateOperationsInput | string
   cost?: Prisma.IntFieldUpdateOperationsInput | number
+  effects?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -353,6 +368,7 @@ export type ShipUpgradeCountOrderByAggregateInput = {
   description?: Prisma.SortOrder
   icon?: Prisma.SortOrder
   cost?: Prisma.SortOrder
+  effects?: Prisma.SortOrder
   sortOrder?: Prisma.SortOrder
 }
 
@@ -409,6 +425,7 @@ export type ShipUpgradeCreateWithoutUsersInput = {
   description: string
   icon: string
   cost: number
+  effects?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   sortOrder?: number
 }
 
@@ -418,6 +435,7 @@ export type ShipUpgradeUncheckedCreateWithoutUsersInput = {
   description: string
   icon: string
   cost: number
+  effects?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   sortOrder?: number
 }
 
@@ -443,6 +461,7 @@ export type ShipUpgradeUpdateWithoutUsersInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   icon?: Prisma.StringFieldUpdateOperationsInput | string
   cost?: Prisma.IntFieldUpdateOperationsInput | number
+  effects?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -452,6 +471,7 @@ export type ShipUpgradeUncheckedUpdateWithoutUsersInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   icon?: Prisma.StringFieldUpdateOperationsInput | string
   cost?: Prisma.IntFieldUpdateOperationsInput | number
+  effects?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -492,6 +512,7 @@ export type ShipUpgradeSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   description?: boolean
   icon?: boolean
   cost?: boolean
+  effects?: boolean
   sortOrder?: boolean
   users?: boolean | Prisma.ShipUpgrade$usersArgs<ExtArgs>
   _count?: boolean | Prisma.ShipUpgradeCountOutputTypeDefaultArgs<ExtArgs>
@@ -503,6 +524,7 @@ export type ShipUpgradeSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   description?: boolean
   icon?: boolean
   cost?: boolean
+  effects?: boolean
   sortOrder?: boolean
 }, ExtArgs["result"]["shipUpgrade"]>
 
@@ -512,6 +534,7 @@ export type ShipUpgradeSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
   description?: boolean
   icon?: boolean
   cost?: boolean
+  effects?: boolean
   sortOrder?: boolean
 }, ExtArgs["result"]["shipUpgrade"]>
 
@@ -521,10 +544,11 @@ export type ShipUpgradeSelectScalar = {
   description?: boolean
   icon?: boolean
   cost?: boolean
+  effects?: boolean
   sortOrder?: boolean
 }
 
-export type ShipUpgradeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "description" | "icon" | "cost" | "sortOrder", ExtArgs["result"]["shipUpgrade"]>
+export type ShipUpgradeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "description" | "icon" | "cost" | "effects" | "sortOrder", ExtArgs["result"]["shipUpgrade"]>
 export type ShipUpgradeInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   users?: boolean | Prisma.ShipUpgrade$usersArgs<ExtArgs>
   _count?: boolean | Prisma.ShipUpgradeCountOutputTypeDefaultArgs<ExtArgs>
@@ -543,6 +567,7 @@ export type $ShipUpgradePayload<ExtArgs extends runtime.Types.Extensions.Interna
     description: string
     icon: string
     cost: number
+    effects: runtime.JsonValue
     sortOrder: number
   }, ExtArgs["result"]["shipUpgrade"]>
   composites: {}
@@ -973,6 +998,7 @@ export interface ShipUpgradeFieldRefs {
   readonly description: Prisma.FieldRef<"ShipUpgrade", 'String'>
   readonly icon: Prisma.FieldRef<"ShipUpgrade", 'String'>
   readonly cost: Prisma.FieldRef<"ShipUpgrade", 'Int'>
+  readonly effects: Prisma.FieldRef<"ShipUpgrade", 'Json'>
   readonly sortOrder: Prisma.FieldRef<"ShipUpgrade", 'Int'>
 }
     

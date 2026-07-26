@@ -115,6 +115,7 @@ export const UserScalarFieldEnum = {
   learningGoals: 'learningGoals',
   crowns: 'crowns',
   pirateRank: 'pirateRank',
+  hasFortuneWind: 'hasFortuneWind',
   mustChangePassword: 'mustChangePassword',
   deletedAt: 'deletedAt',
   createdAt: 'createdAt'
@@ -144,7 +145,7 @@ export const VoyageScalarFieldEnum = {
   difficulty: 'difficulty',
   requiredVoyageId: 'requiredVoyageId',
   captainGauntlet: 'captainGauntlet',
-  status: 'status',
+  lifecycle: 'lifecycle',
   objectives: 'objectives',
   estimatedMinutes: 'estimatedMinutes',
   tags: 'tags',
@@ -255,6 +256,7 @@ export const ShipUpgradeScalarFieldEnum = {
   description: 'description',
   icon: 'icon',
   cost: 'cost',
+  effects: 'effects',
   sortOrder: 'sortOrder'
 } as const
 
@@ -312,7 +314,8 @@ export const StreakScalarFieldEnum = {
   currentStreak: 'currentStreak',
   longestStreak: 'longestStreak',
   lastActivityDate: 'lastActivityDate',
-  streakProtection: 'streakProtection'
+  streakProtection: 'streakProtection',
+  streakFrozenUntil: 'streakFrozenUntil'
 } as const
 
 export type StreakScalarFieldEnum = (typeof StreakScalarFieldEnum)[keyof typeof StreakScalarFieldEnum]

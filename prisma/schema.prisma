@@ -25,6 +25,7 @@ model User {
     learningGoals      String?
     crowns             Int       @default(0)
     pirateRank         String    @default("Deckhand")
+    hasFortuneWind     Boolean   @default(false)
     mustChangePassword Boolean   @default(false)
     deletedAt          DateTime?
     createdAt          DateTime  @default(now())
@@ -77,7 +78,7 @@ model Voyage {
     difficulty            Int      @default(1)
     requiredVoyageId      String?
     captainGauntlet       Boolean  @default(false)
-    status                String   @default("Draft")
+    lifecycle             VoyageLifecycle @default(Draft)
     objectives            String?
     estimatedMinutes      Int?
     tags                  String[] @default([])
@@ -213,6 +214,7 @@ model ShipUpgrade {
     description String
     icon        String
     cost        Int
+    effects     Json    @default("{}")
     sortOrder   Int    @default(0)
 
     users UserShipUpgrade[]
@@ -274,12 +276,13 @@ model UserAchievement {
 // ── Streaks & Sea Charms ──
 
 model Streak {
-    id               String    @id @default(cuid())
-    userId           String    @unique
-    currentStreak    Int       @default(0)
-    longestStreak    Int       @default(0)
-    lastActivityDate DateTime?
-    streakProtection Int       @default(0)
+    id                String    @id @default(cuid())
+    userId            String    @unique
+    currentStreak     Int       @default(0)
+    longestStreak     Int       @default(0)
+    lastActivityDate  DateTime?
+    streakProtection  Int       @default(0)
+    streakFrozenUntil DateTime?
 
     user User @relation(fields: [userId], references: [id])
 }
@@ -579,6 +582,12 @@ enum Priority {
     Low
     Medium
     High
+}
+
+enum VoyageLifecycle {
+    Draft
+    Published
+    Deprecated
 }
 
 enum AIContextFeature {

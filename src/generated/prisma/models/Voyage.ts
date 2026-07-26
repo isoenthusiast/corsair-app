@@ -47,7 +47,7 @@ export type VoyageMinAggregateOutputType = {
   difficulty: number | null
   requiredVoyageId: string | null
   captainGauntlet: boolean | null
-  status: string | null
+  lifecycle: $Enums.VoyageLifecycle | null
   objectives: string | null
   estimatedMinutes: number | null
   prerequisiteKnowledge: string | null
@@ -67,7 +67,7 @@ export type VoyageMaxAggregateOutputType = {
   difficulty: number | null
   requiredVoyageId: string | null
   captainGauntlet: boolean | null
-  status: string | null
+  lifecycle: $Enums.VoyageLifecycle | null
   objectives: string | null
   estimatedMinutes: number | null
   prerequisiteKnowledge: string | null
@@ -87,7 +87,7 @@ export type VoyageCountAggregateOutputType = {
   difficulty: number
   requiredVoyageId: number
   captainGauntlet: number
-  status: number
+  lifecycle: number
   objectives: number
   estimatedMinutes: number
   tags: number
@@ -123,7 +123,7 @@ export type VoyageMinAggregateInputType = {
   difficulty?: true
   requiredVoyageId?: true
   captainGauntlet?: true
-  status?: true
+  lifecycle?: true
   objectives?: true
   estimatedMinutes?: true
   prerequisiteKnowledge?: true
@@ -143,7 +143,7 @@ export type VoyageMaxAggregateInputType = {
   difficulty?: true
   requiredVoyageId?: true
   captainGauntlet?: true
-  status?: true
+  lifecycle?: true
   objectives?: true
   estimatedMinutes?: true
   prerequisiteKnowledge?: true
@@ -163,7 +163,7 @@ export type VoyageCountAggregateInputType = {
   difficulty?: true
   requiredVoyageId?: true
   captainGauntlet?: true
-  status?: true
+  lifecycle?: true
   objectives?: true
   estimatedMinutes?: true
   tags?: true
@@ -272,7 +272,7 @@ export type VoyageGroupByOutputType = {
   difficulty: number
   requiredVoyageId: string | null
   captainGauntlet: boolean
-  status: string
+  lifecycle: $Enums.VoyageLifecycle
   objectives: string | null
   estimatedMinutes: number | null
   tags: string[]
@@ -317,7 +317,7 @@ export type VoyageWhereInput = {
   difficulty?: Prisma.IntFilter<"Voyage"> | number
   requiredVoyageId?: Prisma.StringNullableFilter<"Voyage"> | string | null
   captainGauntlet?: Prisma.BoolFilter<"Voyage"> | boolean
-  status?: Prisma.StringFilter<"Voyage"> | string
+  lifecycle?: Prisma.EnumVoyageLifecycleFilter<"Voyage"> | $Enums.VoyageLifecycle
   objectives?: Prisma.StringNullableFilter<"Voyage"> | string | null
   estimatedMinutes?: Prisma.IntNullableFilter<"Voyage"> | number | null
   tags?: Prisma.StringNullableListFilter<"Voyage">
@@ -349,7 +349,7 @@ export type VoyageOrderByWithRelationInput = {
   difficulty?: Prisma.SortOrder
   requiredVoyageId?: Prisma.SortOrderInput | Prisma.SortOrder
   captainGauntlet?: Prisma.SortOrder
-  status?: Prisma.SortOrder
+  lifecycle?: Prisma.SortOrder
   objectives?: Prisma.SortOrderInput | Prisma.SortOrder
   estimatedMinutes?: Prisma.SortOrderInput | Prisma.SortOrder
   tags?: Prisma.SortOrder
@@ -384,7 +384,7 @@ export type VoyageWhereUniqueInput = Prisma.AtLeast<{
   difficulty?: Prisma.IntFilter<"Voyage"> | number
   requiredVoyageId?: Prisma.StringNullableFilter<"Voyage"> | string | null
   captainGauntlet?: Prisma.BoolFilter<"Voyage"> | boolean
-  status?: Prisma.StringFilter<"Voyage"> | string
+  lifecycle?: Prisma.EnumVoyageLifecycleFilter<"Voyage"> | $Enums.VoyageLifecycle
   objectives?: Prisma.StringNullableFilter<"Voyage"> | string | null
   estimatedMinutes?: Prisma.IntNullableFilter<"Voyage"> | number | null
   tags?: Prisma.StringNullableListFilter<"Voyage">
@@ -416,7 +416,7 @@ export type VoyageOrderByWithAggregationInput = {
   difficulty?: Prisma.SortOrder
   requiredVoyageId?: Prisma.SortOrderInput | Prisma.SortOrder
   captainGauntlet?: Prisma.SortOrder
-  status?: Prisma.SortOrder
+  lifecycle?: Prisma.SortOrder
   objectives?: Prisma.SortOrderInput | Prisma.SortOrder
   estimatedMinutes?: Prisma.SortOrderInput | Prisma.SortOrder
   tags?: Prisma.SortOrder
@@ -446,7 +446,7 @@ export type VoyageScalarWhereWithAggregatesInput = {
   difficulty?: Prisma.IntWithAggregatesFilter<"Voyage"> | number
   requiredVoyageId?: Prisma.StringNullableWithAggregatesFilter<"Voyage"> | string | null
   captainGauntlet?: Prisma.BoolWithAggregatesFilter<"Voyage"> | boolean
-  status?: Prisma.StringWithAggregatesFilter<"Voyage"> | string
+  lifecycle?: Prisma.EnumVoyageLifecycleWithAggregatesFilter<"Voyage"> | $Enums.VoyageLifecycle
   objectives?: Prisma.StringNullableWithAggregatesFilter<"Voyage"> | string | null
   estimatedMinutes?: Prisma.IntNullableWithAggregatesFilter<"Voyage"> | number | null
   tags?: Prisma.StringNullableListFilter<"Voyage">
@@ -466,7 +466,7 @@ export type VoyageCreateInput = {
   sortOrder?: number
   difficulty?: number
   captainGauntlet?: boolean
-  status?: string
+  lifecycle?: $Enums.VoyageLifecycle
   objectives?: string | null
   estimatedMinutes?: number | null
   tags?: Prisma.VoyageCreatetagsInput | string[]
@@ -497,7 +497,7 @@ export type VoyageUncheckedCreateInput = {
   difficulty?: number
   requiredVoyageId?: string | null
   captainGauntlet?: boolean
-  status?: string
+  lifecycle?: $Enums.VoyageLifecycle
   objectives?: string | null
   estimatedMinutes?: number | null
   tags?: Prisma.VoyageCreatetagsInput | string[]
@@ -524,7 +524,7 @@ export type VoyageUpdateInput = {
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   difficulty?: Prisma.IntFieldUpdateOperationsInput | number
   captainGauntlet?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  lifecycle?: Prisma.EnumVoyageLifecycleFieldUpdateOperationsInput | $Enums.VoyageLifecycle
   objectives?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tags?: Prisma.VoyageUpdatetagsInput | string[]
@@ -555,7 +555,7 @@ export type VoyageUncheckedUpdateInput = {
   difficulty?: Prisma.IntFieldUpdateOperationsInput | number
   requiredVoyageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   captainGauntlet?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  lifecycle?: Prisma.EnumVoyageLifecycleFieldUpdateOperationsInput | $Enums.VoyageLifecycle
   objectives?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tags?: Prisma.VoyageUpdatetagsInput | string[]
@@ -584,7 +584,7 @@ export type VoyageCreateManyInput = {
   difficulty?: number
   requiredVoyageId?: string | null
   captainGauntlet?: boolean
-  status?: string
+  lifecycle?: $Enums.VoyageLifecycle
   objectives?: string | null
   estimatedMinutes?: number | null
   tags?: Prisma.VoyageCreatetagsInput | string[]
@@ -604,7 +604,7 @@ export type VoyageUpdateManyMutationInput = {
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   difficulty?: Prisma.IntFieldUpdateOperationsInput | number
   captainGauntlet?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  lifecycle?: Prisma.EnumVoyageLifecycleFieldUpdateOperationsInput | $Enums.VoyageLifecycle
   objectives?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tags?: Prisma.VoyageUpdatetagsInput | string[]
@@ -625,7 +625,7 @@ export type VoyageUncheckedUpdateManyInput = {
   difficulty?: Prisma.IntFieldUpdateOperationsInput | number
   requiredVoyageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   captainGauntlet?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  lifecycle?: Prisma.EnumVoyageLifecycleFieldUpdateOperationsInput | $Enums.VoyageLifecycle
   objectives?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tags?: Prisma.VoyageUpdatetagsInput | string[]
@@ -670,7 +670,7 @@ export type VoyageCountOrderByAggregateInput = {
   difficulty?: Prisma.SortOrder
   requiredVoyageId?: Prisma.SortOrder
   captainGauntlet?: Prisma.SortOrder
-  status?: Prisma.SortOrder
+  lifecycle?: Prisma.SortOrder
   objectives?: Prisma.SortOrder
   estimatedMinutes?: Prisma.SortOrder
   tags?: Prisma.SortOrder
@@ -698,7 +698,7 @@ export type VoyageMaxOrderByAggregateInput = {
   difficulty?: Prisma.SortOrder
   requiredVoyageId?: Prisma.SortOrder
   captainGauntlet?: Prisma.SortOrder
-  status?: Prisma.SortOrder
+  lifecycle?: Prisma.SortOrder
   objectives?: Prisma.SortOrder
   estimatedMinutes?: Prisma.SortOrder
   prerequisiteKnowledge?: Prisma.SortOrder
@@ -718,7 +718,7 @@ export type VoyageMinOrderByAggregateInput = {
   difficulty?: Prisma.SortOrder
   requiredVoyageId?: Prisma.SortOrder
   captainGauntlet?: Prisma.SortOrder
-  status?: Prisma.SortOrder
+  lifecycle?: Prisma.SortOrder
   objectives?: Prisma.SortOrder
   estimatedMinutes?: Prisma.SortOrder
   prerequisiteKnowledge?: Prisma.SortOrder
@@ -828,6 +828,10 @@ export type VoyageUncheckedCreateNestedManyWithoutBranchParentInput = {
   connectOrCreate?: Prisma.VoyageCreateOrConnectWithoutBranchParentInput | Prisma.VoyageCreateOrConnectWithoutBranchParentInput[]
   createMany?: Prisma.VoyageCreateManyBranchParentInputEnvelope
   connect?: Prisma.VoyageWhereUniqueInput | Prisma.VoyageWhereUniqueInput[]
+}
+
+export type EnumVoyageLifecycleFieldUpdateOperationsInput = {
+  set?: $Enums.VoyageLifecycle
 }
 
 export type VoyageUpdatetagsInput = {
@@ -995,7 +999,7 @@ export type VoyageCreateWithoutSeaInput = {
   sortOrder?: number
   difficulty?: number
   captainGauntlet?: boolean
-  status?: string
+  lifecycle?: $Enums.VoyageLifecycle
   objectives?: string | null
   estimatedMinutes?: number | null
   tags?: Prisma.VoyageCreatetagsInput | string[]
@@ -1024,7 +1028,7 @@ export type VoyageUncheckedCreateWithoutSeaInput = {
   difficulty?: number
   requiredVoyageId?: string | null
   captainGauntlet?: boolean
-  status?: string
+  lifecycle?: $Enums.VoyageLifecycle
   objectives?: string | null
   estimatedMinutes?: number | null
   tags?: Prisma.VoyageCreatetagsInput | string[]
@@ -1082,7 +1086,7 @@ export type VoyageScalarWhereInput = {
   difficulty?: Prisma.IntFilter<"Voyage"> | number
   requiredVoyageId?: Prisma.StringNullableFilter<"Voyage"> | string | null
   captainGauntlet?: Prisma.BoolFilter<"Voyage"> | boolean
-  status?: Prisma.StringFilter<"Voyage"> | string
+  lifecycle?: Prisma.EnumVoyageLifecycleFilter<"Voyage"> | $Enums.VoyageLifecycle
   objectives?: Prisma.StringNullableFilter<"Voyage"> | string | null
   estimatedMinutes?: Prisma.IntNullableFilter<"Voyage"> | number | null
   tags?: Prisma.StringNullableListFilter<"Voyage">
@@ -1102,7 +1106,7 @@ export type VoyageCreateWithoutNextVoyagesInput = {
   sortOrder?: number
   difficulty?: number
   captainGauntlet?: boolean
-  status?: string
+  lifecycle?: $Enums.VoyageLifecycle
   objectives?: string | null
   estimatedMinutes?: number | null
   tags?: Prisma.VoyageCreatetagsInput | string[]
@@ -1132,7 +1136,7 @@ export type VoyageUncheckedCreateWithoutNextVoyagesInput = {
   difficulty?: number
   requiredVoyageId?: string | null
   captainGauntlet?: boolean
-  status?: string
+  lifecycle?: $Enums.VoyageLifecycle
   objectives?: string | null
   estimatedMinutes?: number | null
   tags?: Prisma.VoyageCreatetagsInput | string[]
@@ -1163,7 +1167,7 @@ export type VoyageCreateWithoutPrerequisiteInput = {
   sortOrder?: number
   difficulty?: number
   captainGauntlet?: boolean
-  status?: string
+  lifecycle?: $Enums.VoyageLifecycle
   objectives?: string | null
   estimatedMinutes?: number | null
   tags?: Prisma.VoyageCreatetagsInput | string[]
@@ -1192,7 +1196,7 @@ export type VoyageUncheckedCreateWithoutPrerequisiteInput = {
   sortOrder?: number
   difficulty?: number
   captainGauntlet?: boolean
-  status?: string
+  lifecycle?: $Enums.VoyageLifecycle
   objectives?: string | null
   estimatedMinutes?: number | null
   tags?: Prisma.VoyageCreatetagsInput | string[]
@@ -1229,7 +1233,7 @@ export type VoyageCreateWithoutBranchParentInput = {
   sortOrder?: number
   difficulty?: number
   captainGauntlet?: boolean
-  status?: string
+  lifecycle?: $Enums.VoyageLifecycle
   objectives?: string | null
   estimatedMinutes?: number | null
   tags?: Prisma.VoyageCreatetagsInput | string[]
@@ -1259,7 +1263,7 @@ export type VoyageUncheckedCreateWithoutBranchParentInput = {
   difficulty?: number
   requiredVoyageId?: string | null
   captainGauntlet?: boolean
-  status?: string
+  lifecycle?: $Enums.VoyageLifecycle
   objectives?: string | null
   estimatedMinutes?: number | null
   tags?: Prisma.VoyageCreatetagsInput | string[]
@@ -1295,7 +1299,7 @@ export type VoyageCreateWithoutBranchChildrenInput = {
   sortOrder?: number
   difficulty?: number
   captainGauntlet?: boolean
-  status?: string
+  lifecycle?: $Enums.VoyageLifecycle
   objectives?: string | null
   estimatedMinutes?: number | null
   tags?: Prisma.VoyageCreatetagsInput | string[]
@@ -1325,7 +1329,7 @@ export type VoyageUncheckedCreateWithoutBranchChildrenInput = {
   difficulty?: number
   requiredVoyageId?: string | null
   captainGauntlet?: boolean
-  status?: string
+  lifecycle?: $Enums.VoyageLifecycle
   objectives?: string | null
   estimatedMinutes?: number | null
   tags?: Prisma.VoyageCreatetagsInput | string[]
@@ -1367,7 +1371,7 @@ export type VoyageUpdateWithoutNextVoyagesInput = {
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   difficulty?: Prisma.IntFieldUpdateOperationsInput | number
   captainGauntlet?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  lifecycle?: Prisma.EnumVoyageLifecycleFieldUpdateOperationsInput | $Enums.VoyageLifecycle
   objectives?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tags?: Prisma.VoyageUpdatetagsInput | string[]
@@ -1397,7 +1401,7 @@ export type VoyageUncheckedUpdateWithoutNextVoyagesInput = {
   difficulty?: Prisma.IntFieldUpdateOperationsInput | number
   requiredVoyageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   captainGauntlet?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  lifecycle?: Prisma.EnumVoyageLifecycleFieldUpdateOperationsInput | $Enums.VoyageLifecycle
   objectives?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tags?: Prisma.VoyageUpdatetagsInput | string[]
@@ -1466,7 +1470,7 @@ export type VoyageUpdateWithoutBranchChildrenInput = {
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   difficulty?: Prisma.IntFieldUpdateOperationsInput | number
   captainGauntlet?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  lifecycle?: Prisma.EnumVoyageLifecycleFieldUpdateOperationsInput | $Enums.VoyageLifecycle
   objectives?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tags?: Prisma.VoyageUpdatetagsInput | string[]
@@ -1496,7 +1500,7 @@ export type VoyageUncheckedUpdateWithoutBranchChildrenInput = {
   difficulty?: Prisma.IntFieldUpdateOperationsInput | number
   requiredVoyageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   captainGauntlet?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  lifecycle?: Prisma.EnumVoyageLifecycleFieldUpdateOperationsInput | $Enums.VoyageLifecycle
   objectives?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tags?: Prisma.VoyageUpdatetagsInput | string[]
@@ -1522,7 +1526,7 @@ export type VoyageCreateWithoutTrialsInput = {
   sortOrder?: number
   difficulty?: number
   captainGauntlet?: boolean
-  status?: string
+  lifecycle?: $Enums.VoyageLifecycle
   objectives?: string | null
   estimatedMinutes?: number | null
   tags?: Prisma.VoyageCreatetagsInput | string[]
@@ -1552,7 +1556,7 @@ export type VoyageUncheckedCreateWithoutTrialsInput = {
   difficulty?: number
   requiredVoyageId?: string | null
   captainGauntlet?: boolean
-  status?: string
+  lifecycle?: $Enums.VoyageLifecycle
   objectives?: string | null
   estimatedMinutes?: number | null
   tags?: Prisma.VoyageCreatetagsInput | string[]
@@ -1594,7 +1598,7 @@ export type VoyageUpdateWithoutTrialsInput = {
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   difficulty?: Prisma.IntFieldUpdateOperationsInput | number
   captainGauntlet?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  lifecycle?: Prisma.EnumVoyageLifecycleFieldUpdateOperationsInput | $Enums.VoyageLifecycle
   objectives?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tags?: Prisma.VoyageUpdatetagsInput | string[]
@@ -1624,7 +1628,7 @@ export type VoyageUncheckedUpdateWithoutTrialsInput = {
   difficulty?: Prisma.IntFieldUpdateOperationsInput | number
   requiredVoyageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   captainGauntlet?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  lifecycle?: Prisma.EnumVoyageLifecycleFieldUpdateOperationsInput | $Enums.VoyageLifecycle
   objectives?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tags?: Prisma.VoyageUpdatetagsInput | string[]
@@ -1650,7 +1654,7 @@ export type VoyageCreateWithoutProgressInput = {
   sortOrder?: number
   difficulty?: number
   captainGauntlet?: boolean
-  status?: string
+  lifecycle?: $Enums.VoyageLifecycle
   objectives?: string | null
   estimatedMinutes?: number | null
   tags?: Prisma.VoyageCreatetagsInput | string[]
@@ -1680,7 +1684,7 @@ export type VoyageUncheckedCreateWithoutProgressInput = {
   difficulty?: number
   requiredVoyageId?: string | null
   captainGauntlet?: boolean
-  status?: string
+  lifecycle?: $Enums.VoyageLifecycle
   objectives?: string | null
   estimatedMinutes?: number | null
   tags?: Prisma.VoyageCreatetagsInput | string[]
@@ -1722,7 +1726,7 @@ export type VoyageUpdateWithoutProgressInput = {
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   difficulty?: Prisma.IntFieldUpdateOperationsInput | number
   captainGauntlet?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  lifecycle?: Prisma.EnumVoyageLifecycleFieldUpdateOperationsInput | $Enums.VoyageLifecycle
   objectives?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tags?: Prisma.VoyageUpdatetagsInput | string[]
@@ -1752,7 +1756,7 @@ export type VoyageUncheckedUpdateWithoutProgressInput = {
   difficulty?: Prisma.IntFieldUpdateOperationsInput | number
   requiredVoyageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   captainGauntlet?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  lifecycle?: Prisma.EnumVoyageLifecycleFieldUpdateOperationsInput | $Enums.VoyageLifecycle
   objectives?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tags?: Prisma.VoyageUpdatetagsInput | string[]
@@ -1778,7 +1782,7 @@ export type VoyageCreateWithoutAssignmentsInput = {
   sortOrder?: number
   difficulty?: number
   captainGauntlet?: boolean
-  status?: string
+  lifecycle?: $Enums.VoyageLifecycle
   objectives?: string | null
   estimatedMinutes?: number | null
   tags?: Prisma.VoyageCreatetagsInput | string[]
@@ -1808,7 +1812,7 @@ export type VoyageUncheckedCreateWithoutAssignmentsInput = {
   difficulty?: number
   requiredVoyageId?: string | null
   captainGauntlet?: boolean
-  status?: string
+  lifecycle?: $Enums.VoyageLifecycle
   objectives?: string | null
   estimatedMinutes?: number | null
   tags?: Prisma.VoyageCreatetagsInput | string[]
@@ -1850,7 +1854,7 @@ export type VoyageUpdateWithoutAssignmentsInput = {
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   difficulty?: Prisma.IntFieldUpdateOperationsInput | number
   captainGauntlet?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  lifecycle?: Prisma.EnumVoyageLifecycleFieldUpdateOperationsInput | $Enums.VoyageLifecycle
   objectives?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tags?: Prisma.VoyageUpdatetagsInput | string[]
@@ -1880,7 +1884,7 @@ export type VoyageUncheckedUpdateWithoutAssignmentsInput = {
   difficulty?: Prisma.IntFieldUpdateOperationsInput | number
   requiredVoyageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   captainGauntlet?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  lifecycle?: Prisma.EnumVoyageLifecycleFieldUpdateOperationsInput | $Enums.VoyageLifecycle
   objectives?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tags?: Prisma.VoyageUpdatetagsInput | string[]
@@ -1906,7 +1910,7 @@ export type VoyageCreateWithoutBundleItemsInput = {
   sortOrder?: number
   difficulty?: number
   captainGauntlet?: boolean
-  status?: string
+  lifecycle?: $Enums.VoyageLifecycle
   objectives?: string | null
   estimatedMinutes?: number | null
   tags?: Prisma.VoyageCreatetagsInput | string[]
@@ -1936,7 +1940,7 @@ export type VoyageUncheckedCreateWithoutBundleItemsInput = {
   difficulty?: number
   requiredVoyageId?: string | null
   captainGauntlet?: boolean
-  status?: string
+  lifecycle?: $Enums.VoyageLifecycle
   objectives?: string | null
   estimatedMinutes?: number | null
   tags?: Prisma.VoyageCreatetagsInput | string[]
@@ -1978,7 +1982,7 @@ export type VoyageUpdateWithoutBundleItemsInput = {
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   difficulty?: Prisma.IntFieldUpdateOperationsInput | number
   captainGauntlet?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  lifecycle?: Prisma.EnumVoyageLifecycleFieldUpdateOperationsInput | $Enums.VoyageLifecycle
   objectives?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tags?: Prisma.VoyageUpdatetagsInput | string[]
@@ -2008,7 +2012,7 @@ export type VoyageUncheckedUpdateWithoutBundleItemsInput = {
   difficulty?: Prisma.IntFieldUpdateOperationsInput | number
   requiredVoyageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   captainGauntlet?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  lifecycle?: Prisma.EnumVoyageLifecycleFieldUpdateOperationsInput | $Enums.VoyageLifecycle
   objectives?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tags?: Prisma.VoyageUpdatetagsInput | string[]
@@ -2034,7 +2038,7 @@ export type VoyageCreateWithoutAiContextsInput = {
   sortOrder?: number
   difficulty?: number
   captainGauntlet?: boolean
-  status?: string
+  lifecycle?: $Enums.VoyageLifecycle
   objectives?: string | null
   estimatedMinutes?: number | null
   tags?: Prisma.VoyageCreatetagsInput | string[]
@@ -2064,7 +2068,7 @@ export type VoyageUncheckedCreateWithoutAiContextsInput = {
   difficulty?: number
   requiredVoyageId?: string | null
   captainGauntlet?: boolean
-  status?: string
+  lifecycle?: $Enums.VoyageLifecycle
   objectives?: string | null
   estimatedMinutes?: number | null
   tags?: Prisma.VoyageCreatetagsInput | string[]
@@ -2106,7 +2110,7 @@ export type VoyageUpdateWithoutAiContextsInput = {
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   difficulty?: Prisma.IntFieldUpdateOperationsInput | number
   captainGauntlet?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  lifecycle?: Prisma.EnumVoyageLifecycleFieldUpdateOperationsInput | $Enums.VoyageLifecycle
   objectives?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tags?: Prisma.VoyageUpdatetagsInput | string[]
@@ -2136,7 +2140,7 @@ export type VoyageUncheckedUpdateWithoutAiContextsInput = {
   difficulty?: Prisma.IntFieldUpdateOperationsInput | number
   requiredVoyageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   captainGauntlet?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  lifecycle?: Prisma.EnumVoyageLifecycleFieldUpdateOperationsInput | $Enums.VoyageLifecycle
   objectives?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tags?: Prisma.VoyageUpdatetagsInput | string[]
@@ -2163,7 +2167,7 @@ export type VoyageCreateManySeaInput = {
   difficulty?: number
   requiredVoyageId?: string | null
   captainGauntlet?: boolean
-  status?: string
+  lifecycle?: $Enums.VoyageLifecycle
   objectives?: string | null
   estimatedMinutes?: number | null
   tags?: Prisma.VoyageCreatetagsInput | string[]
@@ -2183,7 +2187,7 @@ export type VoyageUpdateWithoutSeaInput = {
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   difficulty?: Prisma.IntFieldUpdateOperationsInput | number
   captainGauntlet?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  lifecycle?: Prisma.EnumVoyageLifecycleFieldUpdateOperationsInput | $Enums.VoyageLifecycle
   objectives?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tags?: Prisma.VoyageUpdatetagsInput | string[]
@@ -2212,7 +2216,7 @@ export type VoyageUncheckedUpdateWithoutSeaInput = {
   difficulty?: Prisma.IntFieldUpdateOperationsInput | number
   requiredVoyageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   captainGauntlet?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  lifecycle?: Prisma.EnumVoyageLifecycleFieldUpdateOperationsInput | $Enums.VoyageLifecycle
   objectives?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tags?: Prisma.VoyageUpdatetagsInput | string[]
@@ -2240,7 +2244,7 @@ export type VoyageUncheckedUpdateManyWithoutSeaInput = {
   difficulty?: Prisma.IntFieldUpdateOperationsInput | number
   requiredVoyageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   captainGauntlet?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  lifecycle?: Prisma.EnumVoyageLifecycleFieldUpdateOperationsInput | $Enums.VoyageLifecycle
   objectives?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tags?: Prisma.VoyageUpdatetagsInput | string[]
@@ -2261,7 +2265,7 @@ export type VoyageCreateManyPrerequisiteInput = {
   sortOrder?: number
   difficulty?: number
   captainGauntlet?: boolean
-  status?: string
+  lifecycle?: $Enums.VoyageLifecycle
   objectives?: string | null
   estimatedMinutes?: number | null
   tags?: Prisma.VoyageCreatetagsInput | string[]
@@ -2283,7 +2287,7 @@ export type VoyageCreateManyBranchParentInput = {
   difficulty?: number
   requiredVoyageId?: string | null
   captainGauntlet?: boolean
-  status?: string
+  lifecycle?: $Enums.VoyageLifecycle
   objectives?: string | null
   estimatedMinutes?: number | null
   tags?: Prisma.VoyageCreatetagsInput | string[]
@@ -2302,7 +2306,7 @@ export type VoyageUpdateWithoutPrerequisiteInput = {
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   difficulty?: Prisma.IntFieldUpdateOperationsInput | number
   captainGauntlet?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  lifecycle?: Prisma.EnumVoyageLifecycleFieldUpdateOperationsInput | $Enums.VoyageLifecycle
   objectives?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tags?: Prisma.VoyageUpdatetagsInput | string[]
@@ -2331,7 +2335,7 @@ export type VoyageUncheckedUpdateWithoutPrerequisiteInput = {
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   difficulty?: Prisma.IntFieldUpdateOperationsInput | number
   captainGauntlet?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  lifecycle?: Prisma.EnumVoyageLifecycleFieldUpdateOperationsInput | $Enums.VoyageLifecycle
   objectives?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tags?: Prisma.VoyageUpdatetagsInput | string[]
@@ -2359,7 +2363,7 @@ export type VoyageUncheckedUpdateManyWithoutPrerequisiteInput = {
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   difficulty?: Prisma.IntFieldUpdateOperationsInput | number
   captainGauntlet?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  lifecycle?: Prisma.EnumVoyageLifecycleFieldUpdateOperationsInput | $Enums.VoyageLifecycle
   objectives?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tags?: Prisma.VoyageUpdatetagsInput | string[]
@@ -2379,7 +2383,7 @@ export type VoyageUpdateWithoutBranchParentInput = {
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   difficulty?: Prisma.IntFieldUpdateOperationsInput | number
   captainGauntlet?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  lifecycle?: Prisma.EnumVoyageLifecycleFieldUpdateOperationsInput | $Enums.VoyageLifecycle
   objectives?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tags?: Prisma.VoyageUpdatetagsInput | string[]
@@ -2409,7 +2413,7 @@ export type VoyageUncheckedUpdateWithoutBranchParentInput = {
   difficulty?: Prisma.IntFieldUpdateOperationsInput | number
   requiredVoyageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   captainGauntlet?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  lifecycle?: Prisma.EnumVoyageLifecycleFieldUpdateOperationsInput | $Enums.VoyageLifecycle
   objectives?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tags?: Prisma.VoyageUpdatetagsInput | string[]
@@ -2437,7 +2441,7 @@ export type VoyageUncheckedUpdateManyWithoutBranchParentInput = {
   difficulty?: Prisma.IntFieldUpdateOperationsInput | number
   requiredVoyageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   captainGauntlet?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  lifecycle?: Prisma.EnumVoyageLifecycleFieldUpdateOperationsInput | $Enums.VoyageLifecycle
   objectives?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tags?: Prisma.VoyageUpdatetagsInput | string[]
@@ -2543,7 +2547,7 @@ export type VoyageSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   difficulty?: boolean
   requiredVoyageId?: boolean
   captainGauntlet?: boolean
-  status?: boolean
+  lifecycle?: boolean
   objectives?: boolean
   estimatedMinutes?: boolean
   tags?: boolean
@@ -2576,7 +2580,7 @@ export type VoyageSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   difficulty?: boolean
   requiredVoyageId?: boolean
   captainGauntlet?: boolean
-  status?: boolean
+  lifecycle?: boolean
   objectives?: boolean
   estimatedMinutes?: boolean
   tags?: boolean
@@ -2601,7 +2605,7 @@ export type VoyageSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   difficulty?: boolean
   requiredVoyageId?: boolean
   captainGauntlet?: boolean
-  status?: boolean
+  lifecycle?: boolean
   objectives?: boolean
   estimatedMinutes?: boolean
   tags?: boolean
@@ -2626,7 +2630,7 @@ export type VoyageSelectScalar = {
   difficulty?: boolean
   requiredVoyageId?: boolean
   captainGauntlet?: boolean
-  status?: boolean
+  lifecycle?: boolean
   objectives?: boolean
   estimatedMinutes?: boolean
   tags?: boolean
@@ -2639,7 +2643,7 @@ export type VoyageSelectScalar = {
   createdAt?: boolean
 }
 
-export type VoyageOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "seaId" | "sortOrder" | "difficulty" | "requiredVoyageId" | "captainGauntlet" | "status" | "objectives" | "estimatedMinutes" | "tags" | "skills" | "prerequisiteKnowledge" | "successCriteria" | "abTestGroup" | "branchParentId" | "branchLabel" | "createdAt", ExtArgs["result"]["voyage"]>
+export type VoyageOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "seaId" | "sortOrder" | "difficulty" | "requiredVoyageId" | "captainGauntlet" | "lifecycle" | "objectives" | "estimatedMinutes" | "tags" | "skills" | "prerequisiteKnowledge" | "successCriteria" | "abTestGroup" | "branchParentId" | "branchLabel" | "createdAt", ExtArgs["result"]["voyage"]>
 export type VoyageInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   sea?: boolean | Prisma.SeaDefaultArgs<ExtArgs>
   trials?: boolean | Prisma.Voyage$trialsArgs<ExtArgs>
@@ -2687,7 +2691,7 @@ export type $VoyagePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     difficulty: number
     requiredVoyageId: string | null
     captainGauntlet: boolean
-    status: string
+    lifecycle: $Enums.VoyageLifecycle
     objectives: string | null
     estimatedMinutes: number | null
     tags: string[]
@@ -3139,7 +3143,7 @@ export interface VoyageFieldRefs {
   readonly difficulty: Prisma.FieldRef<"Voyage", 'Int'>
   readonly requiredVoyageId: Prisma.FieldRef<"Voyage", 'String'>
   readonly captainGauntlet: Prisma.FieldRef<"Voyage", 'Boolean'>
-  readonly status: Prisma.FieldRef<"Voyage", 'String'>
+  readonly lifecycle: Prisma.FieldRef<"Voyage", 'VoyageLifecycle'>
   readonly objectives: Prisma.FieldRef<"Voyage", 'String'>
   readonly estimatedMinutes: Prisma.FieldRef<"Voyage", 'Int'>
   readonly tags: Prisma.FieldRef<"Voyage", 'String[]'>

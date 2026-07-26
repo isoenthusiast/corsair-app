@@ -72,6 +72,18 @@ export default async function ClassDetailPage({ params }: { params: Promise<{ id
                                 {a.dueDate && <span className="text-xs text-amber-600">Due: {new Date(a.dueDate).toLocaleDateString()}</span>}
                             </div>
                         ))}</div>}
+                    {/* Create Assignment Form */}
+                    <form action={`/api/class/${id}/assignments`} method="POST" className="mt-4 p-4 rounded-xl bg-abyssal/30 border border-amber-900/20 space-y-3">
+                        <h3 className="text-sm font-bold" style={{ color: "#F7C948" }}>+ New Assignment</h3>
+                        <div className="grid grid-cols-3 gap-3">
+                            <select name="voyageId" className="px-3 py-2 rounded-lg bg-abyssal border border-amber-900/30 text-white text-sm">
+                                <option value="">Select Voyage</option>
+                                {classData.assignments.length === 0 && <option value="loading">Loading voyages...</option>}
+                            </select>
+                            <input name="dueDate" type="date" className="px-3 py-2 rounded-lg bg-abyssal border border-amber-900/30 text-white text-sm" />
+                            <button className="btn-pirate text-sm">Assign</button>
+                        </div>
+                    </form>
                 </div>
 
                 {/* Announcements */}
@@ -85,6 +97,13 @@ export default async function ClassDetailPage({ params }: { params: Promise<{ id
                                 <p className="text-xs text-amber-800 mt-2">{new Date(a.createdAt).toLocaleDateString()}</p>
                             </div>
                         ))}</div>}
+                    {/* Create Announcement Form */}
+                    <form action={`/api/class/${id}/announcements`} method="POST" className="mt-4 p-4 rounded-xl bg-abyssal/30 border border-amber-900/20 space-y-3">
+                        <h3 className="text-sm font-bold" style={{ color: "#F7C948" }}>+ New Announcement</h3>
+                        <input name="title" placeholder="Title..." className="w-full px-3 py-2 rounded-lg bg-abyssal border border-amber-900/30 text-white text-sm" />
+                        <textarea name="body" placeholder="Message..." rows={2} className="w-full px-3 py-2 rounded-lg bg-abyssal border border-amber-900/30 text-white text-sm" />
+                        <button className="btn-pirate text-sm">Post</button>
+                    </form>
                 </div>
             </main>
         </div>

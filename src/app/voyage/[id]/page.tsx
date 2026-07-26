@@ -26,6 +26,14 @@ export default async function VoyagePage({ params }: { params: Promise<{ id: str
     const locked = progress?.status === "Locked";
     const done = progress?.status === "Completed" || progress?.status === "Mastered";
     const streak = await prisma.streak.findUnique({ where: { userId: session.user.id } });
+    const userCharms = await prisma.seaCharm.findMany({ where: { userId: session.user.id } });
+    const userData = await prisma.user.findUnique({ where: { id: session.user.id }, select: { hasFortuneWind: true } });
+    const charms = {
+        whisper_scroll: userCharms.find(c => c.type === "whisper_scroll")?.quantity || 0,
+        storm_pass: userCharms.find(c => c.type === "storm_pass")?.quantity || 0,
+        fortune_wind: userCharms.find(c => c.type === "fortune_wind")?.quantity || 0,
+        anchor_charm: userCharms.find(c => c.type === "anchor_charm")?.quantity || 0,
+    };
 
     if (locked) return <div className="min-h-screen flex items-center justify-center treasure-map"><div className="text-center"><div className="text-6xl mb-4">🔒</div><h1 className="text-2xl" style={{ color: "#F7C948" }}>Seas Ahead Are Treacherous!</h1><p className="text-amber-600 mb-4">Complete the previous voyage to unlock "{voyage.title}"</p><a href="/map" className="btn-pirate inline-block">← Back to Chart</a></div></div>;
 
@@ -39,7 +47,7 @@ export default async function VoyagePage({ params }: { params: Promise<{ id: str
                 </div>
                 <div className="h-1 bg-abyssal"><div className="h-full bg-gradient-to-r from-amber-600 to-yellow-500 transition-all duration-500" style={{ width: `${progress ? (progress.trialsCompleted / voyage.trials.length) * 100 : 0}%` }} /></div>
             </header>
-            <TrialPlayer voyage={voyage} progress={progress} isCompleted={done} userId={session.user.id} />
+            <TrialPlayer voyage={voyage} progress={progress} isCompleted={done} userId={session.user.id} charms={charms} hasFortuneWind={userData?.hasFortuneWind || false} />
             <TutorChat context={{
                 voyageTitle: voyage.title,
                 seaName: voyage.sea.name,

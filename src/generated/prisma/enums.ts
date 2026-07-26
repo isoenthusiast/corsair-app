@@ -111,6 +111,15 @@ export const Priority = {
 export type Priority = (typeof Priority)[keyof typeof Priority]
 
 
+export const VoyageLifecycle = {
+  Draft: 'Draft',
+  Published: 'Published',
+  Deprecated: 'Deprecated'
+} as const
+
+export type VoyageLifecycle = (typeof VoyageLifecycle)[keyof typeof VoyageLifecycle]
+
+
 export const AIContextFeature = {
   trials: 'trials',
   voyages: 'voyages',

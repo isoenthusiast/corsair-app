@@ -50,6 +50,7 @@ export type UserMinAggregateOutputType = {
   learningGoals: string | null
   crowns: number | null
   pirateRank: string | null
+  hasFortuneWind: boolean | null
   mustChangePassword: boolean | null
   deletedAt: Date | null
   createdAt: Date | null
@@ -69,6 +70,7 @@ export type UserMaxAggregateOutputType = {
   learningGoals: string | null
   crowns: number | null
   pirateRank: string | null
+  hasFortuneWind: boolean | null
   mustChangePassword: boolean | null
   deletedAt: Date | null
   createdAt: Date | null
@@ -88,6 +90,7 @@ export type UserCountAggregateOutputType = {
   learningGoals: number
   crowns: number
   pirateRank: number
+  hasFortuneWind: number
   mustChangePassword: number
   deletedAt: number
   createdAt: number
@@ -119,6 +122,7 @@ export type UserMinAggregateInputType = {
   learningGoals?: true
   crowns?: true
   pirateRank?: true
+  hasFortuneWind?: true
   mustChangePassword?: true
   deletedAt?: true
   createdAt?: true
@@ -138,6 +142,7 @@ export type UserMaxAggregateInputType = {
   learningGoals?: true
   crowns?: true
   pirateRank?: true
+  hasFortuneWind?: true
   mustChangePassword?: true
   deletedAt?: true
   createdAt?: true
@@ -157,6 +162,7 @@ export type UserCountAggregateInputType = {
   learningGoals?: true
   crowns?: true
   pirateRank?: true
+  hasFortuneWind?: true
   mustChangePassword?: true
   deletedAt?: true
   createdAt?: true
@@ -263,6 +269,7 @@ export type UserGroupByOutputType = {
   learningGoals: string | null
   crowns: number
   pirateRank: string
+  hasFortuneWind: boolean
   mustChangePassword: boolean
   deletedAt: Date | null
   createdAt: Date
@@ -305,6 +312,7 @@ export type UserWhereInput = {
   learningGoals?: Prisma.StringNullableFilter<"User"> | string | null
   crowns?: Prisma.IntFilter<"User"> | number
   pirateRank?: Prisma.StringFilter<"User"> | string
+  hasFortuneWind?: Prisma.BoolFilter<"User"> | boolean
   mustChangePassword?: Prisma.BoolFilter<"User"> | boolean
   deletedAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
@@ -348,6 +356,7 @@ export type UserOrderByWithRelationInput = {
   learningGoals?: Prisma.SortOrderInput | Prisma.SortOrder
   crowns?: Prisma.SortOrder
   pirateRank?: Prisma.SortOrder
+  hasFortuneWind?: Prisma.SortOrder
   mustChangePassword?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -394,6 +403,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   learningGoals?: Prisma.StringNullableFilter<"User"> | string | null
   crowns?: Prisma.IntFilter<"User"> | number
   pirateRank?: Prisma.StringFilter<"User"> | string
+  hasFortuneWind?: Prisma.BoolFilter<"User"> | boolean
   mustChangePassword?: Prisma.BoolFilter<"User"> | boolean
   deletedAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
@@ -437,6 +447,7 @@ export type UserOrderByWithAggregationInput = {
   learningGoals?: Prisma.SortOrderInput | Prisma.SortOrder
   crowns?: Prisma.SortOrder
   pirateRank?: Prisma.SortOrder
+  hasFortuneWind?: Prisma.SortOrder
   mustChangePassword?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -464,6 +475,7 @@ export type UserScalarWhereWithAggregatesInput = {
   learningGoals?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   crowns?: Prisma.IntWithAggregatesFilter<"User"> | number
   pirateRank?: Prisma.StringWithAggregatesFilter<"User"> | string
+  hasFortuneWind?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
   mustChangePassword?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
   deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
@@ -483,6 +495,7 @@ export type UserCreateInput = {
   learningGoals?: string | null
   crowns?: number
   pirateRank?: string
+  hasFortuneWind?: boolean
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -526,6 +539,7 @@ export type UserUncheckedCreateInput = {
   learningGoals?: string | null
   crowns?: number
   pirateRank?: string
+  hasFortuneWind?: boolean
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -569,6 +583,7 @@ export type UserUpdateInput = {
   learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -612,6 +627,7 @@ export type UserUncheckedUpdateInput = {
   learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -655,6 +671,7 @@ export type UserCreateManyInput = {
   learningGoals?: string | null
   crowns?: number
   pirateRank?: string
+  hasFortuneWind?: boolean
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -674,6 +691,7 @@ export type UserUpdateManyMutationInput = {
   learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -693,6 +711,7 @@ export type UserUncheckedUpdateManyInput = {
   learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -712,6 +731,7 @@ export type UserCountOrderByAggregateInput = {
   learningGoals?: Prisma.SortOrder
   crowns?: Prisma.SortOrder
   pirateRank?: Prisma.SortOrder
+  hasFortuneWind?: Prisma.SortOrder
   mustChangePassword?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -736,6 +756,7 @@ export type UserMaxOrderByAggregateInput = {
   learningGoals?: Prisma.SortOrder
   crowns?: Prisma.SortOrder
   pirateRank?: Prisma.SortOrder
+  hasFortuneWind?: Prisma.SortOrder
   mustChangePassword?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -755,6 +776,7 @@ export type UserMinOrderByAggregateInput = {
   learningGoals?: Prisma.SortOrder
   crowns?: Prisma.SortOrder
   pirateRank?: Prisma.SortOrder
+  hasFortuneWind?: Prisma.SortOrder
   mustChangePassword?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -1169,6 +1191,7 @@ export type UserCreateWithoutAttemptsInput = {
   learningGoals?: string | null
   crowns?: number
   pirateRank?: string
+  hasFortuneWind?: boolean
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -1211,6 +1234,7 @@ export type UserUncheckedCreateWithoutAttemptsInput = {
   learningGoals?: string | null
   crowns?: number
   pirateRank?: string
+  hasFortuneWind?: boolean
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -1269,6 +1293,7 @@ export type UserUpdateWithoutAttemptsInput = {
   learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1311,6 +1336,7 @@ export type UserUncheckedUpdateWithoutAttemptsInput = {
   learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1353,6 +1379,7 @@ export type UserCreateWithoutProgressInput = {
   learningGoals?: string | null
   crowns?: number
   pirateRank?: string
+  hasFortuneWind?: boolean
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -1395,6 +1422,7 @@ export type UserUncheckedCreateWithoutProgressInput = {
   learningGoals?: string | null
   crowns?: number
   pirateRank?: string
+  hasFortuneWind?: boolean
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -1453,6 +1481,7 @@ export type UserUpdateWithoutProgressInput = {
   learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1495,6 +1524,7 @@ export type UserUncheckedUpdateWithoutProgressInput = {
   learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1537,6 +1567,7 @@ export type UserCreateWithoutPointLogInput = {
   learningGoals?: string | null
   crowns?: number
   pirateRank?: string
+  hasFortuneWind?: boolean
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -1579,6 +1610,7 @@ export type UserUncheckedCreateWithoutPointLogInput = {
   learningGoals?: string | null
   crowns?: number
   pirateRank?: string
+  hasFortuneWind?: boolean
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -1637,6 +1669,7 @@ export type UserUpdateWithoutPointLogInput = {
   learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1679,6 +1712,7 @@ export type UserUncheckedUpdateWithoutPointLogInput = {
   learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1721,6 +1755,7 @@ export type UserCreateWithoutCrownLogInput = {
   learningGoals?: string | null
   crowns?: number
   pirateRank?: string
+  hasFortuneWind?: boolean
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -1763,6 +1798,7 @@ export type UserUncheckedCreateWithoutCrownLogInput = {
   learningGoals?: string | null
   crowns?: number
   pirateRank?: string
+  hasFortuneWind?: boolean
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -1821,6 +1857,7 @@ export type UserUpdateWithoutCrownLogInput = {
   learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1863,6 +1900,7 @@ export type UserUncheckedUpdateWithoutCrownLogInput = {
   learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1905,6 +1943,7 @@ export type UserCreateWithoutShipUpgradesInput = {
   learningGoals?: string | null
   crowns?: number
   pirateRank?: string
+  hasFortuneWind?: boolean
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -1947,6 +1986,7 @@ export type UserUncheckedCreateWithoutShipUpgradesInput = {
   learningGoals?: string | null
   crowns?: number
   pirateRank?: string
+  hasFortuneWind?: boolean
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -2005,6 +2045,7 @@ export type UserUpdateWithoutShipUpgradesInput = {
   learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2047,6 +2088,7 @@ export type UserUncheckedUpdateWithoutShipUpgradesInput = {
   learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2089,6 +2131,7 @@ export type UserCreateWithoutChestClaimsInput = {
   learningGoals?: string | null
   crowns?: number
   pirateRank?: string
+  hasFortuneWind?: boolean
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -2131,6 +2174,7 @@ export type UserUncheckedCreateWithoutChestClaimsInput = {
   learningGoals?: string | null
   crowns?: number
   pirateRank?: string
+  hasFortuneWind?: boolean
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -2189,6 +2233,7 @@ export type UserUpdateWithoutChestClaimsInput = {
   learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2231,6 +2276,7 @@ export type UserUncheckedUpdateWithoutChestClaimsInput = {
   learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2273,6 +2319,7 @@ export type UserCreateWithoutAchievementsInput = {
   learningGoals?: string | null
   crowns?: number
   pirateRank?: string
+  hasFortuneWind?: boolean
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -2315,6 +2362,7 @@ export type UserUncheckedCreateWithoutAchievementsInput = {
   learningGoals?: string | null
   crowns?: number
   pirateRank?: string
+  hasFortuneWind?: boolean
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -2373,6 +2421,7 @@ export type UserUpdateWithoutAchievementsInput = {
   learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2415,6 +2464,7 @@ export type UserUncheckedUpdateWithoutAchievementsInput = {
   learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2457,6 +2507,7 @@ export type UserCreateWithoutStreaksInput = {
   learningGoals?: string | null
   crowns?: number
   pirateRank?: string
+  hasFortuneWind?: boolean
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -2499,6 +2550,7 @@ export type UserUncheckedCreateWithoutStreaksInput = {
   learningGoals?: string | null
   crowns?: number
   pirateRank?: string
+  hasFortuneWind?: boolean
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -2557,6 +2609,7 @@ export type UserUpdateWithoutStreaksInput = {
   learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2599,6 +2652,7 @@ export type UserUncheckedUpdateWithoutStreaksInput = {
   learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2641,6 +2695,7 @@ export type UserCreateWithoutCharmsInput = {
   learningGoals?: string | null
   crowns?: number
   pirateRank?: string
+  hasFortuneWind?: boolean
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -2683,6 +2738,7 @@ export type UserUncheckedCreateWithoutCharmsInput = {
   learningGoals?: string | null
   crowns?: number
   pirateRank?: string
+  hasFortuneWind?: boolean
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -2741,6 +2797,7 @@ export type UserUpdateWithoutCharmsInput = {
   learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2783,6 +2840,7 @@ export type UserUncheckedUpdateWithoutCharmsInput = {
   learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2825,6 +2883,7 @@ export type UserCreateWithoutTaughtClassesInput = {
   learningGoals?: string | null
   crowns?: number
   pirateRank?: string
+  hasFortuneWind?: boolean
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -2867,6 +2926,7 @@ export type UserUncheckedCreateWithoutTaughtClassesInput = {
   learningGoals?: string | null
   crowns?: number
   pirateRank?: string
+  hasFortuneWind?: boolean
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -2925,6 +2985,7 @@ export type UserUpdateWithoutTaughtClassesInput = {
   learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2967,6 +3028,7 @@ export type UserUncheckedUpdateWithoutTaughtClassesInput = {
   learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3009,6 +3071,7 @@ export type UserCreateWithoutStudentClassesInput = {
   learningGoals?: string | null
   crowns?: number
   pirateRank?: string
+  hasFortuneWind?: boolean
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -3051,6 +3114,7 @@ export type UserUncheckedCreateWithoutStudentClassesInput = {
   learningGoals?: string | null
   crowns?: number
   pirateRank?: string
+  hasFortuneWind?: boolean
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -3109,6 +3173,7 @@ export type UserUpdateWithoutStudentClassesInput = {
   learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3151,6 +3216,7 @@ export type UserUncheckedUpdateWithoutStudentClassesInput = {
   learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3193,6 +3259,7 @@ export type UserCreateWithoutParentLinksInput = {
   learningGoals?: string | null
   crowns?: number
   pirateRank?: string
+  hasFortuneWind?: boolean
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -3235,6 +3302,7 @@ export type UserUncheckedCreateWithoutParentLinksInput = {
   learningGoals?: string | null
   crowns?: number
   pirateRank?: string
+  hasFortuneWind?: boolean
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -3282,6 +3350,7 @@ export type UserCreateWithoutParentOfLinksInput = {
   learningGoals?: string | null
   crowns?: number
   pirateRank?: string
+  hasFortuneWind?: boolean
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -3324,6 +3393,7 @@ export type UserUncheckedCreateWithoutParentOfLinksInput = {
   learningGoals?: string | null
   crowns?: number
   pirateRank?: string
+  hasFortuneWind?: boolean
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -3382,6 +3452,7 @@ export type UserUpdateWithoutParentLinksInput = {
   learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3424,6 +3495,7 @@ export type UserUncheckedUpdateWithoutParentLinksInput = {
   learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3477,6 +3549,7 @@ export type UserUpdateWithoutParentOfLinksInput = {
   learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3519,6 +3592,7 @@ export type UserUncheckedUpdateWithoutParentOfLinksInput = {
   learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3561,6 +3635,7 @@ export type UserCreateWithoutAssignmentsInput = {
   learningGoals?: string | null
   crowns?: number
   pirateRank?: string
+  hasFortuneWind?: boolean
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -3603,6 +3678,7 @@ export type UserUncheckedCreateWithoutAssignmentsInput = {
   learningGoals?: string | null
   crowns?: number
   pirateRank?: string
+  hasFortuneWind?: boolean
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -3650,6 +3726,7 @@ export type UserCreateWithoutStudentAssignmentsInput = {
   learningGoals?: string | null
   crowns?: number
   pirateRank?: string
+  hasFortuneWind?: boolean
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -3692,6 +3769,7 @@ export type UserUncheckedCreateWithoutStudentAssignmentsInput = {
   learningGoals?: string | null
   crowns?: number
   pirateRank?: string
+  hasFortuneWind?: boolean
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -3750,6 +3828,7 @@ export type UserUpdateWithoutAssignmentsInput = {
   learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3792,6 +3871,7 @@ export type UserUncheckedUpdateWithoutAssignmentsInput = {
   learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3845,6 +3925,7 @@ export type UserUpdateWithoutStudentAssignmentsInput = {
   learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3887,6 +3968,7 @@ export type UserUncheckedUpdateWithoutStudentAssignmentsInput = {
   learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3929,6 +4011,7 @@ export type UserCreateWithoutAnnouncementsInput = {
   learningGoals?: string | null
   crowns?: number
   pirateRank?: string
+  hasFortuneWind?: boolean
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -3971,6 +4054,7 @@ export type UserUncheckedCreateWithoutAnnouncementsInput = {
   learningGoals?: string | null
   crowns?: number
   pirateRank?: string
+  hasFortuneWind?: boolean
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -4029,6 +4113,7 @@ export type UserUpdateWithoutAnnouncementsInput = {
   learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -4071,6 +4156,7 @@ export type UserUncheckedUpdateWithoutAnnouncementsInput = {
   learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -4113,6 +4199,7 @@ export type UserCreateWithoutAuditActionsInput = {
   learningGoals?: string | null
   crowns?: number
   pirateRank?: string
+  hasFortuneWind?: boolean
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -4155,6 +4242,7 @@ export type UserUncheckedCreateWithoutAuditActionsInput = {
   learningGoals?: string | null
   crowns?: number
   pirateRank?: string
+  hasFortuneWind?: boolean
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -4213,6 +4301,7 @@ export type UserUpdateWithoutAuditActionsInput = {
   learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -4255,6 +4344,7 @@ export type UserUncheckedUpdateWithoutAuditActionsInput = {
   learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -4297,6 +4387,7 @@ export type UserCreateWithoutLoginRecordsInput = {
   learningGoals?: string | null
   crowns?: number
   pirateRank?: string
+  hasFortuneWind?: boolean
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -4339,6 +4430,7 @@ export type UserUncheckedCreateWithoutLoginRecordsInput = {
   learningGoals?: string | null
   crowns?: number
   pirateRank?: string
+  hasFortuneWind?: boolean
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -4397,6 +4489,7 @@ export type UserUpdateWithoutLoginRecordsInput = {
   learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -4439,6 +4532,7 @@ export type UserUncheckedUpdateWithoutLoginRecordsInput = {
   learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -4481,6 +4575,7 @@ export type UserCreateWithoutCreatedInvitesInput = {
   learningGoals?: string | null
   crowns?: number
   pirateRank?: string
+  hasFortuneWind?: boolean
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -4523,6 +4618,7 @@ export type UserUncheckedCreateWithoutCreatedInvitesInput = {
   learningGoals?: string | null
   crowns?: number
   pirateRank?: string
+  hasFortuneWind?: boolean
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -4581,6 +4677,7 @@ export type UserUpdateWithoutCreatedInvitesInput = {
   learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -4623,6 +4720,7 @@ export type UserUncheckedUpdateWithoutCreatedInvitesInput = {
   learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -4665,6 +4763,7 @@ export type UserCreateWithoutSystemAnnouncementsInput = {
   learningGoals?: string | null
   crowns?: number
   pirateRank?: string
+  hasFortuneWind?: boolean
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -4707,6 +4806,7 @@ export type UserUncheckedCreateWithoutSystemAnnouncementsInput = {
   learningGoals?: string | null
   crowns?: number
   pirateRank?: string
+  hasFortuneWind?: boolean
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -4765,6 +4865,7 @@ export type UserUpdateWithoutSystemAnnouncementsInput = {
   learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -4807,6 +4908,7 @@ export type UserUncheckedUpdateWithoutSystemAnnouncementsInput = {
   learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -4849,6 +4951,7 @@ export type UserCreateWithoutVoyageBundlesInput = {
   learningGoals?: string | null
   crowns?: number
   pirateRank?: string
+  hasFortuneWind?: boolean
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -4891,6 +4994,7 @@ export type UserUncheckedCreateWithoutVoyageBundlesInput = {
   learningGoals?: string | null
   crowns?: number
   pirateRank?: string
+  hasFortuneWind?: boolean
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -4949,6 +5053,7 @@ export type UserUpdateWithoutVoyageBundlesInput = {
   learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -4991,6 +5096,7 @@ export type UserUncheckedUpdateWithoutVoyageBundlesInput = {
   learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -5033,6 +5139,7 @@ export type UserCreateWithoutKanbanCreatedInput = {
   learningGoals?: string | null
   crowns?: number
   pirateRank?: string
+  hasFortuneWind?: boolean
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -5075,6 +5182,7 @@ export type UserUncheckedCreateWithoutKanbanCreatedInput = {
   learningGoals?: string | null
   crowns?: number
   pirateRank?: string
+  hasFortuneWind?: boolean
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -5122,6 +5230,7 @@ export type UserCreateWithoutKanbanAssignedInput = {
   learningGoals?: string | null
   crowns?: number
   pirateRank?: string
+  hasFortuneWind?: boolean
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -5164,6 +5273,7 @@ export type UserUncheckedCreateWithoutKanbanAssignedInput = {
   learningGoals?: string | null
   crowns?: number
   pirateRank?: string
+  hasFortuneWind?: boolean
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -5222,6 +5332,7 @@ export type UserUpdateWithoutKanbanCreatedInput = {
   learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -5264,6 +5375,7 @@ export type UserUncheckedUpdateWithoutKanbanCreatedInput = {
   learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -5317,6 +5429,7 @@ export type UserUpdateWithoutKanbanAssignedInput = {
   learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -5359,6 +5472,7 @@ export type UserUncheckedUpdateWithoutKanbanAssignedInput = {
   learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -5401,6 +5515,7 @@ export type UserCreateWithoutAiContextsInput = {
   learningGoals?: string | null
   crowns?: number
   pirateRank?: string
+  hasFortuneWind?: boolean
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -5443,6 +5558,7 @@ export type UserUncheckedCreateWithoutAiContextsInput = {
   learningGoals?: string | null
   crowns?: number
   pirateRank?: string
+  hasFortuneWind?: boolean
   mustChangePassword?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -5501,6 +5617,7 @@ export type UserUpdateWithoutAiContextsInput = {
   learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -5543,6 +5660,7 @@ export type UserUncheckedUpdateWithoutAiContextsInput = {
   learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   crowns?: Prisma.IntFieldUpdateOperationsInput | number
   pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  hasFortuneWind?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -5823,6 +5941,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   learningGoals?: boolean
   crowns?: boolean
   pirateRank?: boolean
+  hasFortuneWind?: boolean
   mustChangePassword?: boolean
   deletedAt?: boolean
   createdAt?: boolean
@@ -5867,6 +5986,7 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   learningGoals?: boolean
   crowns?: boolean
   pirateRank?: boolean
+  hasFortuneWind?: boolean
   mustChangePassword?: boolean
   deletedAt?: boolean
   createdAt?: boolean
@@ -5886,6 +6006,7 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   learningGoals?: boolean
   crowns?: boolean
   pirateRank?: boolean
+  hasFortuneWind?: boolean
   mustChangePassword?: boolean
   deletedAt?: boolean
   createdAt?: boolean
@@ -5905,12 +6026,13 @@ export type UserSelectScalar = {
   learningGoals?: boolean
   crowns?: boolean
   pirateRank?: boolean
+  hasFortuneWind?: boolean
   mustChangePassword?: boolean
   deletedAt?: boolean
   createdAt?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "username" | "passwordHash" | "role" | "status" | "avatarUrl" | "age" | "bio" | "favoriteSea" | "learningGoals" | "crowns" | "pirateRank" | "mustChangePassword" | "deletedAt" | "createdAt", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "username" | "passwordHash" | "role" | "status" | "avatarUrl" | "age" | "bio" | "favoriteSea" | "learningGoals" | "crowns" | "pirateRank" | "hasFortuneWind" | "mustChangePassword" | "deletedAt" | "createdAt", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   progress?: boolean | Prisma.User$progressArgs<ExtArgs>
   achievements?: boolean | Prisma.User$achievementsArgs<ExtArgs>
@@ -5983,6 +6105,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     learningGoals: string | null
     crowns: number
     pirateRank: string
+    hasFortuneWind: boolean
     mustChangePassword: boolean
     deletedAt: Date | null
     createdAt: Date
@@ -6446,6 +6569,7 @@ export interface UserFieldRefs {
   readonly learningGoals: Prisma.FieldRef<"User", 'String'>
   readonly crowns: Prisma.FieldRef<"User", 'Int'>
   readonly pirateRank: Prisma.FieldRef<"User", 'String'>
+  readonly hasFortuneWind: Prisma.FieldRef<"User", 'Boolean'>
   readonly mustChangePassword: Prisma.FieldRef<"User", 'Boolean'>
   readonly deletedAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>

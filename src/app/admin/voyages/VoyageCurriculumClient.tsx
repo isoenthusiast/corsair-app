@@ -5,11 +5,11 @@ import Link from "next/link";
 
 interface SeaData {
     id: string; name: string; icon: string;
-    voyages: { id: string; title: string; difficulty: number; status: string; captainGauntlet: boolean; _count: { trials: number } }[];
+    voyages: { id: string; title: string; difficulty: number; lifecycle: string; captainGauntlet: boolean; _count: { trials: number } }[];
 }
 
 interface VoyageDetail {
-    id: string; title: string; description: string | null; difficulty: number; status: string;
+    id: string; title: string; description: string | null; difficulty: number; lifecycle: string;
     objectives: string | null; estimatedMinutes: number | null; tags: string[]; skills: string[];
     captainGauntlet: boolean; sea: { id: string; name: string; icon: string };
     trials: { id: string; type: string; question: string; points: number; _count: { attempts: number; versions: number } }[];
@@ -122,7 +122,7 @@ export default function VoyageCurriculumClient({ seas }: { seas: SeaData[] }) {
         setEditingVoyage(true);
         setEditVoyageTitle(voyage.title);
         setEditVoyageDesc(voyage.description || "");
-        setEditVoyageStatus(voyage.status);
+        setEditVoyageStatus(voyage.lifecycle);
         setEditVoyageDifficulty(voyage.difficulty);
         setEditVoyageObjectives(voyage.objectives || "");
         setEditVoyageMinutes(voyage.estimatedMinutes ? String(voyage.estimatedMinutes) : "");
@@ -144,7 +144,7 @@ export default function VoyageCurriculumClient({ seas }: { seas: SeaData[] }) {
                 voyageId: selectedVoyageId,
                 title: editVoyageTitle,
                 description: editVoyageDesc,
-                status: editVoyageStatus,
+                lifecycle: editVoyageStatus,
                 difficulty: editVoyageDifficulty,
                 objectives: editVoyageObjectives,
                 estimatedMinutes: editVoyageMinutes ? parseInt(editVoyageMinutes) : null,
@@ -258,8 +258,8 @@ export default function VoyageCurriculumClient({ seas }: { seas: SeaData[] }) {
                                                     onClick={() => selectVoyage(v.id)}
                                                     className={`w-full text-left px-3 py-1.5 rounded-lg text-xs transition flex items-center gap-2 ${selectedVoyageId === v.id ? "bg-amber-800/40 border border-amber-600/30" : "hover:bg-amber-900/20"}`}
                                                 >
-                                                    <span className={`px-1 py-0.5 rounded text-xs ${v.status === "Published" ? "bg-emerald-900/50 text-emerald-400" : "bg-amber-900/30 text-amber-400"}`}>
-                                                        {v.status || "Draft"}
+                                                    <span className={`px-1 py-0.5 rounded text-xs ${v.lifecycle === "Published" ? "bg-emerald-900/50 text-emerald-400" : "bg-amber-900/30 text-amber-400"}`}>
+                                                        {v.lifecycle || "Draft"}
                                                     </span>
                                                     <span className="truncate flex-1">{v.title}</span>
                                                     {v.captainGauntlet && <span>⚔️</span>}
@@ -299,7 +299,7 @@ export default function VoyageCurriculumClient({ seas }: { seas: SeaData[] }) {
                                 </div>
                                 <h2 className="text-2xl mb-2" style={{ fontFamily: "'Pirata One', cursive", color: "#F7C948" }}>{voyage.title}</h2>
                                 <div className="flex items-center gap-3 text-sm">
-                                    <span className="px-2 py-0.5 rounded-full bg-amber-900/30 text-amber-400">{voyage.status}</span>
+                                    <span className="px-2 py-0.5 rounded-full bg-amber-900/30 text-amber-400">{voyage.lifecycle}</span>
                                     <span className="text-amber-600">Difficulty: {"☠️".repeat(voyage.difficulty)}</span>
                                     {voyage.estimatedMinutes && <span className="text-amber-600">~{voyage.estimatedMinutes} min</span>}
                                 </div>

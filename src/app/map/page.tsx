@@ -1,33 +1,23 @@
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { getEconomySettings, getRank } from "@/lib/economy";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import ImpersonationBanner from "@/components/ImpersonationBanner";
 import RecommendedVoyage from "@/components/RecommendedVoyage";
 
-const RANKS = ["Deckhand", "Swabbie", "Gunner", "Boatswain", "Quartermaster", "First Mate", "Captain", "Commodore", "Sea Lord"];
-const RANK_XP = [0, 100, 300, 600, 1000, 1500, 2500, 4000, 6000];
-
-function getRank(totalXP: number) {
-    let rank = "Deckhand";
-    for (let i = RANKS.length - 1; i >= 0; i--) {
-        if (totalXP >= RANK_XP[i]) { rank = RANKS[i]; break; }
-    }
-    const nextIdx = RANKS.indexOf(rank) + 1;
-    const nextXP = nextIdx < RANK_XP.length ? RANK_XP[nextIdx] : RANK_XP[RANK_XP.length - 1];
-    const currentXP = RANK_XP[RANKS.indexOf(rank)];
-    const progress = nextXP > currentXP ? ((totalXP - currentXP) / (nextXP - currentXP)) * 100 : 100;
-    return { rank, nextRank: nextIdx < RANKS.length ? RANKS[nextIdx] : null, progress, nextXP };
-}
-
 export default async function MapPage() {
     const session = await auth();
     if (!session?.user) redirect("/");
+
+    const economy = await getEconomySettings();
+    const rankXP = economy.rankXP as number[];
 
     const seas = await prisma.sea.findMany({
         orderBy: { sortOrder: "asc" },
         include: {
             voyages: {
+                where: { lifecycle: "Published" },
                 orderBy: { sortOrder: "asc" },
                 include: { progress: { where: { userId: session.user.id } } },
             },
@@ -42,7 +32,7 @@ export default async function MapPage() {
     const totalXP = xpResult._sum.points || 0;
     const streak = await prisma.streak.findUnique({ where: { userId: session.user.id } });
     const user = await prisma.user.findUnique({ where: { id: session.user.id } });
-    const { rank, nextRank, progress: rankProgress } = getRank(totalXP);
+    const { rank, nextRank, progress: rankProgress, nextXP } = getRank(totalXP, rankXP);
 
     // Active system announcements (not expired, matching user role or all-roles)
     const now = new Date();
@@ -115,7 +105,7 @@ export default async function MapPage() {
                             </div>
                             <div className="flex justify-between text-xs" style={{ color: "#5D4037" }}>
                                 <span>{rank}</span>
-                                {nextRank && <span>Next: {nextRank} ({RANK_XP[RANKS.indexOf(rank) + 1]} XP)</span>}
+                                {nextRank && <span>Next: {nextRank} ({nextXP} XP)</span>}
                             </div>
                         </div>
                         <div className="text-center" style={{ color: "#5D4037" }}>
@@ -175,7 +165,8 @@ export default async function MapPage() {
                                 <div className="space-y-2">
                                     {sea.voyages.map((v, idx) => {
                                         const p = v.progress[0];
-                                        const locked = p?.status === "Locked" || (!p && idx > 0);
+                                        // Locked if: progress says Locked, OR no progress AND (has prerequisite OR not first in sea)
+                                        const locked = p?.status === "Locked" || (!p && (!!v.requiredVoyageId || idx > 0));
                                         const done = p?.status === "Completed" || p?.status === "Mastered";
                                         return (
                                             <div key={v.id} className={`voyage-node flex items-center gap-3 p-3 rounded-xl transition ${locked ? "locked" : done ? "bg-emerald-900/20 border border-emerald-700/30" : "bg-abyssal/50 border border-amber-900/20 hover:border-amber-700/40"}`}>

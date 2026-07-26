@@ -12,7 +12,7 @@ export default async function AdminVoyagesPage() {
         include: {
             voyages: {
                 orderBy: { sortOrder: "asc" },
-                select: { id: true, title: true, difficulty: true, status: true, captainGauntlet: true, _count: { select: { trials: true } } },
+                select: { id: true, title: true, difficulty: true, lifecycle: true, captainGauntlet: true, _count: { select: { trials: true } } },
             },
         },
     });

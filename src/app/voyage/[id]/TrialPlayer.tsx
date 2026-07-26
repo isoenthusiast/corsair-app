@@ -6,8 +6,9 @@ import { useRouter } from "next/navigation";
 type Trial = { id: string; type: string; question: string; options?: any; answer: string; explanation: string | null; hint: string | null; points: number; difficulty: number };
 type Voyage = { id: string; title: string; captainGauntlet: boolean; sea: { name: string; icon: string }; trials: Trial[] };
 type Progress = { id: string; status: string; skulls: number; trialsCompleted: number } | null;
+type CharmQty = { whisper_scroll: number; storm_pass: number; fortune_wind: number; anchor_charm: number };
 
-export function TrialPlayer({ voyage, progress, isCompleted, userId }: { voyage: Voyage; progress: Progress; isCompleted: boolean; userId: string }) {
+export function TrialPlayer({ voyage, progress, isCompleted, userId, charms, hasFortuneWind }: { voyage: Voyage; progress: Progress; isCompleted: boolean; userId: string; charms: CharmQty; hasFortuneWind: boolean }) {
     const router = useRouter();
     const [idx, setIdx] = useState(Math.min(progress?.trialsCompleted || 0, voyage.trials.length - 1));
     const [answer, setAnswer] = useState(""); const [selected, setSelected] = useState<string | null>(null);
@@ -16,7 +17,48 @@ export function TrialPlayer({ voyage, progress, isCompleted, userId }: { voyage:
     const [loading, setLoading] = useState(false); const [done, setDone] = useState(isCompleted);
     const [startTime] = useState(Date.now()); const [hints, setHints] = useState(0);
     const [aiFeedback, setAiFeedback] = useState("");
+    const [scrollUsed, setScrollUsed] = useState(false); // Whisper Scroll used this trial
+    const [localCharms, setLocalCharms] = useState(charms);
+    const [localFortuneWind, setLocalFortuneWind] = useState(hasFortuneWind);
+    const [flagging, setFlagging] = useState(false);
     const t = voyage.trials[idx]; const last = idx === voyage.trials.length - 1;
+
+    async function flagTrial() {
+        setFlagging(true);
+        await fetch("/api/trials/flag", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ trialId: t.id, reason: "Issue with this trial" }) });
+        setFlagging(false);
+    }
+
+    async function useCharm(type: string) {
+        if (loading) return;
+        const res = await fetch("/api/charms/use", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ charmType: type }) });
+        if (!res.ok) return;
+        const data = await res.json();
+        setLocalCharms(prev => ({ ...prev, [type]: data.remaining }));
+
+        if (type === "whisper_scroll") {
+            setShowHint(true);
+            setScrollUsed(true);
+        } else if (type === "storm_pass") {
+            // Skip this trial
+            setLoading(true);
+            await fetch("/api/trials/attempt", {
+                method: "POST", headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ trialId: t.id, answer: "", correct: false, timeSpent: 0, skulls: 0, hintsUsed: 0, stormPassUsed: true }),
+            });
+            setLoading(false);
+            // Advance
+            if (last) {
+                await fetch("/api/voyages/complete", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ voyageId: voyage.id }) });
+                setDone(true);
+            } else {
+                setIdx(i => i + 1); setAnswer(""); setSelected(null); setShowResult(false); setShowHint(false); setCorrect(false); setHints(0); setScrollUsed(false);
+            }
+        } else if (type === "fortune_wind") {
+            setLocalFortuneWind(true);
+        }
+        // anchor_charm — handled server-side in /api/charms/use
+    }
 
     async function submit() {
         if (loading) return; setLoading(true);
@@ -24,7 +66,6 @@ export function TrialPlayer({ voyage, progress, isCompleted, userId }: { voyage:
 
         let ok: boolean; let s = 1; let fb = "";
         if (t.type === "open_ended") {
-            // AI grading for open-ended trials
             try {
                 const res = await fetch("/api/trials/grade", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ trialQuestion: t.question, expectedAnswer: t.answer, studentAnswer: a }) });
                 const data = await res.json();
@@ -36,8 +77,12 @@ export function TrialPlayer({ voyage, progress, isCompleted, userId }: { voyage:
             }
         } else {
             ok = a.toLowerCase() === t.answer.toLowerCase();
-            if (ok) { if (!showHint && hints === 0) s = 3; else if (!showHint && hints <= 1) s = 2; else s = 1; }
-            else s = 1;
+            if (ok) {
+                if (scrollUsed) s = 3;           // Whisper Scroll: full skulls even with hint shown
+                else if (!showHint && hints === 0) s = 3;
+                else if (!showHint && hints <= 1) s = 2;
+                else s = 1;
+            } else s = 1;
         }
 
         setCorrect(ok); setSkulls(s); setAiFeedback(fb); setShowResult(true);
@@ -69,7 +114,29 @@ export function TrialPlayer({ voyage, progress, isCompleted, userId }: { voyage:
     return (
         <main className="max-w-2xl mx-auto px-4 py-8">
             <div className="flex items-center justify-between mb-6"><span className="text-sm text-amber-600">Trial {idx + 1} of {voyage.trials.length}</span><span className="text-sm" style={{ color: "#F7C948" }}>+{t.points} XP</span></div>
-            <div className="flex gap-1 mb-8 justify-center">{voyage.trials.map((_, i) => <div key={i} className={`w-3 h-3 rounded-full transition-all ${i < idx ? "bg-emerald-500" : i === idx ? "bg-amber-500 scale-125" : "bg-slate-700"}`} />)}</div>
+            <div className="flex gap-1 mb-4 justify-center">{voyage.trials.map((_, i) => <div key={i} className={`w-3 h-3 rounded-full transition-all ${i < idx ? "bg-emerald-500" : i === idx ? "bg-amber-500 scale-125" : "bg-slate-700"}`} />)}</div>
+
+            {/* 🍈 Charm Bar */}
+            <div className="flex gap-2 mb-6 justify-center flex-wrap">
+                {[
+                    { type: "whisper_scroll", icon: "📜", label: "Whisper Scroll", qty: localCharms.whisper_scroll, desc: "Reveal hint, keep skulls" },
+                    { type: "storm_pass", icon: "⛈️", label: "Storm Pass", qty: localCharms.storm_pass, desc: "Skip this trial" },
+                    { type: "fortune_wind", icon: "💨", label: "Fortune Wind", qty: localCharms.fortune_wind, desc: "2× crowns next trial", active: localFortuneWind },
+                    { type: "anchor_charm", icon: "⚓", label: "Anchor Charm", qty: localCharms.anchor_charm, desc: "Freeze streak 24h" },
+                ].map(c => (
+                    <button
+                        key={c.type}
+                        onClick={() => useCharm(c.type)}
+                        disabled={loading || c.qty <= 0 || (c.type === "fortune_wind" && localFortuneWind)}
+                        title={c.desc}
+                        className={`px-3 py-1.5 rounded-lg text-xs transition flex items-center gap-1.5 border ${c.active ? "bg-purple-900/30 border-purple-600/30 text-purple-300" : "bg-abyssal/80 border-amber-900/30 text-amber-400 hover:border-amber-600/50"} disabled:opacity-30 disabled:cursor-not-allowed`}
+                    >
+                        <span>{c.icon}</span>
+                        <span>{c.label}</span>
+                        <span className="font-bold" style={{ color: "#F7C948" }}>{c.active ? "✓" : c.qty}</span>
+                    </button>
+                ))}
+            </div>
 
             <div className="trial-scroll p-8 animate-map-unfold">
                 <div className="flex items-center gap-2 mb-4">
@@ -94,6 +161,7 @@ export function TrialPlayer({ voyage, progress, isCompleted, userId }: { voyage:
                         {aiFeedback && <div className="p-4 rounded-xl bg-purple-50 border border-purple-200 mb-4"><p className="text-xs text-purple-600 mb-1">🧠 AI Feedback:</p><p className="text-sm text-purple-900">{aiFeedback}</p></div>}
                         <div className="text-center mb-6"><span className="text-sm text-purple-600 font-bold">+{t.points * skulls} XP · +{Math.floor(t.points * skulls / 2)} 🪙</span></div>
                         <button onClick={next} className="btn-pirate w-full text-lg">{last ? voyage.captainGauntlet ? "Claim the Treasure! 👑" : "Complete Voyage! 🎉" : "Next Trial →"}</button>
+                        <button onClick={flagTrial} disabled={flagging} className="w-full text-xs text-amber-600 hover:text-red-400 mt-3 transition disabled:opacity-50">{flagging ? "Reporting..." : "🚩 Report Issue with this Trial"}</button>
                     </div>
                 )}
             </div>

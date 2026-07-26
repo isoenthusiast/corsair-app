@@ -219,6 +219,23 @@ export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedDateTimeFilter<$PrismaModel>
 }
 
+export type EnumVoyageLifecycleFilter<$PrismaModel = never> = {
+  equals?: $Enums.VoyageLifecycle | Prisma.EnumVoyageLifecycleFieldRefInput<$PrismaModel>
+  in?: $Enums.VoyageLifecycle[] | Prisma.ListEnumVoyageLifecycleFieldRefInput<$PrismaModel>
+  notIn?: $Enums.VoyageLifecycle[] | Prisma.ListEnumVoyageLifecycleFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumVoyageLifecycleFilter<$PrismaModel> | $Enums.VoyageLifecycle
+}
+
+export type EnumVoyageLifecycleWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.VoyageLifecycle | Prisma.EnumVoyageLifecycleFieldRefInput<$PrismaModel>
+  in?: $Enums.VoyageLifecycle[] | Prisma.ListEnumVoyageLifecycleFieldRefInput<$PrismaModel>
+  notIn?: $Enums.VoyageLifecycle[] | Prisma.ListEnumVoyageLifecycleFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumVoyageLifecycleWithAggregatesFilter<$PrismaModel> | $Enums.VoyageLifecycle
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumVoyageLifecycleFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumVoyageLifecycleFilter<$PrismaModel>
+}
+
 export type EnumTrialTypeFilter<$PrismaModel = never> = {
   equals?: $Enums.TrialType | Prisma.EnumTrialTypeFieldRefInput<$PrismaModel>
   in?: $Enums.TrialType[] | Prisma.ListEnumTrialTypeFieldRefInput<$PrismaModel>
@@ -331,57 +348,6 @@ export type FloatWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedFloatFilter<$PrismaModel>
 }
 
-export type EnumAchievementTypeFilter<$PrismaModel = never> = {
-  equals?: $Enums.AchievementType | Prisma.EnumAchievementTypeFieldRefInput<$PrismaModel>
-  in?: $Enums.AchievementType[] | Prisma.ListEnumAchievementTypeFieldRefInput<$PrismaModel>
-  notIn?: $Enums.AchievementType[] | Prisma.ListEnumAchievementTypeFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumAchievementTypeFilter<$PrismaModel> | $Enums.AchievementType
-}
-
-export type EnumBadgeRarityFilter<$PrismaModel = never> = {
-  equals?: $Enums.BadgeRarity | Prisma.EnumBadgeRarityFieldRefInput<$PrismaModel>
-  in?: $Enums.BadgeRarity[] | Prisma.ListEnumBadgeRarityFieldRefInput<$PrismaModel>
-  notIn?: $Enums.BadgeRarity[] | Prisma.ListEnumBadgeRarityFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumBadgeRarityFilter<$PrismaModel> | $Enums.BadgeRarity
-}
-
-export type EnumAchievementTypeWithAggregatesFilter<$PrismaModel = never> = {
-  equals?: $Enums.AchievementType | Prisma.EnumAchievementTypeFieldRefInput<$PrismaModel>
-  in?: $Enums.AchievementType[] | Prisma.ListEnumAchievementTypeFieldRefInput<$PrismaModel>
-  notIn?: $Enums.AchievementType[] | Prisma.ListEnumAchievementTypeFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumAchievementTypeWithAggregatesFilter<$PrismaModel> | $Enums.AchievementType
-  _count?: Prisma.NestedIntFilter<$PrismaModel>
-  _min?: Prisma.NestedEnumAchievementTypeFilter<$PrismaModel>
-  _max?: Prisma.NestedEnumAchievementTypeFilter<$PrismaModel>
-}
-
-export type EnumBadgeRarityWithAggregatesFilter<$PrismaModel = never> = {
-  equals?: $Enums.BadgeRarity | Prisma.EnumBadgeRarityFieldRefInput<$PrismaModel>
-  in?: $Enums.BadgeRarity[] | Prisma.ListEnumBadgeRarityFieldRefInput<$PrismaModel>
-  notIn?: $Enums.BadgeRarity[] | Prisma.ListEnumBadgeRarityFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumBadgeRarityWithAggregatesFilter<$PrismaModel> | $Enums.BadgeRarity
-  _count?: Prisma.NestedIntFilter<$PrismaModel>
-  _min?: Prisma.NestedEnumBadgeRarityFilter<$PrismaModel>
-  _max?: Prisma.NestedEnumBadgeRarityFilter<$PrismaModel>
-}
-
-export type EnumSeaCharmTypeFilter<$PrismaModel = never> = {
-  equals?: $Enums.SeaCharmType | Prisma.EnumSeaCharmTypeFieldRefInput<$PrismaModel>
-  in?: $Enums.SeaCharmType[] | Prisma.ListEnumSeaCharmTypeFieldRefInput<$PrismaModel>
-  notIn?: $Enums.SeaCharmType[] | Prisma.ListEnumSeaCharmTypeFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumSeaCharmTypeFilter<$PrismaModel> | $Enums.SeaCharmType
-}
-
-export type EnumSeaCharmTypeWithAggregatesFilter<$PrismaModel = never> = {
-  equals?: $Enums.SeaCharmType | Prisma.EnumSeaCharmTypeFieldRefInput<$PrismaModel>
-  in?: $Enums.SeaCharmType[] | Prisma.ListEnumSeaCharmTypeFieldRefInput<$PrismaModel>
-  notIn?: $Enums.SeaCharmType[] | Prisma.ListEnumSeaCharmTypeFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumSeaCharmTypeWithAggregatesFilter<$PrismaModel> | $Enums.SeaCharmType
-  _count?: Prisma.NestedIntFilter<$PrismaModel>
-  _min?: Prisma.NestedEnumSeaCharmTypeFilter<$PrismaModel>
-  _max?: Prisma.NestedEnumSeaCharmTypeFilter<$PrismaModel>
-}
-
 export type JsonFilter<$PrismaModel = never> =
 | Prisma.PatchUndefined<
     Prisma.Either<Required<JsonFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonFilterBase<$PrismaModel>>, 'path'>>,
@@ -431,6 +397,57 @@ export type JsonWithAggregatesFilterBase<$PrismaModel = never> = {
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedJsonFilter<$PrismaModel>
   _max?: Prisma.NestedJsonFilter<$PrismaModel>
+}
+
+export type EnumAchievementTypeFilter<$PrismaModel = never> = {
+  equals?: $Enums.AchievementType | Prisma.EnumAchievementTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.AchievementType[] | Prisma.ListEnumAchievementTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.AchievementType[] | Prisma.ListEnumAchievementTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumAchievementTypeFilter<$PrismaModel> | $Enums.AchievementType
+}
+
+export type EnumBadgeRarityFilter<$PrismaModel = never> = {
+  equals?: $Enums.BadgeRarity | Prisma.EnumBadgeRarityFieldRefInput<$PrismaModel>
+  in?: $Enums.BadgeRarity[] | Prisma.ListEnumBadgeRarityFieldRefInput<$PrismaModel>
+  notIn?: $Enums.BadgeRarity[] | Prisma.ListEnumBadgeRarityFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumBadgeRarityFilter<$PrismaModel> | $Enums.BadgeRarity
+}
+
+export type EnumAchievementTypeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.AchievementType | Prisma.EnumAchievementTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.AchievementType[] | Prisma.ListEnumAchievementTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.AchievementType[] | Prisma.ListEnumAchievementTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumAchievementTypeWithAggregatesFilter<$PrismaModel> | $Enums.AchievementType
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumAchievementTypeFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumAchievementTypeFilter<$PrismaModel>
+}
+
+export type EnumBadgeRarityWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.BadgeRarity | Prisma.EnumBadgeRarityFieldRefInput<$PrismaModel>
+  in?: $Enums.BadgeRarity[] | Prisma.ListEnumBadgeRarityFieldRefInput<$PrismaModel>
+  notIn?: $Enums.BadgeRarity[] | Prisma.ListEnumBadgeRarityFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumBadgeRarityWithAggregatesFilter<$PrismaModel> | $Enums.BadgeRarity
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumBadgeRarityFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumBadgeRarityFilter<$PrismaModel>
+}
+
+export type EnumSeaCharmTypeFilter<$PrismaModel = never> = {
+  equals?: $Enums.SeaCharmType | Prisma.EnumSeaCharmTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.SeaCharmType[] | Prisma.ListEnumSeaCharmTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.SeaCharmType[] | Prisma.ListEnumSeaCharmTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumSeaCharmTypeFilter<$PrismaModel> | $Enums.SeaCharmType
+}
+
+export type EnumSeaCharmTypeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.SeaCharmType | Prisma.EnumSeaCharmTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.SeaCharmType[] | Prisma.ListEnumSeaCharmTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.SeaCharmType[] | Prisma.ListEnumSeaCharmTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumSeaCharmTypeWithAggregatesFilter<$PrismaModel> | $Enums.SeaCharmType
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumSeaCharmTypeFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumSeaCharmTypeFilter<$PrismaModel>
 }
 
 export type EnumKanbanTypeFilter<$PrismaModel = never> = {
@@ -736,6 +753,23 @@ export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedDateTimeFilter<$PrismaModel>
 }
 
+export type NestedEnumVoyageLifecycleFilter<$PrismaModel = never> = {
+  equals?: $Enums.VoyageLifecycle | Prisma.EnumVoyageLifecycleFieldRefInput<$PrismaModel>
+  in?: $Enums.VoyageLifecycle[] | Prisma.ListEnumVoyageLifecycleFieldRefInput<$PrismaModel>
+  notIn?: $Enums.VoyageLifecycle[] | Prisma.ListEnumVoyageLifecycleFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumVoyageLifecycleFilter<$PrismaModel> | $Enums.VoyageLifecycle
+}
+
+export type NestedEnumVoyageLifecycleWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.VoyageLifecycle | Prisma.EnumVoyageLifecycleFieldRefInput<$PrismaModel>
+  in?: $Enums.VoyageLifecycle[] | Prisma.ListEnumVoyageLifecycleFieldRefInput<$PrismaModel>
+  notIn?: $Enums.VoyageLifecycle[] | Prisma.ListEnumVoyageLifecycleFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumVoyageLifecycleWithAggregatesFilter<$PrismaModel> | $Enums.VoyageLifecycle
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumVoyageLifecycleFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumVoyageLifecycleFilter<$PrismaModel>
+}
+
 export type NestedEnumTrialTypeFilter<$PrismaModel = never> = {
   equals?: $Enums.TrialType | Prisma.EnumTrialTypeFieldRefInput<$PrismaModel>
   in?: $Enums.TrialType[] | Prisma.ListEnumTrialTypeFieldRefInput<$PrismaModel>
@@ -810,6 +844,30 @@ export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedFloatFilter<$PrismaModel>
 }
 
+export type NestedJsonFilter<$PrismaModel = never> =
+| Prisma.PatchUndefined<
+    Prisma.Either<Required<NestedJsonFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>,
+    Required<NestedJsonFilterBase<$PrismaModel>>
+  >
+| Prisma.OptionalFlat<Omit<Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>
+
+export type NestedJsonFilterBase<$PrismaModel = never> = {
+  equals?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel> | Prisma.JsonNullValueFilter
+  path?: string[]
+  mode?: Prisma.QueryMode | Prisma.EnumQueryModeFieldRefInput<$PrismaModel>
+  string_contains?: string | Prisma.StringFieldRefInput<$PrismaModel>
+  string_starts_with?: string | Prisma.StringFieldRefInput<$PrismaModel>
+  string_ends_with?: string | Prisma.StringFieldRefInput<$PrismaModel>
+  array_starts_with?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel> | null
+  array_ends_with?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel> | null
+  array_contains?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel> | null
+  lt?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel>
+  lte?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel>
+  gt?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel>
+  gte?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel>
+  not?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel> | Prisma.JsonNullValueFilter
+}
+
 export type NestedEnumAchievementTypeFilter<$PrismaModel = never> = {
   equals?: $Enums.AchievementType | Prisma.EnumAchievementTypeFieldRefInput<$PrismaModel>
   in?: $Enums.AchievementType[] | Prisma.ListEnumAchievementTypeFieldRefInput<$PrismaModel>
@@ -859,30 +917,6 @@ export type NestedEnumSeaCharmTypeWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumSeaCharmTypeFilter<$PrismaModel>
   _max?: Prisma.NestedEnumSeaCharmTypeFilter<$PrismaModel>
-}
-
-export type NestedJsonFilter<$PrismaModel = never> =
-| Prisma.PatchUndefined<
-    Prisma.Either<Required<NestedJsonFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>,
-    Required<NestedJsonFilterBase<$PrismaModel>>
-  >
-| Prisma.OptionalFlat<Omit<Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>
-
-export type NestedJsonFilterBase<$PrismaModel = never> = {
-  equals?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel> | Prisma.JsonNullValueFilter
-  path?: string[]
-  mode?: Prisma.QueryMode | Prisma.EnumQueryModeFieldRefInput<$PrismaModel>
-  string_contains?: string | Prisma.StringFieldRefInput<$PrismaModel>
-  string_starts_with?: string | Prisma.StringFieldRefInput<$PrismaModel>
-  string_ends_with?: string | Prisma.StringFieldRefInput<$PrismaModel>
-  array_starts_with?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel> | null
-  array_ends_with?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel> | null
-  array_contains?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel> | null
-  lt?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel>
-  lte?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel>
-  gt?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel>
-  gte?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel>
-  not?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel> | Prisma.JsonNullValueFilter
 }
 
 export type NestedEnumKanbanTypeFilter<$PrismaModel = never> = {

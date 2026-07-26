@@ -9,7 +9,7 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { voyageId, title, status, difficulty, estimatedMinutes, description, objectives, captainGauntlet, tags, skills } = body;
+    const { voyageId, title, lifecycle, difficulty, estimatedMinutes, description, objectives, captainGauntlet, tags, skills } = body;
 
     if (!voyageId) {
         return NextResponse.json({ error: "voyageId required" }, { status: 400 });
@@ -17,7 +17,7 @@ export async function POST(request: NextRequest) {
 
     const data: any = {};
     if (title !== undefined) data.title = title;
-    if (status !== undefined) data.status = status;
+    if (lifecycle !== undefined) data.lifecycle = lifecycle;
     if (difficulty !== undefined) data.difficulty = difficulty;
     if (estimatedMinutes !== undefined) data.estimatedMinutes = estimatedMinutes ? parseInt(String(estimatedMinutes)) : null;
     if (description !== undefined) data.description = description || null;

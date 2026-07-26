@@ -45,6 +45,7 @@ export type StreakMinAggregateOutputType = {
   longestStreak: number | null
   lastActivityDate: Date | null
   streakProtection: number | null
+  streakFrozenUntil: Date | null
 }
 
 export type StreakMaxAggregateOutputType = {
@@ -54,6 +55,7 @@ export type StreakMaxAggregateOutputType = {
   longestStreak: number | null
   lastActivityDate: Date | null
   streakProtection: number | null
+  streakFrozenUntil: Date | null
 }
 
 export type StreakCountAggregateOutputType = {
@@ -63,6 +65,7 @@ export type StreakCountAggregateOutputType = {
   longestStreak: number
   lastActivityDate: number
   streakProtection: number
+  streakFrozenUntil: number
   _all: number
 }
 
@@ -86,6 +89,7 @@ export type StreakMinAggregateInputType = {
   longestStreak?: true
   lastActivityDate?: true
   streakProtection?: true
+  streakFrozenUntil?: true
 }
 
 export type StreakMaxAggregateInputType = {
@@ -95,6 +99,7 @@ export type StreakMaxAggregateInputType = {
   longestStreak?: true
   lastActivityDate?: true
   streakProtection?: true
+  streakFrozenUntil?: true
 }
 
 export type StreakCountAggregateInputType = {
@@ -104,6 +109,7 @@ export type StreakCountAggregateInputType = {
   longestStreak?: true
   lastActivityDate?: true
   streakProtection?: true
+  streakFrozenUntil?: true
   _all?: true
 }
 
@@ -200,6 +206,7 @@ export type StreakGroupByOutputType = {
   longestStreak: number
   lastActivityDate: Date | null
   streakProtection: number
+  streakFrozenUntil: Date | null
   _count: StreakCountAggregateOutputType | null
   _avg: StreakAvgAggregateOutputType | null
   _sum: StreakSumAggregateOutputType | null
@@ -232,6 +239,7 @@ export type StreakWhereInput = {
   longestStreak?: Prisma.IntFilter<"Streak"> | number
   lastActivityDate?: Prisma.DateTimeNullableFilter<"Streak"> | Date | string | null
   streakProtection?: Prisma.IntFilter<"Streak"> | number
+  streakFrozenUntil?: Prisma.DateTimeNullableFilter<"Streak"> | Date | string | null
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
 
@@ -242,6 +250,7 @@ export type StreakOrderByWithRelationInput = {
   longestStreak?: Prisma.SortOrder
   lastActivityDate?: Prisma.SortOrderInput | Prisma.SortOrder
   streakProtection?: Prisma.SortOrder
+  streakFrozenUntil?: Prisma.SortOrderInput | Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
 }
 
@@ -255,6 +264,7 @@ export type StreakWhereUniqueInput = Prisma.AtLeast<{
   longestStreak?: Prisma.IntFilter<"Streak"> | number
   lastActivityDate?: Prisma.DateTimeNullableFilter<"Streak"> | Date | string | null
   streakProtection?: Prisma.IntFilter<"Streak"> | number
+  streakFrozenUntil?: Prisma.DateTimeNullableFilter<"Streak"> | Date | string | null
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }, "id" | "userId">
 
@@ -265,6 +275,7 @@ export type StreakOrderByWithAggregationInput = {
   longestStreak?: Prisma.SortOrder
   lastActivityDate?: Prisma.SortOrderInput | Prisma.SortOrder
   streakProtection?: Prisma.SortOrder
+  streakFrozenUntil?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.StreakCountOrderByAggregateInput
   _avg?: Prisma.StreakAvgOrderByAggregateInput
   _max?: Prisma.StreakMaxOrderByAggregateInput
@@ -282,6 +293,7 @@ export type StreakScalarWhereWithAggregatesInput = {
   longestStreak?: Prisma.IntWithAggregatesFilter<"Streak"> | number
   lastActivityDate?: Prisma.DateTimeNullableWithAggregatesFilter<"Streak"> | Date | string | null
   streakProtection?: Prisma.IntWithAggregatesFilter<"Streak"> | number
+  streakFrozenUntil?: Prisma.DateTimeNullableWithAggregatesFilter<"Streak"> | Date | string | null
 }
 
 export type StreakCreateInput = {
@@ -290,6 +302,7 @@ export type StreakCreateInput = {
   longestStreak?: number
   lastActivityDate?: Date | string | null
   streakProtection?: number
+  streakFrozenUntil?: Date | string | null
   user: Prisma.UserCreateNestedOneWithoutStreaksInput
 }
 
@@ -300,6 +313,7 @@ export type StreakUncheckedCreateInput = {
   longestStreak?: number
   lastActivityDate?: Date | string | null
   streakProtection?: number
+  streakFrozenUntil?: Date | string | null
 }
 
 export type StreakUpdateInput = {
@@ -308,6 +322,7 @@ export type StreakUpdateInput = {
   longestStreak?: Prisma.IntFieldUpdateOperationsInput | number
   lastActivityDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   streakProtection?: Prisma.IntFieldUpdateOperationsInput | number
+  streakFrozenUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   user?: Prisma.UserUpdateOneRequiredWithoutStreaksNestedInput
 }
 
@@ -318,6 +333,7 @@ export type StreakUncheckedUpdateInput = {
   longestStreak?: Prisma.IntFieldUpdateOperationsInput | number
   lastActivityDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   streakProtection?: Prisma.IntFieldUpdateOperationsInput | number
+  streakFrozenUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type StreakCreateManyInput = {
@@ -327,6 +343,7 @@ export type StreakCreateManyInput = {
   longestStreak?: number
   lastActivityDate?: Date | string | null
   streakProtection?: number
+  streakFrozenUntil?: Date | string | null
 }
 
 export type StreakUpdateManyMutationInput = {
@@ -335,6 +352,7 @@ export type StreakUpdateManyMutationInput = {
   longestStreak?: Prisma.IntFieldUpdateOperationsInput | number
   lastActivityDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   streakProtection?: Prisma.IntFieldUpdateOperationsInput | number
+  streakFrozenUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type StreakUncheckedUpdateManyInput = {
@@ -344,6 +362,7 @@ export type StreakUncheckedUpdateManyInput = {
   longestStreak?: Prisma.IntFieldUpdateOperationsInput | number
   lastActivityDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   streakProtection?: Prisma.IntFieldUpdateOperationsInput | number
+  streakFrozenUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type StreakListRelationFilter = {
@@ -363,6 +382,7 @@ export type StreakCountOrderByAggregateInput = {
   longestStreak?: Prisma.SortOrder
   lastActivityDate?: Prisma.SortOrder
   streakProtection?: Prisma.SortOrder
+  streakFrozenUntil?: Prisma.SortOrder
 }
 
 export type StreakAvgOrderByAggregateInput = {
@@ -378,6 +398,7 @@ export type StreakMaxOrderByAggregateInput = {
   longestStreak?: Prisma.SortOrder
   lastActivityDate?: Prisma.SortOrder
   streakProtection?: Prisma.SortOrder
+  streakFrozenUntil?: Prisma.SortOrder
 }
 
 export type StreakMinOrderByAggregateInput = {
@@ -387,6 +408,7 @@ export type StreakMinOrderByAggregateInput = {
   longestStreak?: Prisma.SortOrder
   lastActivityDate?: Prisma.SortOrder
   streakProtection?: Prisma.SortOrder
+  streakFrozenUntil?: Prisma.SortOrder
 }
 
 export type StreakSumOrderByAggregateInput = {
@@ -443,6 +465,7 @@ export type StreakCreateWithoutUserInput = {
   longestStreak?: number
   lastActivityDate?: Date | string | null
   streakProtection?: number
+  streakFrozenUntil?: Date | string | null
 }
 
 export type StreakUncheckedCreateWithoutUserInput = {
@@ -451,6 +474,7 @@ export type StreakUncheckedCreateWithoutUserInput = {
   longestStreak?: number
   lastActivityDate?: Date | string | null
   streakProtection?: number
+  streakFrozenUntil?: Date | string | null
 }
 
 export type StreakCreateOrConnectWithoutUserInput = {
@@ -489,6 +513,7 @@ export type StreakScalarWhereInput = {
   longestStreak?: Prisma.IntFilter<"Streak"> | number
   lastActivityDate?: Prisma.DateTimeNullableFilter<"Streak"> | Date | string | null
   streakProtection?: Prisma.IntFilter<"Streak"> | number
+  streakFrozenUntil?: Prisma.DateTimeNullableFilter<"Streak"> | Date | string | null
 }
 
 export type StreakCreateManyUserInput = {
@@ -497,6 +522,7 @@ export type StreakCreateManyUserInput = {
   longestStreak?: number
   lastActivityDate?: Date | string | null
   streakProtection?: number
+  streakFrozenUntil?: Date | string | null
 }
 
 export type StreakUpdateWithoutUserInput = {
@@ -505,6 +531,7 @@ export type StreakUpdateWithoutUserInput = {
   longestStreak?: Prisma.IntFieldUpdateOperationsInput | number
   lastActivityDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   streakProtection?: Prisma.IntFieldUpdateOperationsInput | number
+  streakFrozenUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type StreakUncheckedUpdateWithoutUserInput = {
@@ -513,6 +540,7 @@ export type StreakUncheckedUpdateWithoutUserInput = {
   longestStreak?: Prisma.IntFieldUpdateOperationsInput | number
   lastActivityDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   streakProtection?: Prisma.IntFieldUpdateOperationsInput | number
+  streakFrozenUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type StreakUncheckedUpdateManyWithoutUserInput = {
@@ -521,6 +549,7 @@ export type StreakUncheckedUpdateManyWithoutUserInput = {
   longestStreak?: Prisma.IntFieldUpdateOperationsInput | number
   lastActivityDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   streakProtection?: Prisma.IntFieldUpdateOperationsInput | number
+  streakFrozenUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -532,6 +561,7 @@ export type StreakSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   longestStreak?: boolean
   lastActivityDate?: boolean
   streakProtection?: boolean
+  streakFrozenUntil?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["streak"]>
 
@@ -542,6 +572,7 @@ export type StreakSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   longestStreak?: boolean
   lastActivityDate?: boolean
   streakProtection?: boolean
+  streakFrozenUntil?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["streak"]>
 
@@ -552,6 +583,7 @@ export type StreakSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   longestStreak?: boolean
   lastActivityDate?: boolean
   streakProtection?: boolean
+  streakFrozenUntil?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["streak"]>
 
@@ -562,9 +594,10 @@ export type StreakSelectScalar = {
   longestStreak?: boolean
   lastActivityDate?: boolean
   streakProtection?: boolean
+  streakFrozenUntil?: boolean
 }
 
-export type StreakOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "currentStreak" | "longestStreak" | "lastActivityDate" | "streakProtection", ExtArgs["result"]["streak"]>
+export type StreakOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "currentStreak" | "longestStreak" | "lastActivityDate" | "streakProtection" | "streakFrozenUntil", ExtArgs["result"]["streak"]>
 export type StreakInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
@@ -587,6 +620,7 @@ export type $StreakPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     longestStreak: number
     lastActivityDate: Date | null
     streakProtection: number
+    streakFrozenUntil: Date | null
   }, ExtArgs["result"]["streak"]>
   composites: {}
 }
@@ -1017,6 +1051,7 @@ export interface StreakFieldRefs {
   readonly longestStreak: Prisma.FieldRef<"Streak", 'Int'>
   readonly lastActivityDate: Prisma.FieldRef<"Streak", 'DateTime'>
   readonly streakProtection: Prisma.FieldRef<"Streak", 'Int'>
+  readonly streakFrozenUntil: Prisma.FieldRef<"Streak", 'DateTime'>
 }
     
 

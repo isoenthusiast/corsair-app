@@ -20,10 +20,31 @@ export async function POST(request: NextRequest) {
         const economy = await getEconomySettings();
         const prog = await prisma.userVoyageProgress.findUnique({ where: { userId_voyageId: { userId, voyageId } } });
         if (prog) {
+            // ── Ship upgrade effects ──
+            const userUpgrades = await prisma.userShipUpgrade.findMany({
+                where: { userId },
+                include: { upgrade: true },
+            });
+            let xpMultiplier = 1.0;
+            let crownMultiplier = 1.0;
+            for (const uu of userUpgrades) {
+                const eff = (uu.upgrade.effects || {}) as Record<string, number>;
+                if (eff.xpMultiplier) xpMultiplier += eff.xpMultiplier - 1;
+                if (eff.crownMultiplier) crownMultiplier += eff.crownMultiplier - 1;
+            }
+
+            // ── Fortune Wind ──
+            const user = await prisma.user.findUnique({ where: { id: userId }, select: { hasFortuneWind: true } });
+            const fortuneMult = user?.hasFortuneWind ? 2 : 1;
+            if (user?.hasFortuneWind) {
+                await prisma.user.update({ where: { id: userId }, data: { hasFortuneWind: false } });
+            }
+
             await prisma.userVoyageProgress.update({ where: { id: prog.id }, data: { status: "Completed", completedAt: new Date() } });
-            const bonus = voyage.difficulty * 50 + (voyage.captainGauntlet ? 100 : 0);
-            const crowns = Math.floor(bonus * economy.crownRate);
-            await prisma.pointTransaction.create({ data: { userId, points: bonus, reason: voyage.captainGauntlet ? "gauntlet_conquered" : "voyage_complete", sourceId: voyageId } });
+            const baseBonus = voyage.difficulty * 50 + (voyage.captainGauntlet ? 100 : 0);
+            const bonus = Math.floor(baseBonus * xpMultiplier);
+            const crowns = Math.floor(bonus * economy.crownRate * crownMultiplier * fortuneMult);
+            await prisma.pointTransaction.create({ data: { userId, points: bonus, reason: voyage.captainGauntlet ? "gauntlet_conquered" : "voyage_complete", sourceId: voyageId, multiplier: xpMultiplier } });
             if (crowns > 0) { await prisma.crownTransaction.create({ data: { userId, amount: crowns, reason: "voyage_bonus", sourceId: voyageId } }); await prisma.user.update({ where: { id: userId }, data: { crowns: { increment: crowns } } }); }
         }
 
