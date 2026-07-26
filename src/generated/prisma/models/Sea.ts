@@ -225,6 +225,7 @@ export type SeaWhereInput = {
   color?: Prisma.StringNullableFilter<"Sea"> | string | null
   sortOrder?: Prisma.IntFilter<"Sea"> | number
   voyages?: Prisma.VoyageListRelationFilter
+  aiContexts?: Prisma.AIContextListRelationFilter
 }
 
 export type SeaOrderByWithRelationInput = {
@@ -235,6 +236,7 @@ export type SeaOrderByWithRelationInput = {
   color?: Prisma.SortOrderInput | Prisma.SortOrder
   sortOrder?: Prisma.SortOrder
   voyages?: Prisma.VoyageOrderByRelationAggregateInput
+  aiContexts?: Prisma.AIContextOrderByRelationAggregateInput
 }
 
 export type SeaWhereUniqueInput = Prisma.AtLeast<{
@@ -248,6 +250,7 @@ export type SeaWhereUniqueInput = Prisma.AtLeast<{
   color?: Prisma.StringNullableFilter<"Sea"> | string | null
   sortOrder?: Prisma.IntFilter<"Sea"> | number
   voyages?: Prisma.VoyageListRelationFilter
+  aiContexts?: Prisma.AIContextListRelationFilter
 }, "id" | "name">
 
 export type SeaOrderByWithAggregationInput = {
@@ -284,6 +287,7 @@ export type SeaCreateInput = {
   color?: string | null
   sortOrder?: number
   voyages?: Prisma.VoyageCreateNestedManyWithoutSeaInput
+  aiContexts?: Prisma.AIContextCreateNestedManyWithoutSeaInput
 }
 
 export type SeaUncheckedCreateInput = {
@@ -294,6 +298,7 @@ export type SeaUncheckedCreateInput = {
   color?: string | null
   sortOrder?: number
   voyages?: Prisma.VoyageUncheckedCreateNestedManyWithoutSeaInput
+  aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutSeaInput
 }
 
 export type SeaUpdateInput = {
@@ -304,6 +309,7 @@ export type SeaUpdateInput = {
   color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   voyages?: Prisma.VoyageUpdateManyWithoutSeaNestedInput
+  aiContexts?: Prisma.AIContextUpdateManyWithoutSeaNestedInput
 }
 
 export type SeaUncheckedUpdateInput = {
@@ -314,6 +320,7 @@ export type SeaUncheckedUpdateInput = {
   color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   voyages?: Prisma.VoyageUncheckedUpdateManyWithoutSeaNestedInput
+  aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutSeaNestedInput
 }
 
 export type SeaCreateManyInput = {
@@ -383,6 +390,11 @@ export type SeaScalarRelationFilter = {
   isNot?: Prisma.SeaWhereInput
 }
 
+export type SeaNullableScalarRelationFilter = {
+  is?: Prisma.SeaWhereInput | null
+  isNot?: Prisma.SeaWhereInput | null
+}
+
 export type SeaCreateNestedOneWithoutVoyagesInput = {
   create?: Prisma.XOR<Prisma.SeaCreateWithoutVoyagesInput, Prisma.SeaUncheckedCreateWithoutVoyagesInput>
   connectOrCreate?: Prisma.SeaCreateOrConnectWithoutVoyagesInput
@@ -397,6 +409,22 @@ export type SeaUpdateOneRequiredWithoutVoyagesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.SeaUpdateToOneWithWhereWithoutVoyagesInput, Prisma.SeaUpdateWithoutVoyagesInput>, Prisma.SeaUncheckedUpdateWithoutVoyagesInput>
 }
 
+export type SeaCreateNestedOneWithoutAiContextsInput = {
+  create?: Prisma.XOR<Prisma.SeaCreateWithoutAiContextsInput, Prisma.SeaUncheckedCreateWithoutAiContextsInput>
+  connectOrCreate?: Prisma.SeaCreateOrConnectWithoutAiContextsInput
+  connect?: Prisma.SeaWhereUniqueInput
+}
+
+export type SeaUpdateOneWithoutAiContextsNestedInput = {
+  create?: Prisma.XOR<Prisma.SeaCreateWithoutAiContextsInput, Prisma.SeaUncheckedCreateWithoutAiContextsInput>
+  connectOrCreate?: Prisma.SeaCreateOrConnectWithoutAiContextsInput
+  upsert?: Prisma.SeaUpsertWithoutAiContextsInput
+  disconnect?: Prisma.SeaWhereInput | boolean
+  delete?: Prisma.SeaWhereInput | boolean
+  connect?: Prisma.SeaWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.SeaUpdateToOneWithWhereWithoutAiContextsInput, Prisma.SeaUpdateWithoutAiContextsInput>, Prisma.SeaUncheckedUpdateWithoutAiContextsInput>
+}
+
 export type SeaCreateWithoutVoyagesInput = {
   id?: string
   name: string
@@ -404,6 +432,7 @@ export type SeaCreateWithoutVoyagesInput = {
   description?: string | null
   color?: string | null
   sortOrder?: number
+  aiContexts?: Prisma.AIContextCreateNestedManyWithoutSeaInput
 }
 
 export type SeaUncheckedCreateWithoutVoyagesInput = {
@@ -413,6 +442,7 @@ export type SeaUncheckedCreateWithoutVoyagesInput = {
   description?: string | null
   color?: string | null
   sortOrder?: number
+  aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutSeaInput
 }
 
 export type SeaCreateOrConnectWithoutVoyagesInput = {
@@ -438,6 +468,7 @@ export type SeaUpdateWithoutVoyagesInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
+  aiContexts?: Prisma.AIContextUpdateManyWithoutSeaNestedInput
 }
 
 export type SeaUncheckedUpdateWithoutVoyagesInput = {
@@ -447,6 +478,63 @@ export type SeaUncheckedUpdateWithoutVoyagesInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
+  aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutSeaNestedInput
+}
+
+export type SeaCreateWithoutAiContextsInput = {
+  id?: string
+  name: string
+  icon: string
+  description?: string | null
+  color?: string | null
+  sortOrder?: number
+  voyages?: Prisma.VoyageCreateNestedManyWithoutSeaInput
+}
+
+export type SeaUncheckedCreateWithoutAiContextsInput = {
+  id?: string
+  name: string
+  icon: string
+  description?: string | null
+  color?: string | null
+  sortOrder?: number
+  voyages?: Prisma.VoyageUncheckedCreateNestedManyWithoutSeaInput
+}
+
+export type SeaCreateOrConnectWithoutAiContextsInput = {
+  where: Prisma.SeaWhereUniqueInput
+  create: Prisma.XOR<Prisma.SeaCreateWithoutAiContextsInput, Prisma.SeaUncheckedCreateWithoutAiContextsInput>
+}
+
+export type SeaUpsertWithoutAiContextsInput = {
+  update: Prisma.XOR<Prisma.SeaUpdateWithoutAiContextsInput, Prisma.SeaUncheckedUpdateWithoutAiContextsInput>
+  create: Prisma.XOR<Prisma.SeaCreateWithoutAiContextsInput, Prisma.SeaUncheckedCreateWithoutAiContextsInput>
+  where?: Prisma.SeaWhereInput
+}
+
+export type SeaUpdateToOneWithWhereWithoutAiContextsInput = {
+  where?: Prisma.SeaWhereInput
+  data: Prisma.XOR<Prisma.SeaUpdateWithoutAiContextsInput, Prisma.SeaUncheckedUpdateWithoutAiContextsInput>
+}
+
+export type SeaUpdateWithoutAiContextsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  icon?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
+  voyages?: Prisma.VoyageUpdateManyWithoutSeaNestedInput
+}
+
+export type SeaUncheckedUpdateWithoutAiContextsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  icon?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
+  voyages?: Prisma.VoyageUncheckedUpdateManyWithoutSeaNestedInput
 }
 
 
@@ -456,10 +544,12 @@ export type SeaUncheckedUpdateWithoutVoyagesInput = {
 
 export type SeaCountOutputType = {
   voyages: number
+  aiContexts: number
 }
 
 export type SeaCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   voyages?: boolean | SeaCountOutputTypeCountVoyagesArgs
+  aiContexts?: boolean | SeaCountOutputTypeCountAiContextsArgs
 }
 
 /**
@@ -479,6 +569,13 @@ export type SeaCountOutputTypeCountVoyagesArgs<ExtArgs extends runtime.Types.Ext
   where?: Prisma.VoyageWhereInput
 }
 
+/**
+ * SeaCountOutputType without action
+ */
+export type SeaCountOutputTypeCountAiContextsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AIContextWhereInput
+}
+
 
 export type SeaSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -488,6 +585,7 @@ export type SeaSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = ru
   color?: boolean
   sortOrder?: boolean
   voyages?: boolean | Prisma.Sea$voyagesArgs<ExtArgs>
+  aiContexts?: boolean | Prisma.Sea$aiContextsArgs<ExtArgs>
   _count?: boolean | Prisma.SeaCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["sea"]>
 
@@ -521,6 +619,7 @@ export type SeaSelectScalar = {
 export type SeaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "icon" | "description" | "color" | "sortOrder", ExtArgs["result"]["sea"]>
 export type SeaInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   voyages?: boolean | Prisma.Sea$voyagesArgs<ExtArgs>
+  aiContexts?: boolean | Prisma.Sea$aiContextsArgs<ExtArgs>
   _count?: boolean | Prisma.SeaCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type SeaIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -530,6 +629,7 @@ export type $SeaPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   name: "Sea"
   objects: {
     voyages: Prisma.$VoyagePayload<ExtArgs>[]
+    aiContexts: Prisma.$AIContextPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -933,6 +1033,7 @@ readonly fields: SeaFieldRefs;
 export interface Prisma__SeaClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   voyages<T extends Prisma.Sea$voyagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Sea$voyagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VoyagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  aiContexts<T extends Prisma.Sea$aiContextsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Sea$aiContextsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AIContextPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1382,6 +1483,30 @@ export type Sea$voyagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
   take?: number
   skip?: number
   distinct?: Prisma.VoyageScalarFieldEnum | Prisma.VoyageScalarFieldEnum[]
+}
+
+/**
+ * Sea.aiContexts
+ */
+export type Sea$aiContextsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AIContext
+   */
+  select?: Prisma.AIContextSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AIContext
+   */
+  omit?: Prisma.AIContextOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AIContextInclude<ExtArgs> | null
+  where?: Prisma.AIContextWhereInput
+  orderBy?: Prisma.AIContextOrderByWithRelationInput | Prisma.AIContextOrderByWithRelationInput[]
+  cursor?: Prisma.AIContextWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AIContextScalarFieldEnum | Prisma.AIContextScalarFieldEnum[]
 }
 
 /**

@@ -450,6 +450,23 @@ export type EnumPriorityWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumPriorityFilter<$PrismaModel>
 }
 
+export type EnumAIContextFeatureFilter<$PrismaModel = never> = {
+  equals?: $Enums.AIContextFeature | Prisma.EnumAIContextFeatureFieldRefInput<$PrismaModel>
+  in?: $Enums.AIContextFeature[] | Prisma.ListEnumAIContextFeatureFieldRefInput<$PrismaModel>
+  notIn?: $Enums.AIContextFeature[] | Prisma.ListEnumAIContextFeatureFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumAIContextFeatureFilter<$PrismaModel> | $Enums.AIContextFeature
+}
+
+export type EnumAIContextFeatureWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.AIContextFeature | Prisma.EnumAIContextFeatureFieldRefInput<$PrismaModel>
+  in?: $Enums.AIContextFeature[] | Prisma.ListEnumAIContextFeatureFieldRefInput<$PrismaModel>
+  notIn?: $Enums.AIContextFeature[] | Prisma.ListEnumAIContextFeatureFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumAIContextFeatureWithAggregatesFilter<$PrismaModel> | $Enums.AIContextFeature
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumAIContextFeatureFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumAIContextFeatureFilter<$PrismaModel>
+}
+
 export type NestedStringFilter<$PrismaModel = never> = {
   equals?: string | Prisma.StringFieldRefInput<$PrismaModel>
   in?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
@@ -859,6 +876,23 @@ export type NestedEnumPriorityWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumPriorityFilter<$PrismaModel>
   _max?: Prisma.NestedEnumPriorityFilter<$PrismaModel>
+}
+
+export type NestedEnumAIContextFeatureFilter<$PrismaModel = never> = {
+  equals?: $Enums.AIContextFeature | Prisma.EnumAIContextFeatureFieldRefInput<$PrismaModel>
+  in?: $Enums.AIContextFeature[] | Prisma.ListEnumAIContextFeatureFieldRefInput<$PrismaModel>
+  notIn?: $Enums.AIContextFeature[] | Prisma.ListEnumAIContextFeatureFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumAIContextFeatureFilter<$PrismaModel> | $Enums.AIContextFeature
+}
+
+export type NestedEnumAIContextFeatureWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.AIContextFeature | Prisma.EnumAIContextFeatureFieldRefInput<$PrismaModel>
+  in?: $Enums.AIContextFeature[] | Prisma.ListEnumAIContextFeatureFieldRefInput<$PrismaModel>
+  notIn?: $Enums.AIContextFeature[] | Prisma.ListEnumAIContextFeatureFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumAIContextFeatureWithAggregatesFilter<$PrismaModel> | $Enums.AIContextFeature
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumAIContextFeatureFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumAIContextFeatureFilter<$PrismaModel>
 }
 
 

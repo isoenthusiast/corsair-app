@@ -337,6 +337,7 @@ export type VoyageWhereInput = {
   progress?: Prisma.UserVoyageProgressListRelationFilter
   assignments?: Prisma.AssignmentListRelationFilter
   bundleItems?: Prisma.VoyageBundleItemListRelationFilter
+  aiContexts?: Prisma.AIContextListRelationFilter
 }
 
 export type VoyageOrderByWithRelationInput = {
@@ -368,6 +369,7 @@ export type VoyageOrderByWithRelationInput = {
   progress?: Prisma.UserVoyageProgressOrderByRelationAggregateInput
   assignments?: Prisma.AssignmentOrderByRelationAggregateInput
   bundleItems?: Prisma.VoyageBundleItemOrderByRelationAggregateInput
+  aiContexts?: Prisma.AIContextOrderByRelationAggregateInput
 }
 
 export type VoyageWhereUniqueInput = Prisma.AtLeast<{
@@ -402,6 +404,7 @@ export type VoyageWhereUniqueInput = Prisma.AtLeast<{
   progress?: Prisma.UserVoyageProgressListRelationFilter
   assignments?: Prisma.AssignmentListRelationFilter
   bundleItems?: Prisma.VoyageBundleItemListRelationFilter
+  aiContexts?: Prisma.AIContextListRelationFilter
 }, "id">
 
 export type VoyageOrderByWithAggregationInput = {
@@ -482,6 +485,7 @@ export type VoyageCreateInput = {
   progress?: Prisma.UserVoyageProgressCreateNestedManyWithoutVoyageInput
   assignments?: Prisma.AssignmentCreateNestedManyWithoutVoyageInput
   bundleItems?: Prisma.VoyageBundleItemCreateNestedManyWithoutVoyageInput
+  aiContexts?: Prisma.AIContextCreateNestedManyWithoutVoyageInput
 }
 
 export type VoyageUncheckedCreateInput = {
@@ -510,6 +514,7 @@ export type VoyageUncheckedCreateInput = {
   progress?: Prisma.UserVoyageProgressUncheckedCreateNestedManyWithoutVoyageInput
   assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutVoyageInput
   bundleItems?: Prisma.VoyageBundleItemUncheckedCreateNestedManyWithoutVoyageInput
+  aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutVoyageInput
 }
 
 export type VoyageUpdateInput = {
@@ -538,6 +543,7 @@ export type VoyageUpdateInput = {
   progress?: Prisma.UserVoyageProgressUpdateManyWithoutVoyageNestedInput
   assignments?: Prisma.AssignmentUpdateManyWithoutVoyageNestedInput
   bundleItems?: Prisma.VoyageBundleItemUpdateManyWithoutVoyageNestedInput
+  aiContexts?: Prisma.AIContextUpdateManyWithoutVoyageNestedInput
 }
 
 export type VoyageUncheckedUpdateInput = {
@@ -566,6 +572,7 @@ export type VoyageUncheckedUpdateInput = {
   progress?: Prisma.UserVoyageProgressUncheckedUpdateManyWithoutVoyageNestedInput
   assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutVoyageNestedInput
   bundleItems?: Prisma.VoyageBundleItemUncheckedUpdateManyWithoutVoyageNestedInput
+  aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutVoyageNestedInput
 }
 
 export type VoyageCreateManyInput = {
@@ -965,6 +972,22 @@ export type VoyageUpdateOneRequiredWithoutBundleItemsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.VoyageUpdateToOneWithWhereWithoutBundleItemsInput, Prisma.VoyageUpdateWithoutBundleItemsInput>, Prisma.VoyageUncheckedUpdateWithoutBundleItemsInput>
 }
 
+export type VoyageCreateNestedOneWithoutAiContextsInput = {
+  create?: Prisma.XOR<Prisma.VoyageCreateWithoutAiContextsInput, Prisma.VoyageUncheckedCreateWithoutAiContextsInput>
+  connectOrCreate?: Prisma.VoyageCreateOrConnectWithoutAiContextsInput
+  connect?: Prisma.VoyageWhereUniqueInput
+}
+
+export type VoyageUpdateOneWithoutAiContextsNestedInput = {
+  create?: Prisma.XOR<Prisma.VoyageCreateWithoutAiContextsInput, Prisma.VoyageUncheckedCreateWithoutAiContextsInput>
+  connectOrCreate?: Prisma.VoyageCreateOrConnectWithoutAiContextsInput
+  upsert?: Prisma.VoyageUpsertWithoutAiContextsInput
+  disconnect?: Prisma.VoyageWhereInput | boolean
+  delete?: Prisma.VoyageWhereInput | boolean
+  connect?: Prisma.VoyageWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.VoyageUpdateToOneWithWhereWithoutAiContextsInput, Prisma.VoyageUpdateWithoutAiContextsInput>, Prisma.VoyageUncheckedUpdateWithoutAiContextsInput>
+}
+
 export type VoyageCreateWithoutSeaInput = {
   id?: string
   title: string
@@ -990,6 +1013,7 @@ export type VoyageCreateWithoutSeaInput = {
   progress?: Prisma.UserVoyageProgressCreateNestedManyWithoutVoyageInput
   assignments?: Prisma.AssignmentCreateNestedManyWithoutVoyageInput
   bundleItems?: Prisma.VoyageBundleItemCreateNestedManyWithoutVoyageInput
+  aiContexts?: Prisma.AIContextCreateNestedManyWithoutVoyageInput
 }
 
 export type VoyageUncheckedCreateWithoutSeaInput = {
@@ -1017,6 +1041,7 @@ export type VoyageUncheckedCreateWithoutSeaInput = {
   progress?: Prisma.UserVoyageProgressUncheckedCreateNestedManyWithoutVoyageInput
   assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutVoyageInput
   bundleItems?: Prisma.VoyageBundleItemUncheckedCreateNestedManyWithoutVoyageInput
+  aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutVoyageInput
 }
 
 export type VoyageCreateOrConnectWithoutSeaInput = {
@@ -1095,6 +1120,7 @@ export type VoyageCreateWithoutNextVoyagesInput = {
   progress?: Prisma.UserVoyageProgressCreateNestedManyWithoutVoyageInput
   assignments?: Prisma.AssignmentCreateNestedManyWithoutVoyageInput
   bundleItems?: Prisma.VoyageBundleItemCreateNestedManyWithoutVoyageInput
+  aiContexts?: Prisma.AIContextCreateNestedManyWithoutVoyageInput
 }
 
 export type VoyageUncheckedCreateWithoutNextVoyagesInput = {
@@ -1122,6 +1148,7 @@ export type VoyageUncheckedCreateWithoutNextVoyagesInput = {
   progress?: Prisma.UserVoyageProgressUncheckedCreateNestedManyWithoutVoyageInput
   assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutVoyageInput
   bundleItems?: Prisma.VoyageBundleItemUncheckedCreateNestedManyWithoutVoyageInput
+  aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutVoyageInput
 }
 
 export type VoyageCreateOrConnectWithoutNextVoyagesInput = {
@@ -1154,6 +1181,7 @@ export type VoyageCreateWithoutPrerequisiteInput = {
   progress?: Prisma.UserVoyageProgressCreateNestedManyWithoutVoyageInput
   assignments?: Prisma.AssignmentCreateNestedManyWithoutVoyageInput
   bundleItems?: Prisma.VoyageBundleItemCreateNestedManyWithoutVoyageInput
+  aiContexts?: Prisma.AIContextCreateNestedManyWithoutVoyageInput
 }
 
 export type VoyageUncheckedCreateWithoutPrerequisiteInput = {
@@ -1181,6 +1209,7 @@ export type VoyageUncheckedCreateWithoutPrerequisiteInput = {
   progress?: Prisma.UserVoyageProgressUncheckedCreateNestedManyWithoutVoyageInput
   assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutVoyageInput
   bundleItems?: Prisma.VoyageBundleItemUncheckedCreateNestedManyWithoutVoyageInput
+  aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutVoyageInput
 }
 
 export type VoyageCreateOrConnectWithoutPrerequisiteInput = {
@@ -1218,6 +1247,7 @@ export type VoyageCreateWithoutBranchParentInput = {
   progress?: Prisma.UserVoyageProgressCreateNestedManyWithoutVoyageInput
   assignments?: Prisma.AssignmentCreateNestedManyWithoutVoyageInput
   bundleItems?: Prisma.VoyageBundleItemCreateNestedManyWithoutVoyageInput
+  aiContexts?: Prisma.AIContextCreateNestedManyWithoutVoyageInput
 }
 
 export type VoyageUncheckedCreateWithoutBranchParentInput = {
@@ -1245,6 +1275,7 @@ export type VoyageUncheckedCreateWithoutBranchParentInput = {
   progress?: Prisma.UserVoyageProgressUncheckedCreateNestedManyWithoutVoyageInput
   assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutVoyageInput
   bundleItems?: Prisma.VoyageBundleItemUncheckedCreateNestedManyWithoutVoyageInput
+  aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutVoyageInput
 }
 
 export type VoyageCreateOrConnectWithoutBranchParentInput = {
@@ -1282,6 +1313,7 @@ export type VoyageCreateWithoutBranchChildrenInput = {
   progress?: Prisma.UserVoyageProgressCreateNestedManyWithoutVoyageInput
   assignments?: Prisma.AssignmentCreateNestedManyWithoutVoyageInput
   bundleItems?: Prisma.VoyageBundleItemCreateNestedManyWithoutVoyageInput
+  aiContexts?: Prisma.AIContextCreateNestedManyWithoutVoyageInput
 }
 
 export type VoyageUncheckedCreateWithoutBranchChildrenInput = {
@@ -1309,6 +1341,7 @@ export type VoyageUncheckedCreateWithoutBranchChildrenInput = {
   progress?: Prisma.UserVoyageProgressUncheckedCreateNestedManyWithoutVoyageInput
   assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutVoyageInput
   bundleItems?: Prisma.VoyageBundleItemUncheckedCreateNestedManyWithoutVoyageInput
+  aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutVoyageInput
 }
 
 export type VoyageCreateOrConnectWithoutBranchChildrenInput = {
@@ -1352,6 +1385,7 @@ export type VoyageUpdateWithoutNextVoyagesInput = {
   progress?: Prisma.UserVoyageProgressUpdateManyWithoutVoyageNestedInput
   assignments?: Prisma.AssignmentUpdateManyWithoutVoyageNestedInput
   bundleItems?: Prisma.VoyageBundleItemUpdateManyWithoutVoyageNestedInput
+  aiContexts?: Prisma.AIContextUpdateManyWithoutVoyageNestedInput
 }
 
 export type VoyageUncheckedUpdateWithoutNextVoyagesInput = {
@@ -1379,6 +1413,7 @@ export type VoyageUncheckedUpdateWithoutNextVoyagesInput = {
   progress?: Prisma.UserVoyageProgressUncheckedUpdateManyWithoutVoyageNestedInput
   assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutVoyageNestedInput
   bundleItems?: Prisma.VoyageBundleItemUncheckedUpdateManyWithoutVoyageNestedInput
+  aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutVoyageNestedInput
 }
 
 export type VoyageUpsertWithWhereUniqueWithoutPrerequisiteInput = {
@@ -1449,6 +1484,7 @@ export type VoyageUpdateWithoutBranchChildrenInput = {
   progress?: Prisma.UserVoyageProgressUpdateManyWithoutVoyageNestedInput
   assignments?: Prisma.AssignmentUpdateManyWithoutVoyageNestedInput
   bundleItems?: Prisma.VoyageBundleItemUpdateManyWithoutVoyageNestedInput
+  aiContexts?: Prisma.AIContextUpdateManyWithoutVoyageNestedInput
 }
 
 export type VoyageUncheckedUpdateWithoutBranchChildrenInput = {
@@ -1476,6 +1512,7 @@ export type VoyageUncheckedUpdateWithoutBranchChildrenInput = {
   progress?: Prisma.UserVoyageProgressUncheckedUpdateManyWithoutVoyageNestedInput
   assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutVoyageNestedInput
   bundleItems?: Prisma.VoyageBundleItemUncheckedUpdateManyWithoutVoyageNestedInput
+  aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutVoyageNestedInput
 }
 
 export type VoyageCreateWithoutTrialsInput = {
@@ -1503,6 +1540,7 @@ export type VoyageCreateWithoutTrialsInput = {
   progress?: Prisma.UserVoyageProgressCreateNestedManyWithoutVoyageInput
   assignments?: Prisma.AssignmentCreateNestedManyWithoutVoyageInput
   bundleItems?: Prisma.VoyageBundleItemCreateNestedManyWithoutVoyageInput
+  aiContexts?: Prisma.AIContextCreateNestedManyWithoutVoyageInput
 }
 
 export type VoyageUncheckedCreateWithoutTrialsInput = {
@@ -1530,6 +1568,7 @@ export type VoyageUncheckedCreateWithoutTrialsInput = {
   progress?: Prisma.UserVoyageProgressUncheckedCreateNestedManyWithoutVoyageInput
   assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutVoyageInput
   bundleItems?: Prisma.VoyageBundleItemUncheckedCreateNestedManyWithoutVoyageInput
+  aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutVoyageInput
 }
 
 export type VoyageCreateOrConnectWithoutTrialsInput = {
@@ -1573,6 +1612,7 @@ export type VoyageUpdateWithoutTrialsInput = {
   progress?: Prisma.UserVoyageProgressUpdateManyWithoutVoyageNestedInput
   assignments?: Prisma.AssignmentUpdateManyWithoutVoyageNestedInput
   bundleItems?: Prisma.VoyageBundleItemUpdateManyWithoutVoyageNestedInput
+  aiContexts?: Prisma.AIContextUpdateManyWithoutVoyageNestedInput
 }
 
 export type VoyageUncheckedUpdateWithoutTrialsInput = {
@@ -1600,6 +1640,7 @@ export type VoyageUncheckedUpdateWithoutTrialsInput = {
   progress?: Prisma.UserVoyageProgressUncheckedUpdateManyWithoutVoyageNestedInput
   assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutVoyageNestedInput
   bundleItems?: Prisma.VoyageBundleItemUncheckedUpdateManyWithoutVoyageNestedInput
+  aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutVoyageNestedInput
 }
 
 export type VoyageCreateWithoutProgressInput = {
@@ -1627,6 +1668,7 @@ export type VoyageCreateWithoutProgressInput = {
   branchParent?: Prisma.VoyageCreateNestedOneWithoutBranchChildrenInput
   assignments?: Prisma.AssignmentCreateNestedManyWithoutVoyageInput
   bundleItems?: Prisma.VoyageBundleItemCreateNestedManyWithoutVoyageInput
+  aiContexts?: Prisma.AIContextCreateNestedManyWithoutVoyageInput
 }
 
 export type VoyageUncheckedCreateWithoutProgressInput = {
@@ -1654,6 +1696,7 @@ export type VoyageUncheckedCreateWithoutProgressInput = {
   branchChildren?: Prisma.VoyageUncheckedCreateNestedManyWithoutBranchParentInput
   assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutVoyageInput
   bundleItems?: Prisma.VoyageBundleItemUncheckedCreateNestedManyWithoutVoyageInput
+  aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutVoyageInput
 }
 
 export type VoyageCreateOrConnectWithoutProgressInput = {
@@ -1697,6 +1740,7 @@ export type VoyageUpdateWithoutProgressInput = {
   branchParent?: Prisma.VoyageUpdateOneWithoutBranchChildrenNestedInput
   assignments?: Prisma.AssignmentUpdateManyWithoutVoyageNestedInput
   bundleItems?: Prisma.VoyageBundleItemUpdateManyWithoutVoyageNestedInput
+  aiContexts?: Prisma.AIContextUpdateManyWithoutVoyageNestedInput
 }
 
 export type VoyageUncheckedUpdateWithoutProgressInput = {
@@ -1724,6 +1768,7 @@ export type VoyageUncheckedUpdateWithoutProgressInput = {
   branchChildren?: Prisma.VoyageUncheckedUpdateManyWithoutBranchParentNestedInput
   assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutVoyageNestedInput
   bundleItems?: Prisma.VoyageBundleItemUncheckedUpdateManyWithoutVoyageNestedInput
+  aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutVoyageNestedInput
 }
 
 export type VoyageCreateWithoutAssignmentsInput = {
@@ -1751,6 +1796,7 @@ export type VoyageCreateWithoutAssignmentsInput = {
   branchParent?: Prisma.VoyageCreateNestedOneWithoutBranchChildrenInput
   progress?: Prisma.UserVoyageProgressCreateNestedManyWithoutVoyageInput
   bundleItems?: Prisma.VoyageBundleItemCreateNestedManyWithoutVoyageInput
+  aiContexts?: Prisma.AIContextCreateNestedManyWithoutVoyageInput
 }
 
 export type VoyageUncheckedCreateWithoutAssignmentsInput = {
@@ -1778,6 +1824,7 @@ export type VoyageUncheckedCreateWithoutAssignmentsInput = {
   branchChildren?: Prisma.VoyageUncheckedCreateNestedManyWithoutBranchParentInput
   progress?: Prisma.UserVoyageProgressUncheckedCreateNestedManyWithoutVoyageInput
   bundleItems?: Prisma.VoyageBundleItemUncheckedCreateNestedManyWithoutVoyageInput
+  aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutVoyageInput
 }
 
 export type VoyageCreateOrConnectWithoutAssignmentsInput = {
@@ -1821,6 +1868,7 @@ export type VoyageUpdateWithoutAssignmentsInput = {
   branchParent?: Prisma.VoyageUpdateOneWithoutBranchChildrenNestedInput
   progress?: Prisma.UserVoyageProgressUpdateManyWithoutVoyageNestedInput
   bundleItems?: Prisma.VoyageBundleItemUpdateManyWithoutVoyageNestedInput
+  aiContexts?: Prisma.AIContextUpdateManyWithoutVoyageNestedInput
 }
 
 export type VoyageUncheckedUpdateWithoutAssignmentsInput = {
@@ -1848,6 +1896,7 @@ export type VoyageUncheckedUpdateWithoutAssignmentsInput = {
   branchChildren?: Prisma.VoyageUncheckedUpdateManyWithoutBranchParentNestedInput
   progress?: Prisma.UserVoyageProgressUncheckedUpdateManyWithoutVoyageNestedInput
   bundleItems?: Prisma.VoyageBundleItemUncheckedUpdateManyWithoutVoyageNestedInput
+  aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutVoyageNestedInput
 }
 
 export type VoyageCreateWithoutBundleItemsInput = {
@@ -1875,6 +1924,7 @@ export type VoyageCreateWithoutBundleItemsInput = {
   branchParent?: Prisma.VoyageCreateNestedOneWithoutBranchChildrenInput
   progress?: Prisma.UserVoyageProgressCreateNestedManyWithoutVoyageInput
   assignments?: Prisma.AssignmentCreateNestedManyWithoutVoyageInput
+  aiContexts?: Prisma.AIContextCreateNestedManyWithoutVoyageInput
 }
 
 export type VoyageUncheckedCreateWithoutBundleItemsInput = {
@@ -1902,6 +1952,7 @@ export type VoyageUncheckedCreateWithoutBundleItemsInput = {
   branchChildren?: Prisma.VoyageUncheckedCreateNestedManyWithoutBranchParentInput
   progress?: Prisma.UserVoyageProgressUncheckedCreateNestedManyWithoutVoyageInput
   assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutVoyageInput
+  aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutVoyageInput
 }
 
 export type VoyageCreateOrConnectWithoutBundleItemsInput = {
@@ -1945,6 +1996,7 @@ export type VoyageUpdateWithoutBundleItemsInput = {
   branchParent?: Prisma.VoyageUpdateOneWithoutBranchChildrenNestedInput
   progress?: Prisma.UserVoyageProgressUpdateManyWithoutVoyageNestedInput
   assignments?: Prisma.AssignmentUpdateManyWithoutVoyageNestedInput
+  aiContexts?: Prisma.AIContextUpdateManyWithoutVoyageNestedInput
 }
 
 export type VoyageUncheckedUpdateWithoutBundleItemsInput = {
@@ -1972,6 +2024,135 @@ export type VoyageUncheckedUpdateWithoutBundleItemsInput = {
   branchChildren?: Prisma.VoyageUncheckedUpdateManyWithoutBranchParentNestedInput
   progress?: Prisma.UserVoyageProgressUncheckedUpdateManyWithoutVoyageNestedInput
   assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutVoyageNestedInput
+  aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutVoyageNestedInput
+}
+
+export type VoyageCreateWithoutAiContextsInput = {
+  id?: string
+  title: string
+  description?: string | null
+  sortOrder?: number
+  difficulty?: number
+  captainGauntlet?: boolean
+  status?: string
+  objectives?: string | null
+  estimatedMinutes?: number | null
+  tags?: Prisma.VoyageCreatetagsInput | string[]
+  skills?: Prisma.VoyageCreateskillsInput | string[]
+  prerequisiteKnowledge?: string | null
+  successCriteria?: string | null
+  abTestGroup?: string | null
+  branchLabel?: string | null
+  createdAt?: Date | string
+  sea: Prisma.SeaCreateNestedOneWithoutVoyagesInput
+  trials?: Prisma.TrialCreateNestedManyWithoutVoyageInput
+  prerequisite?: Prisma.VoyageCreateNestedOneWithoutNextVoyagesInput
+  nextVoyages?: Prisma.VoyageCreateNestedManyWithoutPrerequisiteInput
+  branchChildren?: Prisma.VoyageCreateNestedManyWithoutBranchParentInput
+  branchParent?: Prisma.VoyageCreateNestedOneWithoutBranchChildrenInput
+  progress?: Prisma.UserVoyageProgressCreateNestedManyWithoutVoyageInput
+  assignments?: Prisma.AssignmentCreateNestedManyWithoutVoyageInput
+  bundleItems?: Prisma.VoyageBundleItemCreateNestedManyWithoutVoyageInput
+}
+
+export type VoyageUncheckedCreateWithoutAiContextsInput = {
+  id?: string
+  title: string
+  description?: string | null
+  seaId: string
+  sortOrder?: number
+  difficulty?: number
+  requiredVoyageId?: string | null
+  captainGauntlet?: boolean
+  status?: string
+  objectives?: string | null
+  estimatedMinutes?: number | null
+  tags?: Prisma.VoyageCreatetagsInput | string[]
+  skills?: Prisma.VoyageCreateskillsInput | string[]
+  prerequisiteKnowledge?: string | null
+  successCriteria?: string | null
+  abTestGroup?: string | null
+  branchParentId?: string | null
+  branchLabel?: string | null
+  createdAt?: Date | string
+  trials?: Prisma.TrialUncheckedCreateNestedManyWithoutVoyageInput
+  nextVoyages?: Prisma.VoyageUncheckedCreateNestedManyWithoutPrerequisiteInput
+  branchChildren?: Prisma.VoyageUncheckedCreateNestedManyWithoutBranchParentInput
+  progress?: Prisma.UserVoyageProgressUncheckedCreateNestedManyWithoutVoyageInput
+  assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutVoyageInput
+  bundleItems?: Prisma.VoyageBundleItemUncheckedCreateNestedManyWithoutVoyageInput
+}
+
+export type VoyageCreateOrConnectWithoutAiContextsInput = {
+  where: Prisma.VoyageWhereUniqueInput
+  create: Prisma.XOR<Prisma.VoyageCreateWithoutAiContextsInput, Prisma.VoyageUncheckedCreateWithoutAiContextsInput>
+}
+
+export type VoyageUpsertWithoutAiContextsInput = {
+  update: Prisma.XOR<Prisma.VoyageUpdateWithoutAiContextsInput, Prisma.VoyageUncheckedUpdateWithoutAiContextsInput>
+  create: Prisma.XOR<Prisma.VoyageCreateWithoutAiContextsInput, Prisma.VoyageUncheckedCreateWithoutAiContextsInput>
+  where?: Prisma.VoyageWhereInput
+}
+
+export type VoyageUpdateToOneWithWhereWithoutAiContextsInput = {
+  where?: Prisma.VoyageWhereInput
+  data: Prisma.XOR<Prisma.VoyageUpdateWithoutAiContextsInput, Prisma.VoyageUncheckedUpdateWithoutAiContextsInput>
+}
+
+export type VoyageUpdateWithoutAiContextsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
+  difficulty?: Prisma.IntFieldUpdateOperationsInput | number
+  captainGauntlet?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  objectives?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estimatedMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tags?: Prisma.VoyageUpdatetagsInput | string[]
+  skills?: Prisma.VoyageUpdateskillsInput | string[]
+  prerequisiteKnowledge?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  successCriteria?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  abTestGroup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  branchLabel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sea?: Prisma.SeaUpdateOneRequiredWithoutVoyagesNestedInput
+  trials?: Prisma.TrialUpdateManyWithoutVoyageNestedInput
+  prerequisite?: Prisma.VoyageUpdateOneWithoutNextVoyagesNestedInput
+  nextVoyages?: Prisma.VoyageUpdateManyWithoutPrerequisiteNestedInput
+  branchChildren?: Prisma.VoyageUpdateManyWithoutBranchParentNestedInput
+  branchParent?: Prisma.VoyageUpdateOneWithoutBranchChildrenNestedInput
+  progress?: Prisma.UserVoyageProgressUpdateManyWithoutVoyageNestedInput
+  assignments?: Prisma.AssignmentUpdateManyWithoutVoyageNestedInput
+  bundleItems?: Prisma.VoyageBundleItemUpdateManyWithoutVoyageNestedInput
+}
+
+export type VoyageUncheckedUpdateWithoutAiContextsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seaId?: Prisma.StringFieldUpdateOperationsInput | string
+  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
+  difficulty?: Prisma.IntFieldUpdateOperationsInput | number
+  requiredVoyageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  captainGauntlet?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  objectives?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estimatedMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tags?: Prisma.VoyageUpdatetagsInput | string[]
+  skills?: Prisma.VoyageUpdateskillsInput | string[]
+  prerequisiteKnowledge?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  successCriteria?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  abTestGroup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  branchParentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  branchLabel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  trials?: Prisma.TrialUncheckedUpdateManyWithoutVoyageNestedInput
+  nextVoyages?: Prisma.VoyageUncheckedUpdateManyWithoutPrerequisiteNestedInput
+  branchChildren?: Prisma.VoyageUncheckedUpdateManyWithoutBranchParentNestedInput
+  progress?: Prisma.UserVoyageProgressUncheckedUpdateManyWithoutVoyageNestedInput
+  assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutVoyageNestedInput
+  bundleItems?: Prisma.VoyageBundleItemUncheckedUpdateManyWithoutVoyageNestedInput
 }
 
 export type VoyageCreateManySeaInput = {
@@ -2020,6 +2201,7 @@ export type VoyageUpdateWithoutSeaInput = {
   progress?: Prisma.UserVoyageProgressUpdateManyWithoutVoyageNestedInput
   assignments?: Prisma.AssignmentUpdateManyWithoutVoyageNestedInput
   bundleItems?: Prisma.VoyageBundleItemUpdateManyWithoutVoyageNestedInput
+  aiContexts?: Prisma.AIContextUpdateManyWithoutVoyageNestedInput
 }
 
 export type VoyageUncheckedUpdateWithoutSeaInput = {
@@ -2047,6 +2229,7 @@ export type VoyageUncheckedUpdateWithoutSeaInput = {
   progress?: Prisma.UserVoyageProgressUncheckedUpdateManyWithoutVoyageNestedInput
   assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutVoyageNestedInput
   bundleItems?: Prisma.VoyageBundleItemUncheckedUpdateManyWithoutVoyageNestedInput
+  aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutVoyageNestedInput
 }
 
 export type VoyageUncheckedUpdateManyWithoutSeaInput = {
@@ -2137,6 +2320,7 @@ export type VoyageUpdateWithoutPrerequisiteInput = {
   progress?: Prisma.UserVoyageProgressUpdateManyWithoutVoyageNestedInput
   assignments?: Prisma.AssignmentUpdateManyWithoutVoyageNestedInput
   bundleItems?: Prisma.VoyageBundleItemUpdateManyWithoutVoyageNestedInput
+  aiContexts?: Prisma.AIContextUpdateManyWithoutVoyageNestedInput
 }
 
 export type VoyageUncheckedUpdateWithoutPrerequisiteInput = {
@@ -2164,6 +2348,7 @@ export type VoyageUncheckedUpdateWithoutPrerequisiteInput = {
   progress?: Prisma.UserVoyageProgressUncheckedUpdateManyWithoutVoyageNestedInput
   assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutVoyageNestedInput
   bundleItems?: Prisma.VoyageBundleItemUncheckedUpdateManyWithoutVoyageNestedInput
+  aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutVoyageNestedInput
 }
 
 export type VoyageUncheckedUpdateManyWithoutPrerequisiteInput = {
@@ -2212,6 +2397,7 @@ export type VoyageUpdateWithoutBranchParentInput = {
   progress?: Prisma.UserVoyageProgressUpdateManyWithoutVoyageNestedInput
   assignments?: Prisma.AssignmentUpdateManyWithoutVoyageNestedInput
   bundleItems?: Prisma.VoyageBundleItemUpdateManyWithoutVoyageNestedInput
+  aiContexts?: Prisma.AIContextUpdateManyWithoutVoyageNestedInput
 }
 
 export type VoyageUncheckedUpdateWithoutBranchParentInput = {
@@ -2239,6 +2425,7 @@ export type VoyageUncheckedUpdateWithoutBranchParentInput = {
   progress?: Prisma.UserVoyageProgressUncheckedUpdateManyWithoutVoyageNestedInput
   assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutVoyageNestedInput
   bundleItems?: Prisma.VoyageBundleItemUncheckedUpdateManyWithoutVoyageNestedInput
+  aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutVoyageNestedInput
 }
 
 export type VoyageUncheckedUpdateManyWithoutBranchParentInput = {
@@ -2274,6 +2461,7 @@ export type VoyageCountOutputType = {
   progress: number
   assignments: number
   bundleItems: number
+  aiContexts: number
 }
 
 export type VoyageCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2283,6 +2471,7 @@ export type VoyageCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions
   progress?: boolean | VoyageCountOutputTypeCountProgressArgs
   assignments?: boolean | VoyageCountOutputTypeCountAssignmentsArgs
   bundleItems?: boolean | VoyageCountOutputTypeCountBundleItemsArgs
+  aiContexts?: boolean | VoyageCountOutputTypeCountAiContextsArgs
 }
 
 /**
@@ -2337,6 +2526,13 @@ export type VoyageCountOutputTypeCountBundleItemsArgs<ExtArgs extends runtime.Ty
   where?: Prisma.VoyageBundleItemWhereInput
 }
 
+/**
+ * VoyageCountOutputType without action
+ */
+export type VoyageCountOutputTypeCountAiContextsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AIContextWhereInput
+}
+
 
 export type VoyageSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -2367,6 +2563,7 @@ export type VoyageSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   progress?: boolean | Prisma.Voyage$progressArgs<ExtArgs>
   assignments?: boolean | Prisma.Voyage$assignmentsArgs<ExtArgs>
   bundleItems?: boolean | Prisma.Voyage$bundleItemsArgs<ExtArgs>
+  aiContexts?: boolean | Prisma.Voyage$aiContextsArgs<ExtArgs>
   _count?: boolean | Prisma.VoyageCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["voyage"]>
 
@@ -2453,6 +2650,7 @@ export type VoyageInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   progress?: boolean | Prisma.Voyage$progressArgs<ExtArgs>
   assignments?: boolean | Prisma.Voyage$assignmentsArgs<ExtArgs>
   bundleItems?: boolean | Prisma.Voyage$bundleItemsArgs<ExtArgs>
+  aiContexts?: boolean | Prisma.Voyage$aiContextsArgs<ExtArgs>
   _count?: boolean | Prisma.VoyageCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type VoyageIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2478,6 +2676,7 @@ export type $VoyagePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     progress: Prisma.$UserVoyageProgressPayload<ExtArgs>[]
     assignments: Prisma.$AssignmentPayload<ExtArgs>[]
     bundleItems: Prisma.$VoyageBundleItemPayload<ExtArgs>[]
+    aiContexts: Prisma.$AIContextPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2902,6 +3101,7 @@ export interface Prisma__VoyageClient<T, Null = never, ExtArgs extends runtime.T
   progress<T extends Prisma.Voyage$progressArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Voyage$progressArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserVoyageProgressPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   assignments<T extends Prisma.Voyage$assignmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Voyage$assignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   bundleItems<T extends Prisma.Voyage$bundleItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Voyage$bundleItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VoyageBundleItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  aiContexts<T extends Prisma.Voyage$aiContextsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Voyage$aiContextsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AIContextPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3530,6 +3730,30 @@ export type Voyage$bundleItemsArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number
   skip?: number
   distinct?: Prisma.VoyageBundleItemScalarFieldEnum | Prisma.VoyageBundleItemScalarFieldEnum[]
+}
+
+/**
+ * Voyage.aiContexts
+ */
+export type Voyage$aiContextsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AIContext
+   */
+  select?: Prisma.AIContextSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AIContext
+   */
+  omit?: Prisma.AIContextOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AIContextInclude<ExtArgs> | null
+  where?: Prisma.AIContextWhereInput
+  orderBy?: Prisma.AIContextOrderByWithRelationInput | Prisma.AIContextOrderByWithRelationInput[]
+  cursor?: Prisma.AIContextWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AIContextScalarFieldEnum | Prisma.AIContextScalarFieldEnum[]
 }
 
 /**

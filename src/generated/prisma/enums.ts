@@ -109,3 +109,14 @@ export const Priority = {
 } as const
 
 export type Priority = (typeof Priority)[keyof typeof Priority]
+
+
+export const AIContextFeature = {
+  trials: 'trials',
+  voyages: 'voyages',
+  seas: 'seas',
+  kanban: 'kanban',
+  announcements: 'announcements'
+} as const
+
+export type AIContextFeature = (typeof AIContextFeature)[keyof typeof AIContextFeature]

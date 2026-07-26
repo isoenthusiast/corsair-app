@@ -79,7 +79,8 @@ export const ModelName = {
   SystemAnnouncement: 'SystemAnnouncement',
   VoyageBundle: 'VoyageBundle',
   VoyageBundleItem: 'VoyageBundleItem',
-  KanbanCard: 'KanbanCard'
+  KanbanCard: 'KanbanCard',
+  AIContext: 'AIContext'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -478,6 +479,20 @@ export const KanbanCardScalarFieldEnum = {
 } as const
 
 export type KanbanCardScalarFieldEnum = (typeof KanbanCardScalarFieldEnum)[keyof typeof KanbanCardScalarFieldEnum]
+
+
+export const AIContextScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  content: 'content',
+  appFeature: 'appFeature',
+  voyageId: 'voyageId',
+  seaId: 'seaId',
+  isFinal: 'isFinal',
+  createdAt: 'createdAt'
+} as const
+
+export type AIContextScalarFieldEnum = (typeof AIContextScalarFieldEnum)[keyof typeof AIContextScalarFieldEnum]
 
 
 export const SortOrder = {

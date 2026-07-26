@@ -331,6 +331,7 @@ export type UserWhereInput = {
   voyageBundles?: Prisma.VoyageBundleListRelationFilter
   kanbanCreated?: Prisma.KanbanCardListRelationFilter
   kanbanAssigned?: Prisma.KanbanCardListRelationFilter
+  aiContexts?: Prisma.AIContextListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -373,6 +374,7 @@ export type UserOrderByWithRelationInput = {
   voyageBundles?: Prisma.VoyageBundleOrderByRelationAggregateInput
   kanbanCreated?: Prisma.KanbanCardOrderByRelationAggregateInput
   kanbanAssigned?: Prisma.KanbanCardOrderByRelationAggregateInput
+  aiContexts?: Prisma.AIContextOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -418,6 +420,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   voyageBundles?: Prisma.VoyageBundleListRelationFilter
   kanbanCreated?: Prisma.KanbanCardListRelationFilter
   kanbanAssigned?: Prisma.KanbanCardListRelationFilter
+  aiContexts?: Prisma.AIContextListRelationFilter
 }, "id" | "username">
 
 export type UserOrderByWithAggregationInput = {
@@ -506,6 +509,7 @@ export type UserCreateInput = {
   voyageBundles?: Prisma.VoyageBundleCreateNestedManyWithoutAdminInput
   kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
+  aiContexts?: Prisma.AIContextCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -548,6 +552,7 @@ export type UserUncheckedCreateInput = {
   voyageBundles?: Prisma.VoyageBundleUncheckedCreateNestedManyWithoutAdminInput
   kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
+  aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -590,6 +595,7 @@ export type UserUpdateInput = {
   voyageBundles?: Prisma.VoyageBundleUpdateManyWithoutAdminNestedInput
   kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
+  aiContexts?: Prisma.AIContextUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -632,6 +638,7 @@ export type UserUncheckedUpdateInput = {
   voyageBundles?: Prisma.VoyageBundleUncheckedUpdateManyWithoutAdminNestedInput
   kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
+  aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -1134,6 +1141,20 @@ export type UserUpdateOneWithoutKanbanAssignedNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutKanbanAssignedInput, Prisma.UserUpdateWithoutKanbanAssignedInput>, Prisma.UserUncheckedUpdateWithoutKanbanAssignedInput>
 }
 
+export type UserCreateNestedOneWithoutAiContextsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAiContextsInput, Prisma.UserUncheckedCreateWithoutAiContextsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAiContextsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutAiContextsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAiContextsInput, Prisma.UserUncheckedCreateWithoutAiContextsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAiContextsInput
+  upsert?: Prisma.UserUpsertWithoutAiContextsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAiContextsInput, Prisma.UserUpdateWithoutAiContextsInput>, Prisma.UserUncheckedUpdateWithoutAiContextsInput>
+}
+
 export type UserCreateWithoutAttemptsInput = {
   id?: string
   name: string
@@ -1173,6 +1194,7 @@ export type UserCreateWithoutAttemptsInput = {
   voyageBundles?: Prisma.VoyageBundleCreateNestedManyWithoutAdminInput
   kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
+  aiContexts?: Prisma.AIContextCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAttemptsInput = {
@@ -1214,6 +1236,7 @@ export type UserUncheckedCreateWithoutAttemptsInput = {
   voyageBundles?: Prisma.VoyageBundleUncheckedCreateNestedManyWithoutAdminInput
   kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
+  aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAttemptsInput = {
@@ -1271,6 +1294,7 @@ export type UserUpdateWithoutAttemptsInput = {
   voyageBundles?: Prisma.VoyageBundleUpdateManyWithoutAdminNestedInput
   kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
+  aiContexts?: Prisma.AIContextUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAttemptsInput = {
@@ -1312,6 +1336,7 @@ export type UserUncheckedUpdateWithoutAttemptsInput = {
   voyageBundles?: Prisma.VoyageBundleUncheckedUpdateManyWithoutAdminNestedInput
   kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
+  aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutProgressInput = {
@@ -1353,6 +1378,7 @@ export type UserCreateWithoutProgressInput = {
   voyageBundles?: Prisma.VoyageBundleCreateNestedManyWithoutAdminInput
   kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
+  aiContexts?: Prisma.AIContextCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutProgressInput = {
@@ -1394,6 +1420,7 @@ export type UserUncheckedCreateWithoutProgressInput = {
   voyageBundles?: Prisma.VoyageBundleUncheckedCreateNestedManyWithoutAdminInput
   kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
+  aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutProgressInput = {
@@ -1451,6 +1478,7 @@ export type UserUpdateWithoutProgressInput = {
   voyageBundles?: Prisma.VoyageBundleUpdateManyWithoutAdminNestedInput
   kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
+  aiContexts?: Prisma.AIContextUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutProgressInput = {
@@ -1492,6 +1520,7 @@ export type UserUncheckedUpdateWithoutProgressInput = {
   voyageBundles?: Prisma.VoyageBundleUncheckedUpdateManyWithoutAdminNestedInput
   kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
+  aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutPointLogInput = {
@@ -1533,6 +1562,7 @@ export type UserCreateWithoutPointLogInput = {
   voyageBundles?: Prisma.VoyageBundleCreateNestedManyWithoutAdminInput
   kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
+  aiContexts?: Prisma.AIContextCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutPointLogInput = {
@@ -1574,6 +1604,7 @@ export type UserUncheckedCreateWithoutPointLogInput = {
   voyageBundles?: Prisma.VoyageBundleUncheckedCreateNestedManyWithoutAdminInput
   kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
+  aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutPointLogInput = {
@@ -1631,6 +1662,7 @@ export type UserUpdateWithoutPointLogInput = {
   voyageBundles?: Prisma.VoyageBundleUpdateManyWithoutAdminNestedInput
   kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
+  aiContexts?: Prisma.AIContextUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPointLogInput = {
@@ -1672,6 +1704,7 @@ export type UserUncheckedUpdateWithoutPointLogInput = {
   voyageBundles?: Prisma.VoyageBundleUncheckedUpdateManyWithoutAdminNestedInput
   kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
+  aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutCrownLogInput = {
@@ -1713,6 +1746,7 @@ export type UserCreateWithoutCrownLogInput = {
   voyageBundles?: Prisma.VoyageBundleCreateNestedManyWithoutAdminInput
   kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
+  aiContexts?: Prisma.AIContextCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutCrownLogInput = {
@@ -1754,6 +1788,7 @@ export type UserUncheckedCreateWithoutCrownLogInput = {
   voyageBundles?: Prisma.VoyageBundleUncheckedCreateNestedManyWithoutAdminInput
   kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
+  aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutCrownLogInput = {
@@ -1811,6 +1846,7 @@ export type UserUpdateWithoutCrownLogInput = {
   voyageBundles?: Prisma.VoyageBundleUpdateManyWithoutAdminNestedInput
   kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
+  aiContexts?: Prisma.AIContextUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCrownLogInput = {
@@ -1852,6 +1888,7 @@ export type UserUncheckedUpdateWithoutCrownLogInput = {
   voyageBundles?: Prisma.VoyageBundleUncheckedUpdateManyWithoutAdminNestedInput
   kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
+  aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutShipUpgradesInput = {
@@ -1893,6 +1930,7 @@ export type UserCreateWithoutShipUpgradesInput = {
   voyageBundles?: Prisma.VoyageBundleCreateNestedManyWithoutAdminInput
   kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
+  aiContexts?: Prisma.AIContextCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutShipUpgradesInput = {
@@ -1934,6 +1972,7 @@ export type UserUncheckedCreateWithoutShipUpgradesInput = {
   voyageBundles?: Prisma.VoyageBundleUncheckedCreateNestedManyWithoutAdminInput
   kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
+  aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutShipUpgradesInput = {
@@ -1991,6 +2030,7 @@ export type UserUpdateWithoutShipUpgradesInput = {
   voyageBundles?: Prisma.VoyageBundleUpdateManyWithoutAdminNestedInput
   kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
+  aiContexts?: Prisma.AIContextUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutShipUpgradesInput = {
@@ -2032,6 +2072,7 @@ export type UserUncheckedUpdateWithoutShipUpgradesInput = {
   voyageBundles?: Prisma.VoyageBundleUncheckedUpdateManyWithoutAdminNestedInput
   kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
+  aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutChestClaimsInput = {
@@ -2073,6 +2114,7 @@ export type UserCreateWithoutChestClaimsInput = {
   voyageBundles?: Prisma.VoyageBundleCreateNestedManyWithoutAdminInput
   kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
+  aiContexts?: Prisma.AIContextCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutChestClaimsInput = {
@@ -2114,6 +2156,7 @@ export type UserUncheckedCreateWithoutChestClaimsInput = {
   voyageBundles?: Prisma.VoyageBundleUncheckedCreateNestedManyWithoutAdminInput
   kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
+  aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutChestClaimsInput = {
@@ -2171,6 +2214,7 @@ export type UserUpdateWithoutChestClaimsInput = {
   voyageBundles?: Prisma.VoyageBundleUpdateManyWithoutAdminNestedInput
   kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
+  aiContexts?: Prisma.AIContextUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutChestClaimsInput = {
@@ -2212,6 +2256,7 @@ export type UserUncheckedUpdateWithoutChestClaimsInput = {
   voyageBundles?: Prisma.VoyageBundleUncheckedUpdateManyWithoutAdminNestedInput
   kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
+  aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutAchievementsInput = {
@@ -2253,6 +2298,7 @@ export type UserCreateWithoutAchievementsInput = {
   voyageBundles?: Prisma.VoyageBundleCreateNestedManyWithoutAdminInput
   kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
+  aiContexts?: Prisma.AIContextCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAchievementsInput = {
@@ -2294,6 +2340,7 @@ export type UserUncheckedCreateWithoutAchievementsInput = {
   voyageBundles?: Prisma.VoyageBundleUncheckedCreateNestedManyWithoutAdminInput
   kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
+  aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAchievementsInput = {
@@ -2351,6 +2398,7 @@ export type UserUpdateWithoutAchievementsInput = {
   voyageBundles?: Prisma.VoyageBundleUpdateManyWithoutAdminNestedInput
   kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
+  aiContexts?: Prisma.AIContextUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAchievementsInput = {
@@ -2392,6 +2440,7 @@ export type UserUncheckedUpdateWithoutAchievementsInput = {
   voyageBundles?: Prisma.VoyageBundleUncheckedUpdateManyWithoutAdminNestedInput
   kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
+  aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutStreaksInput = {
@@ -2433,6 +2482,7 @@ export type UserCreateWithoutStreaksInput = {
   voyageBundles?: Prisma.VoyageBundleCreateNestedManyWithoutAdminInput
   kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
+  aiContexts?: Prisma.AIContextCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutStreaksInput = {
@@ -2474,6 +2524,7 @@ export type UserUncheckedCreateWithoutStreaksInput = {
   voyageBundles?: Prisma.VoyageBundleUncheckedCreateNestedManyWithoutAdminInput
   kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
+  aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutStreaksInput = {
@@ -2531,6 +2582,7 @@ export type UserUpdateWithoutStreaksInput = {
   voyageBundles?: Prisma.VoyageBundleUpdateManyWithoutAdminNestedInput
   kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
+  aiContexts?: Prisma.AIContextUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutStreaksInput = {
@@ -2572,6 +2624,7 @@ export type UserUncheckedUpdateWithoutStreaksInput = {
   voyageBundles?: Prisma.VoyageBundleUncheckedUpdateManyWithoutAdminNestedInput
   kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
+  aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutCharmsInput = {
@@ -2613,6 +2666,7 @@ export type UserCreateWithoutCharmsInput = {
   voyageBundles?: Prisma.VoyageBundleCreateNestedManyWithoutAdminInput
   kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
+  aiContexts?: Prisma.AIContextCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutCharmsInput = {
@@ -2654,6 +2708,7 @@ export type UserUncheckedCreateWithoutCharmsInput = {
   voyageBundles?: Prisma.VoyageBundleUncheckedCreateNestedManyWithoutAdminInput
   kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
+  aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutCharmsInput = {
@@ -2711,6 +2766,7 @@ export type UserUpdateWithoutCharmsInput = {
   voyageBundles?: Prisma.VoyageBundleUpdateManyWithoutAdminNestedInput
   kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
+  aiContexts?: Prisma.AIContextUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCharmsInput = {
@@ -2752,6 +2808,7 @@ export type UserUncheckedUpdateWithoutCharmsInput = {
   voyageBundles?: Prisma.VoyageBundleUncheckedUpdateManyWithoutAdminNestedInput
   kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
+  aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutTaughtClassesInput = {
@@ -2793,6 +2850,7 @@ export type UserCreateWithoutTaughtClassesInput = {
   voyageBundles?: Prisma.VoyageBundleCreateNestedManyWithoutAdminInput
   kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
+  aiContexts?: Prisma.AIContextCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutTaughtClassesInput = {
@@ -2834,6 +2892,7 @@ export type UserUncheckedCreateWithoutTaughtClassesInput = {
   voyageBundles?: Prisma.VoyageBundleUncheckedCreateNestedManyWithoutAdminInput
   kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
+  aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutTaughtClassesInput = {
@@ -2891,6 +2950,7 @@ export type UserUpdateWithoutTaughtClassesInput = {
   voyageBundles?: Prisma.VoyageBundleUpdateManyWithoutAdminNestedInput
   kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
+  aiContexts?: Prisma.AIContextUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTaughtClassesInput = {
@@ -2932,6 +2992,7 @@ export type UserUncheckedUpdateWithoutTaughtClassesInput = {
   voyageBundles?: Prisma.VoyageBundleUncheckedUpdateManyWithoutAdminNestedInput
   kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
+  aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutStudentClassesInput = {
@@ -2973,6 +3034,7 @@ export type UserCreateWithoutStudentClassesInput = {
   voyageBundles?: Prisma.VoyageBundleCreateNestedManyWithoutAdminInput
   kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
+  aiContexts?: Prisma.AIContextCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutStudentClassesInput = {
@@ -3014,6 +3076,7 @@ export type UserUncheckedCreateWithoutStudentClassesInput = {
   voyageBundles?: Prisma.VoyageBundleUncheckedCreateNestedManyWithoutAdminInput
   kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
+  aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutStudentClassesInput = {
@@ -3071,6 +3134,7 @@ export type UserUpdateWithoutStudentClassesInput = {
   voyageBundles?: Prisma.VoyageBundleUpdateManyWithoutAdminNestedInput
   kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
+  aiContexts?: Prisma.AIContextUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutStudentClassesInput = {
@@ -3112,6 +3176,7 @@ export type UserUncheckedUpdateWithoutStudentClassesInput = {
   voyageBundles?: Prisma.VoyageBundleUncheckedUpdateManyWithoutAdminNestedInput
   kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
+  aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutParentLinksInput = {
@@ -3153,6 +3218,7 @@ export type UserCreateWithoutParentLinksInput = {
   voyageBundles?: Prisma.VoyageBundleCreateNestedManyWithoutAdminInput
   kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
+  aiContexts?: Prisma.AIContextCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutParentLinksInput = {
@@ -3194,6 +3260,7 @@ export type UserUncheckedCreateWithoutParentLinksInput = {
   voyageBundles?: Prisma.VoyageBundleUncheckedCreateNestedManyWithoutAdminInput
   kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
+  aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutParentLinksInput = {
@@ -3240,6 +3307,7 @@ export type UserCreateWithoutParentOfLinksInput = {
   voyageBundles?: Prisma.VoyageBundleCreateNestedManyWithoutAdminInput
   kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
+  aiContexts?: Prisma.AIContextCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutParentOfLinksInput = {
@@ -3281,6 +3349,7 @@ export type UserUncheckedCreateWithoutParentOfLinksInput = {
   voyageBundles?: Prisma.VoyageBundleUncheckedCreateNestedManyWithoutAdminInput
   kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
+  aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutParentOfLinksInput = {
@@ -3338,6 +3407,7 @@ export type UserUpdateWithoutParentLinksInput = {
   voyageBundles?: Prisma.VoyageBundleUpdateManyWithoutAdminNestedInput
   kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
+  aiContexts?: Prisma.AIContextUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutParentLinksInput = {
@@ -3379,6 +3449,7 @@ export type UserUncheckedUpdateWithoutParentLinksInput = {
   voyageBundles?: Prisma.VoyageBundleUncheckedUpdateManyWithoutAdminNestedInput
   kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
+  aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUpsertWithoutParentOfLinksInput = {
@@ -3431,6 +3502,7 @@ export type UserUpdateWithoutParentOfLinksInput = {
   voyageBundles?: Prisma.VoyageBundleUpdateManyWithoutAdminNestedInput
   kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
+  aiContexts?: Prisma.AIContextUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutParentOfLinksInput = {
@@ -3472,6 +3544,7 @@ export type UserUncheckedUpdateWithoutParentOfLinksInput = {
   voyageBundles?: Prisma.VoyageBundleUncheckedUpdateManyWithoutAdminNestedInput
   kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
+  aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutAssignmentsInput = {
@@ -3513,6 +3586,7 @@ export type UserCreateWithoutAssignmentsInput = {
   voyageBundles?: Prisma.VoyageBundleCreateNestedManyWithoutAdminInput
   kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
+  aiContexts?: Prisma.AIContextCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAssignmentsInput = {
@@ -3554,6 +3628,7 @@ export type UserUncheckedCreateWithoutAssignmentsInput = {
   voyageBundles?: Prisma.VoyageBundleUncheckedCreateNestedManyWithoutAdminInput
   kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
+  aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAssignmentsInput = {
@@ -3600,6 +3675,7 @@ export type UserCreateWithoutStudentAssignmentsInput = {
   voyageBundles?: Prisma.VoyageBundleCreateNestedManyWithoutAdminInput
   kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
+  aiContexts?: Prisma.AIContextCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutStudentAssignmentsInput = {
@@ -3641,6 +3717,7 @@ export type UserUncheckedCreateWithoutStudentAssignmentsInput = {
   voyageBundles?: Prisma.VoyageBundleUncheckedCreateNestedManyWithoutAdminInput
   kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
+  aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutStudentAssignmentsInput = {
@@ -3698,6 +3775,7 @@ export type UserUpdateWithoutAssignmentsInput = {
   voyageBundles?: Prisma.VoyageBundleUpdateManyWithoutAdminNestedInput
   kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
+  aiContexts?: Prisma.AIContextUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAssignmentsInput = {
@@ -3739,6 +3817,7 @@ export type UserUncheckedUpdateWithoutAssignmentsInput = {
   voyageBundles?: Prisma.VoyageBundleUncheckedUpdateManyWithoutAdminNestedInput
   kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
+  aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUpsertWithoutStudentAssignmentsInput = {
@@ -3791,6 +3870,7 @@ export type UserUpdateWithoutStudentAssignmentsInput = {
   voyageBundles?: Prisma.VoyageBundleUpdateManyWithoutAdminNestedInput
   kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
+  aiContexts?: Prisma.AIContextUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutStudentAssignmentsInput = {
@@ -3832,6 +3912,7 @@ export type UserUncheckedUpdateWithoutStudentAssignmentsInput = {
   voyageBundles?: Prisma.VoyageBundleUncheckedUpdateManyWithoutAdminNestedInput
   kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
+  aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutAnnouncementsInput = {
@@ -3873,6 +3954,7 @@ export type UserCreateWithoutAnnouncementsInput = {
   voyageBundles?: Prisma.VoyageBundleCreateNestedManyWithoutAdminInput
   kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
+  aiContexts?: Prisma.AIContextCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAnnouncementsInput = {
@@ -3914,6 +3996,7 @@ export type UserUncheckedCreateWithoutAnnouncementsInput = {
   voyageBundles?: Prisma.VoyageBundleUncheckedCreateNestedManyWithoutAdminInput
   kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
+  aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAnnouncementsInput = {
@@ -3971,6 +4054,7 @@ export type UserUpdateWithoutAnnouncementsInput = {
   voyageBundles?: Prisma.VoyageBundleUpdateManyWithoutAdminNestedInput
   kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
+  aiContexts?: Prisma.AIContextUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAnnouncementsInput = {
@@ -4012,6 +4096,7 @@ export type UserUncheckedUpdateWithoutAnnouncementsInput = {
   voyageBundles?: Prisma.VoyageBundleUncheckedUpdateManyWithoutAdminNestedInput
   kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
+  aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutAuditActionsInput = {
@@ -4053,6 +4138,7 @@ export type UserCreateWithoutAuditActionsInput = {
   voyageBundles?: Prisma.VoyageBundleCreateNestedManyWithoutAdminInput
   kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
+  aiContexts?: Prisma.AIContextCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAuditActionsInput = {
@@ -4094,6 +4180,7 @@ export type UserUncheckedCreateWithoutAuditActionsInput = {
   voyageBundles?: Prisma.VoyageBundleUncheckedCreateNestedManyWithoutAdminInput
   kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
+  aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAuditActionsInput = {
@@ -4151,6 +4238,7 @@ export type UserUpdateWithoutAuditActionsInput = {
   voyageBundles?: Prisma.VoyageBundleUpdateManyWithoutAdminNestedInput
   kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
+  aiContexts?: Prisma.AIContextUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAuditActionsInput = {
@@ -4192,6 +4280,7 @@ export type UserUncheckedUpdateWithoutAuditActionsInput = {
   voyageBundles?: Prisma.VoyageBundleUncheckedUpdateManyWithoutAdminNestedInput
   kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
+  aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutLoginRecordsInput = {
@@ -4233,6 +4322,7 @@ export type UserCreateWithoutLoginRecordsInput = {
   voyageBundles?: Prisma.VoyageBundleCreateNestedManyWithoutAdminInput
   kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
+  aiContexts?: Prisma.AIContextCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutLoginRecordsInput = {
@@ -4274,6 +4364,7 @@ export type UserUncheckedCreateWithoutLoginRecordsInput = {
   voyageBundles?: Prisma.VoyageBundleUncheckedCreateNestedManyWithoutAdminInput
   kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
+  aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutLoginRecordsInput = {
@@ -4331,6 +4422,7 @@ export type UserUpdateWithoutLoginRecordsInput = {
   voyageBundles?: Prisma.VoyageBundleUpdateManyWithoutAdminNestedInput
   kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
+  aiContexts?: Prisma.AIContextUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutLoginRecordsInput = {
@@ -4372,6 +4464,7 @@ export type UserUncheckedUpdateWithoutLoginRecordsInput = {
   voyageBundles?: Prisma.VoyageBundleUncheckedUpdateManyWithoutAdminNestedInput
   kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
+  aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutCreatedInvitesInput = {
@@ -4413,6 +4506,7 @@ export type UserCreateWithoutCreatedInvitesInput = {
   voyageBundles?: Prisma.VoyageBundleCreateNestedManyWithoutAdminInput
   kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
+  aiContexts?: Prisma.AIContextCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutCreatedInvitesInput = {
@@ -4454,6 +4548,7 @@ export type UserUncheckedCreateWithoutCreatedInvitesInput = {
   voyageBundles?: Prisma.VoyageBundleUncheckedCreateNestedManyWithoutAdminInput
   kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
+  aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutCreatedInvitesInput = {
@@ -4511,6 +4606,7 @@ export type UserUpdateWithoutCreatedInvitesInput = {
   voyageBundles?: Prisma.VoyageBundleUpdateManyWithoutAdminNestedInput
   kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
+  aiContexts?: Prisma.AIContextUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedInvitesInput = {
@@ -4552,6 +4648,7 @@ export type UserUncheckedUpdateWithoutCreatedInvitesInput = {
   voyageBundles?: Prisma.VoyageBundleUncheckedUpdateManyWithoutAdminNestedInput
   kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
+  aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutSystemAnnouncementsInput = {
@@ -4593,6 +4690,7 @@ export type UserCreateWithoutSystemAnnouncementsInput = {
   voyageBundles?: Prisma.VoyageBundleCreateNestedManyWithoutAdminInput
   kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
+  aiContexts?: Prisma.AIContextCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutSystemAnnouncementsInput = {
@@ -4634,6 +4732,7 @@ export type UserUncheckedCreateWithoutSystemAnnouncementsInput = {
   voyageBundles?: Prisma.VoyageBundleUncheckedCreateNestedManyWithoutAdminInput
   kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
+  aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutSystemAnnouncementsInput = {
@@ -4691,6 +4790,7 @@ export type UserUpdateWithoutSystemAnnouncementsInput = {
   voyageBundles?: Prisma.VoyageBundleUpdateManyWithoutAdminNestedInput
   kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
+  aiContexts?: Prisma.AIContextUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSystemAnnouncementsInput = {
@@ -4732,6 +4832,7 @@ export type UserUncheckedUpdateWithoutSystemAnnouncementsInput = {
   voyageBundles?: Prisma.VoyageBundleUncheckedUpdateManyWithoutAdminNestedInput
   kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
+  aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutVoyageBundlesInput = {
@@ -4773,6 +4874,7 @@ export type UserCreateWithoutVoyageBundlesInput = {
   systemAnnouncements?: Prisma.SystemAnnouncementCreateNestedManyWithoutAdminInput
   kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
+  aiContexts?: Prisma.AIContextCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutVoyageBundlesInput = {
@@ -4814,6 +4916,7 @@ export type UserUncheckedCreateWithoutVoyageBundlesInput = {
   systemAnnouncements?: Prisma.SystemAnnouncementUncheckedCreateNestedManyWithoutAdminInput
   kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
+  aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutVoyageBundlesInput = {
@@ -4871,6 +4974,7 @@ export type UserUpdateWithoutVoyageBundlesInput = {
   systemAnnouncements?: Prisma.SystemAnnouncementUpdateManyWithoutAdminNestedInput
   kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
+  aiContexts?: Prisma.AIContextUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutVoyageBundlesInput = {
@@ -4912,6 +5016,7 @@ export type UserUncheckedUpdateWithoutVoyageBundlesInput = {
   systemAnnouncements?: Prisma.SystemAnnouncementUncheckedUpdateManyWithoutAdminNestedInput
   kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
+  aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutKanbanCreatedInput = {
@@ -4953,6 +5058,7 @@ export type UserCreateWithoutKanbanCreatedInput = {
   systemAnnouncements?: Prisma.SystemAnnouncementCreateNestedManyWithoutAdminInput
   voyageBundles?: Prisma.VoyageBundleCreateNestedManyWithoutAdminInput
   kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
+  aiContexts?: Prisma.AIContextCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutKanbanCreatedInput = {
@@ -4994,6 +5100,7 @@ export type UserUncheckedCreateWithoutKanbanCreatedInput = {
   systemAnnouncements?: Prisma.SystemAnnouncementUncheckedCreateNestedManyWithoutAdminInput
   voyageBundles?: Prisma.VoyageBundleUncheckedCreateNestedManyWithoutAdminInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
+  aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutKanbanCreatedInput = {
@@ -5040,6 +5147,7 @@ export type UserCreateWithoutKanbanAssignedInput = {
   systemAnnouncements?: Prisma.SystemAnnouncementCreateNestedManyWithoutAdminInput
   voyageBundles?: Prisma.VoyageBundleCreateNestedManyWithoutAdminInput
   kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
+  aiContexts?: Prisma.AIContextCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutKanbanAssignedInput = {
@@ -5081,6 +5189,7 @@ export type UserUncheckedCreateWithoutKanbanAssignedInput = {
   systemAnnouncements?: Prisma.SystemAnnouncementUncheckedCreateNestedManyWithoutAdminInput
   voyageBundles?: Prisma.VoyageBundleUncheckedCreateNestedManyWithoutAdminInput
   kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
+  aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutKanbanAssignedInput = {
@@ -5138,6 +5247,7 @@ export type UserUpdateWithoutKanbanCreatedInput = {
   systemAnnouncements?: Prisma.SystemAnnouncementUpdateManyWithoutAdminNestedInput
   voyageBundles?: Prisma.VoyageBundleUpdateManyWithoutAdminNestedInput
   kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
+  aiContexts?: Prisma.AIContextUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutKanbanCreatedInput = {
@@ -5179,6 +5289,7 @@ export type UserUncheckedUpdateWithoutKanbanCreatedInput = {
   systemAnnouncements?: Prisma.SystemAnnouncementUncheckedUpdateManyWithoutAdminNestedInput
   voyageBundles?: Prisma.VoyageBundleUncheckedUpdateManyWithoutAdminNestedInput
   kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
+  aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUpsertWithoutKanbanAssignedInput = {
@@ -5231,6 +5342,7 @@ export type UserUpdateWithoutKanbanAssignedInput = {
   systemAnnouncements?: Prisma.SystemAnnouncementUpdateManyWithoutAdminNestedInput
   voyageBundles?: Prisma.VoyageBundleUpdateManyWithoutAdminNestedInput
   kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
+  aiContexts?: Prisma.AIContextUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutKanbanAssignedInput = {
@@ -5272,6 +5384,191 @@ export type UserUncheckedUpdateWithoutKanbanAssignedInput = {
   systemAnnouncements?: Prisma.SystemAnnouncementUncheckedUpdateManyWithoutAdminNestedInput
   voyageBundles?: Prisma.VoyageBundleUncheckedUpdateManyWithoutAdminNestedInput
   kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
+  aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutAiContextsInput = {
+  id?: string
+  name: string
+  username: string
+  passwordHash: string
+  role?: $Enums.Role
+  status?: string
+  avatarUrl?: string | null
+  age?: number | null
+  bio?: string | null
+  favoriteSea?: string | null
+  learningGoals?: string | null
+  crowns?: number
+  pirateRank?: string
+  mustChangePassword?: boolean
+  deletedAt?: Date | string | null
+  createdAt?: Date | string
+  progress?: Prisma.UserVoyageProgressCreateNestedManyWithoutUserInput
+  achievements?: Prisma.UserAchievementCreateNestedManyWithoutUserInput
+  pointLog?: Prisma.PointTransactionCreateNestedManyWithoutUserInput
+  crownLog?: Prisma.CrownTransactionCreateNestedManyWithoutUserInput
+  streaks?: Prisma.StreakCreateNestedManyWithoutUserInput
+  charms?: Prisma.SeaCharmCreateNestedManyWithoutUserInput
+  attempts?: Prisma.TrialAttemptCreateNestedManyWithoutUserInput
+  shipUpgrades?: Prisma.UserShipUpgradeCreateNestedManyWithoutUserInput
+  chestClaims?: Prisma.DailyChestClaimCreateNestedManyWithoutUserInput
+  parentLinks?: Prisma.StudentParentCreateNestedManyWithoutStudentInput
+  parentOfLinks?: Prisma.StudentParentCreateNestedManyWithoutParentInput
+  studentClasses?: Prisma.StudentClassCreateNestedManyWithoutStudentInput
+  taughtClasses?: Prisma.ClassTeacherCreateNestedManyWithoutTeacherInput
+  assignments?: Prisma.AssignmentCreateNestedManyWithoutTeacherInput
+  studentAssignments?: Prisma.AssignmentCreateNestedManyWithoutStudentInput
+  announcements?: Prisma.AnnouncementCreateNestedManyWithoutTeacherInput
+  auditActions?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  loginRecords?: Prisma.LoginHistoryCreateNestedManyWithoutUserInput
+  createdInvites?: Prisma.InviteLinkCreateNestedManyWithoutCreatorInput
+  systemAnnouncements?: Prisma.SystemAnnouncementCreateNestedManyWithoutAdminInput
+  voyageBundles?: Prisma.VoyageBundleCreateNestedManyWithoutAdminInput
+  kanbanCreated?: Prisma.KanbanCardCreateNestedManyWithoutCreatorInput
+  kanbanAssigned?: Prisma.KanbanCardCreateNestedManyWithoutAssigneeInput
+}
+
+export type UserUncheckedCreateWithoutAiContextsInput = {
+  id?: string
+  name: string
+  username: string
+  passwordHash: string
+  role?: $Enums.Role
+  status?: string
+  avatarUrl?: string | null
+  age?: number | null
+  bio?: string | null
+  favoriteSea?: string | null
+  learningGoals?: string | null
+  crowns?: number
+  pirateRank?: string
+  mustChangePassword?: boolean
+  deletedAt?: Date | string | null
+  createdAt?: Date | string
+  progress?: Prisma.UserVoyageProgressUncheckedCreateNestedManyWithoutUserInput
+  achievements?: Prisma.UserAchievementUncheckedCreateNestedManyWithoutUserInput
+  pointLog?: Prisma.PointTransactionUncheckedCreateNestedManyWithoutUserInput
+  crownLog?: Prisma.CrownTransactionUncheckedCreateNestedManyWithoutUserInput
+  streaks?: Prisma.StreakUncheckedCreateNestedManyWithoutUserInput
+  charms?: Prisma.SeaCharmUncheckedCreateNestedManyWithoutUserInput
+  attempts?: Prisma.TrialAttemptUncheckedCreateNestedManyWithoutUserInput
+  shipUpgrades?: Prisma.UserShipUpgradeUncheckedCreateNestedManyWithoutUserInput
+  chestClaims?: Prisma.DailyChestClaimUncheckedCreateNestedManyWithoutUserInput
+  parentLinks?: Prisma.StudentParentUncheckedCreateNestedManyWithoutStudentInput
+  parentOfLinks?: Prisma.StudentParentUncheckedCreateNestedManyWithoutParentInput
+  studentClasses?: Prisma.StudentClassUncheckedCreateNestedManyWithoutStudentInput
+  taughtClasses?: Prisma.ClassTeacherUncheckedCreateNestedManyWithoutTeacherInput
+  assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutTeacherInput
+  studentAssignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutStudentInput
+  announcements?: Prisma.AnnouncementUncheckedCreateNestedManyWithoutTeacherInput
+  auditActions?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  loginRecords?: Prisma.LoginHistoryUncheckedCreateNestedManyWithoutUserInput
+  createdInvites?: Prisma.InviteLinkUncheckedCreateNestedManyWithoutCreatorInput
+  systemAnnouncements?: Prisma.SystemAnnouncementUncheckedCreateNestedManyWithoutAdminInput
+  voyageBundles?: Prisma.VoyageBundleUncheckedCreateNestedManyWithoutAdminInput
+  kanbanCreated?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutCreatorInput
+  kanbanAssigned?: Prisma.KanbanCardUncheckedCreateNestedManyWithoutAssigneeInput
+}
+
+export type UserCreateOrConnectWithoutAiContextsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutAiContextsInput, Prisma.UserUncheckedCreateWithoutAiContextsInput>
+}
+
+export type UserUpsertWithoutAiContextsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutAiContextsInput, Prisma.UserUncheckedUpdateWithoutAiContextsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutAiContextsInput, Prisma.UserUncheckedCreateWithoutAiContextsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutAiContextsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutAiContextsInput, Prisma.UserUncheckedUpdateWithoutAiContextsInput>
+}
+
+export type UserUpdateWithoutAiContextsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favoriteSea?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crowns?: Prisma.IntFieldUpdateOperationsInput | number
+  pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  progress?: Prisma.UserVoyageProgressUpdateManyWithoutUserNestedInput
+  achievements?: Prisma.UserAchievementUpdateManyWithoutUserNestedInput
+  pointLog?: Prisma.PointTransactionUpdateManyWithoutUserNestedInput
+  crownLog?: Prisma.CrownTransactionUpdateManyWithoutUserNestedInput
+  streaks?: Prisma.StreakUpdateManyWithoutUserNestedInput
+  charms?: Prisma.SeaCharmUpdateManyWithoutUserNestedInput
+  attempts?: Prisma.TrialAttemptUpdateManyWithoutUserNestedInput
+  shipUpgrades?: Prisma.UserShipUpgradeUpdateManyWithoutUserNestedInput
+  chestClaims?: Prisma.DailyChestClaimUpdateManyWithoutUserNestedInput
+  parentLinks?: Prisma.StudentParentUpdateManyWithoutStudentNestedInput
+  parentOfLinks?: Prisma.StudentParentUpdateManyWithoutParentNestedInput
+  studentClasses?: Prisma.StudentClassUpdateManyWithoutStudentNestedInput
+  taughtClasses?: Prisma.ClassTeacherUpdateManyWithoutTeacherNestedInput
+  assignments?: Prisma.AssignmentUpdateManyWithoutTeacherNestedInput
+  studentAssignments?: Prisma.AssignmentUpdateManyWithoutStudentNestedInput
+  announcements?: Prisma.AnnouncementUpdateManyWithoutTeacherNestedInput
+  auditActions?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  loginRecords?: Prisma.LoginHistoryUpdateManyWithoutUserNestedInput
+  createdInvites?: Prisma.InviteLinkUpdateManyWithoutCreatorNestedInput
+  systemAnnouncements?: Prisma.SystemAnnouncementUpdateManyWithoutAdminNestedInput
+  voyageBundles?: Prisma.VoyageBundleUpdateManyWithoutAdminNestedInput
+  kanbanCreated?: Prisma.KanbanCardUpdateManyWithoutCreatorNestedInput
+  kanbanAssigned?: Prisma.KanbanCardUpdateManyWithoutAssigneeNestedInput
+}
+
+export type UserUncheckedUpdateWithoutAiContextsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favoriteSea?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  learningGoals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  crowns?: Prisma.IntFieldUpdateOperationsInput | number
+  pirateRank?: Prisma.StringFieldUpdateOperationsInput | string
+  mustChangePassword?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  progress?: Prisma.UserVoyageProgressUncheckedUpdateManyWithoutUserNestedInput
+  achievements?: Prisma.UserAchievementUncheckedUpdateManyWithoutUserNestedInput
+  pointLog?: Prisma.PointTransactionUncheckedUpdateManyWithoutUserNestedInput
+  crownLog?: Prisma.CrownTransactionUncheckedUpdateManyWithoutUserNestedInput
+  streaks?: Prisma.StreakUncheckedUpdateManyWithoutUserNestedInput
+  charms?: Prisma.SeaCharmUncheckedUpdateManyWithoutUserNestedInput
+  attempts?: Prisma.TrialAttemptUncheckedUpdateManyWithoutUserNestedInput
+  shipUpgrades?: Prisma.UserShipUpgradeUncheckedUpdateManyWithoutUserNestedInput
+  chestClaims?: Prisma.DailyChestClaimUncheckedUpdateManyWithoutUserNestedInput
+  parentLinks?: Prisma.StudentParentUncheckedUpdateManyWithoutStudentNestedInput
+  parentOfLinks?: Prisma.StudentParentUncheckedUpdateManyWithoutParentNestedInput
+  studentClasses?: Prisma.StudentClassUncheckedUpdateManyWithoutStudentNestedInput
+  taughtClasses?: Prisma.ClassTeacherUncheckedUpdateManyWithoutTeacherNestedInput
+  assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
+  studentAssignments?: Prisma.AssignmentUncheckedUpdateManyWithoutStudentNestedInput
+  announcements?: Prisma.AnnouncementUncheckedUpdateManyWithoutTeacherNestedInput
+  auditActions?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  loginRecords?: Prisma.LoginHistoryUncheckedUpdateManyWithoutUserNestedInput
+  createdInvites?: Prisma.InviteLinkUncheckedUpdateManyWithoutCreatorNestedInput
+  systemAnnouncements?: Prisma.SystemAnnouncementUncheckedUpdateManyWithoutAdminNestedInput
+  voyageBundles?: Prisma.VoyageBundleUncheckedUpdateManyWithoutAdminNestedInput
+  kanbanCreated?: Prisma.KanbanCardUncheckedUpdateManyWithoutCreatorNestedInput
+  kanbanAssigned?: Prisma.KanbanCardUncheckedUpdateManyWithoutAssigneeNestedInput
 }
 
 
@@ -5303,6 +5600,7 @@ export type UserCountOutputType = {
   voyageBundles: number
   kanbanCreated: number
   kanbanAssigned: number
+  aiContexts: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -5329,6 +5627,7 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   voyageBundles?: boolean | UserCountOutputTypeCountVoyageBundlesArgs
   kanbanCreated?: boolean | UserCountOutputTypeCountKanbanCreatedArgs
   kanbanAssigned?: boolean | UserCountOutputTypeCountKanbanAssignedArgs
+  aiContexts?: boolean | UserCountOutputTypeCountAiContextsArgs
 }
 
 /**
@@ -5502,6 +5801,13 @@ export type UserCountOutputTypeCountKanbanAssignedArgs<ExtArgs extends runtime.T
   where?: Prisma.KanbanCardWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountAiContextsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AIContextWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -5543,6 +5849,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   voyageBundles?: boolean | Prisma.User$voyageBundlesArgs<ExtArgs>
   kanbanCreated?: boolean | Prisma.User$kanbanCreatedArgs<ExtArgs>
   kanbanAssigned?: boolean | Prisma.User$kanbanAssignedArgs<ExtArgs>
+  aiContexts?: boolean | Prisma.User$aiContextsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -5628,6 +5935,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   voyageBundles?: boolean | Prisma.User$voyageBundlesArgs<ExtArgs>
   kanbanCreated?: boolean | Prisma.User$kanbanCreatedArgs<ExtArgs>
   kanbanAssigned?: boolean | Prisma.User$kanbanAssignedArgs<ExtArgs>
+  aiContexts?: boolean | Prisma.User$aiContextsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -5659,6 +5967,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     voyageBundles: Prisma.$VoyageBundlePayload<ExtArgs>[]
     kanbanCreated: Prisma.$KanbanCardPayload<ExtArgs>[]
     kanbanAssigned: Prisma.$KanbanCardPayload<ExtArgs>[]
+    aiContexts: Prisma.$AIContextPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -6094,6 +6403,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   voyageBundles<T extends Prisma.User$voyageBundlesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$voyageBundlesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VoyageBundlePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   kanbanCreated<T extends Prisma.User$kanbanCreatedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$kanbanCreatedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$KanbanCardPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   kanbanAssigned<T extends Prisma.User$kanbanAssignedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$kanbanAssignedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$KanbanCardPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  aiContexts<T extends Prisma.User$aiContextsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$aiContextsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AIContextPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7081,6 +7391,30 @@ export type User$kanbanAssignedArgs<ExtArgs extends runtime.Types.Extensions.Int
   take?: number
   skip?: number
   distinct?: Prisma.KanbanCardScalarFieldEnum | Prisma.KanbanCardScalarFieldEnum[]
+}
+
+/**
+ * User.aiContexts
+ */
+export type User$aiContextsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AIContext
+   */
+  select?: Prisma.AIContextSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AIContext
+   */
+  omit?: Prisma.AIContextOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AIContextInclude<ExtArgs> | null
+  where?: Prisma.AIContextWhereInput
+  orderBy?: Prisma.AIContextOrderByWithRelationInput | Prisma.AIContextOrderByWithRelationInput[]
+  cursor?: Prisma.AIContextWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AIContextScalarFieldEnum | Prisma.AIContextScalarFieldEnum[]
 }
 
 /**

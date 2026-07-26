@@ -425,7 +425,8 @@ export const ModelName = {
   SystemAnnouncement: 'SystemAnnouncement',
   VoyageBundle: 'VoyageBundle',
   VoyageBundleItem: 'VoyageBundleItem',
-  KanbanCard: 'KanbanCard'
+  KanbanCard: 'KanbanCard',
+  AIContext: 'AIContext'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -441,7 +442,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "sea" | "voyage" | "trial" | "trialVersion" | "trialAttempt" | "userVoyageProgress" | "pointTransaction" | "crownTransaction" | "shipUpgrade" | "userShipUpgrade" | "dailyChestClaim" | "achievement" | "userAchievement" | "streak" | "seaCharm" | "class" | "classTeacher" | "studentClass" | "studentParent" | "assignment" | "announcement" | "auditLog" | "loginHistory" | "inviteLink" | "systemAnnouncement" | "voyageBundle" | "voyageBundleItem" | "kanbanCard"
+    modelProps: "user" | "sea" | "voyage" | "trial" | "trialVersion" | "trialAttempt" | "userVoyageProgress" | "pointTransaction" | "crownTransaction" | "shipUpgrade" | "userShipUpgrade" | "dailyChestClaim" | "achievement" | "userAchievement" | "streak" | "seaCharm" | "class" | "classTeacher" | "studentClass" | "studentParent" | "assignment" | "announcement" | "auditLog" | "loginHistory" | "inviteLink" | "systemAnnouncement" | "voyageBundle" | "voyageBundleItem" | "kanbanCard" | "aIContext"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2591,6 +2592,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    AIContext: {
+      payload: Prisma.$AIContextPayload<ExtArgs>
+      fields: Prisma.AIContextFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AIContextFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AIContextPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AIContextFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AIContextPayload>
+        }
+        findFirst: {
+          args: Prisma.AIContextFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AIContextPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AIContextFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AIContextPayload>
+        }
+        findMany: {
+          args: Prisma.AIContextFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AIContextPayload>[]
+        }
+        create: {
+          args: Prisma.AIContextCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AIContextPayload>
+        }
+        createMany: {
+          args: Prisma.AIContextCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.AIContextCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AIContextPayload>[]
+        }
+        delete: {
+          args: Prisma.AIContextDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AIContextPayload>
+        }
+        update: {
+          args: Prisma.AIContextUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AIContextPayload>
+        }
+        deleteMany: {
+          args: Prisma.AIContextDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AIContextUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.AIContextUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AIContextPayload>[]
+        }
+        upsert: {
+          args: Prisma.AIContextUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AIContextPayload>
+        }
+        aggregate: {
+          args: Prisma.AIContextAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAIContext>
+        }
+        groupBy: {
+          args: Prisma.AIContextGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AIContextGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AIContextCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AIContextCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -3012,6 +3087,20 @@ export const KanbanCardScalarFieldEnum = {
 export type KanbanCardScalarFieldEnum = (typeof KanbanCardScalarFieldEnum)[keyof typeof KanbanCardScalarFieldEnum]
 
 
+export const AIContextScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  content: 'content',
+  appFeature: 'appFeature',
+  voyageId: 'voyageId',
+  seaId: 'seaId',
+  isFinal: 'isFinal',
+  createdAt: 'createdAt'
+} as const
+
+export type AIContextScalarFieldEnum = (typeof AIContextScalarFieldEnum)[keyof typeof AIContextScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -3275,6 +3364,20 @@ export type EnumPriorityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaM
 export type ListEnumPriorityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Priority[]'>
     
 
+
+/**
+ * Reference to a field of type 'AIContextFeature'
+ */
+export type EnumAIContextFeatureFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AIContextFeature'>
+    
+
+
+/**
+ * Reference to a field of type 'AIContextFeature[]'
+ */
+export type ListEnumAIContextFeatureFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AIContextFeature[]'>
+    
+
 /**
  * Batch Payload for updateMany & deleteMany & createMany
  */
@@ -3455,6 +3558,7 @@ export type GlobalOmitConfig = {
   voyageBundle?: Prisma.VoyageBundleOmit
   voyageBundleItem?: Prisma.VoyageBundleItemOmit
   kanbanCard?: Prisma.KanbanCardOmit
+  aIContext?: Prisma.AIContextOmit
 }
 
 /* Types for Logging */

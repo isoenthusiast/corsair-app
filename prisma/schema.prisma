@@ -50,20 +50,22 @@ model User {
     createdInvites      InviteLink[]         @relation("InviteCreator")
     systemAnnouncements SystemAnnouncement[]
     voyageBundles       VoyageBundle[]
-    kanbanCreated       KanbanCard[]          @relation("KanbanCreator")
-    kanbanAssigned      KanbanCard[]          @relation("KanbanAssignee")
+    kanbanCreated       KanbanCard[]         @relation("KanbanCreator")
+    kanbanAssigned      KanbanCard[]         @relation("KanbanAssignee")
+    aiContexts          AIContext[]
 }
 
 // ── Seas & Voyages ──
 
 model Sea {
-    id          String   @id @default(cuid())
-    name        String   @unique
+    id          String      @id @default(cuid())
+    name        String      @unique
     icon        String
     description String?
     color       String?
-    sortOrder   Int      @default(0)
+    sortOrder   Int         @default(0)
     voyages     Voyage[]
+    aiContexts  AIContext[]
 }
 
 model Voyage {
@@ -96,6 +98,7 @@ model Voyage {
     progress       UserVoyageProgress[]
     assignments    Assignment[]
     bundleItems    VoyageBundleItem[]
+    aiContexts     AIContext[]
 
     @@index([seaId])
 }
@@ -446,13 +449,13 @@ model VoyageBundleItem {
 // ── Kanban ──
 
 model KanbanCard {
-    id          String        @id @default(cuid())
+    id          String       @id @default(cuid())
     type        KanbanType
-    scope       KanbanScope   @default(Admin)
-    status      KanbanStatus  @default(Backlog)
+    scope       KanbanScope  @default(Admin)
+    status      KanbanStatus @default(Backlog)
     title       String
     description String?
-    priority    Priority      @default(Medium)
+    priority    Priority     @default(Medium)
     sourceTable String?
     sourceId    String?
     classId     String?
@@ -460,11 +463,28 @@ model KanbanCard {
     assigneeId  String?
     creatorId   String
     archivedAt  DateTime?
-    createdAt   DateTime      @default(now())
-    updatedAt   DateTime      @updatedAt
+    createdAt   DateTime     @default(now())
+    updatedAt   DateTime     @updatedAt
 
     creator  User  @relation("KanbanCreator", fields: [creatorId], references: [id])
     assignee User? @relation("KanbanAssignee", fields: [assigneeId], references: [id])
+}
+
+// ── AI Context ──
+
+model AIContext {
+    id         String           @id @default(cuid())
+    userId     String
+    content    String // Markdown — full transcript or summary
+    appFeature AIContextFeature
+    voyageId   String?
+    seaId      String?
+    isFinal    Boolean          @default(false) // true = summary/gen record, false = individual message
+    createdAt  DateTime         @default(now())
+
+    user   User    @relation(fields: [userId], references: [id])
+    voyage Voyage? @relation(fields: [voyageId], references: [id])
+    sea    Sea?    @relation(fields: [seaId], references: [id])
 }
 
 // ── Enums ──
@@ -539,4 +559,12 @@ enum Priority {
     Low
     Medium
     High
+}
+
+enum AIContextFeature {
+    trials
+    voyages
+    seas
+    kanban
+    announcements
 }
