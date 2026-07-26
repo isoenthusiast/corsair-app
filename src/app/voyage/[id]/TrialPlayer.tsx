@@ -8,7 +8,10 @@ type Voyage = { id: string; title: string; captainGauntlet: boolean; sea: { name
 type Progress = { id: string; status: string; skulls: number; trialsCompleted: number } | null;
 type CharmQty = { whisper_scroll: number; storm_pass: number; fortune_wind: number; anchor_charm: number };
 
-export function TrialPlayer({ voyage, progress, isCompleted, userId, charms, hasFortuneWind }: { voyage: Voyage; progress: Progress; isCompleted: boolean; userId: string; charms: CharmQty; hasFortuneWind: boolean }) {
+export function TrialPlayer({ voyage, progress, isCompleted, userId, charms, hasFortuneWind, islandId, islandType }: {
+    voyage: Voyage; progress: Progress; isCompleted: boolean; userId: string; charms: CharmQty; hasFortuneWind: boolean;
+    islandId: string; islandType: string;
+}) {
     const router = useRouter();
     const [idx, setIdx] = useState(Math.min(progress?.trialsCompleted || 0, voyage.trials.length - 1));
     const [answer, setAnswer] = useState(""); const [selected, setSelected] = useState<string | null>(null);
@@ -49,7 +52,7 @@ export function TrialPlayer({ voyage, progress, isCompleted, userId, charms, has
             setLoading(false);
             // Advance
             if (last) {
-                await fetch("/api/voyages/complete", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ voyageId: voyage.id }) });
+                await fetch("/api/voyages/complete", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ voyageId: voyage.id, islandId }) });
                 setDone(true);
             } else {
                 setIdx(i => i + 1); setAnswer(""); setSelected(null); setShowResult(false); setShowHint(false); setCorrect(false); setHints(0); setScrollUsed(false);
@@ -92,7 +95,7 @@ export function TrialPlayer({ voyage, progress, isCompleted, userId, charms, has
 
     async function next() {
         if (last) {
-            await fetch("/api/voyages/complete", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ voyageId: voyage.id }) });
+            await fetch("/api/voyages/complete", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ voyageId: voyage.id, islandId }) });
             setDone(true);
         } else { setIdx(i => i + 1); setAnswer(""); setSelected(null); setShowResult(false); setShowHint(false); setCorrect(false); setHints(0); }
     }

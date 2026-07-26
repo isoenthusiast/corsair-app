@@ -48,16 +48,28 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
     }
 
     const { id: voyageId } = await params;
-    const { count } = await request.json();
+    const { count, islandId } = await request.json();
     const numTrials = Math.min(count || 3, 5);
 
-    const voyage = await prisma.voyage.findUnique({
-        where: { id: voyageId },
-        include: { sea: true, trials: { select: { question: true } } },
-    });
-    if (!voyage) return NextResponse.json({ error: "Voyage not found" }, { status: 404 });
+    // Determine target island (default to Island 1 — first monthly unit)
+    let targetIslandId = islandId as string | undefined;
+    if (!targetIslandId) {
+        const firstMonthly = await prisma.island.findFirst({
+            where: { voyageId, type: "regular" },
+            orderBy: { sortOrder: "asc" },
+        });
+        targetIslandId = firstMonthly?.id;
+    }
+    if (!targetIslandId) return NextResponse.json({ error: "No islands found for this voyage" }, { status: 400 });
 
-    const existingQuestions = voyage.trials.map(t => t.question);
+    const island = await prisma.island.findUnique({
+        where: { id: targetIslandId },
+        include: { trials: { select: { question: true } }, voyage: { include: { sea: true } } },
+    });
+    if (!island) return NextResponse.json({ error: "Island not found" }, { status: 404 });
+
+    const existingQuestions = island.trials.map(t => t.question);
+    const voyage = island.voyage;
     const subjectMap: Record<string, string> = {
         "Sea of Cunning": "English/Language Arts",
         "Sea of Whispers": "Mandarin Chinese",
@@ -120,7 +132,7 @@ Generate exactly ${numTrials} trials. Vary the trial types.`;
 
             await prisma.trial.create({
                 data: {
-                    voyageId,
+                    islandId: targetIslandId,
                     type: t.type as any,
                     question: t.question,
                     options: t.options || undefined,
