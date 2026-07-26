@@ -41,13 +41,13 @@ export function TrialPlayer({ voyage, progress, isCompleted, userId }: { voyage:
         }
 
         setCorrect(ok); setSkulls(s); setAiFeedback(fb); setShowResult(true);
-        await fetch("/api/trials/attempt", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ trialId: t.id, userId, answer: a, correct: ok, timeSpent: Math.floor((Date.now() - startTime) / 1000), skulls: s, hintsUsed: showHint ? hints + 1 : hints }) });
+        await fetch("/api/trials/attempt", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ trialId: t.id, answer: a, correct: ok, timeSpent: Math.floor((Date.now() - startTime) / 1000), skulls: s, hintsUsed: showHint ? hints + 1 : hints }) });
         setLoading(false);
     }
 
     async function next() {
         if (last) {
-            await fetch("/api/voyages/complete", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ voyageId: voyage.id, userId }) });
+            await fetch("/api/voyages/complete", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ voyageId: voyage.id }) });
             setDone(true);
         } else { setIdx(i => i + 1); setAnswer(""); setSelected(null); setShowResult(false); setShowHint(false); setCorrect(false); setHints(0); }
     }

@@ -6,9 +6,14 @@ const authMiddleware = NextAuth(authConfig).auth;
 
 export default authMiddleware(async (req) => {
     const { pathname } = req.nextUrl;
-    const user = req.auth?.user as { id?: string; role?: string; name?: string } | undefined;
+    const user = req.auth?.user as { id?: string; role?: string; name?: string; mustChangePassword?: boolean } | undefined;
     const isLoggedIn = !!user;
     const role = user?.role;
+
+    // Force password change before accessing any app page
+    if (isLoggedIn && user?.mustChangePassword && pathname !== "/change-password") {
+        return NextResponse.redirect(new URL("/change-password", req.url));
+    }
 
     // On login page, redirect logged-in users to their home
     if (pathname === "/") {

@@ -12,11 +12,13 @@ declare module "next-auth" {
             role: string;
             name: string;
             impersonatedBy?: string;
+            mustChangePassword?: boolean;
         } & DefaultSession["user"];
     }
     interface User {
         role?: string;
         impersonatedBy?: string;
+        mustChangePassword?: boolean;
     }
 }
 
@@ -69,10 +71,16 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
                 );
                 if (!valid) return null;
 
+                // Reject inactive, suspended, or soft-deleted accounts
+                if (user.status !== "Active" || user.deletedAt) {
+                    return null;
+                }
+
                 return {
                     id: user.id,
                     name: user.name,
                     role: user.role,
+                    mustChangePassword: user.mustChangePassword,
                 };
             },
         }),

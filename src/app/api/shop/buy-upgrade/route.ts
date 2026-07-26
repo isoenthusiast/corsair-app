@@ -1,11 +1,17 @@
 import { prisma } from "@/lib/prisma";
+import { auth } from "@/lib/auth";
 import { NextRequest, NextResponse } from "next/server";
 import { redirect } from "next/navigation";
 
+export const runtime = "nodejs";
+
 export async function POST(request: NextRequest) {
     try {
+        const session = await auth();
+        if (!session?.user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
+        const userId = session.user.id;
         const form = await request.formData();
-        const userId = form.get("userId") as string;
         const upgradeId = form.get("upgradeId") as string;
         const cost = parseInt(form.get("cost") as string);
 

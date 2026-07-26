@@ -51,7 +51,6 @@ export default async function ShipPage() {
                                             <span className="text-emerald-400">✅</span>
                                         ) : (
                                             <form action={`/api/shop/buy-upgrade`} method="POST">
-                                                <input type="hidden" name="userId" value={user.id} />
                                                 <input type="hidden" name="upgradeId" value={u.id} />
                                                 <input type="hidden" name="cost" value={u.cost} />
                                                 <button type="submit" className="btn-pirate text-sm" disabled={user.crowns < u.cost}>

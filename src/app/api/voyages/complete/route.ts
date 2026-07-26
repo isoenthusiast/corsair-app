@@ -1,10 +1,17 @@
 import { prisma } from "@/lib/prisma";
+import { auth } from "@/lib/auth";
 import { NextRequest, NextResponse } from "next/server";
+
+export const runtime = "nodejs";
 
 export async function POST(request: NextRequest) {
     try {
-        const { voyageId, userId } = await request.json();
-        if (!voyageId || !userId) return NextResponse.json({ error: "Missing fields" }, { status: 400 });
+        const session = await auth();
+        if (!session?.user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
+        const userId = session.user.id;
+        const { voyageId } = await request.json();
+        if (!voyageId) return NextResponse.json({ error: "Missing voyageId" }, { status: 400 });
 
         const voyage = await prisma.voyage.findUnique({ where: { id: voyageId }, include: { trials: true } });
         if (!voyage) return NextResponse.json({ error: "Not found" }, { status: 404 });

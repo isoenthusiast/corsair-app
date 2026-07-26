@@ -1,10 +1,17 @@
 import { prisma } from "@/lib/prisma";
+import { auth } from "@/lib/auth";
 import { NextRequest, NextResponse } from "next/server";
+
+export const runtime = "nodejs";
 
 export async function POST(request: NextRequest) {
     try {
-        const { trialId, userId, answer, correct, timeSpent, skulls, hintsUsed } = await request.json();
-        if (!trialId || !userId) return NextResponse.json({ error: "Missing fields" }, { status: 400 });
+        const session = await auth();
+        if (!session?.user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
+        const userId = session.user.id;
+        const { trialId, answer, correct, timeSpent, skulls, hintsUsed } = await request.json();
+        if (!trialId) return NextResponse.json({ error: "Missing trialId" }, { status: 400 });
 
         await prisma.trialAttempt.create({ data: { trialId, userId, answer: answer || "", correct: correct ?? false, timeSpent: timeSpent || null, skulls: skulls || (correct ? 1 : 0), hintsUsed: hintsUsed || 0 } });
 

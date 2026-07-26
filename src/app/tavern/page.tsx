@@ -6,7 +6,7 @@ import Link from "next/link";
 const SHOP_ITEMS = [
     { type: "whisper_scroll" as const, name: "Whisper Scroll", icon: "📜", cost: 20, desc: "Reveals a hint for any trial" },
     { type: "storm_pass" as const, name: "Storm Pass", icon: "⛈️", cost: 50, desc: "Skip one trial instantly" },
-    { type: "fortune_wind" as const, name: "Fortune Wind", icon: "💨", cost: 100, desc: "Double XP for 1 hour" },
+    { type: "fortune_wind" as const, name: "Fortune Wind", icon: "💨", cost: 100, desc: "Double crowns from next trial" },
     { type: "anchor_charm" as const, name: "Anchor Charm", icon: "⚓", cost: 150, desc: "Freeze your streak for 1 day" },
 ];
 
@@ -49,7 +49,6 @@ export default async function TavernPage() {
                                 <div className="flex items-center justify-between">
                                     <span className="text-sm">Owned: <strong style={{ color: "#F7C948" }}>{owned?.quantity || 0}</strong></span>
                                     <form action={`/api/shop/buy`} method="POST">
-                                        <input type="hidden" name="userId" value={user.id} />
                                         <input type="hidden" name="itemType" value={item.type} />
                                         <input type="hidden" name="cost" value={item.cost} />
                                         <button type="submit" className="btn-pirate text-sm" disabled={user.crowns < item.cost}>

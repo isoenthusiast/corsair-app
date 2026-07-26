@@ -20,10 +20,8 @@ export default async function ClassPage() {
         );
     }
 
-    // If only one class, redirect to it
-    if (classes.length === 1 && session.user.role !== "Admin") {
-        redirect(`/class/${classes[0].id}`);
-    }
+    // If only one class, still render the list — let the teacher click through.
+    // Avoids hardcoding role-specific redirects; middleware already routes to /class.
 
     return (
         <div className="min-h-screen treasure-map">
