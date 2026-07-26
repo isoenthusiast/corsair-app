@@ -5,6 +5,7 @@ import { NextRequest, NextResponse } from "next/server";
 export async function GET(request: NextRequest) {
     const session = await auth();
     if (!session?.user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    if (session.user.role === "Student") return NextResponse.json({ error: "Forbidden" }, { status: 403 });
 
     const isAdmin = session.user.role === "Admin";
     const isTeacher = session.user.role === "Teacher";
@@ -64,5 +65,5 @@ export async function POST(request: NextRequest) {
         include: { assignee: { select: { id: true, name: true } }, creator: { select: { id: true, name: true } } },
     });
 
-    return NextResponse.json({ card });
+    return NextResponse.json({ card }, { status: 201 });
 }

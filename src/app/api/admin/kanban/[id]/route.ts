@@ -16,6 +16,13 @@ export async function PATCH(request: NextRequest, { params }: { params: Promise<
     const data: any = { status };
     if (status === "Archive") data.archivedAt = new Date();
 
-    const card = await prisma.kanbanCard.update({ where: { id }, data });
-    return NextResponse.json({ card });
+    try {
+        const card = await prisma.kanbanCard.update({ where: { id }, data });
+        return NextResponse.json({ card });
+    } catch (e: any) {
+        if (e?.code === "P2025") {
+            return NextResponse.json({ error: "Card not found" }, { status: 404 });
+        }
+        throw e;
+    }
 }
