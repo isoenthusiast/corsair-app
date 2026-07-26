@@ -27,12 +27,15 @@ export type AggregateKanbanCard = {
 export type KanbanCardMinAggregateOutputType = {
   id: string | null
   type: $Enums.KanbanType | null
+  scope: $Enums.KanbanScope | null
   status: $Enums.KanbanStatus | null
   title: string | null
   description: string | null
   priority: $Enums.Priority | null
   sourceTable: string | null
   sourceId: string | null
+  classId: string | null
+  voyageId: string | null
   assigneeId: string | null
   creatorId: string | null
   archivedAt: Date | null
@@ -43,12 +46,15 @@ export type KanbanCardMinAggregateOutputType = {
 export type KanbanCardMaxAggregateOutputType = {
   id: string | null
   type: $Enums.KanbanType | null
+  scope: $Enums.KanbanScope | null
   status: $Enums.KanbanStatus | null
   title: string | null
   description: string | null
   priority: $Enums.Priority | null
   sourceTable: string | null
   sourceId: string | null
+  classId: string | null
+  voyageId: string | null
   assigneeId: string | null
   creatorId: string | null
   archivedAt: Date | null
@@ -59,12 +65,15 @@ export type KanbanCardMaxAggregateOutputType = {
 export type KanbanCardCountAggregateOutputType = {
   id: number
   type: number
+  scope: number
   status: number
   title: number
   description: number
   priority: number
   sourceTable: number
   sourceId: number
+  classId: number
+  voyageId: number
   assigneeId: number
   creatorId: number
   archivedAt: number
@@ -77,12 +86,15 @@ export type KanbanCardCountAggregateOutputType = {
 export type KanbanCardMinAggregateInputType = {
   id?: true
   type?: true
+  scope?: true
   status?: true
   title?: true
   description?: true
   priority?: true
   sourceTable?: true
   sourceId?: true
+  classId?: true
+  voyageId?: true
   assigneeId?: true
   creatorId?: true
   archivedAt?: true
@@ -93,12 +105,15 @@ export type KanbanCardMinAggregateInputType = {
 export type KanbanCardMaxAggregateInputType = {
   id?: true
   type?: true
+  scope?: true
   status?: true
   title?: true
   description?: true
   priority?: true
   sourceTable?: true
   sourceId?: true
+  classId?: true
+  voyageId?: true
   assigneeId?: true
   creatorId?: true
   archivedAt?: true
@@ -109,12 +124,15 @@ export type KanbanCardMaxAggregateInputType = {
 export type KanbanCardCountAggregateInputType = {
   id?: true
   type?: true
+  scope?: true
   status?: true
   title?: true
   description?: true
   priority?: true
   sourceTable?: true
   sourceId?: true
+  classId?: true
+  voyageId?: true
   assigneeId?: true
   creatorId?: true
   archivedAt?: true
@@ -198,12 +216,15 @@ export type KanbanCardGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inter
 export type KanbanCardGroupByOutputType = {
   id: string
   type: $Enums.KanbanType
+  scope: $Enums.KanbanScope
   status: $Enums.KanbanStatus
   title: string
   description: string | null
   priority: $Enums.Priority
   sourceTable: string | null
   sourceId: string | null
+  classId: string | null
+  voyageId: string | null
   assigneeId: string | null
   creatorId: string
   archivedAt: Date | null
@@ -235,12 +256,15 @@ export type KanbanCardWhereInput = {
   NOT?: Prisma.KanbanCardWhereInput | Prisma.KanbanCardWhereInput[]
   id?: Prisma.StringFilter<"KanbanCard"> | string
   type?: Prisma.EnumKanbanTypeFilter<"KanbanCard"> | $Enums.KanbanType
+  scope?: Prisma.EnumKanbanScopeFilter<"KanbanCard"> | $Enums.KanbanScope
   status?: Prisma.EnumKanbanStatusFilter<"KanbanCard"> | $Enums.KanbanStatus
   title?: Prisma.StringFilter<"KanbanCard"> | string
   description?: Prisma.StringNullableFilter<"KanbanCard"> | string | null
   priority?: Prisma.EnumPriorityFilter<"KanbanCard"> | $Enums.Priority
   sourceTable?: Prisma.StringNullableFilter<"KanbanCard"> | string | null
   sourceId?: Prisma.StringNullableFilter<"KanbanCard"> | string | null
+  classId?: Prisma.StringNullableFilter<"KanbanCard"> | string | null
+  voyageId?: Prisma.StringNullableFilter<"KanbanCard"> | string | null
   assigneeId?: Prisma.StringNullableFilter<"KanbanCard"> | string | null
   creatorId?: Prisma.StringFilter<"KanbanCard"> | string
   archivedAt?: Prisma.DateTimeNullableFilter<"KanbanCard"> | Date | string | null
@@ -253,12 +277,15 @@ export type KanbanCardWhereInput = {
 export type KanbanCardOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   type?: Prisma.SortOrder
+  scope?: Prisma.SortOrder
   status?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   priority?: Prisma.SortOrder
   sourceTable?: Prisma.SortOrderInput | Prisma.SortOrder
   sourceId?: Prisma.SortOrderInput | Prisma.SortOrder
+  classId?: Prisma.SortOrderInput | Prisma.SortOrder
+  voyageId?: Prisma.SortOrderInput | Prisma.SortOrder
   assigneeId?: Prisma.SortOrderInput | Prisma.SortOrder
   creatorId?: Prisma.SortOrder
   archivedAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -274,12 +301,15 @@ export type KanbanCardWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.KanbanCardWhereInput[]
   NOT?: Prisma.KanbanCardWhereInput | Prisma.KanbanCardWhereInput[]
   type?: Prisma.EnumKanbanTypeFilter<"KanbanCard"> | $Enums.KanbanType
+  scope?: Prisma.EnumKanbanScopeFilter<"KanbanCard"> | $Enums.KanbanScope
   status?: Prisma.EnumKanbanStatusFilter<"KanbanCard"> | $Enums.KanbanStatus
   title?: Prisma.StringFilter<"KanbanCard"> | string
   description?: Prisma.StringNullableFilter<"KanbanCard"> | string | null
   priority?: Prisma.EnumPriorityFilter<"KanbanCard"> | $Enums.Priority
   sourceTable?: Prisma.StringNullableFilter<"KanbanCard"> | string | null
   sourceId?: Prisma.StringNullableFilter<"KanbanCard"> | string | null
+  classId?: Prisma.StringNullableFilter<"KanbanCard"> | string | null
+  voyageId?: Prisma.StringNullableFilter<"KanbanCard"> | string | null
   assigneeId?: Prisma.StringNullableFilter<"KanbanCard"> | string | null
   creatorId?: Prisma.StringFilter<"KanbanCard"> | string
   archivedAt?: Prisma.DateTimeNullableFilter<"KanbanCard"> | Date | string | null
@@ -292,12 +322,15 @@ export type KanbanCardWhereUniqueInput = Prisma.AtLeast<{
 export type KanbanCardOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   type?: Prisma.SortOrder
+  scope?: Prisma.SortOrder
   status?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   priority?: Prisma.SortOrder
   sourceTable?: Prisma.SortOrderInput | Prisma.SortOrder
   sourceId?: Prisma.SortOrderInput | Prisma.SortOrder
+  classId?: Prisma.SortOrderInput | Prisma.SortOrder
+  voyageId?: Prisma.SortOrderInput | Prisma.SortOrder
   assigneeId?: Prisma.SortOrderInput | Prisma.SortOrder
   creatorId?: Prisma.SortOrder
   archivedAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -314,12 +347,15 @@ export type KanbanCardScalarWhereWithAggregatesInput = {
   NOT?: Prisma.KanbanCardScalarWhereWithAggregatesInput | Prisma.KanbanCardScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"KanbanCard"> | string
   type?: Prisma.EnumKanbanTypeWithAggregatesFilter<"KanbanCard"> | $Enums.KanbanType
+  scope?: Prisma.EnumKanbanScopeWithAggregatesFilter<"KanbanCard"> | $Enums.KanbanScope
   status?: Prisma.EnumKanbanStatusWithAggregatesFilter<"KanbanCard"> | $Enums.KanbanStatus
   title?: Prisma.StringWithAggregatesFilter<"KanbanCard"> | string
   description?: Prisma.StringNullableWithAggregatesFilter<"KanbanCard"> | string | null
   priority?: Prisma.EnumPriorityWithAggregatesFilter<"KanbanCard"> | $Enums.Priority
   sourceTable?: Prisma.StringNullableWithAggregatesFilter<"KanbanCard"> | string | null
   sourceId?: Prisma.StringNullableWithAggregatesFilter<"KanbanCard"> | string | null
+  classId?: Prisma.StringNullableWithAggregatesFilter<"KanbanCard"> | string | null
+  voyageId?: Prisma.StringNullableWithAggregatesFilter<"KanbanCard"> | string | null
   assigneeId?: Prisma.StringNullableWithAggregatesFilter<"KanbanCard"> | string | null
   creatorId?: Prisma.StringWithAggregatesFilter<"KanbanCard"> | string
   archivedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"KanbanCard"> | Date | string | null
@@ -330,12 +366,15 @@ export type KanbanCardScalarWhereWithAggregatesInput = {
 export type KanbanCardCreateInput = {
   id?: string
   type: $Enums.KanbanType
+  scope?: $Enums.KanbanScope
   status?: $Enums.KanbanStatus
   title: string
   description?: string | null
   priority?: $Enums.Priority
   sourceTable?: string | null
   sourceId?: string | null
+  classId?: string | null
+  voyageId?: string | null
   archivedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -346,12 +385,15 @@ export type KanbanCardCreateInput = {
 export type KanbanCardUncheckedCreateInput = {
   id?: string
   type: $Enums.KanbanType
+  scope?: $Enums.KanbanScope
   status?: $Enums.KanbanStatus
   title: string
   description?: string | null
   priority?: $Enums.Priority
   sourceTable?: string | null
   sourceId?: string | null
+  classId?: string | null
+  voyageId?: string | null
   assigneeId?: string | null
   creatorId: string
   archivedAt?: Date | string | null
@@ -362,12 +404,15 @@ export type KanbanCardUncheckedCreateInput = {
 export type KanbanCardUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumKanbanTypeFieldUpdateOperationsInput | $Enums.KanbanType
+  scope?: Prisma.EnumKanbanScopeFieldUpdateOperationsInput | $Enums.KanbanScope
   status?: Prisma.EnumKanbanStatusFieldUpdateOperationsInput | $Enums.KanbanStatus
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   priority?: Prisma.EnumPriorityFieldUpdateOperationsInput | $Enums.Priority
   sourceTable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sourceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  classId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  voyageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -378,12 +423,15 @@ export type KanbanCardUpdateInput = {
 export type KanbanCardUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumKanbanTypeFieldUpdateOperationsInput | $Enums.KanbanType
+  scope?: Prisma.EnumKanbanScopeFieldUpdateOperationsInput | $Enums.KanbanScope
   status?: Prisma.EnumKanbanStatusFieldUpdateOperationsInput | $Enums.KanbanStatus
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   priority?: Prisma.EnumPriorityFieldUpdateOperationsInput | $Enums.Priority
   sourceTable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sourceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  classId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  voyageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   assigneeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creatorId?: Prisma.StringFieldUpdateOperationsInput | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -394,12 +442,15 @@ export type KanbanCardUncheckedUpdateInput = {
 export type KanbanCardCreateManyInput = {
   id?: string
   type: $Enums.KanbanType
+  scope?: $Enums.KanbanScope
   status?: $Enums.KanbanStatus
   title: string
   description?: string | null
   priority?: $Enums.Priority
   sourceTable?: string | null
   sourceId?: string | null
+  classId?: string | null
+  voyageId?: string | null
   assigneeId?: string | null
   creatorId: string
   archivedAt?: Date | string | null
@@ -410,12 +461,15 @@ export type KanbanCardCreateManyInput = {
 export type KanbanCardUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumKanbanTypeFieldUpdateOperationsInput | $Enums.KanbanType
+  scope?: Prisma.EnumKanbanScopeFieldUpdateOperationsInput | $Enums.KanbanScope
   status?: Prisma.EnumKanbanStatusFieldUpdateOperationsInput | $Enums.KanbanStatus
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   priority?: Prisma.EnumPriorityFieldUpdateOperationsInput | $Enums.Priority
   sourceTable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sourceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  classId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  voyageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -424,12 +478,15 @@ export type KanbanCardUpdateManyMutationInput = {
 export type KanbanCardUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumKanbanTypeFieldUpdateOperationsInput | $Enums.KanbanType
+  scope?: Prisma.EnumKanbanScopeFieldUpdateOperationsInput | $Enums.KanbanScope
   status?: Prisma.EnumKanbanStatusFieldUpdateOperationsInput | $Enums.KanbanStatus
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   priority?: Prisma.EnumPriorityFieldUpdateOperationsInput | $Enums.Priority
   sourceTable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sourceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  classId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  voyageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   assigneeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creatorId?: Prisma.StringFieldUpdateOperationsInput | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -450,12 +507,15 @@ export type KanbanCardOrderByRelationAggregateInput = {
 export type KanbanCardCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   type?: Prisma.SortOrder
+  scope?: Prisma.SortOrder
   status?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
   priority?: Prisma.SortOrder
   sourceTable?: Prisma.SortOrder
   sourceId?: Prisma.SortOrder
+  classId?: Prisma.SortOrder
+  voyageId?: Prisma.SortOrder
   assigneeId?: Prisma.SortOrder
   creatorId?: Prisma.SortOrder
   archivedAt?: Prisma.SortOrder
@@ -466,12 +526,15 @@ export type KanbanCardCountOrderByAggregateInput = {
 export type KanbanCardMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   type?: Prisma.SortOrder
+  scope?: Prisma.SortOrder
   status?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
   priority?: Prisma.SortOrder
   sourceTable?: Prisma.SortOrder
   sourceId?: Prisma.SortOrder
+  classId?: Prisma.SortOrder
+  voyageId?: Prisma.SortOrder
   assigneeId?: Prisma.SortOrder
   creatorId?: Prisma.SortOrder
   archivedAt?: Prisma.SortOrder
@@ -482,12 +545,15 @@ export type KanbanCardMaxOrderByAggregateInput = {
 export type KanbanCardMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   type?: Prisma.SortOrder
+  scope?: Prisma.SortOrder
   status?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
   priority?: Prisma.SortOrder
   sourceTable?: Prisma.SortOrder
   sourceId?: Prisma.SortOrder
+  classId?: Prisma.SortOrder
+  voyageId?: Prisma.SortOrder
   assigneeId?: Prisma.SortOrder
   creatorId?: Prisma.SortOrder
   archivedAt?: Prisma.SortOrder
@@ -583,6 +649,10 @@ export type EnumKanbanTypeFieldUpdateOperationsInput = {
   set?: $Enums.KanbanType
 }
 
+export type EnumKanbanScopeFieldUpdateOperationsInput = {
+  set?: $Enums.KanbanScope
+}
+
 export type EnumKanbanStatusFieldUpdateOperationsInput = {
   set?: $Enums.KanbanStatus
 }
@@ -594,12 +664,15 @@ export type EnumPriorityFieldUpdateOperationsInput = {
 export type KanbanCardCreateWithoutCreatorInput = {
   id?: string
   type: $Enums.KanbanType
+  scope?: $Enums.KanbanScope
   status?: $Enums.KanbanStatus
   title: string
   description?: string | null
   priority?: $Enums.Priority
   sourceTable?: string | null
   sourceId?: string | null
+  classId?: string | null
+  voyageId?: string | null
   archivedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -609,12 +682,15 @@ export type KanbanCardCreateWithoutCreatorInput = {
 export type KanbanCardUncheckedCreateWithoutCreatorInput = {
   id?: string
   type: $Enums.KanbanType
+  scope?: $Enums.KanbanScope
   status?: $Enums.KanbanStatus
   title: string
   description?: string | null
   priority?: $Enums.Priority
   sourceTable?: string | null
   sourceId?: string | null
+  classId?: string | null
+  voyageId?: string | null
   assigneeId?: string | null
   archivedAt?: Date | string | null
   createdAt?: Date | string
@@ -634,12 +710,15 @@ export type KanbanCardCreateManyCreatorInputEnvelope = {
 export type KanbanCardCreateWithoutAssigneeInput = {
   id?: string
   type: $Enums.KanbanType
+  scope?: $Enums.KanbanScope
   status?: $Enums.KanbanStatus
   title: string
   description?: string | null
   priority?: $Enums.Priority
   sourceTable?: string | null
   sourceId?: string | null
+  classId?: string | null
+  voyageId?: string | null
   archivedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -649,12 +728,15 @@ export type KanbanCardCreateWithoutAssigneeInput = {
 export type KanbanCardUncheckedCreateWithoutAssigneeInput = {
   id?: string
   type: $Enums.KanbanType
+  scope?: $Enums.KanbanScope
   status?: $Enums.KanbanStatus
   title: string
   description?: string | null
   priority?: $Enums.Priority
   sourceTable?: string | null
   sourceId?: string | null
+  classId?: string | null
+  voyageId?: string | null
   creatorId: string
   archivedAt?: Date | string | null
   createdAt?: Date | string
@@ -693,12 +775,15 @@ export type KanbanCardScalarWhereInput = {
   NOT?: Prisma.KanbanCardScalarWhereInput | Prisma.KanbanCardScalarWhereInput[]
   id?: Prisma.StringFilter<"KanbanCard"> | string
   type?: Prisma.EnumKanbanTypeFilter<"KanbanCard"> | $Enums.KanbanType
+  scope?: Prisma.EnumKanbanScopeFilter<"KanbanCard"> | $Enums.KanbanScope
   status?: Prisma.EnumKanbanStatusFilter<"KanbanCard"> | $Enums.KanbanStatus
   title?: Prisma.StringFilter<"KanbanCard"> | string
   description?: Prisma.StringNullableFilter<"KanbanCard"> | string | null
   priority?: Prisma.EnumPriorityFilter<"KanbanCard"> | $Enums.Priority
   sourceTable?: Prisma.StringNullableFilter<"KanbanCard"> | string | null
   sourceId?: Prisma.StringNullableFilter<"KanbanCard"> | string | null
+  classId?: Prisma.StringNullableFilter<"KanbanCard"> | string | null
+  voyageId?: Prisma.StringNullableFilter<"KanbanCard"> | string | null
   assigneeId?: Prisma.StringNullableFilter<"KanbanCard"> | string | null
   creatorId?: Prisma.StringFilter<"KanbanCard"> | string
   archivedAt?: Prisma.DateTimeNullableFilter<"KanbanCard"> | Date | string | null
@@ -725,12 +810,15 @@ export type KanbanCardUpdateManyWithWhereWithoutAssigneeInput = {
 export type KanbanCardCreateManyCreatorInput = {
   id?: string
   type: $Enums.KanbanType
+  scope?: $Enums.KanbanScope
   status?: $Enums.KanbanStatus
   title: string
   description?: string | null
   priority?: $Enums.Priority
   sourceTable?: string | null
   sourceId?: string | null
+  classId?: string | null
+  voyageId?: string | null
   assigneeId?: string | null
   archivedAt?: Date | string | null
   createdAt?: Date | string
@@ -740,12 +828,15 @@ export type KanbanCardCreateManyCreatorInput = {
 export type KanbanCardCreateManyAssigneeInput = {
   id?: string
   type: $Enums.KanbanType
+  scope?: $Enums.KanbanScope
   status?: $Enums.KanbanStatus
   title: string
   description?: string | null
   priority?: $Enums.Priority
   sourceTable?: string | null
   sourceId?: string | null
+  classId?: string | null
+  voyageId?: string | null
   creatorId: string
   archivedAt?: Date | string | null
   createdAt?: Date | string
@@ -755,12 +846,15 @@ export type KanbanCardCreateManyAssigneeInput = {
 export type KanbanCardUpdateWithoutCreatorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumKanbanTypeFieldUpdateOperationsInput | $Enums.KanbanType
+  scope?: Prisma.EnumKanbanScopeFieldUpdateOperationsInput | $Enums.KanbanScope
   status?: Prisma.EnumKanbanStatusFieldUpdateOperationsInput | $Enums.KanbanStatus
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   priority?: Prisma.EnumPriorityFieldUpdateOperationsInput | $Enums.Priority
   sourceTable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sourceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  classId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  voyageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -770,12 +864,15 @@ export type KanbanCardUpdateWithoutCreatorInput = {
 export type KanbanCardUncheckedUpdateWithoutCreatorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumKanbanTypeFieldUpdateOperationsInput | $Enums.KanbanType
+  scope?: Prisma.EnumKanbanScopeFieldUpdateOperationsInput | $Enums.KanbanScope
   status?: Prisma.EnumKanbanStatusFieldUpdateOperationsInput | $Enums.KanbanStatus
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   priority?: Prisma.EnumPriorityFieldUpdateOperationsInput | $Enums.Priority
   sourceTable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sourceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  classId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  voyageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   assigneeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -785,12 +882,15 @@ export type KanbanCardUncheckedUpdateWithoutCreatorInput = {
 export type KanbanCardUncheckedUpdateManyWithoutCreatorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumKanbanTypeFieldUpdateOperationsInput | $Enums.KanbanType
+  scope?: Prisma.EnumKanbanScopeFieldUpdateOperationsInput | $Enums.KanbanScope
   status?: Prisma.EnumKanbanStatusFieldUpdateOperationsInput | $Enums.KanbanStatus
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   priority?: Prisma.EnumPriorityFieldUpdateOperationsInput | $Enums.Priority
   sourceTable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sourceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  classId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  voyageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   assigneeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -800,12 +900,15 @@ export type KanbanCardUncheckedUpdateManyWithoutCreatorInput = {
 export type KanbanCardUpdateWithoutAssigneeInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumKanbanTypeFieldUpdateOperationsInput | $Enums.KanbanType
+  scope?: Prisma.EnumKanbanScopeFieldUpdateOperationsInput | $Enums.KanbanScope
   status?: Prisma.EnumKanbanStatusFieldUpdateOperationsInput | $Enums.KanbanStatus
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   priority?: Prisma.EnumPriorityFieldUpdateOperationsInput | $Enums.Priority
   sourceTable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sourceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  classId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  voyageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -815,12 +918,15 @@ export type KanbanCardUpdateWithoutAssigneeInput = {
 export type KanbanCardUncheckedUpdateWithoutAssigneeInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumKanbanTypeFieldUpdateOperationsInput | $Enums.KanbanType
+  scope?: Prisma.EnumKanbanScopeFieldUpdateOperationsInput | $Enums.KanbanScope
   status?: Prisma.EnumKanbanStatusFieldUpdateOperationsInput | $Enums.KanbanStatus
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   priority?: Prisma.EnumPriorityFieldUpdateOperationsInput | $Enums.Priority
   sourceTable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sourceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  classId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  voyageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creatorId?: Prisma.StringFieldUpdateOperationsInput | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -830,12 +936,15 @@ export type KanbanCardUncheckedUpdateWithoutAssigneeInput = {
 export type KanbanCardUncheckedUpdateManyWithoutAssigneeInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumKanbanTypeFieldUpdateOperationsInput | $Enums.KanbanType
+  scope?: Prisma.EnumKanbanScopeFieldUpdateOperationsInput | $Enums.KanbanScope
   status?: Prisma.EnumKanbanStatusFieldUpdateOperationsInput | $Enums.KanbanStatus
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   priority?: Prisma.EnumPriorityFieldUpdateOperationsInput | $Enums.Priority
   sourceTable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sourceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  classId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  voyageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creatorId?: Prisma.StringFieldUpdateOperationsInput | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -847,12 +956,15 @@ export type KanbanCardUncheckedUpdateManyWithoutAssigneeInput = {
 export type KanbanCardSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   type?: boolean
+  scope?: boolean
   status?: boolean
   title?: boolean
   description?: boolean
   priority?: boolean
   sourceTable?: boolean
   sourceId?: boolean
+  classId?: boolean
+  voyageId?: boolean
   assigneeId?: boolean
   creatorId?: boolean
   archivedAt?: boolean
@@ -865,12 +977,15 @@ export type KanbanCardSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
 export type KanbanCardSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   type?: boolean
+  scope?: boolean
   status?: boolean
   title?: boolean
   description?: boolean
   priority?: boolean
   sourceTable?: boolean
   sourceId?: boolean
+  classId?: boolean
+  voyageId?: boolean
   assigneeId?: boolean
   creatorId?: boolean
   archivedAt?: boolean
@@ -883,12 +998,15 @@ export type KanbanCardSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
 export type KanbanCardSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   type?: boolean
+  scope?: boolean
   status?: boolean
   title?: boolean
   description?: boolean
   priority?: boolean
   sourceTable?: boolean
   sourceId?: boolean
+  classId?: boolean
+  voyageId?: boolean
   assigneeId?: boolean
   creatorId?: boolean
   archivedAt?: boolean
@@ -901,12 +1019,15 @@ export type KanbanCardSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
 export type KanbanCardSelectScalar = {
   id?: boolean
   type?: boolean
+  scope?: boolean
   status?: boolean
   title?: boolean
   description?: boolean
   priority?: boolean
   sourceTable?: boolean
   sourceId?: boolean
+  classId?: boolean
+  voyageId?: boolean
   assigneeId?: boolean
   creatorId?: boolean
   archivedAt?: boolean
@@ -914,7 +1035,7 @@ export type KanbanCardSelectScalar = {
   updatedAt?: boolean
 }
 
-export type KanbanCardOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "type" | "status" | "title" | "description" | "priority" | "sourceTable" | "sourceId" | "assigneeId" | "creatorId" | "archivedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["kanbanCard"]>
+export type KanbanCardOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "type" | "scope" | "status" | "title" | "description" | "priority" | "sourceTable" | "sourceId" | "classId" | "voyageId" | "assigneeId" | "creatorId" | "archivedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["kanbanCard"]>
 export type KanbanCardInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   creator?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   assignee?: boolean | Prisma.KanbanCard$assigneeArgs<ExtArgs>
@@ -937,12 +1058,15 @@ export type $KanbanCardPayload<ExtArgs extends runtime.Types.Extensions.Internal
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     type: $Enums.KanbanType
+    scope: $Enums.KanbanScope
     status: $Enums.KanbanStatus
     title: string
     description: string | null
     priority: $Enums.Priority
     sourceTable: string | null
     sourceId: string | null
+    classId: string | null
+    voyageId: string | null
     assigneeId: string | null
     creatorId: string
     archivedAt: Date | null
@@ -1375,12 +1499,15 @@ export interface Prisma__KanbanCardClient<T, Null = never, ExtArgs extends runti
 export interface KanbanCardFieldRefs {
   readonly id: Prisma.FieldRef<"KanbanCard", 'String'>
   readonly type: Prisma.FieldRef<"KanbanCard", 'KanbanType'>
+  readonly scope: Prisma.FieldRef<"KanbanCard", 'KanbanScope'>
   readonly status: Prisma.FieldRef<"KanbanCard", 'KanbanStatus'>
   readonly title: Prisma.FieldRef<"KanbanCard", 'String'>
   readonly description: Prisma.FieldRef<"KanbanCard", 'String'>
   readonly priority: Prisma.FieldRef<"KanbanCard", 'Priority'>
   readonly sourceTable: Prisma.FieldRef<"KanbanCard", 'String'>
   readonly sourceId: Prisma.FieldRef<"KanbanCard", 'String'>
+  readonly classId: Prisma.FieldRef<"KanbanCard", 'String'>
+  readonly voyageId: Prisma.FieldRef<"KanbanCard", 'String'>
   readonly assigneeId: Prisma.FieldRef<"KanbanCard", 'String'>
   readonly creatorId: Prisma.FieldRef<"KanbanCard", 'String'>
   readonly archivedAt: Prisma.FieldRef<"KanbanCard", 'DateTime'>

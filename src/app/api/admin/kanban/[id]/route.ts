@@ -8,7 +8,7 @@ export async function PATCH(request: NextRequest, { params }: { params: Promise<
 
     const { id } = await params;
     const body = await request.json();
-    const { status, title, description, priority } = body;
+    const { status, title, description, priority, scope, classId, voyageId } = body;
 
     const data: any = {};
     if (status) {
@@ -26,6 +26,14 @@ export async function PATCH(request: NextRequest, { params }: { params: Promise<
         }
         data.priority = priority;
     }
+    if (scope !== undefined) {
+        if (!["Class", "Trial", "Admin"].includes(scope)) {
+            return NextResponse.json({ error: "Invalid scope" }, { status: 400 });
+        }
+        data.scope = scope;
+    }
+    if (classId !== undefined) data.classId = classId || null;
+    if (voyageId !== undefined) data.voyageId = voyageId || null;
 
     try {
         const card = await prisma.kanbanCard.update({ where: { id }, data });

@@ -83,6 +83,15 @@ export const KanbanType = {
 export type KanbanType = (typeof KanbanType)[keyof typeof KanbanType]
 
 
+export const KanbanScope = {
+  Class: 'Class',
+  Trial: 'Trial',
+  Admin: 'Admin'
+} as const
+
+export type KanbanScope = (typeof KanbanScope)[keyof typeof KanbanScope]
+
+
 export const KanbanStatus = {
   Backlog: 'Backlog',
   InProgress: 'InProgress',

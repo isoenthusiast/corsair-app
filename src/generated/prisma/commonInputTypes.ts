@@ -389,6 +389,13 @@ export type EnumKanbanTypeFilter<$PrismaModel = never> = {
   not?: Prisma.NestedEnumKanbanTypeFilter<$PrismaModel> | $Enums.KanbanType
 }
 
+export type EnumKanbanScopeFilter<$PrismaModel = never> = {
+  equals?: $Enums.KanbanScope | Prisma.EnumKanbanScopeFieldRefInput<$PrismaModel>
+  in?: $Enums.KanbanScope[] | Prisma.ListEnumKanbanScopeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.KanbanScope[] | Prisma.ListEnumKanbanScopeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumKanbanScopeFilter<$PrismaModel> | $Enums.KanbanScope
+}
+
 export type EnumKanbanStatusFilter<$PrismaModel = never> = {
   equals?: $Enums.KanbanStatus | Prisma.EnumKanbanStatusFieldRefInput<$PrismaModel>
   in?: $Enums.KanbanStatus[] | Prisma.ListEnumKanbanStatusFieldRefInput<$PrismaModel>
@@ -411,6 +418,16 @@ export type EnumKanbanTypeWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumKanbanTypeFilter<$PrismaModel>
   _max?: Prisma.NestedEnumKanbanTypeFilter<$PrismaModel>
+}
+
+export type EnumKanbanScopeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.KanbanScope | Prisma.EnumKanbanScopeFieldRefInput<$PrismaModel>
+  in?: $Enums.KanbanScope[] | Prisma.ListEnumKanbanScopeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.KanbanScope[] | Prisma.ListEnumKanbanScopeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumKanbanScopeWithAggregatesFilter<$PrismaModel> | $Enums.KanbanScope
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumKanbanScopeFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumKanbanScopeFilter<$PrismaModel>
 }
 
 export type EnumKanbanStatusWithAggregatesFilter<$PrismaModel = never> = {
@@ -783,6 +800,13 @@ export type NestedEnumKanbanTypeFilter<$PrismaModel = never> = {
   not?: Prisma.NestedEnumKanbanTypeFilter<$PrismaModel> | $Enums.KanbanType
 }
 
+export type NestedEnumKanbanScopeFilter<$PrismaModel = never> = {
+  equals?: $Enums.KanbanScope | Prisma.EnumKanbanScopeFieldRefInput<$PrismaModel>
+  in?: $Enums.KanbanScope[] | Prisma.ListEnumKanbanScopeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.KanbanScope[] | Prisma.ListEnumKanbanScopeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumKanbanScopeFilter<$PrismaModel> | $Enums.KanbanScope
+}
+
 export type NestedEnumKanbanStatusFilter<$PrismaModel = never> = {
   equals?: $Enums.KanbanStatus | Prisma.EnumKanbanStatusFieldRefInput<$PrismaModel>
   in?: $Enums.KanbanStatus[] | Prisma.ListEnumKanbanStatusFieldRefInput<$PrismaModel>
@@ -805,6 +829,16 @@ export type NestedEnumKanbanTypeWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumKanbanTypeFilter<$PrismaModel>
   _max?: Prisma.NestedEnumKanbanTypeFilter<$PrismaModel>
+}
+
+export type NestedEnumKanbanScopeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.KanbanScope | Prisma.EnumKanbanScopeFieldRefInput<$PrismaModel>
+  in?: $Enums.KanbanScope[] | Prisma.ListEnumKanbanScopeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.KanbanScope[] | Prisma.ListEnumKanbanScopeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumKanbanScopeWithAggregatesFilter<$PrismaModel> | $Enums.KanbanScope
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumKanbanScopeFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumKanbanScopeFilter<$PrismaModel>
 }
 
 export type NestedEnumKanbanStatusWithAggregatesFilter<$PrismaModel = never> = {

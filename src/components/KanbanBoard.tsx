@@ -4,12 +4,16 @@ import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 
 interface KanbanCard {
-    id: string; type: string; status: string; title: string; description: string | null;
+    id: string; type: string; scope: string; status: string; title: string; description: string | null;
     priority: string; sourceTable: string | null; sourceId: string | null;
+    classId: string | null; voyageId: string | null;
     assignee: { id: string; name: string } | null;
     creator: { id: string; name: string } | null;
     createdAt: string; archivedAt: string | null;
 }
+
+const SCOPE_LABELS: Record<string, string> = { Class: "🏫 Class", Trial: "⚔️ Trial", Admin: "⚓ Admin" };
+const SCOPE_COLORS: Record<string, string> = { Class: "bg-blue-800 text-blue-300", Trial: "bg-purple-800 text-purple-300", Admin: "bg-slate-700 text-slate-300" };
 
 const COLUMNS = ["Backlog", "InProgress", "Done", "Archive"] as const;
 const COLUMN_LABELS: Record<string, string> = { Backlog: "📥 Backlog", InProgress: "🔄 In Progress", Done: "✅ Done", Archive: "📦 Archive" };
@@ -26,6 +30,7 @@ export default function KanbanBoard() {
     const [newTitle, setNewTitle] = useState("");
     const [newDesc, setNewDesc] = useState("");
     const [newPrio, setNewPrio] = useState("Medium");
+    const [newScope, setNewScope] = useState("Admin");
     const [error, setError] = useState("");
 
     // Edit modal state
@@ -34,6 +39,7 @@ export default function KanbanBoard() {
     const [editDesc, setEditDesc] = useState("");
     const [editPrio, setEditPrio] = useState("Medium");
     const [editStatus, setEditStatus] = useState("Backlog");
+    const [editScope, setEditScope] = useState("Admin");
     const [editSaving, setEditSaving] = useState(false);
     const [editError, setEditError] = useState("");
 
@@ -67,9 +73,9 @@ export default function KanbanBoard() {
         setError("");
         const res = await fetch("/api/admin/kanban", {
             method: "POST", headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ title: newTitle, description: newDesc || null, priority: newPrio, type: "Task" }),
+            body: JSON.stringify({ title: newTitle, description: newDesc || null, priority: newPrio, scope: newScope, type: "Task" }),
         });
-        if (res.ok) { setNewTitle(""); setNewDesc(""); setNewPrio("Medium"); setShowCreate(false); fetchCards(); }
+        if (res.ok) { setNewTitle(""); setNewDesc(""); setNewPrio("Medium"); setNewScope("Admin"); setShowCreate(false); fetchCards(); }
         else setError("Failed to create task");
     }
 
@@ -79,6 +85,7 @@ export default function KanbanBoard() {
         setEditDesc(card.description || "");
         setEditPrio(card.priority);
         setEditStatus(card.status);
+        setEditScope(card.scope || "Admin");
         setEditError("");
     }
 
@@ -89,7 +96,7 @@ export default function KanbanBoard() {
         const res = await fetch(`/api/admin/kanban/${editingCard.id}`, {
             method: "PATCH",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ title: editTitle, description: editDesc || null, priority: editPrio, status: editStatus }),
+            body: JSON.stringify({ title: editTitle, description: editDesc || null, priority: editPrio, status: editStatus, scope: editScope }),
         });
         if (res.ok) {
             setEditingCard(null);
@@ -114,6 +121,9 @@ export default function KanbanBoard() {
                 <div className="mb-6 p-4 rounded-xl bg-abyssal/80 border border-amber-700/30">
                     <div className="flex gap-3 mb-3">
                         <input value={newTitle} onChange={e => setNewTitle(e.target.value)} placeholder="Task title..." className="flex-1 px-3 py-2 rounded-lg bg-abyssal border border-amber-900/30 text-white text-sm" onKeyDown={e => e.key === "Enter" && createTask()} />
+                        <select value={newScope} onChange={e => setNewScope(e.target.value)} className="px-3 py-2 rounded-lg bg-abyssal border border-amber-900/30 text-white text-sm">
+                            {["Admin", "Class", "Trial"].map(s => <option key={s} value={s}>{SCOPE_LABELS[s]}</option>)}
+                        </select>
                         <select value={newPrio} onChange={e => setNewPrio(e.target.value)} className="px-3 py-2 rounded-lg bg-abyssal border border-amber-900/30 text-white text-sm">
                             {["Low", "Medium", "High"].map(p => <option key={p} value={p}>{p}</option>)}
                         </select>
@@ -158,7 +168,10 @@ export default function KanbanBoard() {
                                             <span className="text-xs font-medium text-white truncate flex-1">{card.title}</span>
                                             <span className={`px-1.5 py-0.5 rounded text-xs ${PRIORITY_COLORS[card.priority] || ""}`}>{card.priority}</span>
                                         </div>
-                                        {card.assignee && <p className="text-xs text-amber-600">👤 {card.assignee.name}</p>}
+                                        <div className="flex items-center gap-2">
+                                            <span className={`px-1.5 py-0.5 rounded text-xs ${SCOPE_COLORS[card.scope] || SCOPE_COLORS["Admin"]}`}>{SCOPE_LABELS[card.scope] || "⚓ Admin"}</span>
+                                            {card.assignee && <span className="text-xs text-amber-600">👤 {card.assignee.name}</span>}
+                                        </div>
                                         <p className="text-xs text-amber-800 mt-1">{new Date(card.createdAt).toLocaleDateString()}</p>
                                     </div>
                                 ))}
@@ -210,6 +223,13 @@ export default function KanbanBoard() {
                                     <select value={editStatus} onChange={e => setEditStatus(e.target.value)}
                                         className="w-full px-3 py-2 rounded-lg bg-white border-2 border-amber-800/30 text-sm" style={{ color: "#3E2723" }}>
                                         {COLUMNS.map(c => <option key={c} value={c}>{COLUMN_LABELS[c]}</option>)}
+                                    </select>
+                                </div>
+                                <div className="flex-1">
+                                    <label className="block text-sm font-bold mb-1" style={{ color: "#5D4037" }}>Scope</label>
+                                    <select value={editScope} onChange={e => setEditScope(e.target.value)}
+                                        className="w-full px-3 py-2 rounded-lg bg-white border-2 border-amber-800/30 text-sm" style={{ color: "#3E2723" }}>
+                                        {["Admin", "Class", "Trial"].map(s => <option key={s} value={s}>{SCOPE_LABELS[s]}</option>)}
                                     </select>
                                 </div>
                                 <div className="flex-1">

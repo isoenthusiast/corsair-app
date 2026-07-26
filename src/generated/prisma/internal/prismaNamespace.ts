@@ -2993,12 +2993,15 @@ export type VoyageBundleItemScalarFieldEnum = (typeof VoyageBundleItemScalarFiel
 export const KanbanCardScalarFieldEnum = {
   id: 'id',
   type: 'type',
+  scope: 'scope',
   status: 'status',
   title: 'title',
   description: 'description',
   priority: 'priority',
   sourceTable: 'sourceTable',
   sourceId: 'sourceId',
+  classId: 'classId',
+  voyageId: 'voyageId',
   assigneeId: 'assigneeId',
   creatorId: 'creatorId',
   archivedAt: 'archivedAt',
@@ -3228,6 +3231,20 @@ export type EnumKanbanTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$Prism
  * Reference to a field of type 'KanbanType[]'
  */
 export type ListEnumKanbanTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'KanbanType[]'>
+    
+
+
+/**
+ * Reference to a field of type 'KanbanScope'
+ */
+export type EnumKanbanScopeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'KanbanScope'>
+    
+
+
+/**
+ * Reference to a field of type 'KanbanScope[]'
+ */
+export type ListEnumKanbanScopeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'KanbanScope[]'>
     
 
 

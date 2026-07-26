@@ -448,12 +448,15 @@ model VoyageBundleItem {
 model KanbanCard {
     id          String        @id @default(cuid())
     type        KanbanType
+    scope       KanbanScope   @default(Admin)
     status      KanbanStatus  @default(Backlog)
     title       String
     description String?
     priority    Priority      @default(Medium)
     sourceTable String?
     sourceId    String?
+    classId     String?
+    voyageId    String?
     assigneeId  String?
     creatorId   String
     archivedAt  DateTime?
@@ -517,6 +520,12 @@ enum KanbanType {
     AITrial
     SupportTicket
     Task
+}
+
+enum KanbanScope {
+    Class
+    Trial
+    Admin
 }
 
 enum KanbanStatus {
